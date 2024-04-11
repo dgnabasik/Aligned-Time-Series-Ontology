@@ -1,0 +1,1370 @@
+@prefix ats: <https://saref.etsi.org/saref4tser/> . 
+@prefix dcterms: <http://purl.org/dc/terms/> . 
+@prefix owl: <http://www.w3.org/2002/07/owl#> . 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix saref: <https://saref.etsi.org/core/> . 
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> . 
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> . 
+@prefix wgs84: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+@prefix ns1: <http://www.opengis.net/om/#> .
+@base <https://saref.etsi.org/saref4tser/> . 
+
+<https://saref.etsi.org/saref4tser/> a owl:Ontology ;
+  dcterms:creator <https://www.linkedin.com/in/david-gnabasik-0056a0ba/> ;
+  dcterms:contributor <http://maxime-lefrancois.info/me#> ;
+  dcterms:publisher <https://www.etsi.org/> ;
+  dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+  dcterms:source <https://saref.etsi.org/sources/saref4tser/> ;
+  owl:versionIRI <https://saref.etsi.org/saref4tser/v1.0.3/> ;
+  owl:versionInfo "v1.0.3" ;
+  vann:preferredNamespacePrefix "ats" ;
+  vann:preferredNamespaceUri "https://saref.etsi.org/saref4tser/" ;
+  dcterms:issued "2024-04-10"^^xsd:date ;
+  dcterms:modified "2024-04-10"^^xsd:date ;
+  rdfs:seeAlso <https://www.etsi.org/deliver/etsi_tr/SmartM2M-103911v107.docx> ;
+  dcterms:title "This is an extension of SAREF for the time series domain."@en ;
+  dcterms:abstract """The present document specifies a new reference ontology pattern for the SAREF semantic model (https://saref.etsi.org/). It also defines how this pattern may be instantiated for several SAREF extensions."""^^<https://www.iana.org/assignments/media-types/text/markdown> ;
+  dcterms:description """This extends the SAREF ontology with an aligned time series. This extension has been designed by investigating other time series domain related resources such potential stakeholders, standardization initiatives, alliances/associations, European projects, EC directives, existing ontologies, and data repositories. Therefore, this ontology shall fulfill time series related requirements provided in this document as well as a set of typical use cases."""^^<https://www.iana.org/assignments/media-types/text/markdown> .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+### http://purl.org/dc/terms/contributor
+dcterms:contributor a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/creator
+dcterms:creator a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/description
+dcterms:description a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/issued
+dcterms:issued a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/license
+dcterms:license a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/modified
+dcterms:modified a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/publisher
+dcterms:publisher a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/source
+dcterms:source a owl:AnnotationProperty .
+
+### http://purl.org/dc/terms/title
+dcterms:title a owl:AnnotationProperty .
+
+### http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+
+### http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+
+#################################################################
+#    References
+#################################################################
+
+### http://www.w3.org/2003/01/geo/wgs84_pos#location
+<http://www.w3.org/2003/01/geo/wgs84_pos#location> a owl:ObjectProperty ;
+  rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> ;
+  rdfs:isDefinedBy "http://www.w3.org/2003/01/geo/wgs84_pos#" ;
+  rdfs:comment "The relation between something and its location in space; where it is." ;
+  rdfs:label "location"@en .
+
+#################################################################
+#    ComputationGraph Class
+#################################################################
+
+### https://saref.etsi.org/saref4tser/ComputationGraph   
+ats:ComputationGraph a owl:Class ;
+  rdfs:subClassOf  [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier 
+  ] ,  
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasPublicDatasetName ;
+    owl:someValuesFrom ats:Identifier
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasDeviceName ;
+    owl:someValuesFrom ats:Identifier
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasAlignedSequence ;
+    owl:someValuesFrom ats:AlignedSequence
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty saref:isMeasuredIn ;
+    owl:someValuesFrom saref:UnitOfMeasure
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasSequenceFormula ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasStationarity 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasSeasonality 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasAutoCorrelationOrder 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasCovarianceValue 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasSamplingInterval 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasMeasurementUncertaintyPercentage 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasTimeseriesModel ;
+    owl:someValuesFrom ats:AlignedTimeseriesModel
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasForecastingModel ;
+    owl:someValuesFrom ats:ForecastingModel
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasErrorModel ;
+    owl:someValuesFrom ats:ErrorModel
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasRecurrenceRelation ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasProbabilityDistribution ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasUpperBoundingCurve ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasLowerBoundingCurve ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasConvergenceLimitValue 
+  ] ;
+  rdfs:comment "A ComputationGraph is a directed graph whose nodes correspond to computable measures of interoperability."@en ;
+  rdfs:label "ComputationGraph"@en .
+
+### https://saref.etsi.org/saref4tser/hasAutoCorrelationOrder
+ats:hasAutoCorrelationOrder a owl:DatatypeProperty ;
+  rdfs:comment "Declares the value of the autocorrelation order. The value is expected to be a small integer value, often 1."@en ;
+  rdfs:label "has autocorrelation order"@en ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range xsd:integer .
+
+### https://saref.etsi.org/saref4tser/hasSamplingInterval
+ats:hasSamplingInterval a owl:DatatypeProperty ;
+  rdfs:comment "Declares the designed sampling interval of a time series in seconds. The value is expected to be an integer."@en ;
+  rdfs:label "has sampling interval"@en ;
+  rdfs:domain ats:ComputationGraph ; 
+  rdfs:range xsd:integer .
+
+### https://saref.etsi.org/saref4tser/hasCovarianceValue
+ats:hasCovarianceValue a owl:DatatypeProperty ;
+  rdfs:comment "Declares the covariance value of a time series. The value is expected to be a decimal value. The specific formulation depends upon the type of time series model."@en ;
+  rdfs:label "has covariance value"@en ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range xsd:decimal .
+
+### https://saref.etsi.org/saref4tser/hasMeasurementUncertaintyPercentage
+ats:hasMeasurementUncertaintyPercentage a owl:DatatypeProperty ;
+  rdfs:comment "Declares the average value between measurement reading and its uncertainty using a device`s Accuracy and Precision values. A measurement is considered `valid` if the measurement is both precise and accurate. The value is expected to be an decimal value expressed as a percent."@en ;
+  rdfs:label "has measurement uncertainty percentage"@en ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range xsd:decimal .
+
+### https://saref.etsi.org/saref4tser/hasConvergenceLimitValue
+ats:hasConvergenceLimitValue a owl:DatatypeProperty ;
+  rdfs:comment "Declares the convergence limit value of an AlignedSequence."@en ;
+  rdfs:label "has convergence limit value"@en ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range xsd:decimal .
+
+#################################################################
+#    Classes
+#################################################################
+
+### https://saref.etsi.org/saref4tser/DataQueryRequest
+ats:DataQueryRequest a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ; 
+    owl:someValuesFrom ats:Identifier 
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasRequestor ;   # usually foaf:maker
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasProjectIri ; # "https://mines.ontology.datasets.fr/iotdata/root.homec.weather.HomeC", 
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasSelectedDataset ; # "root.homec.weather.HomeC"
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasPreferredSchema ; # "saref|oneM2M"
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasPreferredService ;  "DCAT-AT"
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasPreferedFormat ; # "csv"
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasRandomSelect ; # false
+    owl:someValuesFrom xsd:boolean
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasContinuousLoop ; # false
+    owl:someValuesFrom xsd:boolean
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasFilterFunction ;  # AlignedSequenceFunction-InterpolateMissingValues
+    owl:someValuesFrom ats:AlignedSequenceFunction
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasStartDateTime ; # "2016-01-01T05:00:00.000Z"
+    owl:someValuesFrom xsd:dateTime
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasEndDateTime ; # "2016-01-07T00:58:29.000Z" 
+    owl:someValuesFrom xsd:dateTime
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasMultiplier ; # 100
+    owl:someValuesFrom xsd:integer
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasLimit ; # 100
+    owl:someValuesFrom xsd:integer
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasDateTimeField ; # "Time1"
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasSelectedTimeseries ; # "*"
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:comment "A DataQueryRequest specifies which IoT data is to be selected."@en ;
+  rdfs:label "DataQueryRequest"@en .
+
+### https://saref.etsi.org/saref4tser/Comparable
+ats:Comparable a owl:Class ;
+  rdfs:subClassOf saref:Function ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "A relationship indicating that an AlignedSequence is comparable to another. Comparable indicates AlignedSequence interoperability."@en ;
+  rdfs:label "Comparable"@en .
+
+### https://saref.etsi.org/saref4tser/Composable
+ats:Composable a owl:Class ;
+  rdfs:subClassOf saref:Function ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ] ;
+  rdfs:comment "A relationship indicating that an AlignedSequence is composable with another. Composable indicates AlignedSequence interoperability."@en ;
+  rdfs:label "Composable"@en .
+
+### https://saref.etsi.org/saref4tser/Formulation
+ats:Formulation a owl:Class ;
+  rdfs:subClassOf saref:Function ;
+  rdfs:comment "A representation of a mathematical function, either symbolic or parameterized."@en ;
+  rdfs:label "Formulation"@en .
+
+### https://saref.etsi.org/saref4tser/MathematicalStatement
+ats:MathematicalStatement a owl:Class ;
+  rdfs:subClassOf saref:Function ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasSymbolicFormulation ; 
+    owl:someValuesFrom ats:Formulation
+  ] , 
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasParametricFormulation ; 
+    owl:someValuesFrom ats:Formulation
+  ] , 
+  [ a owl:Restriction ;
+    owl:onProperty ats:isMathematicalStatementOf ;
+    owl:someValuesFrom ats:GenericModel
+  ] ;
+  rdfs:comment "A MathematicalStatement represents a mathematical expression in both symbolic and parametric formulations."@en ;
+  rdfs:label "MathematicalStatement"@en .
+
+### https://saref.etsi.org/saref4tser/MeasuringFunction
+ats:MeasuringFunction a owl:Class ;
+  rdfs:subClassOf saref:Function ;
+  rdfs:comment "A function that makes a measurement."@en ;
+  rdfs:label "MeasuringFunction"@en .
+
+### https://saref.etsi.org/saref4tser/GenericModel
+ats:GenericModel a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasMathematicalStatement ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ;
+  rdfs:comment "A GenericModel indicates a time series model has not been fully specified. GenericModels are not comparable to one another and should be disjoint."@en ;
+  rdfs:label "GenericModel"@en .
+
+### https://saref.etsi.org/saref4tser/Sequence 
+ats:Sequence a owl:Class ;
+  rdfs:subClassOf saref:Command ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasSequenceDatatype 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasAccuracy ;
+    owl:someValuesFrom saref:Property 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasPrecision ;
+    owl:someValuesFrom saref:Property
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasResolution ;
+    owl:someValuesFrom saref:Property
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:someValuesFrom ats:Identifier 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty saref:isMeasuredIn ;
+    owl:someValuesFrom saref:UnitOfMeasure
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty time:hasBeginning ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:someValuesFrom time:TemporalEntity
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty time:hasEnd ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:someValuesFrom time:TemporalEntity
+  ] ,
+  [ a owl:Restriction ; 
+    owl:onProperty time:Interval ;  
+    owl:cardinality "1"^^xsd:nonNegativeInteger ;
+    owl:someValuesFrom time:TemporalEntity
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:isEmpty ; 
+    owl:someValuesFrom xsd:boolean
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasCardinality ; 
+    owl:someValuesFrom xsd:integer
+  ] ;
+  rdfs:comment "A Sequence is a value-ordered collection of the same kind of comparable entity. Sequences are described by an explicit formula or function, a recurrence relation, or a table of values."@en ;
+  rdfs:label "Sequence"@en .
+
+### https://saref.etsi.org/saref4tser/AlignedTimeseriesModel
+ats:AlignedTimeseriesModel a owl:Class ;
+  rdfs:subClassOf ats:GenericModel , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasTimeseriesModel ;
+     owl:cardinality "1"^^xsd:nonNegativeInteger ;
+     owl:someValuesFrom ats:MathematicalStatement 
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasTrendComponent ;
+     owl:someValuesFrom ats:MathematicalStatement 
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasSeasonalComponent ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasIrregularComponent ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasCyclicComponent ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasAutoCorrelation ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasCovarianceFunction ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasStationarity ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasSeasonality ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] ;
+  rdfs:comment "An AlignedTimeseriesModel specifies the model of a time-indexed AlignedSequence. The model includes a trend component, a seasonal component, a cyclic component, and an irregular component. The model is characterized by its properties of auto-correlation, covariance, stationarity, and seasonality."@en ;
+  rdfs:label "AlignedTimeseriesModel"@en .
+
+### https://saref.etsi.org/saref4tser/ForecastingModel
+ats:ForecastingModel a owl:Class ;
+  rdfs:subClassOf ats:GenericModel , 
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasForecastingModel ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] ;
+  rdfs:comment "A ForecastingModel evaluates trends and future measurement values. Well-known subclasses include Autoregressive, Moving average, Autoregressive moving average, Autoregressive integrated moving average, Seasonal autoregressive integrated moving average, Vector autoregressive, Vector error correction, Exponential smoothing, etc."@en ;
+  rdfs:label "ForecastingModel"@en .
+
+### https://saref.etsi.org/saref4tser/ErrorModel
+ats:ErrorModel a owl:Class ;
+  rdfs:subClassOf ats:GenericModel ,
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasErrorModel ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] ;
+  rdfs:comment "An ErrorModel describes the distribution of errors produced during measurement sampling, often Gaussian."@en ;
+  rdfs:label "ErrorModel"@en .
+
+### https://saref.etsi.org/saref4tser/WebService
+ats:WebService a owl:Class ;
+  rdfs:subClassOf saref:Service ,
+   [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+   ] ;
+  rdfs:comment "A type of Service that exposes a declared Application Programming Interface (API) and can be composed with other services."@en ;
+  rdfs:label "WebService"@en .
+
+### https://saref.etsi.org/saref4tser/VirtualDevice
+ats:VirtualDevice a owl:Class ;
+  rdfs:subClassOf saref:Device ,
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasWebService ; 
+     owl:someValuesFrom saref:Service
+    ] ;
+  rdfs:comment "A Device that produces a synthetic AlignedSequence."@en ;
+  rdfs:label "VirtualDevice"@en .
+
+### https://saref.etsi.org/saref4tser/DataAccessWebService
+ats:DataAccessWebService a owl:Class ;
+  rdfs:subClassOf ats:WebService ,
+    [ a owl:Restriction ;
+     owl:onProperty ats:AlignedSequenceFunction ;  
+     owl:someValuesFrom saref:Function
+    ] ;
+  rdfs:comment "A WebService that fetches all the measurement data at one time Instant, or for an Interval, for a TimeSeriesNodeSet."@en ;
+  rdfs:label "DataAccessWebService"@en .
+
+### https://saref.etsi.org/saref4tser/Clock
+ats:Clock a owl:Class ; 
+  rdfs:subClassOf saref:Device ;
+  rdfs:comment "A Clock is a device responsible for maintaining uniform UTC time at a specified Resolution. A Clock often generates an acccessible heartbeat event when attached to a single Network or multiple Devices. A Clock is always On. A Clock provides an accessible Reset command to account for device drift. The Interval for a Network Clock can be set by an AlignedSequence."@en ;
+  rdfs:label "Clock"@en .
+
+### https://saref.etsi.org/saref4tser/ProbabilityDistribution 
+ats:ProbabilityDistribution a owl:Class ;
+  rdfs:subClassOf ats:GenericModel ,
+    [ a owl:Restriction ;
+     owl:onProperty ats:hasAlignedSequenceFunction ;
+     owl:someValuesFrom ats:MathematicalStatement
+    ] ;
+  rdfs:comment "The ProbabilityDistribution class specifies a discrete or continuous probability distribution that best characterizes a sequence of measurement samples over a defined period of time. Well-known discrete distributions include Uniform, Bernoulli, Binomial, and Poisson."@en ;
+  rdfs:label "ProbabilityDistribution"@en .
+
+### https://saref.etsi.org/saref4tser/AlignedSequenceEvent
+ats:AlignedSequenceEvent a owl:Class ;
+  rdfs:subClassOf saref:EventFunction ,
+   [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+   ] ,
+   [ a owl:Restriction ;
+     owl:onProperty saref:hasTimestamp ;
+     owl:someValuesFrom xsd:dateTime
+   ] ;
+  rdfs:comment "An AlignedSequenceEvent is either emitted by or listened for by an AlignedSequence; for example, a value threshold has been crossed."@en ;
+  rdfs:label "AlignedSequenceEvent"@en .
+
+### https://saref.etsi.org/saref4tser/AlignedSequenceFunction
+ats:AlignedSequenceFunction a owl:Class ;
+  rdfs:subClassOf saref:Function ,
+   [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+   ] ;
+  rdfs:comment "An AlignedSequenceFunction operates over an immutable AlignedSequence to produce a result."@en ;
+  rdfs:label "AlignedSequenceFunction"@en .
+
+### https://saref.etsi.org/saref4tser/TimeseriesNodeSet 
+ats:TimeseriesNodeSet a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasProcedure ;
+    owl:someValuesFrom ats:AlignedSequenceFunction
+   ] ,
+   [ a owl:Restriction ;
+    owl:onProperty ats:hasMember ;
+    owl:someValuesFrom ats:AlignedSequence 
+   ] ,
+   [ a owl:Restriction ;
+    owl:onProperty ats:hasDataAccessWebService ;
+    owl:someValuesFrom ats:DataAccessWebService 
+   ] ,
+   [ a owl:Restriction ;
+     owl:onProperty ats:isMultivariate ;
+     owl:someValuesFrom xsd:boolean
+   ] ;
+  rdfs:comment "A collection of several time-aligned AlignedSequences."@en ;
+  rdfs:label "TimeseriesNodeSet"@en .
+
+### https://saref.etsi.org/saref4tser/AlignedSequence 
+ats:AlignedSequence a owl:Class ;
+  rdfs:subClassOf ats:Sequence ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifier ;
+    owl:someValuesFrom ats:Identifier ;
+    owl:maxCardinality "1"^^xsd:nonNegativeInteger
+  ] ,
+  [ a owl:Restriction ;
+   owl:onProperty saref:observes ;
+   owl:someValuesFrom saref:Observation 
+  ] ,
+  [ a owl:Restriction ;
+   owl:onProperty ats:hasIntervalBasedSamplingTime ;
+   owl:someValuesFrom ns1:samplingTime
+  ] ,
+  [ a owl:Restriction ;
+   owl:onProperty ats:hasObservationLocation ;
+   owl:someValuesFrom wgs84:location
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasAlignedSequenceFunction ; 
+    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:someValuesFrom ats:AlignedSequenceFunction 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasAlignedSequenceEvent ;
+    owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:someValuesFrom ats:AlignedSequenceEvent 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasProbabilityDistribution ;
+    owl:someValuesFrom ats:ProbabilityDistribution 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasComputationGraph ;
+    owl:someValuesFrom ats:ComputationGraph
+  ] , 
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasTimeseriesModel ;
+    owl:someValuesFrom ats:AlignedTimeseriesModel
+  ] , 
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasErrorModel ;
+    owl:someValuesFrom ats:ErrorModel 
+  ] , 
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasForecastingModel ;
+    owl:someValuesFrom ats:ForecastingModel
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasComparable ;
+    owl:someValuesFrom ats:Comparable 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasComposable ;
+    owl:someValuesFrom ats:Composable
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasSequenceFormula ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasRecurrenceRelation ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasValueTable ;
+    owl:someValuesFrom ats:MathematicalStatement
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasClock ;
+    owl:someValuesFrom ats:Clock 
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasProgression ;
+    owl:someValuesFrom xsd:boolean
+  ] ,
+  [ a owl:Restriction ;
+    owl:onProperty ats:hasSimilarityIndex ;
+    owl:someValuesFrom ats:SimilarityIndex
+  ] ;
+  rdfs:comment "An AlignedSequence is a time-ordered collection of individual Observations. An AlignedSequence can only relate to one type of ProbabilityDistribution, one type of AlignedTimeseriesModel, one type of ForecastingModel, and one type of ErrorModel."@en ;
+  rdfs:label "AlignedSequence"@en .
+
+### https://saref.etsi.org/saref4tser/SimilarityIndex
+ats:SimilarityIndex a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasSimilarityIndex ;
+    owl:someValuesFrom xsd:decimal
+   ] ;
+  rdfs:comment "A SimilarityIndex class relates two AlignedSequences through a Predication-based Similarity Index."@en ;
+  rdfs:label "SimilarityIndex"@en .
+
+### https://saref.etsi.org/saref4tser/Identifier
+ats:Identifier a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ;
+    owl:onProperty ats:hasIdentifierValue ;
+    owl:someValuesFrom xsd:string
+  ] ;
+  rdfs:comment "A class used to uniquely identify an entity. Do not include spaces in the value."@en ;
+  rdfs:label "Identifier"@en .
+
+#################################################################
+#    Object Properties 
+#################################################################
+
+### https://saref.etsi.org/saref4tser/hasDataAccessWebService
+ats:hasDataAccessWebService a owl:ObjectProperty ;
+  owl:inverseOf ats:isDataAccessWebServiceOf ;
+  rdfs:domain ats:DataAccessWebService ; 
+  rdfs:range ats:TimeSeriesNodeSet ;
+  rdfs:comment "A relationship indicating that data is accessed directly through a web service instead of a collection of explicit Observations."@en ;
+  rdfs:label "has data access web service"@en .
+
+### https://saref.etsi.org/saref4tser/isDataAccessWebServiceOf
+ats:isDataAccessWebServiceOf a owl:ObjectProperty ;
+  rdfs:domain ats:TimeSeriesNodeSet ;
+  rdfs:range ats:DataAccessWebService ; 
+  rdfs:comment "isDataAccessWebServiceOf relates a TimeSeriesNodeSet to the DataAccessWebService that fetches it."@en ;
+  rdfs:label "is data access web service of of"@en .
+
+### https://saref.etsi.org/saref4tser/hasPublicDatasetName
+ats:hasPublicDatasetName a owl:ObjectProperty ;
+  rdfs:domain ats:ComputationGraph ; 
+  rdfs:range ats:Identifier ;
+  rdfs:comment "Declares the public name of a dataset. The value is expected to be a string with a language tag."@en ;
+  rdfs:label "has public dataset name"@en .
+
+### https://saref.etsi.org/saref4tser/hasDeviceName
+ats:hasDeviceName a owl:ObjectProperty ;
+  rdfs:domain ats:ComputationGraph ; 
+  rdfs:range ats:Identifier ;
+  rdfs:comment "Declares the specific name and model of the device as defined by the manufacturer."@en ;
+  rdfs:label "device name"@en .
+
+### https://saref.etsi.org/saref4tser/hasSymbolicFormulation
+ats:hasSymbolicFormulation a owl:ObjectProperty ;
+  rdfs:domain ats:Formulation ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "Declares the formulation of a mathematical entity with symbolic coefficients."@en ;
+  rdfs:label "has symbolic formulation"@en .
+
+### https://saref.etsi.org/saref4tser/hasParametricFormulation
+ats:hasParametricFormulation a owl:ObjectProperty ;
+  rdfs:domain ats:Formulation ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "Declares the formulation of a mathematical entity with parametric (numeric) coefficients."@en ;
+  rdfs:label "has parametric formulation"@en .
+
+### https://saref.etsi.org/saref4tser/hasUpperBoundingCurve
+ats:hasUpperBoundingCurve a owl:ObjectProperty ;
+  rdfs:comment "Declares the mathematical formula and identifier of the upper bounding curve of an AlignedSequence."@en ;
+  rdfs:label "has upper bounding curve"@en ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range ats:MathematicalStatement .
+
+### https://saref.etsi.org/saref4tser/hasLowerBoundingCurve
+ats:hasLowerBoundingCurve a owl:ObjectProperty ;
+  rdfs:comment "Declares the mathematical formula and identifier of the lower bounding curve of an AlignedSequence."@en ;
+  rdfs:label "has lower bounding curve"@en ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range ats:MathematicalStatement .
+
+### https://saref.etsi.org/saref4tser/hasComparable
+ats:hasComparable a owl:ObjectProperty ;
+  owl:inverseOf ats:isComparableOf , owl:TransitiveProperty ; 
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:Comparable ; 
+  rdfs:comment "A relationship between AlignedSequences indicating they are comparable."@en ;
+  rdfs:label "has comparable"@en .
+
+### https://saref.etsi.org/saref4tser/isComparableOf
+ats:isComparableOf a owl:ObjectProperty ;
+  rdfs:domain ats:Comparable ;
+  rdfs:range ats:AlignedSequence ; 
+  rdfs:comment "isComparableOf relates an AlignedSequence to another AlignedSequence."@en ;
+  rdfs:label "is comparable of"@en .
+
+### https://saref.etsi.org/saref4tser/hasComposable
+ats:hasComposable a owl:ObjectProperty ;
+  owl:inverseOf ats:isComposableOf , owl:TransitiveProperty ;  
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:Composable ; 
+  rdfs:comment "A relationship between AlignedSequences indicating they are aggregable."@en ;
+  rdfs:label "has composable"@en .
+
+### https://saref.etsi.org/saref4tser/isComposableOf
+ats:isComposableOf a owl:ObjectProperty ;
+  rdfs:domain ats:Composable ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "isComposableOf relates an AlignedSequence to another AlignedSequence."@en ;
+  rdfs:label "is composable of"@en .
+
+### https://saref.etsi.org/saref4tser/hasSequenceFormula
+ats:hasSequenceFormula a owl:ObjectProperty , owl:FunctionalProperty ;
+  owl:inverseOf ats:isSequenceFormulaOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "The representation of a AlignedSequence by a formula of the type y = f(t)."@en ;
+  rdfs:label "has sequence formula"@en .
+
+### https://saref.etsi.org/saref4tser/isSequenceFormulaOf
+ats:isSequenceFormulaOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:domain ats:MathematicalStatement ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "isSequenceFormulaOf relates a formula to its AlignedSequence."@en ;
+  rdfs:label "is sequence formula of"@en .
+
+### https://saref.etsi.org/saref4tser/hasRecurrenceRelation  
+ats:hasRecurrenceRelation a owl:ObjectProperty , owl:FunctionalProperty ;
+  owl:inverseOf ats:isRecurrenceRelationOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "The representation of a AlignedSequence by a recurrence relation where the next term in the sequence is a function of the previous terms."@en ;
+  rdfs:label "has recurrence relation"@en .
+
+### https://saref.etsi.org/saref4tser/isRecurrenceRelationOf
+ats:isRecurrenceRelationOf a owl:ObjectProperty ;
+  rdfs:domain ats:MathematicalStatement ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "The relation of a recurrence relation to its AlignedSequence."@en ;
+  rdfs:label "is recurrence relation of"@en .
+
+### https://saref.etsi.org/saref4tser/hasValueTable
+ats:hasValueTable a owl:ObjectProperty , owl:FunctionalProperty ;
+  owl:inverseOf ats:isValueTableOf ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "The representation of a AlignedSequence by a table of values mapped to instants of time."@en ;
+  rdfs:label "has value table"@en .
+
+### https://saref.etsi.org/saref4tser/isValueTableOf
+ats:isValueTableOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:domain ats:MathematicalStatement ; 
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "The mapping of time instants to its AlignedSequence in tablular form."@en ;
+  rdfs:label "is value table of"@en .
+
+### https://saref.etsi.org/saref4tser/hasComputationGraph
+ats:hasComputationGraph a owl:ObjectProperty ; 
+  owl:inverseOf ats:isComputationGraphOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:ComputationGraph ;
+  rdfs:comment "The representation of an AlignedSequence by a computation graph."@en ;
+  rdfs:label "has computation graph"@en .
+
+### https://saref.etsi.org/saref4tser/isComputationGraphOf
+ats:isComputationGraphOf a owl:ObjectProperty ;
+  rdfs:domain ats:ComputationGraph ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relation between an AlignedSequence and its computation graph."@en ;
+  rdfs:label "is computation graph of"@en .
+
+### https://saref.etsi.org/saref4tser/hasTimeseriesModel
+ats:hasTimeseriesModel a owl:ObjectProperty ;
+  owl:inverseOf ats:isTimeseriesModelOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "A relationship identifying how the four components of a time series model are composed (additive, multiplicative, mixed) of an AlignedTimeseriesModel such as y(t) = Trend(t) + Seasonal(t) + Cyclic(t) + Irregular(t)."@en ;
+  rdfs:label "has timeseries model"@en .
+
+### https://saref.etsi.org/saref4tser/isTimeseriesModelOf
+ats:isTimeseriesModelOf a owl:ObjectProperty ;
+  rdfs:domain ats:AlignedTimeseriesModel ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relation between the components of a time series model and its AlignedTimeseriesModel."@en ;
+  rdfs:label "is time series model of"@en .
+
+### https://saref.etsi.org/saref4tser/hasErrorModel
+ats:hasErrorModel a owl:ObjectProperty ;
+  owl:inverseOf ats:isErrorModelOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:ErrorModel ;
+  rdfs:comment "A relationship identifying the specific error model of an AlignedSequence. The value is expected to match the name of a subclass of ats:ErrorModel."@en ;
+  rdfs:label "has error model"@en .
+
+### https://saref.etsi.org/saref4tser/isErrorModelOf
+ats:isErrorModelOf a owl:ObjectProperty ;
+  rdfs:domain ats:ErrorModel ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relationship between an error model and its AlignedSequence."@en ;
+  rdfs:label "is error model of"@en .
+
+### https://saref.etsi.org/saref4tser/hasForecastingModel
+ats:hasForecastingModel a owl:ObjectProperty ; 
+  owl:inverseOf ats:isForecastingModelOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:ForecastingModel ;
+  rdfs:comment "A relationship identifying the specific forecasting model of an AlignedSequence. The value is expected to match the name of a subclass of ats:ForecastingModel."@en ;
+  rdfs:label "has forecasting model"@en .
+
+### https://saref.etsi.org/saref4tser/isForecastingModelOf
+ats:isForecastingModelOf a owl:ObjectProperty ;
+  rdfs:domain ats:ForecastingModel ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relationship between a forecasting model and its AlignedSequence."@en ;
+  rdfs:label "is forecasting model of"@en .
+
+### https://saref.etsi.org/saref4tser/hasClock
+ats:hasClock a owl:ObjectProperty ;
+  owl:inverseOf ats:isClockOf ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range saref:Device ;
+  rdfs:comment "A relation to a single clock."@en ;
+  rdfs:label "has clock"@en .
+
+### https://saref.etsi.org/saref4tser/isClockOf
+ats:isClockOf a owl:ObjectProperty ;
+  rdfs:domain saref:Device ; 
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relationship between a clock and its Device."@en ;
+  rdfs:label "is clock of"@en .
+
+### https://saref.etsi.org/saref4tser/hasWebService
+ats:hasWebService a owl:ObjectProperty , owl:FunctionalProperty ;
+  owl:inverseOf ats:isWebServiceOf ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range saref:Service ;
+  rdfs:comment "A relation to a web service over a network."@en ;
+  rdfs:label "has web service"@en .
+
+### https://saref.etsi.org/saref4tser/isWebServiceOf
+ats:isWebServiceOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:domain saref:Service ; 
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relation of a time series to its web service."@en ;
+  rdfs:label "is web service of"@en .
+
+### https://saref.etsi.org/saref4tser/hasMathematicalStatement
+ats:hasMathematicalStatement a owl:ObjectProperty ;
+  owl:inverseOf ats:isMathematicalStatementOf ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "A relation to a mathematical statement."@en ;
+  rdfs:label "has mathematical statement"@en .
+
+### https://saref.etsi.org/saref4tser/isMathematicalStatementOf
+ats:isMathematicalStatementOf a owl:ObjectProperty ;
+  rdfs:domain ats:MathematicalStatement ; 
+  rdfs:range ats:AlignedSequence ; 
+  rdfs:comment "A relation of an AlignedSequence to its mathematical statement."@en ;
+  rdfs:label "is mathematical statement of"@en .
+
+### https://saref.etsi.org/saref4tser/hasProbabilityDistribution
+ats:hasProbabilityDistribution a owl:ObjectProperty ;
+  owl:inverseOf ats:isProbabilityDistributionOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "A relationship identifying the probability distribution of a AlignedSequence. The value is expected to match the name of a subclass of ats:ProbabilityDistribution."@en ;
+  rdfs:label "has probability distribution"@en .
+
+### https://saref.etsi.org/saref4tser/isProbabilityDistributionOf
+ats:isProbabilityDistributionOf a owl:ObjectProperty ;
+  rdfs:domain ats:MathematicalStatement ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relationship between a probability distribution and its AlignedSequence."@en ;
+  rdfs:label "is probability distribution of"@en .
+
+### https://saref.etsi.org/saref4tser/hasTrendComponent
+ats:hasTrendComponent a owl:ObjectProperty ;
+  owl:inverseOf ats:isTrendComponentOf ;
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "A relationship identifying the trend component of an AlignedTimeseriesModel."@en ;
+  rdfs:label "has trend component"@en .
+
+### https://saref.etsi.org/saref4tser/isTrendComponentOf
+ats:isTrendComponentOf a owl:ObjectProperty ;
+  rdfs:domain ats:MathematicalStatement ; 
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "A relationship identifying the trend component of an AlignedTimeseriesModel."@en ;
+  rdfs:label "is trend component of"@en .
+
+### https://saref.etsi.org/saref4tser/hasSeasonalComponent
+ats:hasSeasonalComponent a owl:ObjectProperty ;
+  owl:inverseOf ats:isSeasonalComponentOf ; 
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "A relationship identifying the seasonal component of an AlignedTimeseriesModel."@en ;
+  rdfs:label "has seasonal component"@en .
+
+### https://saref.etsi.org/saref4tser/isSeasonalComponentOf
+ats:isSeasonalComponentOf a owl:ObjectProperty ;
+  rdfs:domain ats:MathematicalStatement ; 
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "A relationship between a seasonal component and its AlignedTimeseriesModel."@en ;
+  rdfs:label "is seasonal component of"@en .
+
+### https://saref.etsi.org/saref4tser/hasIrregularComponent
+ats:hasIrregularComponent a owl:ObjectProperty ;
+  owl:inverseOf ats:isIrregularComponentOf ;
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "A relationship identifying the irregular component of an AlignedTimeseriesModel."@en ;
+  rdfs:label "has irregular component"@en .
+
+### https://saref.etsi.org/saref4tser/isIrregularComponentOf
+ats:isIrregularComponentOf a owl:ObjectProperty ;
+  rdfs:domain ats:MathematicalStatement ; 
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "A relationship between an irregular component and its AlignedTimeseriesModel."@en ;
+  rdfs:label "is irregular component of"@en .
+
+### https://saref.etsi.org/saref4tser/hasCyclicComponent
+ats:hasCyclicComponent a owl:ObjectProperty ;
+  owl:inverseOf ats:isCyclicComponentOf ; 
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "A relationship identifying the cyclic component of an AlignedTimeseriesModel."@en ;
+  rdfs:label "haisAlignedSequenceOfs cyclic component"@en .
+
+### https://saref.etsi.org/saref4tser/isCyclicComponentOf
+ats:isCyclicComponentOf a owl:ObjectProperty ;
+  rdfs:domain ats:MathematicalStatement ; 
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "A relationship between a cyclic component and its AlignedTimeseriesModel."@en ;
+  rdfs:label "is cyclic component of"@en .
+
+### https://saref.etsi.org/saref4tser/hasAutoCorrelation
+ats:hasAutoCorrelation a owl:ObjectProperty , owl:FunctionalProperty ;
+  owl:inverseOf ats:isAutoCorrelationOf ;
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:AlignedSequenceFunction ;
+  rdfs:comment "A property indicating the auto-correlation value of a AlignedTimeseriesModel."@en ;
+  rdfs:label "has auto-correlation"@en .
+
+### https://saref.etsi.org/saref4tser/isAutoCorrelationOf
+ats:isAutoCorrelationOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:domain ats:AlignedSequenceFunction ; 
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "A relation of an AlignedTimeseriesModel to its auto-correlation value."@en ;
+  rdfs:label "is auto-correlation of"@en .
+
+### https://saref.etsi.org/saref4tser/hasCovarianceFunction
+ats:hasCovarianceFunction a owl:ObjectProperty , owl:FunctionalProperty ;
+  owl:inverseOf ats:isCovarianceFunctionOf ;
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:AlignedSequenceFunction ;
+  rdfs:comment "A property indicating the covariance function of a AlignedTimeseriesModel."@en ;
+  rdfs:label "has covariance function"@en .
+
+### https://saref.etsi.org/saref4tser/isCovarianceFunctionOf
+ats:isCovarianceFunctionOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:domain ats:AlignedSequenceFunction ; 
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "The relation of an AlignedTimeseriesModel to its covariance value."@en ;
+  rdfs:label "is covariance of"@en .
+
+### https://saref.etsi.org/saref4tser/hasSeasonality
+ats:hasSeasonality a owl:ObjectProperty , owl:FunctionalProperty ;
+  owl:inverseOf ats:isSeasonalityOf ;
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:MathematicalStatement ;
+  rdfs:comment "A property indicating the seasonality component of a AlignedTimeseriesModel."@en ;
+  rdfs:label "has seasonality"@en .
+
+### https://saref.etsi.org/saref4tser/isSeasonalityOf
+ats:isSeasonalityOf a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:domain ats:MathematicalStatement ; 
+  rdfs:range ats:AlignedTimeseriesModel ;
+  rdfs:comment "The relation of an AlignedTimeseriesModel to its seasonality component."@en ;
+  rdfs:label "is seasonality of"@en .
+
+### https://saref.etsi.org/saref4tser/hasAlignedSequence
+ats:hasAlignedSequence a owl:ObjectProperty ;
+  owl:inverseOf ats:isAlignedSequenceOf ;
+  rdfs:domain ats:ComputationGraph ; 
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "A relationship between a ComputationGraph and an AlignedSequence."@en ;
+  rdfs:label "has aligned sequence"@en .
+
+### https://saref.etsi.org/saref4tser/isAlignedSequenceOf
+ats:isAlignedSequenceOf a owl:ObjectProperty ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:ComputationGraph ; 
+  rdfs:comment "The relation of an AlignedSequence to its ComputationGraph."@en ;
+  rdfs:label "is aligned sequence of"@en .
+
+### https://saref.etsi.org/saref4tser/hasAlignedSequenceEvent
+ats:hasAlignedSequenceEvent a owl:ObjectProperty ;
+  owl:inverseOf ats:isAlignedSequenceEventOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:AlignedSequenceEvent ;
+  rdfs:comment "A relationship between an AlignedSequence and an AlignedSequenceEvent."@en ;
+  rdfs:label "has aligned sequence event"@en .
+
+### https://saref.etsi.org/saref4tser/isAlignedSequenceEventOf
+ats:isAlignedSequenceEventOf a owl:ObjectProperty ;
+  rdfs:domain ats:AlignedSequenceEvent ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "The relation of an AlignedSequenceEvent to its AlignedSequence."@en ;
+  rdfs:label "is aligned sequence event of"@en .
+
+### https://saref.etsi.org/saref4tser/hasAlignedSequenceFunction
+ats:hasAlignedSequenceFunction a owl:ObjectProperty ;
+  owl:inverseOf ats:isAlignedSequenceFunctionOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:AlignedSequenceFunction ;
+  rdfs:comment "A relationship between an AlignedSequence and an AlignedSequenceFunction."@en ;
+  rdfs:label "has aligned sequence function"@en .
+
+### https://saref.etsi.org/saref4tser/isAlignedSequenceFunctionOf
+ats:isAlignedSequenceFunctionOf a owl:ObjectProperty ;
+  rdfs:domain ats:AlignedSequenceFunction ;
+  rdfs:range ats:AlignedSequence ;
+  rdfs:comment "The relation of an AlignedSequenceFunction to its AlignedSequence."@en ;
+  rdfs:label "is aligned sequence function of"@en .
+
+### https://saref.etsi.org/saref4tser/hasSimilarityIndex
+ats:hasSimilarityIndex a owl:ObjectProperty ;
+  owl:inverseOf ats:isSimilarityIndexOf ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:SimilarityIndex ; 
+  rdfs:comment "A relationship of a SimilarityIndex between two AlignedSequences."@en ;
+  rdfs:label "has similarity index"@en .
+
+### https://saref.etsi.org/saref4tser/isSimilarityIndexOf
+ats:isSimilarityIndexOf a owl:ObjectProperty ;
+  rdfs:domain ats:SimilarityIndex ;
+  rdfs:range ats:AlignedSequence ; 
+  rdfs:comment "The decimal similarity value between two AlignedSequences."@en ;
+  rdfs:label "is similarity index of"@en .
+
+### https://saref.etsi.org/saref4tser/hasSamplingTime
+ats:hasSamplingTime a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:subPropertyOf ns1:samplingTime ;
+  rdfs:comment "The relation of an AlignedSequence to its observation sampling method. Parent class of hasEventBasedSamplingTime and hasIntervalBasedSamplingTime."@en ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ns1:samplingTime ;
+  rdfs:label "has sampling time"@en .
+
+### https://saref.etsi.org/saref4tser/hasObservationLocation
+ats:hasObservationLocation a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:comment "The relation of an AlignedSequence to the location of its observations."@en ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range wgs84:location ;
+  rdfs:label "has observation location"@en .
+
+### https://saref.etsi.org/saref4tser/hasProcedure
+ats:hasProcedure a owl:ObjectProperty , owl:FunctionalProperty ;
+  rdfs:comment "The relation of a TimeseriesNodeSet to a procedure such as integrating a set of observations."@en ;
+  rdfs:domain ats:TimeseriesNodeSet ;
+  rdfs:range saref:ProcedureExecution ;
+  rdfs:label "has procedure"@en .
+
+### https://saref.etsi.org/saref4tser/hasMember
+ats:hasMember a owl:ObjectProperty ;
+  owl:inverseOf ats:isMemberOf ;
+  rdfs:comment "The relation of an AlignedSequence to its set of Observations."@en ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range saref:Observation ;
+  rdfs:label "has member"@en .
+
+### https://saref.etsi.org/saref4tser/isMemberOf
+ats:isMemberOf a owl:ObjectProperty ;
+  rdfs:comment "The relationship between an Observation and the AlignedSequence to which it belongs."@en ;
+  rdfs:domain saref:Observation ;
+  rdfs:range ats:AlignedSequence ;
+  owl:inverseOf ats:hasMember ;
+  rdfs:label "is member of"@en .
+
+### https://saref.etsi.org/saref4tser/hasEventBasedSamplingTime
+ats:hasEventBasedSamplingTime a owl:ObjectProperty ;
+  rdfs:comment "Declares that the AlignedSequence samples Observations based upon threshold events."@en ;
+  rdfs:subPropertyOf ats:hasSamplingTime ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:EventBasedTimeSeriesObservation ;
+  rdfs:label "has event based sampling time"@en .
+
+### https://saref.etsi.org/saref4tser/hasIntervalBasedSamplingTime
+ats:hasIntervalBasedSamplingTime a owl:ObjectProperty ;
+  rdfs:comment "Declares that the AlignedSequence samples Observations based upon a constant time interval."@en ;
+  rdfs:subPropertyOf ats:hasSamplingTime ;
+  rdfs:domain ats:AlignedSequence ;
+  rdfs:range ats:IntervalBasedTimeSeriesObservation ;
+  rdfs:label "has interval based sampling time"@en .
+
+### https://saref.etsi.org/saref4tser/hasIdentifier
+ats:hasIdentifier a owl:ObjectProperty ;
+  rdfs:domain ats:Identifier ;
+  rdfs:range ats:hasIdentifierValue ;
+  rdfs:comment "Declares the identifier of an entity."@en ;
+  rdfs:label "has identifier"@en .
+
+### https://saref.etsi.org/saref4tser/hasRequestor
+ats:hasRequestor a owl:ObjectProperty ;
+  rdfs:domain ats:Identifier ;
+  rdfs:range ats:hasRequestorValue ;
+  rdfs:comment "Declares the requestor of a query or the owner of a project."@en ;
+  rdfs:label "has requestor"@en .
+
+### https://saref.etsi.org/saref4tser/hasStationarity
+ats:hasStationarity a owl:ObjectProperty ;
+  rdfs:domain ats:AlignedTimeseriesModel ; 
+  rdfs:range ats:AlignedSequenceFunction ;
+  rdfs:comment "A property indicating the stationarity of a AlignedTimeseriesModel {true or false}. The Augmented Dickey-Fuller (ADF) test or the Kwiatkowski-Phillips-Schmidt-Shin (KPSS) test reveals whether a time series is stationary or not. Stationarity implies a time series without trend or seasonal components."@en ;
+  rdfs:label "has stationarity"@en .
+
+#################################################################
+#    Datatype Properties 
+#################################################################
+
+### https://saref.etsi.org/saref4tser/hasDataPointType
+ats:hasDataPointType a owl:DatatypeProperty ;
+  rdfs:domain saref:Observation ; 
+  rdfs:range [
+      a rdfs:Datatype ;
+      owl:oneOf (
+        "measured="^^xsd:string
+        "imputed+"^^xsd:string
+        "interpolated*"^^xsd:string
+        "removed-"^^xsd:string
+        "synthetic^"^^xsd:string
+        "unknown?"^^xsd:string
+      ) ;
+  ] ;
+  rdfs:comment "Declares the type of data point. The last character can be used as code."@en ;
+  rdfs:label "has data point type"@en .
+ 
+### http://www.w3.org/2006/time#inXSDDateTimeStamp
+time:inXSDDateTimeStamp a owl:DatatypeProperty ;
+  rdfs:domain time:Instant ;
+  rdfs:range xsd:dateTimeStamp ;
+  rdfs:comment "An instant expressed using xsd:dateTimeStamp" ;
+  rdfs:isDefinedBy "http://www.w3.org/2006/time" ;
+  rdfs:label "inXSDDateTimeStamp"@en .
+
+### https://saref.etsi.org/saref4tser/hasSequenceDatatype
+ats:hasSequenceDatatype a owl:DatatypeProperty ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range [
+      a rdfs:Datatype ;
+      owl:oneOf (
+        "string"^^xsd:string
+        "integer"^^xsd:string
+        "int32"^^xsd:string
+        "int64"^^xsd:string
+        "long"^^xsd:string
+        "short"^^xsd:string
+        "byte"^^xsd:string
+        "unsignedLong"^^xsd:string
+        "unsignedInt"^^xsd:string
+        "boolean"^^xsd:string
+        "decimal"^^xsd:string
+        "float"^^xsd:string
+        "double"^^xsd:string
+        "duration"^^xsd:string
+        "date"^^xsd:string
+        "time"^^xsd:string
+        "dateTime"^^xsd:string
+      ) ;
+  ] ;
+  rdfs:comment "Declares the type of data of a sequence of time-indexed values."@en ;
+  rdfs:label "has sequence data type"@en .
+ 
+### https://saref.etsi.org/saref4tser/hasIdentifierValue
+ats:hasIdentifierValue a owl:DatatypeProperty ;
+  rdfs:domain ats:hasIdentifier ; 
+  rdfs:range xsd:string ;
+  rdfs:comment "A relationship that defines the value of a unique identifier. Do not include spaces in the value."@en ;
+  rdfs:label "has identifier value"@en .
+
+### https://saref.etsi.org/saref4tser/hasRequestorValue
+ats:hasRequestorValue a owl:DatatypeProperty ;
+  rdfs:domain ats:hasRequestor ; 
+  rdfs:range xsd:string ;
+  rdfs:comment "A relationship that defines the identifier of a person making a data request or owning a project. Usually a foaf:maker value. Do not include spaces in the value."@en ;
+  rdfs:label "has requestor value"@en .
+
+### https://saref.etsi.org/saref4tser/hasProgression
+ats:hasProgression a owl:DatatypeProperty ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range xsd:boolean ;
+  rdfs:comment "A property indicating whether an AlignedSequence contains every time-index from start to finish."@en ;
+  rdfs:label "has progression"@en .
+
+### https://saref.etsi.org/saref4tser/isMultivariate
+ats:isMultivariate a owl:DatatypeProperty ;
+  rdfs:domain ats:TimeseriesNodeSet ; 
+  rdfs:range xsd:boolean ;
+  rdfs:comment "Declares whether a TimeseriesNodeSet contains more than one AlignedSequence {true or false}."@en ; 
+  rdfs:label "is multivariate"@en .
+
+### https://saref.etsi.org/saref4tser/isEmpty
+ats:isEmpty a owl:DatatypeProperty ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range xsd:boolean ;
+  rdfs:comment "Declares whether an AlignedSequence has any non-null values or not {true or false}."@en ;
+  rdfs:label "is empty"@en .
+
+### https://saref.etsi.org/saref4tser/hasCardinality
+ats:hasCardinality a owl:DatatypeProperty ;
+  rdfs:domain ats:AlignedSequence ; 
+  rdfs:range xsd:nonNegativeInteger ;
+  rdfs:comment "A property indicating how many non-null values are currently present in an AlignedSequence."@en ;
+  rdfs:label "has cardinality"@en .
+
+### https://saref.etsi.org/saref4tser/hasAccuracy
+ats:hasAccuracy a owl:DatatypeProperty ;
+  rdfs:domain ats:Sequence ; 
+  rdfs:range ssn-system:Accuracy ;
+  rdfs:isDefinedBy "http://www.w3.org/ns/ssn/systems/Accuracy" ;
+  rdfs:comment "Accuracy refers to the closeness of agreement between the value of an Observation and the true value of the observed ObservableProperty."@en ;
+  rdfs:label "has accuracy"@en .
+
+### https://saref.etsi.org/saref4tser/hasPrecision
+ats:hasPrecision a owl:DatatypeProperty ;
+  rdfs:domain ats:Sequence ; 
+  rdfs:range ssn-system:Precision ;
+  rdfs:isDefinedBy "http://www.w3.org/ns/ssn/systems/Precision" ;
+  rdfs:comment "Precision refers to the closeness of agreement between replicate Observations on an unchanged or similar quality value."@en ;
+  rdfs:label "has precision"@en .
+
+### https://saref.etsi.org/saref4tser/hasResolution
+ats:hasResolution a owl:DatatypeProperty ;
+  rdfs:domain ats:Sequence ; 
+  rdfs:range ssn-system:Resolution ;
+  rdfs:isDefinedBy "http://www.w3.org/ns/ssn/systems/Resolution" ;
+  rdfs:comment "Resolution refers to the smallest difference in the value of an ObservableProperty."@en ;
+  rdfs:label "has resolution"@en .
+
+#################################################################
+#    Query Request properties
+#################################################################
+
+### https://saref.etsi.org/saref4tser/
+ats:hasProjectIri a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:string ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasProjectIri"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasSelectedDataset a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:string ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasSelectedDataset"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasPreferredSchema a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:string ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasPreferredSchema"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasPreferredService a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:string ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasPreferredService"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasPreferedFormat a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:string ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasPreferedFormat"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasRandomSelect a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:boolean ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasRandomSelect"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasContinuousLoop a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:boolean ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasContinuousLoop"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasStartDateTime a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:dateTime ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasStartDateTime"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasEndDateTime a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:dateTime ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasEndDateTime"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasMultiplier a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:integer ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasMultiplier"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasLimit a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:integer ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasLimit"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasDateTimeField a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:string ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasDateTimeField"@en .
+
+### https://saref.etsi.org/saref4tser/
+ats:hasSelectedTimeseries a owl:DatatypeProperty ;
+  rdfs:domain ats:DataQueryRequest ; 
+  rdfs:range xsd:string ;
+  rdfs:comment ""@en ;
+  rdfs:label "hasSelectedTimeseries"@en .
+
+#################################################################
+#    Individuals
+#################################################################
+
+### https://saref.etsi.org/saref4tser/VirtualDeviceInstance
+ats:VirtualDeviceInstance a owl:NamedIndividual , ats:VirtualDevice ;
+  rdfs:comment "A Device designed to produce synthetic data."@en ;
+  rdfs:label "virtual device instance"@en .
