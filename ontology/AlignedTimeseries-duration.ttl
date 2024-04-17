@@ -1,0 +1,16 @@
+@prefix : <https://saref.etsi.org/alignedtimeseries/example/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ma: <http://www.w3.org/ns/ma-ont#> .
+
+:AHU_Current2 rdfs:label "AHU_Current2" ;
+        ma:hasFragment <https://saref.etsi.org/alignedtimeseries/example/AHU_Current2#t=1401595226000,1401595226000> ,
+                       <https://saref.etsi.org/alignedtimeseries/example/AHU_Current2#t=1404181136000,1404181136000> .
+
+:AHU_Energy3 rdfs:label "AHU_Energy3" ;
+        ma:hasFragment <https://saref.etsi.org/alignedtimeseries/example/AHU_Energy3#t=1401595226000,1401595286000> .
+
+<https://saref.etsi.org/alignedtimeseries/example/AHU_Current2#t=1401595226000,1401595226000> a ma:MediaFragment; rdfs:label "1401595226000_1401595226000" .
+<https://saref.etsi.org/alignedtimeseries/example/AHU_Current2#t=1404181136000,1404181136000> a ma:MediaFragment; rdfs:label "1404181136000_1404181136000" .
+
+<https://saref.etsi.org/alignedtimeseries/example/AHU_Energy3#t=1401595226000,1401595286000> a ma:MediaFragment; rdfs:label "1401595226000_1401595286000" .
+

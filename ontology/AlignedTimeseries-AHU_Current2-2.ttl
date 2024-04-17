@@ -1,0 +1,469 @@
+### AlignedTimeseries-AHU_Current2-2     Only starting and ending measurements included in this example: {1401595226000,	1404181136000}  1404181136000−1401595226000=2585910000
+@prefix ats: <https://saref.etsi.org/saref4tser/> . 
+@prefix dcterms: <http://purl.org/dc/terms/> . 
+@prefix dctype: <http://purl.org/dc/dcmitype/> . 
+@prefix ns0: <http://www.opengis.net/> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> . 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> . 
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> . 
+@prefix saref: <https://saref.etsi.org/core/> . 
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix vann: <http://purl.org/vocab/vann/> . 
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+@base <https://saref.etsi.org/saref4tser/> . 
+@prefix ex: <https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedTimeseries-AHU_Current2-2/> .
+
+<https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedTimeseries-AHU_Current2-2#> a dctype:Dataset ;
+  dcterms:conformsTo <https://saref.etsi.org/saref4tser/> ;
+  dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+  dcterms:title "AlignedTimeseries-AHU_Current2-2 from root.combed.iiitd.AHU_Current2."@en ;
+  dcterms:description "AlignedTimeseries-AHU_Current2-2 originates from root.combed.iiitd.AHU_Current2."@en .
+
+<https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedTimeseries-AHU_Energy2-3#> a dctype:Dataset ;
+  dcterms:conformsTo <https://saref.etsi.org/saref4tser/> ;
+  dcterms:license <https://forge.etsi.org/etsi-software-license> ;
+  dcterms:title "AlignedTimeseries-AHU_Energy2-3 from root.combed.iiitd.AHU_Energy2."@en ;
+  dcterms:description "AlignedTimeseries-AHU_Energy2-3 originates from root.combed.iiitd.AHU_Energy2."@en .
+
+#################################################################
+#    Class References
+#################################################################
+
+<https://saref.etsi.org/saref4tser/AlignedSequence> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/Sequence> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/MathematicalStatement> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/AlignedSequenceFunction> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/ErrorModel> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/WebService> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/Clock> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/TimeseriesNodeSet> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/AlignedSequenceEvent> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/ProbabilityDistribution> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/ComputationGraph> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/AlignedTimeseriesModel> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/MeasuringFunction> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/VirtualDevice> rdf:type owl:Class .
+<https://saref.etsi.org/saref4tser/ForecastingModel> rdf:type owl:Class .
+
+#################################################################
+#    Individuals
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/VirtualDevice-AHU_Current2-2
+ex:VirtualDevice-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:VirtualDevice ;
+  ats:hasWebService ex:WebService-AHU_Current2-2 ;
+  rdfs:label "VirtualDevice-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/VirtualDevice-AHU_Energy2-3
+ex:VirtualDevice-AHU_Energy2-3 rdf:type owl:NamedIndividual , ats:VirtualDevice ;
+  ats:hasWebService ex:WebService-AHU_Energy2-3 ;
+  rdfs:label "VirtualDevice-AHU_Energy2-3"@en .
+
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/Clock-AHU_Current2-2
+ex:Clock-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:Clock ;
+  rdfs:label "Clock-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/Clock-AHU_Energy2-3
+ex:Clock-AHU_Energy2-3 rdf:type owl:NamedIndividual , ats:Clock ;
+  rdfs:label "Clock-AHU_Energy2-3"@en .
+
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/MeasuringFunction-AHU_Current2-2
+ex:MeasuringFunction-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:MeasuringFunction ;
+  rdfs:label "MeasuringFunction-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/MeasuringFunction-AHU_Energy2-3
+ex:MeasuringFunction-AHU_Energy2-3 rdf:type owl:NamedIndividual , ats:MeasuringFunction ;
+  rdfs:label "MeasuringFunction-AHU_Energy2-3"@en .
+
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedSequenceFunction-AHU_Current2-Discovery
+ex:AlignedSequenceFunction-AHU_Current2-Discovery rdf:type owl:NamedIndividual , ats:AlignedSequenceFunction ;
+  rdfs:label "AlignedSequenceFunction-AHU_Current2-Discovery"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedSequenceFunction-AHU_Energy2-Discovery
+ex:AlignedSequenceFunction-AHU_Energy2-Discovery rdf:type owl:NamedIndividual , ats:AlignedSequenceFunction ;
+  rdfs:label "AlignedSequenceFunction-AHU_Energy2-Discovery"@en .
+
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/PT2585910
+ex:PT2585910 rdf:type owl:NamedIndividual , time:Interval ;
+  time:hasBeginning ex:PT2585910B ;
+  time:hasEnd ex:PT2585910E .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/PT2585910B
+ex:PT2585910B rdf:type owl:NamedIndividual , time:Instant ;
+  time:inXSDDateTimeStamp "2014-06-01T04:00:26.00Z"^^xsd:dateTimeStamp .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/PT2585910E
+ex:PT2585910E rdf:type owl:NamedIndividual , time:Instant ;
+  time:inXSDDateTimeStamp "2014-07-01T02:18:56.00Z"^^xsd:dateTimeStamp .
+
+#################################################################
+
+### Bind a WebService to the entire dataset. Have to replace periods in name with underscores.
+### Begin text that spans multiple lines with """
+### https://saref.etsi.org/saref4tser/example/v1.0.3/WebService-root_combed_iiitd
+ex:WebService-root_combed_iiitd rdf:type owl:NamedIndividual , ats:WebService ;
+  ats:hasIdentifier "https://mines.ontology.datasets.fr/ws/root.combed.iiitd"^^xsd:string ;
+  rdfs:label "WebService-root_combed_iiitd"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/SequenceFormula-AHU_Current2-2 
+ex:SequenceFormula-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:MathematicalStatement ;
+  ats:hasIdentifier "https://saref.etsi.org/saref4tser/example/v1.0.3/SequenceFormula-AHU_Current2-2"^^xsd:string ;
+  ats:hasSymbolicFormulation 
+  """<math xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <msub>
+   <mi>a</mi>
+   <mn>1</mn>
+  </msub>
+  <mo>+</mo>
+  <mrow>
+   <mi>d</mi>
+   <mo>&#8290;</mo>
+   <mrow>
+    <mo>(</mo>
+    <mrow>
+     <mi>t</mi>
+     <mo>-</mo>
+     <mn>1</mn>
+    </mrow>
+    <mo>)</mo>
+   </mrow>
+  </mrow>
+ </mrow>
+</math>"""^^xsd:string ;
+  ats:hasParametricFormulation "y(t)=0.5*(y-1)(t)"^^xsd:string ;
+  rdfs:label "SequenceFormula-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/Seasonality-AHU_Current2-2 
+ex:Seasonality-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:MathematicalStatement ;
+  ats:hasIdentifier "https://saref.etsi.org/saref4tser/example/v1.0.3/Seasonality-AHU_Current2-2"^^xsd:string ;
+  ats:hasSymbolicFormulation "y(t)=a*sin(t)"^^xsd:string ;
+  ats:hasParametricFormulation "y(t)=0.5*sin(t)"^^xsd:string ;
+  rdfs:label "Seasonality-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/RecurrenceRelation-AHU_Current2-2
+ex:RecurrenceRelation-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:MathematicalStatement ;
+  ats:hasIdentifier "https://saref.etsi.org/saref4tser/example/v1.0.3/RecurrenceRelation-AHU_Current2-2"^^xsd:string ;
+  ats:hasSymbolicFormulation "y(t)=a*(y-1)(t)"^^xsd:string ;
+  ats:hasParametricFormulation "y(t)=0.5*(y-1)(t)"^^xsd:string ;
+  rdfs:label "RecurrenceRelation-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/ProbabilityDistribution-AHU_Current2-2 
+ex:ProbabilityDistribution-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:ProbabilityDistribution ;
+  ats:hasMathematicalStatement "unknown MathematicalStatement"^^xsd:string ;
+  ats:hasAlignedSequenceFunction "unknown AlignedSequenceFunction"^^xsd:string ;
+  rdfs:label "ProbabilityDistribution-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/UpperBoundingCurve-AHU_Current2-2 
+ex:UpperBoundingCurve-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:MathematicalStatement ;
+  ats:hasMathematicalStatement "unknown MathematicalStatement"^^xsd:string ;
+  ats:hasAlignedSequenceFunction "unknown AlignedSequenceFunction"^^xsd:string ;
+  rdfs:label "UpperBoundingCurve-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/LowerBoundingCurve-AHU_Current2-2 
+ex:LowerBoundingCurve-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:MathematicalStatement ;
+  ats:hasMathematicalStatement "unknown MathematicalStatement"^^xsd:string ;
+  ats:hasAlignedSequenceFunction "unknown AlignedSequenceFunction"^^xsd:string ;
+  rdfs:label "LowerBoundingCurve-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/Sequence-AHU_Current2-2
+ex:Sequence-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:Sequence ;
+  ats:hasIdentifier "AlignedTimeseries-AHU_Current2-2"^^xsd:string ;
+  ats:hasAccuracy "0.00001"^^xsd:decimal ;
+  ats:hasPrecision "0.00000000000001"^^xsd:decimal ;
+  ats:hasResolution "0.000000000001"^^xsd:decimal ;
+  ats:hasSequenceDatatype "decimal"^^xsd:string ; 
+  saref:isMeasuredIn "A"^^xsd:string ; 
+  time:hasBeginning ex:PT2585910B ;
+  time:hasEnd ex:PT2585910E ;
+  time:Interval ex:PT2585910 ;
+  ats:isEmpty "false"^^xsd:boolean ;
+  ats:hasCardinality "2"^^xsd:nonNegativeInteger ;
+  rdfs:label "Sequence-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedTimeseriesModel-AHU_Current2-2
+ex:AlignedTimeseriesModel-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:AlignedTimeseriesModel ;
+  ats:hasTimeseriesModel ex:AlignedTimeseriesModel-AHU_Current2-2 ;
+  ats:hasTrendComponent "y(t)=T(t)"^^xsd:string ;
+  ats:hasSeasonalComponent "y(t)=S(t)"^^xsd:string ;
+  ats:hasIrregularComponent "y(t)=I(t)"^^xsd:string ;
+  ats:hasCyclicComponent "y(t)=C(t)"^^xsd:string ;
+  ats:hasAutoCorrelation "2"^^xsd:nonNegativeInteger ;
+  ats:hasCovarianceFunction "some MathematicalStatement"^^xsd:string ;
+  ats:hasStationarity "true"^^xsd:boolean ;
+  ats:hasSeasonality ex:Seasonality-AHU_Current2-2 ;  
+  ats:hasComputationGraph ex:ComputationGraph-AHU_Current2-2 ;
+  rdfs:label "AlignedTimeseriesModel-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/ForecastingModel-AHU_Current2-2
+ex:ForecastingModel-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:ForecastingModel ;
+  ats:hasForecastingModel "TimeSeriesForecast[timeSeriesModel, 2]"^^xsd:string ;
+  rdfs:label "ForecastingModel-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/ErrorModel-AHU_Current2-2
+ex:ErrorModel-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:ErrorModel ;
+  ats:hasErrorModel "TimeSeriesModelFit[timeSeriesModel]"^^xsd:string ;
+  rdfs:label "ErrorModel-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/WebService-AHU_Current2-2
+ex:WebService-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:WebService ;
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Current2/WebService"^^xsd:string ;
+  saref:isOfferedBy ex:VirtualDevice-AHU_Current2-2 ;
+  saref:represents ex:MeasuringFunction-AHU_Current2-2 ;
+  saref:represents ex:AlignedSequenceFunction-AHU_Current2-Discovery ;
+  rdfs:label "WebService-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedSequenceEvent-AHU_Current2-2
+ex:AlignedSequenceEvent-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:AlignedSequenceEvent ;
+  ats:hasAlignedSequenceFunction ex:AlignedSequenceFunction-AHU_Current2-StartSamplingEvent ;
+  saref:hasTimestamp "2014-06-01T04:00:26.00Z"^^xsd:dateTimeStamp ;
+  rdfs:label "AlignedSequenceEvent-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedSequenceFunction-AHU_Current2-StartSamplingEvent
+ex:AlignedSequenceFunction-AHU_Current2-StartSamplingEvent rdf:type owl:NamedIndividual , ats:AlignedSequenceFunction ;
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Current2/StartSamplingEvent"^^xsd:string ;
+  rdfs:label "AlignedSequenceFunction-AHU_Current2-StartSamplingEvent"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/TimeseriesNodeSet-AHU_Current2
+ex:TimeseriesNodeSet-AHU_Current2 rdf:type owl:NamedIndividual , ats:TimeseriesNodeSet ;
+  ats:hasProcedure ex:AlignedSequenceFunction-AHU_Current2-StartSamplingEvent ;
+  ats:hasMember ex:AlignedSequence-AHU_Current2-2 ;
+  ats:isMultivariate "false"^^xsd:boolean ;
+  rdfs:label "TimeseriesNodeSet-AHU_Current2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/FeatureOfInterest-AHU_Current2
+ex:FeatureOfInterest-AHU_Current2 rdf:type owl:NamedIndividual , saref:FeatureOfInterest ;
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Current2"^^xsd:string ;
+  rdfs:label "FeatureOfInterest-AHU_Current2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedSequence-AHU_Current2-2 
+ex:AlignedSequence-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:AlignedSequence ; 
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Current2/AlignedSequence"^^xsd:string ;
+  saref:observes "current"^^xsd:string ; 
+  ats:hasObservationLocation "29°25'26''N, 98°29'37''W"^^xsd:string ;
+  ats:hasIntervalBasedSamplingTime "30000"^^xsd:long ;
+  ats:hasAlignedSequenceFunction ex:AlignedSequenceFunction-AHU_Current2-Discovery ;
+  ats:hasAlignedSequenceFunction ex:AlignedSequenceFunction-AHU_Current2-StartSamplingEvent ;
+  ats:hasAlignedSequenceEvent ex:AlignedSequenceEvent-AHU_Current2-2 ;
+  ats:hasComputationGraph ex:ComputationGraph-AHU_Current2 ;
+  ats:hasTimeseriesModel ex:AlignedTimeseriesModel-AHU_Current2-2 ;
+  ats:hasErrorModel ex:ErrorModel-AHU_Current2-2 ;
+  ats:hasForecastingModel ex:ForecastingModel-AHU_Current2-2 ;
+  ats:hasComparable ex:AlignedSequence-AHU_Energy2 ; # not defined!!!
+  ats:hasComparable ex:AlignedSequence-AHU_Power2 ;
+  ats:hasComposable ex:AlignedSequence-AHU_Current0 ;
+  ats:hasComposable ex:AlignedSequence-AHU_Current1 ;
+  ats:hasComposable ex:AlignedSequence-AHU_Current3 ;
+  ats:hasClock ex:Clock-AHU_Current2-2 ;
+  ats:hasWebService ex:WebService-root_combed_iiitd ;
+  ats:hasSequenceFormula ex:SequenceFormula-AHU_Current2-2 ;
+  ats:hasRecurrenceRelation ex:RecurrenceRelation-AHU_Current2-2 ;
+  ats:hasProbabilityDistribution ex:ProbabilityDistribution-AHU_Current2-2 ;
+  ats:hasProgression "false"^^xsd:boolean ;  
+  # ats:hasSimilarityIndexTo "???" xsd:decimal ;
+  rdfs:label "AlignedSequence-AHU_Current2-2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/ComputationGraph-AHU_Current2-2
+ex:ComputationGraph-AHU_Current2-2 rdf:type owl:NamedIndividual , ats:ComputationGraph ; 
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Current2/ComputationGraph"^^xsd:string ;
+  ats:hasPublicDatasetName "root.combed.iiitd"^^xsd:string ;
+  ats:hasDeviceName ex:VirtualDevice-AHU_Current2-2 ;
+  ats:hasAlignedSequence ex:AlignedSequence-AHU_Current2-2 ; 
+  saref:isMeasuredIn om:ElectricCurrent ;
+  ats:hasStationarity "true"^^xsd:boolean ;
+  ats:hasSeasonality ex:Seasonality-AHU_Current2-2 ;  
+  ats:hasAutoCorrelationOrder "2"^^xsd:nonNegativeInteger ;
+  ats:hasMeasurementUncertaintyPercentage "0.13"^^xsd:decimal ;
+  ats:hasSequenceFormula ex:SequenceFormula-AHU_Current2-2 ;
+  ats:hasSamplingInterval "30000"^^xsd:nonNegativeInteger ;
+  ats:hasCovarianceValue "8.91324"^^xsd:decimal ;
+  ats:hasTimeseriesModel ex:AlignedTimeseriesModel-AHU_Current2-2 ;
+  ats:hasForecastingModel ex:ForecastingModel-AHU_Current2-2 ;
+  ats:hasErrorModel ex:ErrorModel-AHU_Current2-2 ;
+  ats:hasRecurrenceRelation ex:RecurrenceRelation-AHU_Current2-2 ;
+  ats:hasProbabilityDistribution ex:ProbabilityDistribution-AHU_Current2-2 ;
+  ats:hasUpperBoundingCurve ex:UpperBoundingCurve-AHU_Current2-2 ;
+  ats:hasLowerBoundingCurve ex:LowerBoundingCurve-AHU_Current2-2 ;
+  ats:hasConvergenceLimitValue "15.6"^^xsd:decimal ;
+  rdfs:label "ComputationGraph-AHU_Current2-2"@en .
+
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/PT60000
+ex:PT60000 rdf:type owl:NamedIndividual , time:Interval ;
+  time:hasBeginning ex:PT60000B ;
+  time:hasEnd ex:PT60000E .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/PT60000B
+ex:PT60000B rdf:type owl:NamedIndividual , time:Instant ;
+  time:inXSDDateTimeStamp "2014-06-01T04:00:26.00Z"^^xsd:dateTimeStamp .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/PT60000E
+ex:PT60000E rdf:type owl:NamedIndividual , time:Instant ;
+  time:inXSDDateTimeStamp "2014-06-01T04:01:26.00Z"^^xsd:dateTimeStamp .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/Sequence-AHU_Energy2-3
+ex:Sequence-AHU_Energy2-3 rdf:type owl:NamedIndividual , ats:Sequence ;
+  ats:hasAccuracy "0.00001"^^xsd:decimal ;
+  ats:hasPrecision "0.00000000000001"^^xsd:decimal ;
+  ats:hasResolution "0.000000000001"^^xsd:decimal ;
+  ats:hasIdentifier "AlignedTimeseries-AHU_Energy2-3"^^xsd:string ;
+  ats:hasSequenceDatatype "decimal"^^xsd:string ; 
+  saref:isMeasuredIn "kilowattHour"^^xsd:string ; 
+  time:hasBeginning ex:PT60000B ;
+  time:hasEnd ex:PT60000E ;
+  time:Interval ex:PT60000 ;
+  ats:isEmpty "false"^^xsd:boolean ;
+  ats:hasCardinality "3"^^xsd:nonNegativeInteger ;
+  rdfs:label "Sequence-AHU_Energy2-3"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedSequenceFunction-AHU_Energy2-StartSamplingEvent
+ex:AlignedSequenceFunction-AHU_Energy2-StartSamplingEvent rdf:type owl:NamedIndividual , ats:AlignedSequenceFunction ;
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Energy2/StartSamplingEvent"^^xsd:string ;
+  rdfs:label "AlignedSequenceFunction-AHU_Energy2-StartSamplingEvent"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/TimeseriesNodeSet-AHU_Energy2
+ex:TimeseriesNodeSet-AHU_Energy2 rdf:type owl:NamedIndividual , ats:TimeseriesNodeSet ;
+  ats:hasProcedure ex:AlignedSequenceFunction-AHU_Energy2-StartSamplingEvent ;
+  ats:hasMember ex:AlignedSequence-AHU_Energy2-3 ;
+  ats:isMultivariate "false"^^xsd:boolean ;
+  rdfs:label "TimeseriesNodeSet-AHU_Energy2"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/SequenceFormula-AHU_Energy2-3 
+ex:SequenceFormula-AHU_Energy2-3 rdf:type owl:NamedIndividual , ats:MathematicalStatement ;
+  ats:hasIdentifier "https://saref.etsi.org/saref4tser/example/v1.0.3/SequenceFormula-AHU_Energy2-3"^^xsd:string ;
+  ats:hasSymbolicFormulation "y(t)=mx+b"^^xsd:string ;
+  ats:hasParametricFormulation "y(t)=0.325*x+.75"^^xsd:string ;
+  rdfs:label "SequenceFormula-AHU_Energy2-3"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AlignedSequence-AHU_Energy2-3 
+ex:AlignedSequence-AHU_Energy2-3 rdf:type owl:NamedIndividual , ats:AlignedSequence ; 
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Energy2/AlignedSequence"^^xsd:string ;
+  saref:observes "energyuse"^^xsd:string ;
+  ats:hasObservationLocation "29°25'26''N, 98°29'37''W"^^xsd:string ;
+  ats:hasIntervalBasedSamplingTime "30000"^^xsd:long ;
+  # ats:hasAlignedSequenceFunction ex:AlignedSequenceFunction-AHU_Energy2-Discovery ;
+  ats:hasAlignedSequenceFunction ex:AlignedSequenceFunction-AHU_Energy2-StartSamplingEvent ;
+  # ats:hasAlignedSequenceEvent ex:AlignedSequenceEvent-AHU_Energy2-3 ;
+  ats:hasComputationGraph ex:ComputationGraph-AHU_Energy2 ;
+  # ats:hasTimeseriesModel ex:AlignedTimeseriesModel-AHU_Energy2-3 ;
+  # ats:hasErrorModel ex:ErrorModel-AHU_Energy2-3 ;
+  # ats:hasForecastingModel ex:ForecastingModel-AHU_Energy2-3 ;
+  ats:hasComparable ex:AlignedSequence-AHU_Energy2 ; # not defined!!!
+  ats:hasComparable ex:AlignedSequence-AHU_Power2 ;
+  ats:hasComposable ex:AlignedSequence-AHU_Energy0 ;
+  ats:hasComposable ex:AlignedSequence-AHU_Energy1 ;
+  ats:hasComposable ex:AlignedSequence-AHU_Energy3 ;
+  # ats:hasClock ex:Clock-AHU_Energy2-3 ;
+  ats:hasWebService ex:WebService-root_combed_iiitd ;
+  ats:hasSequenceFormula ex:SequenceFormula-AHU_Energy2-3 ; 
+  # ats:hasRecurrenceRelation ex:RecurrenceRelation-AHU_Energy2-3 ;
+  # ats:hasProbabilityDistribution ex:ProbabilityDistribution-AHU_Energy2-3 ;
+  ats:hasProgression "true"^^xsd:boolean ;  
+  # ats:hasSimilarityIndexTo "???" xsd:decimal ;
+  rdfs:label "AlignedSequence-AHU_Energy2-3"@en .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/ComputationGraph-AHU_Energy2-3
+ex:ComputationGraph-AHU_Energy2-3 rdf:type owl:NamedIndividual , ats:ComputationGraph ; 
+  ats:hasIdentifier "https://ci.mines.stetienne.fr/etsi_tr103911/root_combed_iiitd-AHU_Energy2/ComputationGraph"^^xsd:string ;
+  ats:hasPublicDatasetName "root.combed.iiitd"^^xsd:string ;
+  ats:hasDeviceName ex:VirtualDevice-AHU_Energy2-3 ;
+  ats:hasAlignedSequence ex:AlignedSequence-AHU_Energy2-3 ; 
+  saref:isMeasuredIn om:kilowattHour ; 
+  # ats:hasStationarity "true"^^xsd:boolean ;
+  # ats:hasSeasonality ex:Seasonality-AHU_Current2-2 ;  
+  # ats:hasAutoCorrelationOrder "2"^^xsd:nonNegativeInteger ;
+  ats:hasMeasurementUncertaintyPercentage "0.03"^^xsd:decimal ;
+  ats:hasSequenceFormula ex:SequenceFormula-AHU_Energy2-3 ;
+  ats:hasSamplingInterval "30000"^^xsd:nonNegativeInteger ;
+  ats:hasCovarianceValue "2.91324"^^xsd:decimal ;
+  # ats:hasTimeseriesModel ex:AlignedTimeseriesModel-AHU_Energy2-3 ;
+  # ats:hasForecastingModel ex:ForecastingModel-AHU_Energy2-3 ;
+  # ats:hasErrorModel ex:ErrorModel-AHU_Energy2-3 ;
+  # ats:hasRecurrenceRelation ex:RecurrenceRelation-AHU_Energy2-3 ;
+  # ats:hasProbabilityDistribution ex:ProbabilityDistribution-AHU_Energy2-3 ;
+  # ats:hasUpperBoundingCurve ex:UpperBoundingCurve-AHU_Energy2-3 ;
+  # ats:hasLowerBoundingCurve ex:LowerBoundingCurve-AHU_Energy2-3 ;
+  # ats:hasConvergenceLimitValue "15.6"^^xsd:decimal ;
+  rdfs:label "ComputationGraph-AHU_Energy2-3"@en .
+
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AHU_Current2-1401595226000
+ex:AHU_Current2-1401595226000
+  rdf:type owl:NamedIndividual ;
+  rdf:type saref:Observation ; 
+  rdfs:label "1401595226000" ;
+  saref:hasTimestamp "2014-06-01T04:00:26.00Z"^^xsd:dateTimeStamp ;
+  saref:hasValue "0.507316291332245"^^xsd:decimal ;
+  saref:isMeasuredIn om:ElectricCurrent .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AHU_Current2-1404181136000
+ex:AHU_Current2-1404181136000
+  rdf:type owl:NamedIndividual ;
+  rdf:type saref:Observation ; 
+  rdfs:label "1404181136000" ;
+  saref:hasTimestamp "2014-07-01T02:18:56.00Z"^^xsd:dateTimeStamp ;
+  saref:hasValue "8.99523639678955"^^xsd:decimal ;
+  saref:isMeasuredIn om:ElectricCurrent .
+
+#################################################################
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AHU_Energy3-1401595226000
+ex:AHU_Energy3-1401595226000
+  rdf:type owl:NamedIndividual ;
+  rdf:type saref:Observation ; 
+  rdfs:label "1401595226000" ;
+  saref:hasTimestamp "2014-06-01T04:00:26.00Z"^^xsd:dateTimeStamp ; 
+  saref:hasValue "2018996.25"^^xsd:decimal ;
+  saref:isMeasuredIn om:kilowattHour .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AHU_Energy3-1401595256000
+ex:AHU_Energy3-1401595256000 
+  rdf:type owl:NamedIndividual ;
+  rdf:type saref:Observation ; 
+  rdfs:label "1401595256000" ;
+  saref:hasTimestamp "2014-06-01T04:00:56.00Z"^^xsd:dateTimeStamp ; 
+  saref:hasValue "8.99523639678955"^^xsd:decimal ;
+  saref:isMeasuredIn om:kilowattHour .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/AHU_Energy3-1401595286000
+ex:AHU_Energy3-1401595286000
+  rdf:type owl:NamedIndividual ;
+  rdf:type saref:Observation ; 
+  rdfs:label "1401595286000" ;
+  saref:hasTimestamp "2014-06-01T04:01:26.00Z"^^xsd:dateTimeStamp ; 
+  saref:hasValue "8.99523639678955"^^xsd:decimal ;
+  saref:isMeasuredIn om:kilowattHour .
+
+### https://saref.etsi.org/saref4tser/example/v1.0.3/DataQueryRequest-AHU_Current2-2 
+ex:DQR-root_combed_iiitd_AHU_Current2-firstWeek rdf:type owl:NamedIndividual ; # cannot contain periods
+  ats:hasIdentifier "DQR-root_combed_iiitd_AHU_Current2-firstWeek"^^xsd:string ;
+  ats:hasRequestor "DavidGnabasik"^^xsd:string ;
+  ats:hasProjectIri "https://mines.ontology.datasets.fr/iotdata/root.combed.iiitd.AHU_Current2"^^xsd:string ;
+  ats:hasSelectedDataset "root.combed.iiitd.AHU_Current2"^^xsd:string ;
+  ats:hasPreferredSchema "saref"^^xsd:string ;
+  ats:hasPreferredService "DCAT-AT"^^xsd:string ;
+  ats:hasPreferedFormat "csv"^^xsd:string ;
+  ats:hasRandomSelect "false"^^xsd:boolean ;
+  ats:hasContinuousLoop "false"^^xsd:boolean ;
+  ats:hasFilterFunction ats:AlignedSequenceFunction-InterpolateMissingValues ;
+  ats:hasStartDateTime "2016-01-01T05:00:00.00Z"^^xsd:dateTimeStamp ;
+  ats:hasEndDateTime "2016-01-07T00:58:29.00Z"^^xsd:dateTimeStamp ;
+  ats:hasMultiplier "100"^^xsd:integer ;
+  ats:hasLimit "100"^^xsd:integer ;
+  ats:hasDateTimeField "Time1"^^xsd:string ;
+  ats:hasSelectedTimeseries "*"^^xsd:string ;
+  rdfs:label "DQR-root_combed_iiitd_AHU_Current2-firstWeek"@en .
+
+#################################################################
+
