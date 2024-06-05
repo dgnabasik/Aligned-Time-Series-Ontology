@@ -221,7 +221,7 @@ ats:DataQueryRequest a owl:Class ;
     owl:someValuesFrom xsd:string
   ] ;
   rdfs:subClassOf [ a owl:Restriction ;
-    owl:onProperty ats:hasPreferredService ;  "DCAT-AT"
+    owl:onProperty ats:hasPreferredService ;  # "DCAT-AT"
     owl:someValuesFrom xsd:string
   ] ;
   rdfs:subClassOf [ a owl:Restriction ;
