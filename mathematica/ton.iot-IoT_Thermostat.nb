@@ -1,0 +1,648 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27494,        640]
+NotebookOptionsPosition[     26873,        620]
+NotebookOutlinePosition[     27280,        636]
+CellTagsIndexPosition[     27237,        633]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ClearSystemCache", "[", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"$HistoryLength", " ", "=", " ", "0"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "PATHPREFIX", "=", 
+   "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
+   ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Read", " ", "individual", " ", "files", " ", "of", " ", "2", " ", "data", 
+    " ", "columns", " ", 
+    RowBox[{"each", "."}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fitTimeseriesModel", "[", 
+     RowBox[{"f_", ",", "d_", ",", "y_", ",", "z_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"fname", "=", "f"}], ",", 
+        RowBox[{"data", "=", "d"}], ",", 
+        RowBox[{"yaxis", "=", "y"}], ",", 
+        RowBox[{"colnum", "=", "z"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"dataset", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "z"}], "}"}]}], "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], ">", "0"}], " ", "&"}]}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"dataset", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";", " ", 
+       RowBox[{"(*", " ", "Utc_timestamp", " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"Subtract", "[", 
+         RowBox[{"xtime", ",", 
+          RowBox[{"xtime", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"timeseries", "=", 
+        RowBox[{"TimeSeries", "[", 
+         RowBox[{
+          RowBox[{"dataset", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+          RowBox[{"{", "xtime", "}"}]}], "]"}]}], ";", " ", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+        "is", " ", "2", " ", "because", " ", "only", " ", "2", " ", "columns",
+          " ", "read"}], " ", "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"plotFile", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+          RowBox[{"StringDrop", "[", 
+           RowBox[{"fname", ",", 
+            RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "yaxis", ",", 
+          "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Print", "[", "plotFile", "]"}], ";"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"Export", "[", 
+        RowBox[{"plotFile", ",", 
+         RowBox[{"ListPlot", "[", 
+          RowBox[{
+           RowBox[{"dataset", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+           RowBox[{"PlotLabel", "->", "yaxis"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time.offset\>\"", ",", "yaxis"}], "}"}]}], ",", 
+           RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"dataR", "=", 
+        RowBox[{"TimeSeries", "[", 
+         RowBox[{"timeseries", ",", 
+          RowBox[{"TemporalRegularity", "->", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"atsm", "=", 
+        RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"process", "=", 
+        RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "process", "]"}], ";"}]}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"Print", "[", 
+        RowBox[{"CovarianceFunction", "[", 
+         RowBox[{"process", ",", "s", ",", "t"}], "]"}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"TimeSeriesForecast", "[", 
+         RowBox[{"process", ",", 
+          RowBox[{"dataset", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", " ", "2"}], "]"}], 
+        "]"}], ";"}], "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+    "In", " ", "general", " ", "whether", " ", "or", " ", "not", " ", "you", 
+     " ", "have", " ", "causal", " ", "series"}], ",", " ", 
+    RowBox[{
+    "the", " ", "only", " ", "time", " ", "you", " ", "would", " ", "be", " ",
+      "justified", " ", "or", " ", "correct", " ", "in", " ", "taking", " ", 
+     "the", " ", "Log", " ", "of", " ", "Y", " ", "is", " ", "when", " ", 
+     "it", " ", "can", " ", "be", " ", "proven", " ", "that", " ", "the", " ",
+      "Variance", " ", "of", " ", "Y", " ", "is", " ", "proportional", " ", 
+     "to", " ", "the", " ", "Expected", " ", "Value", " ", "of", " ", 
+     RowBox[{
+      RowBox[{"Y", "^", "2"}], " ", ".", " ", "What"}], " ", "is", " ", 
+     "important", " ", "is", " ", "the", " ", "relationship", " ", "between", 
+     " ", "the", " ", "inputs", " ", "and", " ", "outputs"}], ",", 
+    RowBox[{
+    "not", " ", "the", " ", "distribution", " ", "of", " ", "the", " ", 
+     "inputs", " ", 
+     RowBox[{"themselves", "."}]}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fitBinaryTimeseriesModel", "[", 
+     RowBox[{"f_", ",", "d_", ",", "y_", ",", "z_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"fname", "=", "f"}], ",", 
+        RowBox[{"data", "=", "d"}], ",", 
+        RowBox[{"yaxis", "=", "y"}], ",", 
+        RowBox[{"colnum", "=", "z"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"dataset", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "z"}], "}"}]}], "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], ">", "0"}], " ", "&"}]}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"dataset", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"Subtract", "[", 
+         RowBox[{"xtime", ",", 
+          RowBox[{"xtime", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"timeseries", "=", 
+        RowBox[{"TimeSeries", "[", 
+         RowBox[{
+          RowBox[{"dataset", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+          RowBox[{"{", "xtime", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+       
+       RowBox[{"lsd", "=", 
+        RowBox[{"FindDistribution", "[", 
+         RowBox[{"dataset", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "lsd", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{"PDF", "[", 
+           RowBox[{"lsd", ",", "k"}], "]"}], "]"}], ";"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"y_", 
+           RowBox[{"{", "dt", "}"}]}], "=", 
+          RowBox[{"Bernoulli", 
+           RowBox[{"(", 
+            RowBox[{"logit", 
+             RowBox[{"(", "x_t", ")"}]}], ")"}]}]}], ";", " ", 
+         RowBox[{"x_t", "=", 
+          RowBox[{"ARIMA", 
+           RowBox[{"(", 
+            RowBox[{"p", ",", "d", ",", "q"}], ")"}]}]}]}], " ", "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{"DiscretePlot", "[", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"PDF", "[", 
+              RowBox[{
+               RowBox[{"dataset", "[", 
+                RowBox[{"[", 
+                 RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", "k"}], "]"}], 
+             ",", 
+             RowBox[{"PlotLabel", "->", "fname"}], ",", 
+             RowBox[{"AxesLabel", "->", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Time.offset\>\"", ",", "yaxis"}], "}"}]}]}], 
+            "]"}], "]"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"DiscretePlot", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"PDF", "[", 
+              RowBox[{"lsd", ",", "k"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"\[Theta]", ",", 
+               RowBox[{"{", 
+                RowBox[{"0.5", ",", "0.8", ",", "0.99"}], "}"}]}], "}"}]}], 
+            "]"}], "//", "Evaluate"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", "10"}], "}"}], ",", 
+          RowBox[{"PlotMarkers", "->", "Automatic"}]}], "]"}], "]"}], ";"}]}],
+      "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"atsm", "=", 
+        RowBox[{"TimeSeriesModelFit", "[", "timeseries", "]"}]}], ";", "\n", 
+       RowBox[{"process", "=", 
+        RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"model", "=", 
+        RowBox[{"LinearModelFit", "[", 
+         RowBox[{"timeseries", ",", "x", ",", "x"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Show", "[", 
+        RowBox[{
+         RowBox[{"ListPlot", "[", "timeseries", "]"}], ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "300000"}], "}"}]}], "]"}], ",", 
+         RowBox[{"Frame", "->", "True"}]}], "]"}]}], "\[IndentingNewLine]", 
+      "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"headerList", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<Datetime\>\"", ",", " ", "\"\<Utc_timestamp\>\"", ",", " ", 
+     "\"\<Current_temperature\>\"", ",", "\"\<Thermostat_status\>\""}], 
+    "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"theFile", "=", "\"\<IoT_Thermostat.csv\>\""}], " ", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"xdataset", "=", 
+    RowBox[{"Import", "[", 
+     RowBox[{
+      RowBox[{"StringJoin", "[", 
+       RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+      RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+      RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+      RowBox[{"MissingDataRules", "->", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"\"\<.\>\"", "->", 
+          RowBox[{"Missing", "[", "]"}]}], ",", 
+         RowBox[{"\"\<\>\"", "->", 
+          RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"fitTimeseriesModel", "[", 
+     RowBox[{"theFile", ",", " ", "xdataset", ",", " ", 
+      RowBox[{"headerList", "[", 
+       RowBox[{"[", "3", "]"}], "]"}], ",", "3"}], "]"}], ";"}], " ", 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fitBinaryTimeseriesModel", "[", 
+    RowBox[{"theFile", ",", " ", "xdataset", ",", " ", 
+     RowBox[{"headerList", "[", 
+      RowBox[{"[", "4", "]"}], "]"}], ",", "4"}], "]"}], ";"}], " ", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.912428704688086*^9, 3.91242873650119*^9}, {
+   3.912428894755269*^9, 3.912428922850176*^9}, 3.912429027022626*^9, {
+   3.912429116662945*^9, 3.912429121765119*^9}, {3.912429234806164*^9, 
+   3.912429238032167*^9}, 3.912429280728594*^9, {3.912429407433749*^9, 
+   3.912429407912829*^9}, {3.912429635764941*^9, 3.912429638363143*^9}, {
+   3.912429754205299*^9, 3.912429756045949*^9}, {3.912429821294278*^9, 
+   3.91242983687945*^9}, 3.912429899288575*^9, {3.912430025105559*^9, 
+   3.912430078922473*^9}, {3.912430206380073*^9, 3.912430246693132*^9}, {
+   3.91243094604706*^9, 3.91243096471871*^9}, {3.912431135409589*^9, 
+   3.912431550478697*^9}, {3.912431596887029*^9, 3.9124316443114*^9}, {
+   3.912431760217644*^9, 3.912431812874357*^9}, {3.912431943719655*^9, 
+   3.912432030948495*^9}, {3.912432182664323*^9, 3.91243222304833*^9}, {
+   3.912432264849421*^9, 3.912432294387034*^9}, {3.912432350194708*^9, 
+   3.912432406530603*^9}, {3.912432461308845*^9, 3.912432554701021*^9}, 
+   3.9124326082779493`*^9, {3.912432646983388*^9, 3.912432684200481*^9}, {
+   3.91243288638583*^9, 3.91243298813068*^9}, {3.9124330326999187`*^9, 
+   3.9124330388118563`*^9}, {3.912433134133096*^9, 3.9124331369965363`*^9}, {
+   3.912433169902801*^9, 3.912433221677826*^9}, {3.912433262999432*^9, 
+   3.9124332855667553`*^9}, 3.912433402760921*^9, 3.912433569154702*^9, {
+   3.912433707574387*^9, 3.91243370937228*^9}, {3.912931916642258*^9, 
+   3.91293195737866*^9}, {3.9129320266270537`*^9, 3.912932136012702*^9}, {
+   3.912932178477751*^9, 3.912932310422439*^9}, {3.912932364567398*^9, 
+   3.912932392888195*^9}, {3.91293243140911*^9, 3.9129324525930243`*^9}, {
+   3.912932495289144*^9, 3.912932514809182*^9}, {3.912932562154209*^9, 
+   3.912932607722835*^9}, {3.912932656764138*^9, 3.912932756524851*^9}, 
+   3.912932905104755*^9, {3.912932943567442*^9, 3.9129329475830917`*^9}, {
+   3.912933059800727*^9, 3.91293309228885*^9}, {3.912933247835191*^9, 
+   3.912933345007532*^9}, 3.912933384078311*^9, {3.913442753582075*^9, 
+   3.913442762327929*^9}, {3.913442820349729*^9, 3.913442825501296*^9}, {
+   3.913442951553706*^9, 3.913442953087527*^9}, {3.913444126373289*^9, 
+   3.913444242490936*^9}, {3.913444439663513*^9, 3.913444477200204*^9}, {
+   3.913444946711646*^9, 3.91344524357815*^9}, {3.913445279800888*^9, 
+   3.913445360575885*^9}, {3.913445393866849*^9, 3.913445396697935*^9}, {
+   3.913445433979126*^9, 3.913445440490822*^9}, {3.913445471099865*^9, 
+   3.913445481275262*^9}, {3.913447074546241*^9, 3.913447076114185*^9}, {
+   3.916891928307838*^9, 3.916891966211412*^9}, {3.916893995311123*^9, 
+   3.916893997945642*^9}, {3.916983835707331*^9, 3.916983856212298*^9}, 
+   3.929381519336855*^9, 3.9293860620025473`*^9, {3.929386111382217*^9, 
+   3.929386136733633*^9}, 3.929386627941556*^9, {3.929387909181835*^9, 
+   3.929387982423583*^9}, {3.929388121545154*^9, 3.9293881518336573`*^9}, {
+   3.9293883336207037`*^9, 3.9293884558366003`*^9}, {3.929388518511629*^9, 
+   3.9293885211952477`*^9}, {3.929388632904297*^9, 3.9293886600328827`*^9}, {
+   3.929388695929864*^9, 3.929388700770133*^9}, {3.929388803084326*^9, 
+   3.929388831772346*^9}, {3.929388862637425*^9, 3.929388863733444*^9}, {
+   3.9293889968961163`*^9, 3.929389061672357*^9}, {3.929389109193116*^9, 
+   3.929389125250414*^9}, {3.9293891715160093`*^9, 3.929389222875655*^9}, {
+   3.9293892846858807`*^9, 3.9293893112862186`*^9}, {3.929389380614725*^9, 
+   3.92938940195121*^9}, {3.929389488513762*^9, 3.9293896601623573`*^9}, {
+   3.929389699630579*^9, 3.929389723552239*^9}, {3.929389798634543*^9, 
+   3.929389817433364*^9}, {3.929389893569017*^9, 3.9293899487320213`*^9}, {
+   3.92939005366063*^9, 3.929390106415496*^9}, {3.9293907576401863`*^9, 
+   3.929390793802149*^9}, {3.929390906893886*^9, 3.929391058572297*^9}, {
+   3.929391188257626*^9, 
+   3.929391200722877*^9}},ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-\
+6665dd629657"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"LogSeriesDistribution", "[", "1.5797412696528076`*^-11", 
+  "]"}]], "Print",
+ CellChangeTimes->{3.9293892707646627`*^9, 3.929389468225998*^9, 
+  3.929389770057486*^9, 3.9293898676474323`*^9, 3.9293899950208817`*^9, 
+  3.929390157678255*^9},
+ CellLabel->
+  "During evaluation of \
+In[441]:=",ExpressionUUID->"63e6f5e7-d65c-46a7-96a9-e3b9f8d80388"],
+
+Cell[BoxData[
+ GraphicsBox[{{{
+     {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+      0.012833333333333334`], AbsoluteThickness[2], 
+      TagBox[{
+        {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+         0.012833333333333334`], AbsoluteThickness[2], Opacity[0.2], 
+         LineBox[{},
+          VertexColors->None]}, 
+        {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+         0.012833333333333334`], AbsoluteThickness[2], Opacity[0.2], 
+         LineBox[{{{1., 1.0000031194453558`}, {1., 0}}, {{2., 
+            7.898730987846873*^-12}, {2., 0}}, {{3., 
+            8.318634212924796*^-23}, {3., 0}}, {{4., 
+            9.855967329977328*^-34}, {4., 0}}, {{5., 
+            1.2455902674811982`*^-44}, {5., 0}}, {{6., 
+            1.63975862551494*^-55}, {6., 0}}, {{7., 
+            2.2203380339958122`*^-66}, {7., 0}}, {{8., 
+            3.0691146717725933`*^-77}, {8., 0}}, {{9., 
+            4.309695207374308*^-88}, {9., 0}}, {{10., 6.1273830408427*^-99}, {
+            10., 0}}},
+          VertexColors->None]}},
+       Annotation[#, "Charting`Private`Tag$74124#1"]& ]}, 
+     {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+      0.012833333333333334`], AbsoluteThickness[2], 
+      TagBox[{
+        {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+         0.012833333333333334`], AbsoluteThickness[2], Opacity[0.2], 
+         LineBox[{},
+          VertexColors->None]}, 
+        {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+         0.012833333333333334`], AbsoluteThickness[2], Opacity[0.2], 
+         LineBox[{{{1., 1.0000031194453558`}, {1., 0}}, {{2., 
+            7.898730987846873*^-12}, {2., 0}}, {{3., 
+            8.318634212924796*^-23}, {3., 0}}, {{4., 
+            9.855967329977328*^-34}, {4., 0}}, {{5., 
+            1.2455902674811982`*^-44}, {5., 0}}, {{6., 
+            1.63975862551494*^-55}, {6., 0}}, {{7., 
+            2.2203380339958122`*^-66}, {7., 0}}, {{8., 
+            3.0691146717725933`*^-77}, {8., 0}}, {{9., 
+            4.309695207374308*^-88}, {9., 0}}, {{10., 6.1273830408427*^-99}, {
+            10., 0}}},
+          VertexColors->None]}},
+       Annotation[#, "Charting`Private`Tag$74124#2"]& ]}, 
+     {RGBColor[0.560181, 0.691569, 0.194885], PointSize[
+      0.012833333333333334`], AbsoluteThickness[2], 
+      TagBox[{
+        {RGBColor[0.560181, 0.691569, 0.194885], PointSize[
+         0.012833333333333334`], AbsoluteThickness[2], Opacity[0.2], 
+         LineBox[{},
+          VertexColors->None]}, 
+        {RGBColor[0.560181, 0.691569, 0.194885], PointSize[
+         0.012833333333333334`], AbsoluteThickness[2], Opacity[0.2], 
+         LineBox[{{{1., 1.0000031194453558`}, {1., 0}}, {{2., 
+            7.898730987846873*^-12}, {2., 0}}, {{3., 
+            8.318634212924796*^-23}, {3., 0}}, {{4., 
+            9.855967329977328*^-34}, {4., 0}}, {{5., 
+            1.2455902674811982`*^-44}, {5., 0}}, {{6., 
+            1.63975862551494*^-55}, {6., 0}}, {{7., 
+            2.2203380339958122`*^-66}, {7., 0}}, {{8., 
+            3.0691146717725933`*^-77}, {8., 0}}, {{9., 
+            4.309695207374308*^-88}, {9., 0}}, {{10., 6.1273830408427*^-99}, {
+            10., 0}}},
+          VertexColors->None]}},
+       Annotation[#, "Charting`Private`Tag$74124#3"]& ]}}, {
+     TagBox[
+      {RGBColor[0.368417, 0.506779, 0.709798], PointSize[
+       0.012833333333333334`], AbsoluteThickness[2], {}, 
+       GeometricTransformationBox[InsetBox[
+         GraphicsBox[
+          {EdgeForm[None], DiskBox[{0, 0}]},
+          DefaultBaseStyle->{"Graphics", 
+            Directive[
+             PointSize[0.012833333333333334`], 
+             RGBColor[0.368417, 0.506779, 0.709798], 
+             AbsoluteThickness[2]]},
+          PlotRangePadding->Scaled[0.15]], {0, 0}, Automatic, Offset[
+         10.976]], {{{1., 1.0000031194453558`}}, {{2., 
+        7.898730987846873*^-12}}, {{3., 8.318634212924796*^-23}}, {{4., 
+        9.855967329977328*^-34}}, {{5., 1.2455902674811982`*^-44}}, {{6., 
+        1.63975862551494*^-55}}, {{7., 2.2203380339958122`*^-66}}, {{8., 
+        3.0691146717725933`*^-77}}, {{9., 4.309695207374308*^-88}}, {{10., 
+        6.1273830408427*^-99}}}], {}},
+      Annotation[#, "Charting`Private`Tag$74124#1"]& ], 
+     TagBox[
+      {RGBColor[0.880722, 0.611041, 0.142051], PointSize[
+       0.012833333333333334`], AbsoluteThickness[2], {}, 
+       GeometricTransformationBox[InsetBox[
+         GraphicsBox[
+          {EdgeForm[None], PolygonBox[{{-1, -1}, {1, -1}, {1, 1}, {-1, 1}}]},
+          DefaultBaseStyle->{"Graphics", 
+            Directive[
+             PointSize[0.012833333333333334`], 
+             RGBColor[0.880722, 0.611041, 0.142051], 
+             AbsoluteThickness[2]]},
+          PlotRangePadding->Scaled[0.15]], {0, 0}, Automatic, Offset[
+         10.5]], {{{1., 1.0000031194453558`}}, {{2., 
+        7.898730987846873*^-12}}, {{3., 8.318634212924796*^-23}}, {{4., 
+        9.855967329977328*^-34}}, {{5., 1.2455902674811982`*^-44}}, {{6., 
+        1.63975862551494*^-55}}, {{7., 2.2203380339958122`*^-66}}, {{8., 
+        3.0691146717725933`*^-77}}, {{9., 4.309695207374308*^-88}}, {{10., 
+        6.1273830408427*^-99}}}], {}},
+      Annotation[#, "Charting`Private`Tag$74124#2"]& ], 
+     TagBox[
+      {RGBColor[0.560181, 0.691569, 0.194885], PointSize[
+       0.012833333333333334`], AbsoluteThickness[2], {}, 
+       GeometricTransformationBox[InsetBox[
+         GraphicsBox[
+          {EdgeForm[None], PolygonBox[{{0, 1}, {1, 0}, {0, -1}, {-1, 0}}]},
+          DefaultBaseStyle->{"Graphics", 
+            Directive[
+             PointSize[0.012833333333333334`], 
+             RGBColor[0.560181, 0.691569, 0.194885], 
+             AbsoluteThickness[2]]}], {0, 0}, Automatic, Offset[10.2]], {{{1.,
+         1.0000031194453558`}}, {{2., 7.898730987846873*^-12}}, {{3., 
+        8.318634212924796*^-23}}, {{4., 9.855967329977328*^-34}}, {{5., 
+        1.2455902674811982`*^-44}}, {{6., 1.63975862551494*^-55}}, {{7., 
+        2.2203380339958122`*^-66}}, {{8., 3.0691146717725933`*^-77}}, {{9., 
+        4.309695207374308*^-88}}, {{10., 6.1273830408427*^-99}}}], {}},
+      Annotation[#, "Charting`Private`Tag$74124#3"]& ]}}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesOrigin->{1, 0},
+  DisplayFunction->Identity,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "MessagesHead" -> DiscretePlot, "AxisPadding" -> Scaled[0.02], 
+    "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "DefaultPlotStyle" -> {
+      Directive[
+       RGBColor[0.368417, 0.506779, 0.709798], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.880722, 0.611041, 0.142051], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.560181, 0.691569, 0.194885], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.922526, 0.385626, 0.209179], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.528488, 0.470624, 0.701351], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.772079, 0.431554, 0.102387], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.363898, 0.618501, 0.782349], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[1, 0.75, 0], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.647624, 0.37816, 0.614037], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.571589, 0.586483, 0.], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.915, 0.3325, 0.2125], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.736782672705901, 0.358, 0.5030266573755369], 
+       AbsoluteThickness[2]], 
+      Directive[
+       RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], 
+       AbsoluteThickness[2]]}, "DomainPadding" -> Scaled[0.02], 
+    "PointSizeFunction" -> "SmallPointSize", "RangePadding" -> Scaled[0.05]},
+  PlotRange->{{1, 10}, {0, 1.974682746961718*^-11}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Print",
+ CellChangeTimes->{3.9293892707646627`*^9, 3.929389468225998*^9, 
+  3.929389770057486*^9, 3.9293898676474323`*^9, 3.9293899950208817`*^9, 
+  3.92939015772327*^9},
+ CellLabel->
+  "During evaluation of \
+In[441]:=",ExpressionUUID->"0542c538-39fa-48e2-8b24-b36d13e6f450"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1136.25, 762.75},
+WindowMargins->{{-2.25, Automatic}, {Automatic, -22.5}},
+FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"008c5b99-344d-4bed-b877-8ee408ad83d4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 16799, 382, 1133, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+Cell[CellGroupData[{
+Cell[17404, 408, 370, 8, 25, "Print",ExpressionUUID->"63e6f5e7-d65c-46a7-96a9-e3b9f8d80388"],
+Cell[17777, 418, 9068, 198, 207, "Print",ExpressionUUID->"0542c538-39fa-48e2-8b24-b36d13e6f450"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

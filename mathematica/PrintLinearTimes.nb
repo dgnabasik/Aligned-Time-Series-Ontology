@@ -1,0 +1,732 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     29659,        724]
+NotebookOptionsPosition[     29173,        707]
+NotebookOutlinePosition[     29576,        723]
+CellTagsIndexPosition[     29533,        720]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ClearSystemCache", "[", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$HistoryLength", " ", "=", " ", "0"}], ";"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{"f_", ",", "d_", ",", "y_", ",", "z_", ",", "p_"}], "]"}], ":=", 
+    
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"fname", "=", "f"}], ",", 
+        RowBox[{"data", "=", "d"}], ",", 
+        RowBox[{"yaxis", "=", "y"}], ",", 
+        RowBox[{"colnum", "=", "z"}], ",", 
+        RowBox[{"plotFile", "=", "p"}]}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"dataset", "=", 
+        RowBox[{"Select", "[", 
+         RowBox[{
+          RowBox[{"data", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "z"}], "}"}]}], "]"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], ">", "0"}], " ", "&"}]}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"dataset", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"Subtract", "[", 
+         RowBox[{"xtime", ",", 
+          RowBox[{"xtime", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"model", "=", 
+        RowBox[{"LinearModelFit", "[", 
+         RowBox[{
+          RowBox[{"dataset", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], ",", "x", ",", "x"}], 
+         "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"bestFit", "=", 
+        RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "bestFit", "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Print", "[", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "80000"}], "}"}], ",", 
+           RowBox[{"PlotLabel", "->", "fname"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time.offset\>\"", ",", "yaxis"}], "}"}]}], ",", 
+           RowBox[{"ImageSize", "->", "700"}]}], "]"}], "]"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"Export", "[", 
+        RowBox[{"plotFile", ",", 
+         RowBox[{"Plot", "[", 
+          RowBox[{
+           RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "80000"}], "}"}], ",", 
+           RowBox[{"PlotLabel", "->", "fname"}], ",", 
+           RowBox[{"AxesLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{"\"\<Time.offset\>\"", ",", "bestFit"}], "}"}]}], ",", 
+           RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/smart.home.weather/\>\""}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_homec_weather_\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<HomeC.csv\>\""}], ";", "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Time1\>\""}], ";", "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/opsd.timeseries/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_opsd_timeseries_\>\""}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<opsd_time_series_15min.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/opsd.timeseries/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_opsd_timeseries_\>\""}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<opsd_time_series_30min.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/opsd.timeseries/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_opsd_timeseries_\>\""}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<opsd_time_series_60min.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/opsd.household/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_opsd_household_\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<household_data_1min_singleindex.csv\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/opsd.household/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_opsd_household_\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<household_data_15min_singleindex.csv\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/opsd.household/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_opsd_household_\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<household_data_60min_singleindex.csv\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<IoT_Weather.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<IoT_Thermostat.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<IoT_Modbus.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<IoT_Motion_Light.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "PATHPREFIX", "=", 
+   "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"theFile", "=", "\"\<IoT_Motion_Light.csv\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xdataset", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"StringJoin", "[", 
+      RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+     RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+     RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+     RowBox[{"MissingDataRules", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<.\>\"", "->", 
+         RowBox[{"Missing", "[", "]"}]}], ",", 
+        RowBox[{"\"\<\>\"", "->", 
+         RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"plotFile", "=", 
+   RowBox[{"StringJoin", "[", 
+    RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+     RowBox[{"StringDrop", "[", 
+      RowBox[{"theFile", ",", 
+       RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", ",", 
+     "\"\<.png\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"fitLinearTimeseriesModel", "[", 
+    RowBox[{
+    "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+     "plotFile"}], "]"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.929354042879278*^9, 3.929354056207446*^9}, {
+   3.929354094310842*^9, 3.929354153566676*^9}, {3.92935421075035*^9, 
+   3.929354241533553*^9}, {3.9293542759173594`*^9, 3.929354338101018*^9}, {
+   3.929354398990337*^9, 3.929354403053996*^9}, {3.929354441598407*^9, 
+   3.92935458918823*^9}, {3.92935471576748*^9, 3.9293547211453114`*^9}, 
+   3.929354754188175*^9, {3.92935481192542*^9, 3.9293548152934513`*^9}, {
+   3.929354848669799*^9, 3.929354897184659*^9}, 3.929354940871587*^9, {
+   3.929354974094027*^9, 3.929355108838456*^9}, {3.92935524534764*^9, 
+   3.929355291069889*^9}, {3.92935582290907*^9, 3.929355881887486*^9}, {
+   3.92935592796926*^9, 3.929355944079236*^9}, {3.929355979132965*^9, 
+   3.929355995867408*^9}, {3.929356103949848*^9, 3.9293561313312273`*^9}, {
+   3.9293561618196907`*^9, 3.9293561679552193`*^9}, {3.929356200810392*^9, 
+   3.9293563724398003`*^9}, {3.929356445616475*^9, 3.929356493120578*^9}, {
+   3.929356569774496*^9, 3.929356588854948*^9}, {3.929356620719591*^9, 
+   3.929356635174768*^9}, {3.9293566665597153`*^9, 3.929356673238656*^9}, {
+   3.929356749008772*^9, 3.929356786744911*^9}, {3.9293569987640142`*^9, 
+   3.929357007283675*^9}, {3.9293571103841333`*^9, 3.9293571186485786`*^9}, 
+   3.9293571681540833`*^9, {3.929357231038249*^9, 3.929357252901061*^9}, {
+   3.929357585846929*^9, 3.929357608702262*^9}, {3.9293581062242193`*^9, 
+   3.929358140931782*^9}, {3.9293581999457808`*^9, 3.929358256260454*^9}, {
+   3.929358301060296*^9, 3.929358366758316*^9}, 3.929358403375452*^9, {
+   3.9293584609278507`*^9, 3.929358472038148*^9}, {3.92935874226696*^9, 
+   3.929358743514378*^9}, {3.929381401776197*^9, 
+   3.929381410374062*^9}},ExpressionUUID->"c5d05f43-a09f-48d5-88b8-\
+c8be1d166d18"],
+
+Cell[BoxData[
+ RowBox[{"1.5537755841698651`*^9", "+", 
+  RowBox[{"18.778225452378468`", " ", "x"}]}]], "Print",
+ CellChangeTimes->{3.929358268517253*^9, 3.9293583048723917`*^9, 
+  3.929358412250513*^9, 3.929358746614753*^9},
+ CellLabel->
+  "During evaluation of \
+In[209]:=",ExpressionUUID->"c1dfd9d7-5db9-433e-bf9b-990ccc61ceb1"]
+}, Open  ]]
+},
+WindowSize->{1048.5, 918},
+WindowMargins->{{-2.25, Automatic}, {Automatic, -22.5}},
+FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ae400b57-673b-4ea7-bb3b-ba3f3ef68db8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 28244, 673, 2542, "Input",ExpressionUUID->"c5d05f43-a09f-48d5-88b8-c8be1d166d18"],
+Cell[28827, 697, 330, 7, 23, "Print",ExpressionUUID->"c1dfd9d7-5db9-433e-bf9b-990ccc61ceb1"]
+}, Open  ]]
+}
+]
+*)
+

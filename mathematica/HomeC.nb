@@ -1,0 +1,1577 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     68478,       1569]
+NotebookOptionsPosition[     59989,       1466]
+NotebookOutlinePosition[     60392,       1482]
+CellTagsIndexPosition[     60349,       1479]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"ClearSystemCache", "[", "]"}], ";"}], "\n", 
+     RowBox[{
+      RowBox[{"$HistoryLength", " ", "=", " ", "0"}], ";"}], "\n", 
+     RowBox[{
+      RowBox[{
+      "PATHPREFIX", "=", 
+       "\"\</home/david/Documents/digital-twins/smart.home.weather/\>\""}], 
+      ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_homec_weather_\>\""}], 
+      ";"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+       "**", "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"fitTimeseriesModel", "[", 
+        RowBox[{"f_", ",", "d_", ",", "y_", ",", "z_"}], "]"}], ":=", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"fname", "=", "f"}], ",", 
+           RowBox[{"data", "=", "d"}], ",", 
+           RowBox[{"yaxis", "=", "y"}], ",", 
+           RowBox[{"colnum", "=", "z"}]}], "}"}], ",", "\[IndentingNewLine]", 
+         
+         RowBox[{
+          RowBox[{"dataset", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{
+             RowBox[{"data", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "z"}], "}"}]}], "]"}], "]"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], ">", "0"}], " ", "&"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"xtime", "=", 
+           RowBox[{"dataset", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"xtime", "=", 
+           RowBox[{"Subtract", "[", 
+            RowBox[{"xtime", ",", 
+             RowBox[{"xtime", "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"timeseries", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{
+             RowBox[{"dataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+             RowBox[{"{", "xtime", "}"}]}], "]"}]}], ";", " ", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "is", " ", "2", " ", "because", " ", "only", " ", "2", " ", "data",
+             " ", "columns", " ", "read"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"plotFile", "=", 
+           RowBox[{"StringJoin", "[", 
+            RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+             RowBox[{"StringDrop", "[", 
+              RowBox[{"fname", ",", 
+               RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "yaxis", 
+             ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "plotFile", "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Export", "[", 
+           RowBox[{"plotFile", ",", 
+            RowBox[{"ListPlot", "[", 
+             RowBox[{
+              RowBox[{"dataset", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+              RowBox[{"PlotLabel", "->", "fname"}], ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Time.offset\>\"", ",", "yaxis"}], "}"}]}], ",", 
+              RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"dataR", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{"timeseries", ",", 
+             RowBox[{"TemporalRegularity", "->", "True"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"atsm", "=", 
+           RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", "\n", 
+          RowBox[{"process", "=", 
+           RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
+          
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"Print", "[", "\"\<WeakStationarity:\>\"", "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Print", "[", 
+             RowBox[{"WeakStationarity", "[", "process", "]"}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Print", "[", "\"\<AutocorrelationTest:\>\"", "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Print", "[", 
+             RowBox[{"AutocorrelationTest", "[", 
+              RowBox[{
+               RowBox[{"dataset", "[", 
+                RowBox[{"[", 
+                 RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", "2"}], "]"}], 
+             "]"}], ";", " ", 
+            RowBox[{"lag", "=", "2"}], ";", " ", 
+            RowBox[{
+             RowBox[{"returning", " ", "a", " ", "small", " ", "p"}], "-", 
+             RowBox[{
+             "value", " ", "suggests", " ", "that", " ", "randomness", " ", 
+              "is", " ", 
+              RowBox[{"unlikely", "."}]}]}]}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"Print", "[", "\"\<CovarianceFunction:\>\"", "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"cFunc", "=", 
+             RowBox[{"CovarianceFunction", "[", 
+              RowBox[{"process", ",", "s", ",", "t"}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Print", "[", "cFunc", "]"}], ";"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"fnamecf", "=", 
+             RowBox[{"StringJoin", "[", 
+              RowBox[{
+              "\"\</home/david/Documents/math/output/HomeC.\>\"", ",", 
+               "yaxis", ",", "\"\<.txt\>\""}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"txtData", "=", 
+             RowBox[{"StringJoin", "[", 
+              RowBox[{"wprocess", ",", "acTest", ",", "cFunc"}], "]"}]}], ";",
+             "\[IndentingNewLine]", 
+            RowBox[{"txtData", "=", 
+             RowBox[{"StringJoin", "[", "cFunc", "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Export", "[", 
+             RowBox[{"fnamecf", ",", "txtData", ",", "\"\<String\>\""}], 
+             "]"}], ";"}], "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"TimeSeriesForecast", "[", 
+            RowBox[{"process", ",", 
+             RowBox[{"dataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", " ", "2"}], 
+            "]"}], "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+       "**", "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"NOT", " ", "MODIFIED"}], " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"fitLinearTimeseriesModel", "[", 
+        RowBox[{"f_", ",", "d_", ",", "y_", ",", "z_"}], "]"}], ":=", 
+       RowBox[{"Module", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"fname", "=", "f"}], ",", 
+           RowBox[{"data", "=", "d"}], ",", 
+           RowBox[{"yaxis", "=", "y"}], ",", 
+           RowBox[{"colnum", "=", "z"}]}], "}"}], ",", "\[IndentingNewLine]", 
+         
+         RowBox[{
+          RowBox[{"dataset", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{
+             RowBox[{"data", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "z"}], "}"}]}], "]"}], "]"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], ">", "0"}], " ", "&"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"xtime", "=", 
+           RowBox[{"dataset", "[", 
+            RowBox[{"[", 
+             RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"xtime", "=", 
+           RowBox[{"Subtract", "[", 
+            RowBox[{"xtime", ",", 
+             RowBox[{"xtime", "[", 
+              RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"timeseries", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{
+             RowBox[{"dataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+             RowBox[{"{", "xtime", "}"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"ListPlot", "[", 
+            RowBox[{
+             RowBox[{"dataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+             RowBox[{"PlotLabel", "->", "fname"}], ",", 
+             RowBox[{"AxesLabel", "->", 
+              RowBox[{"{", 
+               RowBox[{"\"\<Time.offset\>\"", ",", "yaxis"}], "}"}]}], ",", 
+             RowBox[{"ImageSize", "->", "700"}]}], "]"}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"atsm", "=", 
+           RowBox[{"TimeSeriesModelFit", "[", "timeseries", "]"}]}], ";", 
+          "\n", 
+          RowBox[{"process", "=", 
+           RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
+          
+          RowBox[{"model", "=", 
+           RowBox[{"LinearModelFit", "[", 
+            RowBox[{"timeseries", ",", "x", ",", "x"}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Show", "[", 
+           RowBox[{
+            RowBox[{"ListPlot", "[", "timeseries", "]"}], ",", 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"x", ",", "0", ",", "80000"}], "}"}], ",", 
+              RowBox[{"ImageSize", "->", "700"}]}], "]"}], ",", 
+            RowBox[{"Frame", "->", "True"}]}], "]"}]}]}], 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"model", "[", "\"\<ParameterTable\>\"", "]"}], ";"}], 
+         "*)"}], "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+       "**", "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+     "\[IndentingNewLine]", "\n", 
+     RowBox[{
+      RowBox[{"theFile", "=", "\"\<HomeC.csv\>\""}], ";"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"xdataset", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{
+         RowBox[{"StringJoin", "[", 
+          RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], 
+         ",", 
+         RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+         RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+         RowBox[{"MissingDataRules", "->", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"\"\<.\>\"", "->", 
+             RowBox[{"Missing", "[", "]"}]}], ",", 
+            RowBox[{"\"\<\>\"", "->", 
+             RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"Time1", " ", "excluded"}], " ", "*)"}], "\[IndentingNewLine]", 
+     
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Use_KW\>\"", ",", "2"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Gen_KW\>\"", ",", "3"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<HouseOverall_KW\>\"", ",", 
+        "4"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Dishwasher_KW\>\"", ",", 
+        "5"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Furnace1_KW\>\"", ",", 
+        "6"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Furnace2_KW\>\"", ",", 
+        "7"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<HomeOffice_KW\>\"", ",", 
+        "8"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Fridge_KW\>\"", ",", "9"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<WineCellar_KW\>\"", ",", 
+        "10"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<GarageDoor_KW\>\"", ",", 
+        "11"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Kitchen12_KW\>\"", ",", 
+        "12"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Kitchen14_KW\>\"", ",", 
+        "13"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Kitchen38_KW\>\"", ",", 
+        "14"}], "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Barn_KW\>\"", ",", "15"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Well_KW\>\"", ",", "16"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Microwave_KW\>\"", ",", 
+        "17"}], "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<LivingRoom_KW\>\"", ",", 
+        "18"}], "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Solar_KW\>\"", ",", "19"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Temperature\>\"", ",", 
+        "20"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"21", ":", " ", 
+       RowBox[{"Icon", " ", "unicode", " ", 
+        RowBox[{"excluded", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+     " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Humidity\>\"", ",", "22"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Visibility\>\"", ",", 
+        "23"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"24", ":", " ", 
+       RowBox[{"Icon", " ", "unicode", " ", 
+        RowBox[{"excluded", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+     " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<ApparentTemperature\>\"", 
+        ",", "25"}], "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<Pressure\>\"", ",", "26"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<WindSpeed\>\"", ",", "27"}],
+        "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"28", ":", " ", 
+       RowBox[{"Icon", " ", "unicode", " ", 
+        RowBox[{"excluded", "."}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+     " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<WindBearing\>\"", ",", 
+        "29"}], "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<PrecipIntensity\>\"", ",", 
+        "30"}], "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<DewPoint\>\"", ",", "31"}], 
+       "]"}], ";"}], "\[IndentingNewLine]", " ", 
+     RowBox[{
+      RowBox[{"fitTimeseriesModel", "[", 
+       RowBox[{
+       "theFile", ",", " ", "xdataset", ",", "\"\<PrecipProbability\>\"", ",",
+         "32"}], "]"}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", 
+       "**", "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+     "\[IndentingNewLine]"}]},
+   {"\[Placeholder]"}
+  }]], "Input",
+ CellChangeTimes->{{3.912428704688086*^9, 3.91242873650119*^9}, {
+   3.912428894755269*^9, 3.912428922850176*^9}, 3.912429027022626*^9, {
+   3.912429116662945*^9, 3.912429121765119*^9}, {3.912429234806164*^9, 
+   3.912429238032167*^9}, 3.912429280728594*^9, {3.912429407433749*^9, 
+   3.912429407912829*^9}, {3.912429635764941*^9, 3.912429638363143*^9}, {
+   3.912429754205299*^9, 3.912429756045949*^9}, {3.912429821294278*^9, 
+   3.91242983687945*^9}, 3.912429899288575*^9, {3.912430025105559*^9, 
+   3.912430078922473*^9}, {3.912430206380073*^9, 3.912430246693132*^9}, {
+   3.91243094604706*^9, 3.91243096471871*^9}, {3.912431135409589*^9, 
+   3.912431550478697*^9}, {3.912431596887029*^9, 3.9124316443114*^9}, {
+   3.912431760217644*^9, 3.912431812874357*^9}, {3.912431943719655*^9, 
+   3.912432030948495*^9}, {3.912432182664323*^9, 3.91243222304833*^9}, {
+   3.912432264849421*^9, 3.912432294387034*^9}, {3.912432350194708*^9, 
+   3.912432406530603*^9}, {3.912432461308845*^9, 3.912432554701021*^9}, 
+   3.9124326082779493`*^9, {3.912432646983388*^9, 3.912432684200481*^9}, {
+   3.91243288638583*^9, 3.91243298813068*^9}, {3.9124330326999187`*^9, 
+   3.9124330388118563`*^9}, {3.912433134133096*^9, 3.9124331369965363`*^9}, {
+   3.912433169902801*^9, 3.912433221677826*^9}, {3.912433262999432*^9, 
+   3.9124332855667553`*^9}, 3.912433402760921*^9, 3.912433569154702*^9, {
+   3.912433707574387*^9, 3.91243370937228*^9}, {3.912931916642258*^9, 
+   3.91293195737866*^9}, {3.9129320266270537`*^9, 3.912932136012702*^9}, {
+   3.912932178477751*^9, 3.912932310422439*^9}, {3.912932364567398*^9, 
+   3.912932392888195*^9}, {3.91293243140911*^9, 3.9129324525930243`*^9}, {
+   3.912932495289144*^9, 3.912932514809182*^9}, {3.912932562154209*^9, 
+   3.912932607722835*^9}, {3.912932656764138*^9, 3.912932756524851*^9}, 
+   3.912932905104755*^9, {3.912932943567442*^9, 3.9129329475830917`*^9}, {
+   3.912933059800727*^9, 3.91293309228885*^9}, {3.912933247835191*^9, 
+   3.912933345007532*^9}, 3.912933384078311*^9, {3.913440416768838*^9, 
+   3.913440436924362*^9}, {3.9134405293115187`*^9, 3.913440531863213*^9}, {
+   3.91344073346647*^9, 3.913440746042234*^9}, {3.9134407849704103`*^9, 
+   3.91344080821902*^9}, {3.91344098065337*^9, 3.913441045855006*^9}, {
+   3.91344107863974*^9, 3.91344108646361*^9}, {3.913441128271759*^9, 
+   3.913441129023554*^9}, {3.913441176864458*^9, 3.913441223333399*^9}, 
+   3.913441435847205*^9, {3.913441535944842*^9, 3.913441607175181*^9}, {
+   3.913441643623674*^9, 3.913441659561862*^9}, {3.913441726568967*^9, 
+   3.913441730073222*^9}, 3.91344195367674*^9, {3.913442041357429*^9, 
+   3.913442108078216*^9}, 3.91344214171157*^9, {3.913442187759879*^9, 
+   3.913442284113017*^9}, {3.9134423583073072`*^9, 3.9134423609462357`*^9}, {
+   3.913442393426182*^9, 3.913442454323409*^9}, {3.913442491508539*^9, 
+   3.913442573636674*^9}, {3.913442646120137*^9, 3.913442731974575*^9}, {
+   3.91344285938501*^9, 3.913442927145519*^9}, {3.913445519580682*^9, 
+   3.913445553980929*^9}, {3.913445697006284*^9, 3.9134457313115683`*^9}, {
+   3.913445764129847*^9, 3.913445797950311*^9}, {3.913445836481686*^9, 
+   3.9134459158263063`*^9}, {3.913446053748007*^9, 3.913446094003483*^9}, {
+   3.913446124259957*^9, 3.913446191076738*^9}, {3.9134462757354403`*^9, 
+   3.91344631221494*^9}, {3.913446344520348*^9, 3.913446393319633*^9}, {
+   3.913446445880126*^9, 3.913446502312797*^9}, {3.913446541019332*^9, 
+   3.913446566889855*^9}, {3.91344663609103*^9, 3.913446638298094*^9}, {
+   3.913446862013324*^9, 3.913446940127467*^9}, 3.913446987922267*^9, 
+   3.91344703365018*^9, {3.913687482243891*^9, 3.913687484168839*^9}, {
+   3.913689071119679*^9, 3.913689075783936*^9}, {3.9136891748421*^9, 
+   3.91368918484871*^9}, 3.91368968669831*^9, {3.916888461987844*^9, 
+   3.916888463970477*^9}, {3.916888517391164*^9, 3.916888525020158*^9}, {
+   3.916888564605446*^9, 3.916888574796207*^9}, {3.916888926744388*^9, 
+   3.916888928463977*^9}, {3.916888977096879*^9, 3.916889125306509*^9}, {
+   3.916889224683977*^9, 3.9168892977495947`*^9}, {3.916889338326261*^9, 
+   3.916889402159627*^9}, {3.916889462256231*^9, 3.916889531640808*^9}, {
+   3.916889562353519*^9, 3.916889840428504*^9}, {3.916994484580213*^9, 
+   3.916994546679517*^9}, {3.916994598424779*^9, 3.916994655473434*^9}, {
+   3.916994708219199*^9, 3.916994729882591*^9}, 3.9169960636438923`*^9, {
+   3.926331998225462*^9, 3.92633203435418*^9}, {3.926332080308035*^9, 
+   3.926332093565314*^9}, {3.9263321540463448`*^9, 3.926332154611655*^9}, {
+   3.9263322045123796`*^9, 3.926332251379104*^9}, {3.926332416074823*^9, 
+   3.926332418259653*^9}, 3.926332460281391*^9, {3.926332518196903*^9, 
+   3.926332519348193*^9}, {3.926332570297263*^9, 3.926332571815305*^9}, {
+   3.926332623797536*^9, 3.926332687120366*^9}, {3.926332777559935*^9, 
+   3.926332857389166*^9}, {3.926354841371162*^9, 3.926354888131125*^9}, 
+   3.926355004374723*^9, {3.92635503902123*^9, 3.926355051517524*^9}, 
+   3.926355089905582*^9, {3.926355193906385*^9, 3.926355194706764*^9}, {
+   3.926360256390522*^9, 3.926360336406319*^9}, 3.926360952137832*^9, 
+   3.926361031774032*^9, {3.926361163781578*^9, 3.926361169958796*^9}, {
+   3.926361200917981*^9, 3.926361208497979*^9}, {3.9263613145884132`*^9, 
+   3.926361320866435*^9}, {3.926362228017519*^9, 3.9263622557700033`*^9}, {
+   3.926444759828741*^9, 3.926444770354398*^9}, {3.926444848944016*^9, 
+   3.926444870158852*^9}, {3.926444938922996*^9, 3.926444949965662*^9}, {
+   3.926445013852542*^9, 3.926445053899909*^9}, {3.92644510359966*^9, 
+   3.926445161439773*^9}, {3.926445214672288*^9, 3.926445246961165*^9}, {
+   3.926449677389569*^9, 3.9264497456150627`*^9}, {3.9264497803596563`*^9, 
+   3.926449781881215*^9}, {3.926449849528673*^9, 3.92644985916105*^9}, {
+   3.926449897674585*^9, 3.9264500409767027`*^9}, {3.926450147562224*^9, 
+   3.926450173273573*^9}, {3.926450253341732*^9, 3.926450284367481*^9}, {
+   3.92645033651227*^9, 3.926450338793263*^9}, 3.926450605591788*^9, {
+   3.926450689184677*^9, 3.926450719248503*^9}, {3.92645077496448*^9, 
+   3.926450792922917*^9}, 3.926450838334462*^9, {3.926450873320123*^9, 
+   3.926451027696903*^9}, {3.926454843903213*^9, 3.926454862486312*^9}, {
+   3.926454932336377*^9, 3.926454932542895*^9}, {3.926454972515843*^9, 
+   3.926454990412433*^9}, 3.926662996431111*^9, {3.926663625338348*^9, 
+   3.926663662964323*^9}, {3.926664980977693*^9, 3.926664992818798*^9}, {
+   3.926665086035841*^9, 3.9266650862213907`*^9}, {3.928598165647502*^9, 
+   3.928598170752707*^9}, {3.92867911675694*^9, 3.928679117261367*^9}, {
+   3.928679157551281*^9, 3.928679189158826*^9}, {3.928679244642438*^9, 
+   3.9286792728585253`*^9}, 3.928945096231656*^9, {3.928945130069821*^9, 
+   3.928945150351272*^9}, {3.928945194564927*^9, 3.9289452002872887`*^9}, {
+   3.928945324203323*^9, 3.928945336915838*^9}, {3.928945372584457*^9, 
+   3.9289454678082523`*^9}, {3.928948075661197*^9, 3.928948138118521*^9}, {
+   3.928948193209001*^9, 3.9289482043676023`*^9}, {3.928948329653011*^9, 
+   3.928948364924546*^9}, {3.92894848858812*^9, 3.928948493154684*^9}, {
+   3.928948840865273*^9, 3.92894884279171*^9}, {3.928949756444909*^9, 
+   3.928949770381427*^9}, 3.928949870664297*^9, 3.928949918761869*^9, {
+   3.928950000322932*^9, 3.92895003567409*^9}, {3.9289501563950872`*^9, 
+   3.928950205002659*^9}, 3.928950287997518*^9, {3.928950410814581*^9, 
+   3.928950433121611*^9}, 3.92901213108228*^9, {3.92901615587029*^9, 
+   3.929016380039918*^9}, {3.929016418232872*^9, 3.929016462042615*^9}, {
+   3.929017322336985*^9, 3.929017356377661*^9}, {3.929017443331784*^9, 
+   3.92901745723691*^9}, {3.929017602811685*^9, 3.929017619114996*^9}, {
+   3.929017651384492*^9, 3.929017662828287*^9}, {3.929017841448854*^9, 
+   3.92901790949851*^9}, {3.929017957091968*^9, 3.929017962076334*^9}, {
+   3.929044154434019*^9, 
+   3.929044156339059*^9}},ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-\
+6665dd629657"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-use_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950461203247*^9, 
+  3.9290162826483603`*^9},ExpressionUUID->"65fe64e8-5be8-409c-a8a0-\
+d6de8eaf5906"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.07224149094291427`", ",", 
+   RowBox[{"{", "0.9158969612626694`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.13968194351878607`", ",", 
+     RowBox[{"-", "0.07635164620858026`"}]}], "}"}], ",", 
+   "0.15902781904415308`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289504732926826`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"8e050457-b9f8-434b-9a54-c7265149961f"],
+
+Cell[BoxData["1.8082967853119427`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950473884389*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"ff534b13-a16a-4772-9077-c8b42cd88471"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-gen_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950474556705*^9, 
+  3.929016282651641*^9},ExpressionUUID->"823623cb-436c-41ba-b9d2-\
+cd8e86680a20"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0006609391191852906`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.48555767496268826`", ",", "0.5057730315646576`"}], "}"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{"0.341901486203498`", ",", 
+     RowBox[{"-", "0.23571953338550625`"}], ",", 
+     RowBox[{"-", "0.13968092475369162`"}], ",", 
+     RowBox[{"-", "0.03957052402899332`"}], ",", 
+     RowBox[{"-", "0.0066574441613749605`"}]}], "}"}], ",", 
+   "0.0004594206334758648`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950489790763*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"22314bdc-fb58-43fd-a932-62d55a2edf08"],
+
+Cell[BoxData["0.004484437794481169`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950490160434*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"b181935d-2464-4d76-aa9d-dfaae5bc12d3"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-House overall_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.92895049076025*^9, 
+  3.929016282652359*^9},ExpressionUUID->"bec7d30e-ff75-4e9d-b81b-\
+a074d3348c68"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.07224149094291427`", ",", 
+   RowBox[{"{", "0.9158969612626694`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.13968194351878607`", ",", 
+     RowBox[{"-", "0.07635164620858026`"}]}], "}"}], ",", 
+   "0.15902781904415308`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950502895409*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"a681c14f-71a0-4813-b9d5-981231dcffc2"],
+
+Cell[BoxData["1.8082967853119427`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950503489029*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"1847865b-32b4-46a5-8deb-e461e7dd53ac"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Dishwasher_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289505040666513`*^9, 
+  3.929016282653055*^9},ExpressionUUID->"8186af5f-6c21-467a-b054-\
+596a5d9f4d7d"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0031239845127346766`", ",", 
+   RowBox[{"{", "0.9365198918197196`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.32862141911508236`", ",", 
+     RowBox[{"-", "0.06546382860280205`"}]}], "}"}], ",", 
+   "0.004498134964923859`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950509280731*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"efe266b3-3338-4e04-a844-f71ffc2b075c"],
+
+Cell[BoxData["0.005643733764378947`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950509524674*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"bb35c728-3434-4f95-ace3-263d068da863"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Furnace 1_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950510125854*^9, 
+  3.92901628265376*^9},ExpressionUUID->"b5f6f4b4-bd94-49bd-8156-b451a33b23df"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.00965321450251501`", ",", 
+   RowBox[{"{", 
+    RowBox[{"1.1836364905742813`", ",", 
+     RowBox[{"-", "0.28937890769041347`"}], ",", "0.008441889944721753`"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.0234548945535185`"}], "}"}], ",", 
+   "0.004052100692835493`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950518998537*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"e8d0c656-f930-4ab9-b04d-333da6084059"],
+
+Cell[BoxData["0.40906317039423123`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950519364439*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"162e2dbb-1a81-43fc-a293-21a7ae56ea66"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Furnace 2_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950519983183*^9, 
+  3.9290162826544933`*^9},ExpressionUUID->"6d216d58-95cf-4b60-aa7b-\
+ad6366ed026b"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.013932869275861366`", ",", 
+   RowBox[{"{", 
+    RowBox[{"1.4689072337630293`", ",", 
+     RowBox[{"-", "0.5707711978002552`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.2431574013388778`"}], "}"}], ",", 
+   "0.00428036818013596`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950528623125*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"2d0be744-15cc-43fb-9080-f9b4134ab4f3"],
+
+Cell[BoxData["0.4904897423069972`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950528990509*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"b428679f-722b-4ed9-9859-93ce77be6ee8"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Home office_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950529606976*^9, 
+  3.9290162826557837`*^9},ExpressionUUID->"5ef2f5ef-bb93-453d-b9f2-\
+cbcdce80b2f3"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.001322858989719639`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.34080599292727687`", ",", "0.6429200550215999`"}], "}"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{"0.7442138833894173`", ",", "0.05662367333302291`"}], "}"}], ",", 
+   "0.00018073152590469276`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950541435602*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"04911d06-11d4-45e0-bcaa-8ec34b7f660c"],
+
+Cell[BoxData["0.04283849926197888`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950541813202*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"2137419a-f5d0-4edc-9fab-e9b1f76acb44"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Fridge_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289505424381123`*^9, 
+  3.929016282656481*^9},ExpressionUUID->"e15420fe-d8c3-479a-a691-\
+e2aeb96afece"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.003641988934025636`", ",", 
+   RowBox[{"{", "0.9426967487654075`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.1807755276994329`", ",", "0.011670534198674773`"}], "}"}], ",",
+    "0.0004627971579882801`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950551293433*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"6514d223-2eb4-4b7f-a422-4b137425e21b"],
+
+Cell[BoxData["0.010820793798452653`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950551661633*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"1cc91bd0-7b2f-4c2e-9cfe-af6bfad69040"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Wine cellar_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289505522901897`*^9, 
+  3.9290162826571827`*^9},ExpressionUUID->"cdd6ce53-c8cb-476c-8d68-\
+22da69a478f7"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0023902929888225265`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.04012092618112381`"}], ",", "0.30654186674568784`", ",", 
+     "0.2359921371572445`", ",", "0.4408597504054993`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "1.1855977297367533`", ",", "0.8349973414330696`", ",", 
+     "0.47320186254746044`"}], "}"}], ",", "0.00010008806624432703`"}], 
+  "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289505615587463`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"8b7a9637-9eaa-47de-b709-1afb778fa9f5"],
+
+Cell[BoxData["0.00931858869433045`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950561940071*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"7cc42b73-cb81-4f84-974f-658530caf6a3"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Garage door_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950562568347*^9, 
+  3.929016282657888*^9},ExpressionUUID->"9c1f7de5-7f7c-49dc-8dfc-\
+fdabd0621189"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0049314111979758685`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.2881120134118416`", ",", "0.08249321796624332`", ",", 
+     "0.2806171308160672`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.3061078243846991`", ",", "0.16108271609489608`", ",", 
+     RowBox[{"-", "0.11614088239762964`"}]}], "}"}], ",", 
+   "0.00010880277828840858`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950572184915*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"4a574190-1806-44f2-8404-a0f76fab02d5"],
+
+Cell[BoxData["0.013384682740059802`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950572562625*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"1a285764-9d4f-400c-af2e-86e6ce8952e4"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Kitchen 12_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950573196854*^9, 
+  3.929016282658595*^9},ExpressionUUID->"61d88373-944b-43b7-95b0-\
+d700dbd843d1"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.00017649209164718565`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.2772296423312596`", ",", "0.506281498678799`", ",", 
+     "0.2798180670566626`", ",", 
+     RowBox[{"-", "0.12733688165706636`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.6262418320534379`", ",", 
+     RowBox[{"-", "0.2462728544337352`"}], ",", 
+     RowBox[{"-", "0.5212207972355353`"}], ",", 
+     RowBox[{"-", "0.1520020081333608`"}]}], "}"}], ",", 
+   "0.00012264321910256682`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.92895058310785*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"75dd0370-7fa1-484a-9209-b355b6053cae"],
+
+Cell[BoxData["0.0008948358392720421`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950583479289*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"8771471b-a293-40b8-93b6-a63402209508"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Kitchen 14_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289505840984697`*^9, 
+  3.9290162826593*^9},ExpressionUUID->"d4f3fb7b-97e0-407d-9694-6203ffa0ae31"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.003268218189737285`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.3281293771413589`", ",", "0.28498087592101656`", ",", 
+     RowBox[{"-", "0.055501423511888776`"}], ",", "0.04077091840371391`", ",", 
+     RowBox[{"-", "0.05131237388984788`"}], ",", "0.0340407242026997`"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.4384213873022163`", ",", 
+     RowBox[{"-", "0.04696541036308081`"}], ",", 
+     RowBox[{"-", "0.029928951892166766`"}], ",", 
+     RowBox[{"-", "0.09954916439076007`"}]}], "}"}], ",", 
+   "0.003356383832794166`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950593535812*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"ff8df6d6-0c95-4257-bd14-e0a3d23b8445"],
+
+Cell[BoxData["0.004626465565727721`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289505938801117`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"5a1bfa6f-1e1b-4b32-8a2f-72661058a4a2"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Kitchen 38_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950594498526*^9, 
+  3.929016282660075*^9},ExpressionUUID->"6c366a60-21c9-4ecf-8812-\
+4f16aedd3ca8"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"2.9451913056984955`*^-7", ",", 
+   RowBox[{"{", "0.9840317788136523`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.9441121639967723`"}], ",", 
+     RowBox[{"-", "0.005231052175455039`"}], ",", 
+     RowBox[{"-", "0.01115990997141875`"}]}], "}"}], ",", 
+   "2.8229513545532256`*^-11"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950598987691*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"01e87b76-9a98-4c68-b0ed-810ee1ca1284"],
+
+Cell[BoxData["0.000020108441381456867`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950599191042*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"55229184-40c1-410c-a2af-84177f4d3e9b"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Barn_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950599791555*^9, 
+  3.929016282660774*^9},ExpressionUUID->"d70073e9-fde3-4ff1-9841-\
+6bc066f95d8f"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0022070640200877777`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.3149248870013844`", ",", "0.026776233525826688`", ",", 
+     "0.1385533671284098`", ",", "0.41024037508903344`", ",", 
+     RowBox[{"-", "0.004431173932067049`"}], ",", "0.07622867715810197`"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.0728235857785486`", ",", 
+     RowBox[{"-", "0.13563241876048981`"}], ",", 
+     RowBox[{"-", "0.1016133460370874`"}], ",", 
+     RowBox[{"-", "0.397328324713881`"}], ",", 
+     RowBox[{"-", "0.11720020488278417`"}], ",", 
+     RowBox[{"-", "0.021370086715937157`"}]}], "}"}], ",", 
+   "0.027358192255811653`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950610066353*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"195aae76-ada8-4026-83c4-34db76f244de"],
+
+Cell[BoxData["0.03674187867938426`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950610442206*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"64287231-3964-44d6-9374-f36a09a91b5b"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Well_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950611078039*^9, 
+  3.929016282661456*^9},ExpressionUUID->"46fc04f8-221f-40d4-ae74-\
+949a845f625a"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.003561263348209817`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.8396243471945636`", ",", 
+     RowBox[{"-", "0.08737495466835009`"}], ",", 
+     RowBox[{"-", "0.06505353386781913`"}], ",", "0.06265439757515627`", ",", 
+     
+     RowBox[{"-", "0.027279601898708438`"}], ",", "0.04982723929451662`"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.02012511978471388`"}], ",", 
+     RowBox[{"-", "0.438632630551876`"}]}], "}"}], ",", 
+   "0.011071297825911739`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950621273897*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"35cc1749-70a1-4300-8e87-32f6edcceb30"],
+
+Cell[BoxData["0.01227992096632546`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950621649488*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"31b9cfe6-d961-418c-aba0-c9137a268c57"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Microwave_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289506223054523`*^9, 
+  3.929016282662139*^9},ExpressionUUID->"a267badb-eb3a-4fa3-8ae7-\
+a1ae8279a85a"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.002432010402771972`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.5283541164333109`", ",", "0.18802599503624787`", ",", 
+     RowBox[{"-", "0.013006015401695676`"}], ",", 
+     RowBox[{"-", "0.09973769417870731`"}], ",", "0.19092117045748908`", ",", 
+     
+     RowBox[{"-", "0.015930255457247744`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.20479664658796726`", ",", 
+     RowBox[{"-", "0.16804244553092926`"}], ",", 
+     RowBox[{"-", "0.03459795468739678`"}], ",", "0.1024591779398554`", ",", 
+     RowBox[{"-", "0.10821696740130496`"}], ",", 
+     RowBox[{"-", "0.07962900264830468`"}]}], "}"}], ",", 
+   "0.004908919448025978`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950632528077*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"f398da14-628e-4fc8-ba1b-d1fe101a21fb"],
+
+Cell[BoxData["0.006789062657987982`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950632914586*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"83310837-e7d0-4308-9a5b-42b65e6a8687"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Living room_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950633551705*^9, 
+  3.92901628266285*^9},ExpressionUUID->"074cf618-648b-4e5a-b649-2840708f2f9d"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0006036219633263043`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.9845205797313443`", ",", "0.014409150836460454`", ",", 
+     RowBox[{"-", "0.01601841639018196`"}]}], "}"}], ",", 
+   RowBox[{"{", "0.28391225270807524`", "}"}], ",", 
+   "0.00018756016816414938`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950643149726*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"513f2e03-8d69-49da-98ce-26ba660490bd"],
+
+Cell[BoxData["0.0019922343413868657`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950643529333*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"4fdb3c59-d0fe-46b3-bca3-ca81af3d5f3d"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-Solar_KW.png\"\>"], "Print",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950644167017*^9, 
+  3.929016282663534*^9},ExpressionUUID->"35510fee-8dff-4e81-a629-\
+27d7e9d3feda"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0006609391191852906`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.48555767496268826`", ",", "0.5057730315646576`"}], "}"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{"0.341901486203498`", ",", 
+     RowBox[{"-", "0.23571953338550625`"}], ",", 
+     RowBox[{"-", "0.13968092475369162`"}], ",", 
+     RowBox[{"-", "0.03957052402899332`"}], ",", 
+     RowBox[{"-", "0.0066574441613749605`"}]}], "}"}], ",", 
+   "0.0004594206334758648`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950660266349*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"3d1b1431-8b6a-4c8a-b30b-1499f9562ee7"],
+
+Cell[BoxData["0.004484437794481169`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950660654975*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"025ab0f4-1a0a-45fa-9bf8-730a6ec29754"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-temperature.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950661296114*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"694f016d-f5d1-4e6d-af69-99db284ca673"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.005163388809740873`", ",", 
+   RowBox[{"{", "0.9998986426120594`", "}"}], ",", 
+   RowBox[{"{", "6.595117999296953`*^-12", "}"}], ",", 
+   "0.0724399088054897`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289506805329323`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"3802d7c2-3e91-4788-b1d5-54d618a68140"],
+
+Cell[BoxData["35.12320727214192`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950681110673*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"336c9332-4054-4314-acb5-a18f0ff5aad7"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-humidity.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950681741735*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"eabe1cce-24b8-4a61-be84-6dfca9ed3f9a"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.00033453737846540267`", ",", 
+   RowBox[{"{", "0.9994962431604075`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "3.361019850095426`*^-13"}], "}"}], ",", 
+   "0.00003813719002411436`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950699905097*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"33a57b4f-5cfa-4151-b25b-b3238f26d54a"],
+
+Cell[BoxData["0.8598026627103592`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950700259782*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"409c3a76-1b03-4537-92e7-d3e6f770a18e"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-visibility.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950700818139*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"b8312764-f151-470d-a49a-04b7997ebb71"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.012610985914985677`", ",", 
+   RowBox[{"{", "0.998637157629885`", "}"}], ",", 
+   RowBox[{"{", "3.0213666917033256`*^-13", "}"}], ",", 
+   "0.0070712845356469085`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950719244355*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"d2287e0b-db84-4358-a11e-2b5127fd0b0f"],
+
+Cell[BoxData["8.741398533560135`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950719708912*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"3e5b063a-9b68-41eb-8c20-bd4fae033b27"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-apparentTemperature.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950720318281*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"430205a2-cedf-4ec9-a097-374941e92260"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.005742847878420632`", ",", 
+   RowBox[{"{", "0.9998826837530073`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "6.674165339848445`*^-12"}], "}"}], ",", 
+   "0.10624657029385891`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950738365163*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"925ad3cd-b801-4131-8abc-dd3e3d4c8fc2"],
+
+Cell[BoxData["29.45457550040297`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289507389314957`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"6ef2752e-91e6-4f76-b236-2b995ba86830"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-pressure.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950739540196*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"00aafc90-c350-43e9-ab8f-0a73b23e5216"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.051489649879989`", ",", 
+   RowBox[{"{", "0.9999493362515668`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "3.2764503830732025`*^-12"}], "}"}], ",", 
+   "0.00636190767099691`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950758197076*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"a62fd77f-b9fd-4fb2-8930-8d25c0ab836b"],
+
+Cell[BoxData["1011.490487537604`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950758769971*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"95676c65-1151-438c-baa4-5a280de94221"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-windSpeed.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289507593832693`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"920b29a1-0b1b-4623-ba53-0bb2a86e0f57"],
+
+Cell[BoxData[
+ RowBox[{"ARProcess", "[", 
+  RowBox[{"0.010122474291616605`", ",", 
+   RowBox[{"{", "0.9984785034356416`", "}"}], ",", "0.048191815573046526`"}], 
+  "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289507727626543`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"dce087db-a3a4-4d2e-ab40-5374ad275d70"],
+
+Cell[BoxData["6.719796189924463`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950773360571*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"f17e266c-2c1c-4053-9197-f5005d9e9cda"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-windBearing.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950773939067*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"65853aae-942c-4560-9a3a-ca43e870a344"],
+
+Cell[BoxData[
+ RowBox[{"ARProcess", "[", 
+  RowBox[{"1.0036621646288817`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.9975285994735956`", ",", 
+     RowBox[{"-", "0.002470873192682733`"}]}], "}"}], ",", 
+   "110.55745386114543`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950798398374*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"6f60a675-3ba8-4f10-a671-e28119e27108"],
+
+Cell[BoxData["186.1685899213994`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.9289507986644087`*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"2c47026a-638a-4834-af31-169073a45b79"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-precipIntensity.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950799156192*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"fbfe5512-6545-44d0-aa7b-8f9132237d8d"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.00007223911205551516`", ",", 
+   RowBox[{"{", "0.9951827709674812`", "}"}], ",", 
+   RowBox[{"{", "1.8951899117119738`*^-13", "}"}], ",", 
+   "5.242533674308134`*^-6"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950802362959*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"5e0cfb16-f022-4f6a-ad97-a2f793a23ea5"],
+
+Cell[BoxData["0.01014705658283134`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950802437736*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"a77568a1-8b6b-44b7-83b6-03bb7a9af593"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-dewPoint.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950802997094*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"ab30f1d1-efd9-4f99-9f27-8ef8ad547ae4"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.00137842747312848`", ",", 
+   RowBox[{"{", "0.999965037814448`", "}"}], ",", 
+   RowBox[{"{", "3.1559650359654605`*^-11", "}"}], ",", 
+   "0.023438045445348415`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950821322521*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"223aa8c6-d750-44bb-9c64-5c9dbab5a3b7"],
+
+Cell[BoxData["31.270570309892012`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950821837096*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"8fdf99ab-c081-4048-bf9f-79f80d986323"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/smart.home.weather/\
+images/root_homec_weather_HomeC-precipProbability.png\"\>"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950822324597*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"328af311-d1b7-48be-8d7a-cdeac191f910"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0017239551323859953`", ",", 
+   RowBox[{"{", "0.99470928858195`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "7.862205167903082`*^-14"}], "}"}], ",", 
+   "0.000748986334228133`"}], "]"}]], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.928950825464058*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"44b50159-17c2-48d2-b541-8214869d93f3"],
+
+Cell[BoxData["0.5080565393991854`"], "Print",
+ CellChangeTimes->{3.928950255891958*^9, 3.9289503211681013`*^9, 
+  3.92895082553526*^9},
+ CellLabel->
+  "During evaluation of \
+In[4]:=",ExpressionUUID->"f92e8ec6-de1e-4e5e-bf4d-d92a5e33b03b"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    SuperscriptBox["Null", "37"], "}"}], ",", 
+   RowBox[{"{", "\[Placeholder]", "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.928950270279108*^9, 3.928950333453813*^9, 
+  3.9289508255373383`*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"cdb3598c-01a8-4c60-906d-4adec22bb202"]
+}, Open  ]]
+},
+WindowSize->{888, 893.25},
+WindowMargins->{{-2.25, Automatic}, {Automatic, -22.5}},
+FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"008c5b99-344d-4bed-b877-8ee408ad83d4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 26430, 559, 1811, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+Cell[CellGroupData[{
+Cell[27035, 585, 358, 7, 23, "Print",ExpressionUUID->"65fe64e8-5be8-409c-a8a0-d6de8eaf5906"],
+Cell[27396, 594, 496, 12, 23, "Print",ExpressionUUID->"8e050457-b9f8-434b-9a54-c7265149961f"],
+Cell[27895, 608, 240, 5, 23, "Print",ExpressionUUID->"ff534b13-a16a-4772-9077-c8b42cd88471"],
+Cell[28138, 615, 356, 7, 23, "Print",ExpressionUUID->"823623cb-436c-41ba-b9d2-cd8e86680a20"],
+Cell[28497, 624, 696, 17, 42, "Print",ExpressionUUID->"22314bdc-fb58-43fd-a932-62d55a2edf08"],
+Cell[29196, 643, 242, 5, 23, "Print",ExpressionUUID->"b181935d-2464-4d76-aa9d-dfaae5bc12d3"],
+Cell[29441, 650, 365, 7, 23, "Print",ExpressionUUID->"bec7d30e-ff75-4e9d-b81b-a074d3348c68"],
+Cell[29809, 659, 494, 12, 23, "Print",ExpressionUUID->"a681c14f-71a0-4813-b9d5-981231dcffc2"],
+Cell[30306, 673, 240, 5, 23, "Print",ExpressionUUID->"1847865b-32b4-46a5-8deb-e461e7dd53ac"],
+Cell[30549, 680, 365, 7, 23, "Print",ExpressionUUID->"8186af5f-6c21-467a-b054-596a5d9f4d7d"],
+Cell[30917, 689, 497, 12, 23, "Print",ExpressionUUID->"efe266b3-3338-4e04-a844-f71ffc2b075c"],
+Cell[31417, 703, 242, 5, 23, "Print",ExpressionUUID->"bb35c728-3434-4f95-ace3-263d068da863"],
+Cell[31662, 710, 359, 6, 23, "Print",ExpressionUUID->"b5f6f4b4-bd94-49bd-8156-b451a33b23df"],
+Cell[32024, 718, 549, 14, 23, "Print",ExpressionUUID->"e8d0c656-f930-4ab9-b04d-333da6084059"],
+Cell[32576, 734, 241, 5, 23, "Print",ExpressionUUID->"162e2dbb-1a81-43fc-a293-21a7ae56ea66"],
+Cell[32820, 741, 364, 7, 23, "Print",ExpressionUUID->"6d216d58-95cf-4b60-aa7b-ad6366ed026b"],
+Cell[33187, 750, 513, 13, 23, "Print",ExpressionUUID->"2d0be744-15cc-43fb-9080-f9b4134ab4f3"],
+Cell[33703, 765, 240, 5, 23, "Print",ExpressionUUID->"b428679f-722b-4ed9-9859-93ce77be6ee8"],
+Cell[33946, 772, 366, 7, 23, "Print",ExpressionUUID->"5ef2f5ef-bb93-453d-b9f2-cbcdce80b2f3"],
+Cell[34315, 781, 524, 13, 23, "Print",ExpressionUUID->"04911d06-11d4-45e0-bcaa-8ec34b7f660c"],
+Cell[34842, 796, 241, 5, 23, "Print",ExpressionUUID->"2137419a-f5d0-4edc-9fab-e9b1f76acb44"],
+Cell[35086, 803, 361, 7, 23, "Print",ExpressionUUID->"e15420fe-d8c3-479a-a691-e2aeb96afece"],
+Cell[35450, 812, 476, 11, 23, "Print",ExpressionUUID->"6514d223-2eb4-4b7f-a422-4b137425e21b"],
+Cell[35929, 825, 242, 5, 23, "Print",ExpressionUUID->"1cc91bd0-7b2f-4c2e-9cfe-af6bfad69040"],
+Cell[36174, 832, 368, 7, 23, "Print",ExpressionUUID->"cdd6ce53-c8cb-476c-8d68-22da69a478f7"],
+Cell[36545, 841, 645, 16, 23, "Print",ExpressionUUID->"8b7a9637-9eaa-47de-b709-1afb778fa9f5"],
+Cell[37193, 859, 241, 5, 23, "Print",ExpressionUUID->"7cc42b73-cb81-4f84-974f-658530caf6a3"],
+Cell[37437, 866, 364, 7, 23, "Print",ExpressionUUID->"9c1f7de5-7f7c-49dc-8dfc-fdabd0621189"],
+Cell[37804, 875, 610, 15, 23, "Print",ExpressionUUID->"4a574190-1806-44f2-8404-a0f76fab02d5"],
+Cell[38417, 892, 242, 5, 23, "Print",ExpressionUUID->"1a285764-9d4f-400c-af2e-86e6ce8952e4"],
+Cell[38662, 899, 363, 7, 23, "Print",ExpressionUUID->"61d88373-944b-43b7-95b0-d700dbd843d1"],
+Cell[39028, 908, 726, 18, 42, "Print",ExpressionUUID->"75dd0370-7fa1-484a-9209-b355b6053cae"],
+Cell[39757, 928, 243, 5, 23, "Print",ExpressionUUID->"8771471b-a293-40b8-93b6-a63402209508"],
+Cell[40003, 935, 361, 6, 23, "Print",ExpressionUUID->"d4f3fb7b-97e0-407d-9694-6203ffa0ae31"],
+Cell[40367, 943, 803, 18, 23, "Print",ExpressionUUID->"ff8df6d6-0c95-4257-bd14-e0a3d23b8445"],
+Cell[41173, 963, 244, 5, 23, "Print",ExpressionUUID->"5a1bfa6f-1e1b-4b32-8a2f-72661058a4a2"],
+Cell[41420, 970, 363, 7, 23, "Print",ExpressionUUID->"6c366a60-21c9-4ecf-8812-4f16aedd3ca8"],
+Cell[41786, 979, 572, 14, 25, "Print",ExpressionUUID->"01e87b76-9a98-4c68-b0ed-810ee1ca1284"],
+Cell[42361, 995, 245, 5, 23, "Print",ExpressionUUID->"55229184-40c1-410c-a2af-84177f4d3e9b"],
+Cell[42609, 1002, 357, 7, 23, "Print",ExpressionUUID->"d70073e9-fde3-4ff1-9841-6bc066f95d8f"],
+Cell[42969, 1011, 892, 21, 42, "Print",ExpressionUUID->"195aae76-ada8-4026-83c4-34db76f244de"],
+Cell[43864, 1034, 241, 5, 23, "Print",ExpressionUUID->"64287231-3964-44d6-9374-f36a09a91b5b"],
+Cell[44108, 1041, 357, 7, 23, "Print",ExpressionUUID->"46fc04f8-221f-40d4-ae74-949a845f625a"],
+Cell[44468, 1050, 750, 19, 23, "Print",ExpressionUUID->"35cc1749-70a1-4300-8e87-32f6edcceb30"],
+Cell[45221, 1071, 241, 5, 23, "Print",ExpressionUUID->"31b9cfe6-d961-418c-aba0-c9137a268c57"],
+Cell[45465, 1078, 364, 7, 23, "Print",ExpressionUUID->"a267badb-eb3a-4fa3-8ae7-a1ae8279a85a"],
+Cell[45832, 1087, 905, 20, 42, "Print",ExpressionUUID->"f398da14-628e-4fc8-ba1b-d1fe101a21fb"],
+Cell[46740, 1109, 242, 5, 23, "Print",ExpressionUUID->"83310837-e7d0-4308-9a5b-42b65e6a8687"],
+Cell[46985, 1116, 361, 6, 23, "Print",ExpressionUUID->"074cf618-648b-4e5a-b649-2840708f2f9d"],
+Cell[47349, 1124, 529, 12, 23, "Print",ExpressionUUID->"513f2e03-8d69-49da-98ce-26ba660490bd"],
+Cell[47881, 1138, 243, 5, 23, "Print",ExpressionUUID->"4fdb3c59-d0fe-46b3-bca3-ca81af3d5f3d"],
+Cell[48127, 1145, 358, 7, 23, "Print",ExpressionUUID->"35510fee-8dff-4e81-a629-27d7e9d3feda"],
+Cell[48488, 1154, 696, 17, 23, "Print",ExpressionUUID->"3d1b1431-8b6a-4c8a-b30b-1499f9562ee7"],
+Cell[49187, 1173, 242, 5, 23, "Print",ExpressionUUID->"025ab0f4-1a0a-45fa-9bf8-730a6ec29754"],
+Cell[49432, 1180, 333, 6, 23, "Print",ExpressionUUID->"694f016d-f5d1-4e6d-af69-99db284ca673"],
+Cell[49768, 1188, 434, 10, 25, "Print",ExpressionUUID->"3802d7c2-3e91-4788-b1d5-54d618a68140"],
+Cell[50205, 1200, 239, 5, 23, "Print",ExpressionUUID->"336c9332-4054-4314-acb5-a18f0ff5aad7"],
+Cell[50447, 1207, 330, 6, 23, "Print",ExpressionUUID->"eabe1cce-24b8-4a61-be84-6dfca9ed3f9a"],
+Cell[50780, 1215, 458, 11, 25, "Print",ExpressionUUID->"33a57b4f-5cfa-4151-b25b-b3238f26d54a"],
+Cell[51241, 1228, 240, 5, 23, "Print",ExpressionUUID->"409c3a76-1b03-4537-92e7-d3e6f770a18e"],
+Cell[51484, 1235, 332, 6, 23, "Print",ExpressionUUID->"b8312764-f151-470d-a49a-04b7997ebb71"],
+Cell[51819, 1243, 435, 10, 25, "Print",ExpressionUUID->"d2287e0b-db84-4358-a11e-2b5127fd0b0f"],
+Cell[52257, 1255, 239, 5, 23, "Print",ExpressionUUID->"3e5b063a-9b68-41eb-8c20-bd4fae033b27"],
+Cell[52499, 1262, 341, 6, 23, "Print",ExpressionUUID->"430205a2-cedf-4ec9-a097-374941e92260"],
+Cell[52843, 1270, 453, 11, 25, "Print",ExpressionUUID->"925ad3cd-b801-4131-8abc-dd3e3d4c8fc2"],
+Cell[53299, 1283, 241, 5, 23, "Print",ExpressionUUID->"6ef2752e-91e6-4f76-b236-2b995ba86830"],
+Cell[53543, 1290, 330, 6, 23, "Print",ExpressionUUID->"00aafc90-c350-43e9-ab8f-0a73b23e5216"],
+Cell[53876, 1298, 451, 11, 25, "Print",ExpressionUUID->"a62fd77f-b9fd-4fb2-8930-8d25c0ab836b"],
+Cell[54330, 1311, 239, 5, 23, "Print",ExpressionUUID->"95676c65-1151-438c-baa4-5a280de94221"],
+Cell[54572, 1318, 333, 6, 23, "Print",ExpressionUUID->"920b29a1-0b1b-4623-ba53-0bb2a86e0f57"],
+Cell[54908, 1326, 377, 9, 23, "Print",ExpressionUUID->"dce087db-a3a4-4d2e-ab40-5374ad275d70"],
+Cell[55288, 1337, 239, 5, 23, "Print",ExpressionUUID->"f17e266c-2c1c-4053-9197-f5005d9e9cda"],
+Cell[55530, 1344, 333, 6, 23, "Print",ExpressionUUID->"65853aae-942c-4560-9a3a-ca43e870a344"],
+Cell[55866, 1352, 438, 11, 23, "Print",ExpressionUUID->"6f60a675-3ba8-4f10-a671-e28119e27108"],
+Cell[56307, 1365, 241, 5, 23, "Print",ExpressionUUID->"2c47026a-638a-4834-af31-169073a45b79"],
+Cell[56551, 1372, 337, 6, 23, "Print",ExpressionUUID->"fbfe5512-6545-44d0-aa7b-8f9132237d8d"],
+Cell[56891, 1380, 438, 10, 25, "Print",ExpressionUUID->"5e0cfb16-f022-4f6a-ad97-a2f793a23ea5"],
+Cell[57332, 1392, 241, 5, 23, "Print",ExpressionUUID->"a77568a1-8b6b-44b7-83b6-03bb7a9af593"],
+Cell[57576, 1399, 330, 6, 23, "Print",ExpressionUUID->"ab30f1d1-efd9-4f99-9f27-8ef8ad547ae4"],
+Cell[57909, 1407, 433, 10, 25, "Print",ExpressionUUID->"223aa8c6-d750-44bb-9c64-5c9dbab5a3b7"],
+Cell[58345, 1419, 240, 5, 23, "Print",ExpressionUUID->"8fdf99ab-c081-4048-bf9f-79f80d986323"],
+Cell[58588, 1426, 339, 6, 23, "Print",ExpressionUUID->"328af311-d1b7-48be-8d7a-cdeac191f910"],
+Cell[58930, 1434, 453, 11, 25, "Print",ExpressionUUID->"44b50159-17c2-48d2-b541-8214869d93f3"],
+Cell[59386, 1447, 239, 5, 23, "Print",ExpressionUUID->"f92e8ec6-de1e-4e5e-bf4d-d92a5e33b03b"]
+}, Open  ]],
+Cell[59640, 1455, 333, 8, 35, "Output",ExpressionUUID->"cdb3598c-01a8-4c60-906d-4adec22bb202"]
+}, Open  ]]
+}
+]
+*)
+

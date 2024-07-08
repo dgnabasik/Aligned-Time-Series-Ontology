@@ -1,0 +1,80 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2332,         70]
+NotebookOptionsPosition[      1848,         53]
+NotebookOutlinePosition[      2254,         69]
+CellTagsIndexPosition[      2211,         66]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ExportString", "[", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["y", "t"], "=", 
+     RowBox[{
+      SubscriptBox["a", "1"], "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"t", "-", "1"}], ")"}], "d"}]}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"\"\<MathML\>\"", ",", "\"\<Expression\>\""}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.917248255095389*^9, 3.917248260710923*^9}, {
+   3.917248439945499*^9, 3.917248452305707*^9}, {3.917248489443348*^9, 
+   3.917248497154396*^9}, {3.91724854074796*^9, 3.917248587684207*^9}, 
+   3.917248719229761*^9},ExpressionUUID->"a44e1012-5e55-48cb-a6ff-\
+c32692a23ab7"],
+
+Cell[BoxData["\<\"<math xmlns='http://www.w3.org/1998/Math/MathML'>\\n <mrow>\
+\\n  <msub>\\n   <mi>a</mi>\\n   <mn>1</mn>\\n  </msub>\\n  <mo>+</mo>\\n  \
+<mrow>\\n   <mi>d</mi>\\n   <mo>&#8290;</mo>\\n   <mrow>\\n    <mo>(</mo>\\n  \
+  <mrow>\\n     <mi>t</mi>\\n     <mo>-</mo>\\n     <mn>1</mn>\\n    \
+</mrow>\\n    <mo>)</mo>\\n   </mrow>\\n  </mrow>\\n </mrow>\\n</math>\"\>"], \
+"Output",
+ CellChangeTimes->{3.917248498624724*^9, 3.917248552975698*^9, 
+  3.9172486032922373`*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"0e1e4472-78b2-420d-a6ca-1a55503c5db2"]
+}, Open  ]]
+},
+WindowSize->{752.25, 683.25},
+WindowMargins->{{-2.25, Automatic}, {Automatic, -22.5}},
+FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"d006c1e2-6a08-47ad-9f1c-1788cf30bca0"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 684, 18, 52, "Input",ExpressionUUID->"a44e1012-5e55-48cb-a6ff-c32692a23ab7"],
+Cell[1267, 42, 565, 8, 454, "Output",ExpressionUUID->"0e1e4472-78b2-420d-a6ca-1a55503c5db2"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
