@@ -1,0 +1,114 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3749,        104]
+NotebookOptionsPosition[      3267,         87]
+NotebookOutlinePosition[      3671,        103]
+CellTagsIndexPosition[      3628,        100]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"xdata", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<clear-night\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<clear-day\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<rain\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<partly-cloudy-day\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<partly-cloudy-night\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<snow\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<cloudy\>\""}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<wind\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<fog\>\""}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<wind\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "\"\<fog\>\""}], "}"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"newData", "=", 
+   RowBox[{
+    RowBox[{"xdata", "[", 
+     RowBox[{"[", 
+      RowBox[{"All", ",", "2"}], "]"}], "]"}], "/.", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<clear-night\>\"", "->", "1"}], ",", 
+      RowBox[{"\"\<clear-day\>\"", "->", "2"}], ",", 
+      RowBox[{"\"\<rain\>\"", "->", "3"}], ",", 
+      RowBox[{"\"\<partly-cloudy-day\>\"", "->", "4"}], ",", 
+      RowBox[{"\"\<partly-cloudy-night\>\"", "->", "5"}], ",", 
+      RowBox[{"\"\<snow\>\"", "->", "6"}], ",", 
+      RowBox[{"\"\<cloudy\>\"", "->", "7"}], ",", " ", 
+      RowBox[{"\"\<wind\>\"", "->", "8"}], ",", 
+      RowBox[{"\"\<fog\>\"", "->", "9"}]}], "}"}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.929790037414336*^9, 3.929790134286785*^9}, {
+   3.9297903523354387`*^9, 3.9297905243891773`*^9}, {3.9297908609649477`*^9, 
+   3.929790883061639*^9}, 3.9297911399986763`*^9, {3.929791250511283*^9, 
+   3.929791333921088*^9}, {3.92979187203249*^9, 3.929791874976227*^9}, {
+   3.9297923735343037`*^9, 3.929792375437912*^9}, {3.929792462436672*^9, 
+   3.929792464156105*^9}},
+ CellLabel->"In[47]:=",ExpressionUUID->"c1cd0446-85a3-4bb0-a79e-867f1df55688"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "1", ",", "2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7", ",", "8", 
+   ",", "9", ",", "8", ",", "9"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.9297905258203077`*^9, {3.9297908647547817`*^9, 3.9297908852850323`*^9}, 
+   3.9297911419815598`*^9, {3.9297913144304447`*^9, 3.929791335856637*^9}, 
+   3.929792184026556*^9, 3.929792376674095*^9, 3.929792465159967*^9},
+ CellLabel->"Out[48]=",ExpressionUUID->"5bb77dbe-2cbb-48cf-98a3-939d1e4ee09c"]
+}, Open  ]]
+},
+WindowSize->{1590, 414.75},
+WindowMargins->{{-2.25, Automatic}, {Automatic, -22.5}},
+FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"005e0255-5bae-4582-845c-e1c57986fe59"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2176, 51, 94, "Input",ExpressionUUID->"c1cd0446-85a3-4bb0-a79e-867f1df55688"],
+Cell[2759, 75, 492, 9, 33, "Output",ExpressionUUID->"5bb77dbe-2cbb-48cf-98a3-939d1e4ee09c"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

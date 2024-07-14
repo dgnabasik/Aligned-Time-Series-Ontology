@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    110013,       2773]
-NotebookOptionsPosition[     96617,       2619]
-NotebookOutlinePosition[     97021,       2635]
-CellTagsIndexPosition[     96978,       2632]
+NotebookDataLength[     93974,       2331]
+NotebookOptionsPosition[     79818,       2118]
+NotebookOutlinePosition[     80222,       2134]
+CellTagsIndexPosition[     80179,       2131]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -35,12 +35,6 @@ Cell[BoxData[{
   RowBox[{
    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_opsd_household_\>\""}], ";"}],
    "\[IndentingNewLine]", 
-  RowBox[{"(*", " ", 
-   RowBox[{
-   "Zero", " ", "values", " ", "are", " ", "removed", " ", "from", " ", "the",
-     " ", "beginning", " ", "and", " ", "end", " ", "of", " ", "each", " ", 
-    "data", " ", 
-    RowBox[{"column", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
@@ -198,10 +192,7 @@ Cell[BoxData[{
            RowBox[{"fname", ",", 
             RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "yaxis", ",", 
           "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
-       RowBox[{"(*", 
-        RowBox[{
-         RowBox[{"Print", "[", "plotFile", "]"}], ";"}], "*)"}], 
-       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "plotFile", "]"}], ";", "\[IndentingNewLine]", 
        RowBox[{"Export", "[", 
         RowBox[{"plotFile", ",", 
          RowBox[{"ListPlot", "[", 
@@ -221,15 +212,24 @@ Cell[BoxData[{
        "\[IndentingNewLine]", 
        RowBox[{"atsm", "=", 
         RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", "\n", 
-       RowBox[{"process", "=", 
-        RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
-       RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
-       RowBox[{"model", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"process", "=", 
+          RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
+         
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"Print", "[", "process", "]"}], ";"}], "*)"}], 
+         "\[IndentingNewLine]", "model"}], "=", 
         RowBox[{"LinearModelFit", "[", 
          RowBox[{"timeseries", ",", "x", ",", "x"}], "]"}]}], ";", 
        "\[IndentingNewLine]", 
        RowBox[{"Print", "[", 
-        RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], "]"}], ";"}]}], 
+        RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"CovarianceFunction", "[", 
+         RowBox[{"process", ",", "s", ",", "t"}], "]"}], "]"}], ";"}]}], 
      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
@@ -245,9 +245,7 @@ Cell[BoxData[{
     RowBox[{"Import", "[", 
      RowBox[{
       RowBox[{"StringJoin", "[", 
-       RowBox[{
-       "\"\</home/david/Documents/digital-twins/opsd.household/\>\"", ",", 
-        "theFile"}], "]"}], ",", 
+       RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
       RowBox[{"{", 
        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
@@ -629,7 +627,7 @@ Cell[BoxData[{
     RowBox[{
     "theFile", ",", " ", "xdataset", ",", 
      "\"\<DE_KN_residential6_washing_machine\>\"", ",", "70"}], "]"}], ";"}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
@@ -727,1893 +725,1394 @@ Cell[BoxData[{
    3.916993636575007*^9, 3.91699367416469*^9}, {3.916993874036058*^9, 
    3.91699387418183*^9}, {3.916994178275588*^9, 3.916994196871114*^9}, {
    3.916994238781748*^9, 3.916994255542227*^9}, {3.929199555270856*^9, 
-   3.9291995605096083`*^9}, {3.929200180756978*^9, 3.9292003229731417`*^9}, {
+   3.9291995605096087`*^9}, {3.929200180756978*^9, 3.929200322973141*^9}, {
    3.929200722891398*^9, 3.929200736538712*^9}, {3.929201013963695*^9, 
    3.929201034953835*^9}, 3.92920126279351*^9, {3.9292013007695837`*^9, 
-   3.929201309103446*^9}},
- CellLabel->"In[83]:=",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+   3.929201309103446*^9}, {3.9298998813604803`*^9, 3.929899883129155*^9}, {
+   3.9298999193957*^9, 3.929899969504175*^9}, {3.9299007211565933`*^9, 
+   3.929900736484273*^9}, {3.9299007717389727`*^9, 3.929900772467214*^9}},
+ CellLabel->
+  "In[218]:=",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial1_grid_\
+import.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901801156412*^9},
+ CellLabel->
+  "During evaluation of \
+In[218]:=",ExpressionUUID->"d77e7be8-f1b7-4e25-b22c-412f2e00f62e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 227, 104, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929901832608733*^9},
+ CellLabel->
+  "During evaluation of \
+In[218]:=",ExpressionUUID->"2ea82580-e2e7-4e8d-87f5-c0120619e95f"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"1.0406311808700712`*^-7", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.24733599092713157`"}], ",", "0.20730745127595657`", ",", 
-     "0.907133804018153`", ",", "0.1720674638849957`", ",", 
-     RowBox[{"-", "0.2734147680736573`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.4641695557272274`", ",", 
-     RowBox[{"-", "0.48935530992449`"}], ",", 
-     RowBox[{"-", "0.9284822507458228`"}], ",", 
-     RowBox[{"-", "0.6265063257211657`"}], ",", "0.14399286351481913`", ",", 
-     "0.2050267123695605`", ",", "0.1883671701719576`", ",", 
-     "0.08520953995142118`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.004516500310581398`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929201662205995*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299018326792088`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"15682dc0-4a41-471b-bf60-026eee8aae69"],
+In[218]:=",ExpressionUUID->"5d4425b2-6532-40ae-bbb9-890c07b9ffd1"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "34907.56489233835`"}], "+", 
-  RowBox[{"0.00867062673296921`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201664706737*^9},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"c1e99c66-0c88-4695-b68e-1e2a9d166e74"],
-
-Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "1.9281717461137716`*^-9"}], ",", 
-   RowBox[{"{", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.35689506860270276`"}], ",", "0.02533423845090475`", ",", 
-     "0.542598114177887`", ",", 
-     RowBox[{"-", "0.5915563840484113`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.000042610771909659476`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929201687614204*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901832679881*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"3ebd1513-6602-4876-9ec9-ea07b3201187"],
+In[218]:=",ExpressionUUID->"a2cfd52a-84a1-4b02-83fe-9ce8288652b5"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1092.1170326659205`"}], "+", 
-  RowBox[{"0.00018036103933728826`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201690570833*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial1_pv_1.\
+png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901834914749*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a281edce-99db-4396-919a-a13a720c5f5a"],
+In[218]:=",ExpressionUUID->"269bacc7-4abe-4189-ae21-56518a04139b"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "1.928171746113775`*^-9"}], ",", 
-   RowBox[{"{", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.326900595802964`"}], ",", "0.017601879361746335`", ",", 
-     "0.5398325538895452`", ",", 
-     RowBox[{"-", "0.5866987791359372`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.000026185227875307715`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929201713862192*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 228, 105, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299018594084063`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"640af1a8-84da-4a53-8918-c20629470579"],
+In[218]:=",ExpressionUUID->"0f529409-92e8-4c9a-9bbc-19d09550506e"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "784.4048981966661`"}], "+", 
-  RowBox[{"0.00013913560749103559`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201716468446*^9},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"e914be67-a290-46fb-8b9b-0fb5e52d3579"],
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0011277227275769443`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.003437028968091584`"}], ",", 
-     RowBox[{"-", "0.009246481353081702`"}], ",", "0.9669858268174817`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.5248768818466306`", ",", "0.5027686610383468`", ",", 
-     RowBox[{"-", "0.3729957009672259`"}]}], "}"}], ",", 
-   "0.00004617132956893961`"}], "]"}]], "Print",
- CellChangeTimes->{3.929201729209106*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299018594822617`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"4450bd3a-4a45-406b-bfa1-504cd7bebdc2"],
+In[218]:=",ExpressionUUID->"b2d81ff2-cc2e-4c9d-a07f-2583e763f2c6"],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "782.9601305617665`"}], "+", 
-  RowBox[{"0.00043245122755198066`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201731197371*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901859482935*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"47d7876e-4300-4e63-926f-7ebd51bc5b90"],
+In[218]:=",ExpressionUUID->"3fdf9a40-f1b0-496f-b179-03608b80af1e"],
 
-Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"0.0003234541815525105`", ",", 
-   RowBox[{"{", "0.9996419065762743`", "}"}], ",", "1", ",", 
-   RowBox[{"{", "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"3", ",", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"-", "0.7979229399876733`"}], ",", 
-       RowBox[{"-", "0.5060898840772202`"}], ",", 
-       RowBox[{"-", "0.24187924147422182`"}]}], "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.15447001047844144`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929201747275199*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial1_pv_2.\
+png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299018617714987`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a9aca314-50c3-44e1-bce3-649b58026f80"],
+In[218]:=",ExpressionUUID->"1d34ba77-a0e4-43ed-a1a0-9b68c40ac756"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "2239.0389282936167`"}], "+", 
-  RowBox[{"0.0006003911577021092`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201749196671*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 229, 106, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929901885998192*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"95f03479-7a42-4760-ac9f-3d10fa3adcde"],
+In[218]:=",ExpressionUUID->"d6389f75-59b6-4110-9590-51eeaa21688d"],
 
-Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"1.7090569765011175`*^-9", ",", 
-   RowBox[{"{", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.2695606765903057`"}], ",", 
-     RowBox[{"-", "0.08049829839028334`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "2.294692278318653`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292017626903753`*^9},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"4e62f510-bf29-47bb-917b-0f800bcd30d9"],
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"99.6683920951969`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00004141124197917969`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292017641202183`*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901886077691*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"b28eeaa1-bb5d-4484-9348-f6def72b39eb"],
+In[218]:=",ExpressionUUID->"3700584b-1ec5-4ac4-bfd8-32e7d445dfff"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "7.75104644988337`*^-9"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"0.3060490566466028`", ",", "0.34855894743751387`"}], "}"}], ",", 
-   "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.4524149083674294`"}], ",", 
-     RowBox[{"-", "0.35124409076455126`"}], ",", "0.010062041906280898`"}], 
-    "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "1.0941961851188708`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929201777144534*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901886079108*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"02747baa-0477-4316-9c21-a7b9188f478b"],
+In[218]:=",ExpressionUUID->"f0b05900-d275-4972-b4a1-330eacc08581"],
 
-Cell[BoxData[
- RowBox[{"81.30854205762346`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.000024597701170263685`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292017785682096`*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial2_grid_\
+import.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901888252028*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a741287d-2fee-4eb5-9d6c-a842b3b1a65e"],
+In[218]:=",ExpressionUUID->"0defe15d-341e-4ca3-9132-f264e89bbfa4"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0006728808385110794`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.04002143001274169`", ",", "0.33837525932691626`", ",", 
-     "0.9254608552087383`", ",", 
-     RowBox[{"-", "0.034311147686714755`"}], ",", 
-     RowBox[{"-", "0.3205915417877645`"}], ",", "0.014913911515046929`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.6330642275959322`", ",", "0.1036180372872473`", ",", 
-     RowBox[{"-", "0.44487798377815163`"}], ",", 
-     RowBox[{"-", "0.31846698138020146`"}]}], "}"}], ",", 
-   "0.000030488931416800946`"}], "]"}]], "Print",
- CellChangeTimes->{3.929201795960249*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 230, 107, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929901900372407*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"de4b34df-e1da-493a-867f-31195e403eb7"],
+In[218]:=",ExpressionUUID->"3a3fef24-dafc-4ba1-a860-6bf76b5d5f32"],
 
-Cell[BoxData[
- RowBox[{"527.6382504275462`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00030805530728111495`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201798131785*^9},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"f0900829-5cb2-4707-9fb6-5840fd2817ef"],
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00038912554280411344`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.109138708069464`", ",", "0.006535847809142053`", ",", 
-     "0.7878807863008098`", ",", "0.04038806965178574`"}], "}"}], ",", "1", 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0.5180260723090405`", ",", "0.2216476895253328`"}], "}"}], ",", 
-   "0.000017450444622546823`"}], "]"}]], "Print",
- CellChangeTimes->{3.929201813717452*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901900425508*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"b841a238-a3f8-4599-a53f-fde63bc9cdb5"],
+In[218]:=",ExpressionUUID->"b7c948f4-2aea-4bc8-a920-22b13b92d25d"],
 
 Cell[BoxData[
- RowBox[{"90.94992498790874`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00011830026934594644`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201815944558*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299019004264593`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c7a32ba9-5d76-46a4-9322-f09018eca00a"],
+In[218]:=",ExpressionUUID->"f61930ad-4a45-467f-a856-e9c80667f6c6"],
 
-Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0017660949716340416`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.36945710106793805`"}], ",", "0.06374811683784021`", ",", 
-     "0.8175704178022892`", ",", "0.35067917316419017`", ",", 
-     RowBox[{"-", "0.06472170790956676`"}], ",", "0.14912388016698666`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.9814776886281004`", ",", "0.5639482409478066`", ",", 
-     RowBox[{"-", "0.00019787070082501483`"}], ",", 
-     RowBox[{"-", "0.07565346163278427`"}], ",", "0.08022220213100108`"}], 
-    "}"}], ",", "0.000047625635399313696`"}], "]"}]], "Print",
- CellChangeTimes->{3.92920183312252*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial2_pv.png\"\
+\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901902592848*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"ce4a7053-5199-4997-8b17-095970c22740"],
+In[218]:=",ExpressionUUID->"6f9dd56d-4827-41ac-ae02-79c14a66d355"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"464.7544392353497`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.0005489041436584357`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201835370515*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 231, 108, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929901919617372*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"f7d23d38-c6d9-4af4-b632-40dd1169e6c3"],
+In[218]:=",ExpressionUUID->"f2eae8f1-f2c6-4069-a811-879ea7f9f038"],
 
-Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00010885504293681521`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.3412258235446745`"}], ",", "0.01900071077667256`", ",", 
-     "0.9011446634516038`", ",", "0.33716076453019594`", ",", 
-     RowBox[{"-", "0.015970171003556258`"}], ",", "0.08287635069726387`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.9036763031730929`", ",", "0.5226995825819074`", ",", 
-     RowBox[{"-", "0.1732333338769345`"}], ",", 
-     RowBox[{"-", "0.17035292200732222`"}], ",", "0.04387167725716019`"}], 
-    "}"}], ",", "5.428273730815652`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.9292018530494347`*^9},
- CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"02269118-a252-4d12-a027-0d0bbf750047"],
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"105.8852503254768`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00010791912626532953`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292018553531647`*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901919671784*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c6d094e3-0e24-4a5e-a9c6-613064c36249"],
+In[218]:=",ExpressionUUID->"49e5beed-c7ed-4122-b3bf-d446f17af2f5"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0005203856758405052`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.00948194386844532`", ",", "0.010484520469621145`", ",", 
-     "0.9695439723374062`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.29241195130171466`", ",", "0.5105602526924732`", ",", 
-     RowBox[{"-", "0.24120000960894628`"}], ",", "0.12259181066620609`"}], 
-    "}"}], ",", "0.000318579085670751`"}], "]"}]], "Print",
- CellChangeTimes->{3.929201871578802*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901919672497*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"be69b7be-b7b2-4bff-8ef9-85feffc293a2"],
+In[218]:=",ExpressionUUID->"e401c202-b847-4a7c-bec0-2c58af4093ee"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "492.02178899208457`"}], "+", 
-  RowBox[{"0.0008033885166839447`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201873743224*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial2_storage_\
+charge.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901921811966*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"90ce13dc-0002-4b82-b922-e5294d2d216c"],
+In[218]:=",ExpressionUUID->"a0d2f39d-03b2-4a82-b281-35bb2bcfacf8"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.02610346249186795`", ",", 
-   RowBox[{"{", "0.5413625847720853`", "}"}], ",", "1", ",", 
-   RowBox[{"{", "0.5543409856386008`", "}"}], ",", "0.0022238689958729413`"}],
-   "]"}]], "Print",
- CellChangeTimes->{3.929201888260067*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 232, 109, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299019350350657`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"d52fc2c3-6d3a-4bd2-99bb-188f451e652c"],
+In[218]:=",ExpressionUUID->"0b9939c5-6290-4849-b17c-c1165666428d"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"264.48689197825536`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.0009610354749212965`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201890403069*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901935079307*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"6b7639f3-a85e-4eee-8b72-20c6682947c5"],
+In[218]:=",ExpressionUUID->"a1bbf6e0-d62b-41a5-9808-4c1d823bb816"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"0.`", ",", 
-   RowBox[{"{", "0.28235959988545634`", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"-", "0.6565242243762812`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.0005064796221674708`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292019077785797`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901935080022*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"60ec2f08-f13d-409f-9065-60ab5d94ea88"],
+In[218]:=",ExpressionUUID->"7295aecb-847a-4af3-9d77-f5819055dbd0"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "11255.578884653489`"}], "+", 
-  RowBox[{"0.001632729123558019`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201909972444*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial2_storage_\
+decharge.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.92990193716072*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"d6f3b56f-7d7d-49da-877d-05a92119004f"],
+In[218]:=",ExpressionUUID->"76b7593e-f8d5-438e-baa5-96665a7fffd1"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"3.3241984085231516`*^-7", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.40528329855067685`"}], ",", 
-     RowBox[{"-", "0.6991119117326792`"}], ",", "0.1251952602733777`", ",", 
-     RowBox[{"-", "0.311949286210704`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.7344153193270171`"}], ",", 
-     RowBox[{"-", "0.10723101640615125`"}], ",", 
-     RowBox[{"-", "0.0014347538488417157`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.0009341319910311172`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292019347312193`*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 233, 110, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929901950720924*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"36d8de77-a137-43b9-b92b-48e84620fd62"],
+In[218]:=",ExpressionUUID->"ecfec8e5-b221-4984-b017-1d1420957d9a"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1868.9732713769233`"}], "+", 
-  RowBox[{"0.0035434514304609932`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201937047577*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901950765726*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"797044bc-c3d0-4ad5-aa8b-f604264183a4"],
+In[218]:=",ExpressionUUID->"fb197596-5d3a-4351-b5df-0b28c32185a9"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "8.988824917470773`*^-9"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.4023254070079855`", ",", "0.3342817901445203`", ",", 
-     "0.06852947957345806`", ",", 
-     RowBox[{"-", "0.06328733878580142`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"-", "0.9633547665798693`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.000012089130765135928`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929201961549593*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901950766457*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a2d91316-ab41-47ad-afae-dfa05ddc2d15"],
+In[218]:=",ExpressionUUID->"a69450b1-72d6-44f9-99ca-d2098a14eb03"],
 
-Cell[BoxData[
- RowBox[{"1.33938538179662`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.000017127840857480785`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201963849894*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_area_\
+offices.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901952974119*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"fda8217f-ffa1-4164-84e7-90e35a40913d"],
+In[218]:=",ExpressionUUID->"df91b46e-541f-4307-8f51-c958f9d243f2"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00001536306085309308`", ",", 
-   RowBox[{"{", "0.9900822335909429`", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.3286217903395198`", ",", 
-     RowBox[{"-", "0.16260722290673027`"}], ",", "0.003392553766451658`"}], 
-    "}"}], ",", "1.2688472396765394`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.929201976869746*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 234, 111, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.92990197057189*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"918d7c3b-2685-4243-acd6-449dd615c580"],
+In[218]:=",ExpressionUUID->"4d82f68b-0182-45f8-936b-b2ac0b6c4b45"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"88.43212069235037`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.000025662616526305285`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201978752812*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.92990197063741*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"08dcacb5-6769-4721-ad0c-fa902c767d68"],
+In[218]:=",ExpressionUUID->"c3c9f346-7857-4c4b-b845-ae34d4072dba"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.009877470810413593`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.27411954884841594`", ",", 
-     RowBox[{"-", "0.041662530927495306`"}], ",", "0.7102508033224064`", ",", 
-     
-     RowBox[{"-", "0.22269876551600704`"}], ",", "0.07701671519590127`", ",", 
-     "0.19552977260452842`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.09045078767584715`"}], ",", 
-     RowBox[{"-", "0.21445382268651828`"}], ",", 
-     RowBox[{"-", "0.460480733517821`"}], ",", "0.18071085804703527`", ",", 
-     "0.20679395006051168`", ",", 
-     RowBox[{"-", "0.17210381616762635`"}]}], "}"}], ",", 
-   "0.06131695557523785`"}], "]"}]], "Print",
- CellChangeTimes->{3.9292019937292023`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901970638125*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"54e611a7-7717-47fd-b7cb-44cfa0a9f49b"],
+In[218]:=",ExpressionUUID->"01f687c2-a0f2-442d-8c47-efc46c8bdde9"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1205.6663642630617`"}], "+", 
-  RowBox[{"0.02222530322212647`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929201995473557*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_area_\
+room_1.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901972956695*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"f29190ae-3eef-4166-bac8-b074c979e64f"],
+In[218]:=",ExpressionUUID->"58efd84a-5b66-419e-abb9-1e8f2a8478f2"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0005099743883384243`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.1895964189440674`", ",", "0.4965820869463336`", ",", 
-     "0.6504983081894463`", ",", 
-     RowBox[{"-", "0.1864055150748482`"}], ",", 
-     RowBox[{"-", "0.46966110271110295`"}], ",", "0.3095433585805299`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.5081890442069943`", ",", 
-     RowBox[{"-", "0.22105975615033355`"}], ",", 
-     RowBox[{"-", "0.29246064615014156`"}], ",", 
-     RowBox[{"-", "0.019807978204493964`"}], ",", "0.3095263847216229`", ",", 
-     "0.018033008152777228`"}], "}"}], ",", "0.00045289463928448035`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929202013798115*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 235, 112, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929901990120653*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"6d9996a9-f26f-4453-bd3e-40bff7e24df4"],
+In[218]:=",ExpressionUUID->"8ad85f5a-601f-4a40-ac24-a9cfc55146d5"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1216.4705107586917`"}], "+", 
-  RowBox[{"0.0008467554452654391`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202015958949*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901990188216*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"2286ca0b-3b09-4ddb-a941-8d5b49d32091"],
+In[218]:=",ExpressionUUID->"0c50b843-e37e-4f40-8d0d-1f90191ff05c"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"8.780835550132989`*^-8", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.26590670292513857`"}], ",", 
-     RowBox[{"-", "0.25852451701268686`"}], ",", "0.5419560743525665`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.29643433949026815`"}], ",", 
-     RowBox[{"-", "0.2805197412959893`"}], ",", 
-     RowBox[{"-", "0.3369268703760428`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.0014470233330200605`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.92920203754211*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299019901892977`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"3626a80d-6db7-48b9-a23c-2638941181dd"],
+In[218]:=",ExpressionUUID->"7c6a1302-2138-44d9-83a0-3c676ed080aa"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "50.82172041371649`"}], "+", 
-  RowBox[{"0.0026548557070588626`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202039758562*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_area_\
+room_2.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929901992422739*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"e2cb0dc1-d166-4c01-a07a-fbed17f32cbc"],
+In[218]:=",ExpressionUUID->"4daa1745-e331-49b1-a017-c79ddc134bae"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.04368663985888468`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.17990690779565943`", ",", 
-     RowBox[{"-", "0.037578900476519114`"}], ",", "0.7747813412257265`", ",", 
-     
-     RowBox[{"-", "0.08951260461601551`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.20043406752094936`", ",", 
-     RowBox[{"-", "0.011770454803213513`"}], ",", 
-     RowBox[{"-", "0.1315197330203327`"}]}], "}"}], ",", 
-   "0.0032573139792757898`"}], "]"}]], "Print",
- CellChangeTimes->{3.929202057266877*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 236, 113, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299020101662683`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"dbc53a40-eb40-4686-9150-fb4d42ea1f1d"],
+In[218]:=",ExpressionUUID->"c31aa6e7-0c28-4fc2-9d70-9fbc510697f9"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1675.8456528722502`"}], "+", 
-  RowBox[{"0.004171620035573129`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202059456296*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902010227654*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"92410fec-652b-40fc-9bc5-3d399072f2a1"],
+In[218]:=",ExpressionUUID->"ffa57b0c-854b-4294-b7c8-aab374204168"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00002034599841319891`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.27264642578204423`", ",", "0.015511261877871885`", ",", 
-     "0.8444188116243484`", ",", 
-     RowBox[{"-", "0.16961084272924096`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.6846701477519673`", ",", "0.008902660604730134`", ",", 
-     RowBox[{"-", "0.2796720977367868`"}], ",", 
-     RowBox[{"-", "0.16713901789103242`"}], ",", "0.05257700038080573`"}], 
-    "}"}], ",", "8.804722066584965`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929202077380063*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902010228333*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"5814ae2c-b5a0-41f7-946d-bf6c269ba093"],
+In[218]:=",ExpressionUUID->"e3f3cfc3-5492-419f-9ca0-89d3d1c0b841"],
 
-Cell[BoxData[
- RowBox[{"50.126996204603394`", "\[VeryThinSpace]", "+", 
-  RowBox[{"7.325282943528193`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202079557487*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_area_\
+room_3.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299020125256557`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"ae221cc6-9402-45b4-a6db-3083d5272ff5"],
+In[218]:=",ExpressionUUID->"e85fa4c1-273f-40b6-8c1d-b5dc301cbd96"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00008859371872201095`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.3250289506433607`", ",", "0.1421698249632273`", ",", 
-     "0.46704728038406734`", ",", 
-     RowBox[{"-", "0.20652122769073075`"}], ",", 
-     RowBox[{"-", "0.03116553762169549`"}], ",", "0.2850366940791118`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", "}"}], ",", "9.569154414626011`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.9292020959500113`*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 237, 114, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902029868737*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c06b0eac-4615-4638-85bd-5d40b850da84"],
+In[218]:=",ExpressionUUID->"23454cbf-c7b3-48bc-8e3b-0864160ddcba"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"383.17905245899595`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00009002210578057453`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.92920209816371*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299020299357986`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"5ec74f55-760a-4e4b-864e-1aa2d5b4ceba"],
+In[218]:=",ExpressionUUID->"42e3972d-a4b1-4b62-b203-4d18de50e31b"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "2.533592239873949`*^-23"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "1.0466424301935837`"}], ",", 
-     RowBox[{"-", "0.5702997874140167`"}], ",", "0.4675085270397946`", ",", 
-     "0.5143294827468397`", ",", "0.06223383701419468`"}], "}"}], ",", "1", 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{"0.7768739212022063`", ",", "0.028286677842526073`", ",", 
-     RowBox[{"-", "0.6580856466885038`"}], ",", 
-     RowBox[{"-", "0.4977573798169588`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.000013682725936637261`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292021234041567`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902029936605*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"0fe85f4f-286d-44c1-8aa8-7c6d7b6eef09"],
+In[218]:=",ExpressionUUID->"bda68964-c5c7-417f-a92d-0fcc35243196"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "487.44460990728385`"}], "+", 
-  RowBox[{"0.00016861652316972723`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292021256361217`*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_area_\
+room_4.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902032208699*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"3a6c7a1d-daf8-49bf-a511-0b2de98ab30a"],
+In[218]:=",ExpressionUUID->"d40303ea-65fe-4381-ab9e-0024c0b4c397"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "1.0982298831767842`*^-9"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.5698572482480989`"}], ",", "0.08739578916954795`", ",", 
-     "0.8311447722972917`", ",", "0.40963272803046946`", ",", 
-     RowBox[{"-", "0.2314016262551694`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.2307332809129681`", ",", 
-     RowBox[{"-", "0.4094990945465316`"}], ",", 
-     RowBox[{"-", "0.7869006199292565`"}], ",", 
-     RowBox[{"-", "0.23212202065886417`"}], ",", "0.3119883561565478`", ",", 
-     RowBox[{"-", "0.0103551248008244`"}], ",", "0.03096297851684646`", ",", 
-     "0.010564686019595126`", ",", 
-     RowBox[{"-", "0.003102619555183646`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.000049389068680182056`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929202157570622*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 238, 115, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.92990204934088*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"f859f4d4-d59d-495d-8d69-2ebd106adf1b"],
+In[218]:=",ExpressionUUID->"4f74f0c0-b00d-4e4a-8a46-5a0937d997eb"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1606.4892807756694`"}], "+", 
-  RowBox[{"0.0004034736324368913`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202159828355*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299020494034157`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"d22f7e7f-0c3f-42d9-a8f8-6c5fe35c9ad1"],
+In[218]:=",ExpressionUUID->"c9320d44-6643-4f91-815d-f5fd8ca59171"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00006200415988943627`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.09886960848259099`", ",", "0.7663642302553539`", ",", 
-     "0.48576072099437856`", ",", 
-     RowBox[{"-", "0.4638271792816419`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.10454888650040621`", ",", 
-     RowBox[{"-", "0.4238734560759755`"}], ",", 
-     RowBox[{"-", "0.30475793779489463`"}], ",", "0.3003030546472351`", ",", 
-     RowBox[{"-", "0.03077363571898`"}]}], "}"}], ",", 
-   "2.72968930530114`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929202178426815*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299020494041233`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a6cd0b8e-f53d-4451-905c-9f704fcaf923"],
+In[218]:=",ExpressionUUID->"4d37b529-04d0-45f6-9cd9-b2b5c6c7af3e"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "4.906625222188339`"}], "+", 
-  RowBox[{"9.645661551214866`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202180621759*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_\
+compressor.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299020518701057`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"228580c0-969d-4c28-a43d-2c3623add330"],
+In[218]:=",ExpressionUUID->"39e7a34e-3212-422f-af21-546f03e9b215"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0004824968690757`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.034242780310616804`", ",", "0.05567750340601494`", ",", 
-     "0.9079591389593469`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.09660414191173085`", ",", 
-     RowBox[{"-", "0.262156547858682`"}], ",", 
-     RowBox[{"-", "0.3757709330201074`"}]}], "}"}], ",", 
-   "0.0020985904709797266`"}], "]"}]], "Print",
- CellChangeTimes->{3.929202197311261*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 239, 116, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902069270232*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"b0dc2b06-5bad-498d-befd-c67b3960a3af"],
+In[218]:=",ExpressionUUID->"b1a61eb6-9738-4f24-ad4b-42c11a04b83a"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"989.5800445739716`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.0037250846480370034`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202199497777*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902069337405*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"7f87e790-d6f7-4b13-9089-47b2ef98bfc2"],
+In[218]:=",ExpressionUUID->"ec4d29f9-ae3a-48e8-ac6a-32c794b25698"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0007727131395336099`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.44991546668694543`", ",", 
-     RowBox[{"-", "0.17442175808225427`"}], ",", "0.892881885846025`", ",", 
-     RowBox[{"-", "0.44613094744341697`"}], ",", "0.17066416421465955`", ",", 
-     "0.08996412852858286`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.20218644973215044`", ",", "0.45395241428040267`"}], "}"}], ",",
-    "0.00008147311540423617`"}], "]"}]], "Print",
- CellChangeTimes->{3.9292022060352297`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902069338194*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"31e7af68-aaa4-4173-ab0c-a0620e7e1ef7"],
+In[218]:=",ExpressionUUID->"fbbc6878-f482-43a9-a6ed-8e8d10971343"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "387.13942495382287`"}], "+", 
-  RowBox[{"0.0006825501470154184`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202206743826*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_cooling_\
+aggregate.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902071865443*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"70366a05-fee1-412a-8440-2e6e4aeed7f4"],
+In[218]:=",ExpressionUUID->"d53b57c5-ce5d-457a-a140-ca88018fa86c"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0033604796261262064`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.4316004273133965`", ",", "0.08986495451728399`", ",", 
-     "0.47501117580309477`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.37461508367645113`"}], ",", "0.14057087354051886`", ",", 
-     
-     RowBox[{"-", "0.29388134274228916`"}], ",", "0.09073340406025465`", ",", 
-     "0.015107533447035403`", ",", "0.00706201323369413`"}], "}"}], ",", 
-   "0.019810038123424824`"}], "]"}]], "Print",
- CellChangeTimes->{3.929202209879911*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 240, 117, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299020899747877`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"2066063e-e5dc-4a3d-9e79-6d8e2e0c956f"],
+In[218]:=",ExpressionUUID->"b88cf31a-86dc-426d-9d1f-e06cb75ea18f"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"1697.463770397619`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.015341462900106236`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202210054102*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902090038609*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"6543929a-e207-49ce-acb8-5898763866f0"],
+In[218]:=",ExpressionUUID->"29a2cec7-1d35-450a-b89b-8153c5445e2a"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.000026674188093762878`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.37647127796898794`", ",", "0.7227162345852114`", ",", 
-     "0.24198827835922973`", ",", 
-     RowBox[{"-", "0.4354961641226446`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.03148490574960072`", ",", 
-     RowBox[{"-", "0.2514632367367059`"}], ",", 
-     RowBox[{"-", "0.1720265179522274`"}], ",", "0.10434548329310045`", ",", 
-     "0.05121623725669668`"}], "}"}], ",", "2.16654891207549`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292022310941267`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902090039442*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a92d8897-b6d0-488f-aa82-24999c5c9eb4"],
+In[218]:=",ExpressionUUID->"fa3e4959-518d-40ba-bb0f-ad2844826475"],
 
-Cell[BoxData[
- RowBox[{"6.9095190512026585`", "\[VeryThinSpace]", "+", 
-  RowBox[{"4.811397981643199`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202233485018*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_cooling_\
+pumps.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299020922884502`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"40d9103c-3b41-4e8a-8883-c909aee7410f"],
+In[218]:=",ExpressionUUID->"21999828-0fb6-45e7-afc0-52428fd65793"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00010479895362450588`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.8891353488864358`", ",", "0.22537830517384214`", ",", 
-     RowBox[{"-", "0.07509147037650167`"}], ",", 
-     RowBox[{"-", "0.14939695790664065`"}], ",", "0.012551985805648319`", ",", 
-     RowBox[{"-", "0.08993815442768263`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.7682784590550721`"}], ",", 
-     RowBox[{"-", "0.07110915680518734`"}]}], "}"}], ",", 
-   "4.160028220712429`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929202249395048*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 241, 118, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299021170426483`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"95ee10e5-b357-4553-b426-22d0ab567e13"],
+In[218]:=",ExpressionUUID->"78b577e0-df01-4738-890b-2324af532660"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "4.838452910535858`"}], "+", 
-  RowBox[{"9.497156407995948`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202251368187*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299021171148453`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"5dc86136-b003-4951-a808-d2bf7e56ee89"],
+In[218]:=",ExpressionUUID->"9938179d-fa00-4f06-bc77-876f22c76b34"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0008604586771477359`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.3883809516693418`", ",", "0.04526546273067493`", ",", 
-     "0.8678675891667867`", ",", 
-     RowBox[{"-", "0.3915941906615582`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", "0.5169415605335096`", "}"}], ",", 
-   "0.000010404736308585105`"}], "]"}]], "Print",
- CellChangeTimes->{3.929202269234592*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902117115909*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"76ccebc2-ae7e-46c7-a8ea-c0f9e83eadfa"],
+In[218]:=",ExpressionUUID->"51f5271b-072f-49fe-8a16-b184ffd24c3d"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "142.10860746924843`"}], "+", 
-  RowBox[{"0.00016063077920828127`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292022716523247`*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_\
+dishwasher.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299021194242373`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a1e265d3-751d-4b6d-b6be-63b60ce79f11"],
+In[218]:=",ExpressionUUID->"749923e4-42bb-4660-936f-2fb4d0b2ee29"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"1.712685971922025`*^-9", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.018321789831010044`", ",", "0.016130360124962717`", ",", 
-     "0.5768801501924432`", ",", 
-     RowBox[{"-", "0.09672301683053182`"}], ",", 
-     RowBox[{"-", "0.05825919903252352`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.06521291487321859`", ",", 
-     RowBox[{"-", "0.2990669773069772`"}], ",", "0.011684310656515907`", ",", 
-     
-     RowBox[{"-", "0.5042808739120758`"}], ",", 
-     RowBox[{"-", "0.039967737667434895`"}], ",", "0.00954212572175702`", ",", 
-     RowBox[{"-", "0.14592689047567242`"}], ",", 
-     RowBox[{"-", "0.02380237530855361`"}], ",", 
-     RowBox[{"-", "0.021877841111731952`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.0000585134015202083`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.92920231075611*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 242, 119, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902143925322*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"9f8d5abb-e98d-4ce2-9c4d-43ceaab1f575"],
+In[218]:=",ExpressionUUID->"0b5d78db-1210-48e5-9300-c56eed2ee55a"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "947.6663920485695`"}], "+", 
-  RowBox[{"0.0001741314422113639`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202313283*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902143993536*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c29c2806-4c0e-4e46-859a-cde660b171a8"],
+In[218]:=",ExpressionUUID->"7ccacc40-9cd3-4c61-895b-a8d7ee670d10"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "1.155115164981944`*^-8"}], ",", 
-   RowBox[{"{", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.3146961886251026`"}], ",", 
-     RowBox[{"-", "0.074301579570321`"}], ",", "0.5624589329885855`", ",", 
-     RowBox[{"-", "0.5732899904796184`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.00010624198707713304`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292023382984953`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299021439947157`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"5d19922c-c208-4be2-999a-603a20779604"],
+In[218]:=",ExpressionUUID->"bdba0d96-4eed-449a-afe6-a8df97a1c46a"],
 
-Cell[BoxData[
- RowBox[{"1134.3642061756432`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00028697356352430826`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292023408071203`*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_ev.png\"\
+\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902146215824*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"7ffb25b7-4385-4cf5-bb8e-d13e91536a18"],
+In[218]:=",ExpressionUUID->"df836326-688c-4e37-985c-5bb3cc81fafa"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00004183252792779168`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.23532820564222756`", ",", "0.6406001888849729`"}], "}"}], ",", 
-   "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.5189163422575466`", ",", 
-     RowBox[{"-", "0.0239944770551509`"}], ",", "0.0885303453036244`", ",", 
-     "0.0267694354578396`", ",", "0.023027854091432456`"}], "}"}], ",", 
-   "1.4123909501179523`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.929202360360609*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 243, 120, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902158255547*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c02fc1eb-1127-4a60-b991-13398a39c820"],
+In[218]:=",ExpressionUUID->"733258c1-5875-40ee-9774-b8a4d5ffa005"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "4.191595403610715`"}], "+", 
-  RowBox[{"5.611954631942919`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292023628171988`*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902158318651*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"4157ae5f-29da-4639-9969-56d17adeffc5"],
+In[218]:=",ExpressionUUID->"d5274d7f-be8d-4739-951a-8b041e1278a7"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "8.407968063174233`*^-10"}], ",", 
-   RowBox[{"{", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"-", "0.38580167571914026`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "6.230310892920832`*^-7"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292023873823977`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902158319375*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"086fb7d3-2a1e-43bc-a239-511c99eaa167"],
+In[218]:=",ExpressionUUID->"00d7b1d8-7644-4e2a-9162-2eb0f9c6646b"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "49.672297685568324`"}], "+", 
-  RowBox[{"0.000012840356410662579`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202390384473*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_grid_\
+import.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902160498794*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a6908d7e-4aca-4631-933e-60744c9e03e5"],
+In[218]:=",ExpressionUUID->"e6f79cc0-7311-4cca-a786-caffd92a42bb"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00004425275541312435`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.26966771249528526`", ",", "0.7096816789657547`", ",", 
-     "0.3364677049932599`", ",", 
-     RowBox[{"-", "0.4009908315359458`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.11953524282568255`", ",", 
-     RowBox[{"-", "0.20149565838625413`"}], ",", 
-     RowBox[{"-", "0.18442695246785884`"}], ",", "0.08046692116469839`"}], 
-    "}"}], ",", "4.57562426301876`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.9292024140021887`*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 244, 121, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902175103086*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"659054c9-72e5-4c3d-8451-c16804bd064e"],
+In[218]:=",ExpressionUUID->"1dd8196c-3b56-463c-9384-62edd1d180c3"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "39.16891376404993`"}], "+", 
-  RowBox[{"8.621297239421296`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202416931499*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902175159307*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"6127382e-7b64-4c6d-9596-fc49d2cef823"],
+In[218]:=",ExpressionUUID->"0cc1759b-37f1-42cf-bb9c-fc39e6edf54b"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00003861359280849552`", ",", 
-   RowBox[{"{", "0.8309935280941321`", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.7304235292575397`"}], ",", "0.28848614689049507`"}], 
-    "}"}], ",", "1.5440416035580512`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929202428170904*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299021751605043`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"377bed46-b9a9-4eea-858e-d49313cdaa6c"],
+In[218]:=",ExpressionUUID->"04c62162-ab72-4c18-90fc-34329655bae8"],
 
-Cell[BoxData[
- RowBox[{"0.22026616378144093`", "\[VeryThinSpace]", "+", 
-  RowBox[{"3.826948529982488`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.92920242968244*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_machine_\
+1.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.92990217741157*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"dddef990-206f-407b-88ee-e86dfaac6872"],
+In[218]:=",ExpressionUUID->"d31ade3a-714b-4b31-8a6f-0df07f0c682d"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0007786088943120244`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.01968665112428116`"}], ",", "0.1470210064816817`", ",", 
-     "0.8353632346540079`", ",", 
-     RowBox[{"-", "0.003970747693764355`"}], ",", 
-     RowBox[{"-", "0.12757932541567127`"}], ",", "0.004690518663622504`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.9156552345249079`", ",", "0.3695622789411358`", ",", 
-     RowBox[{"-", "0.18049499204167152`"}], ",", 
-     RowBox[{"-", "0.23808596732553317`"}]}], "}"}], ",", 
-   "0.000012196975190475855`"}], "]"}]], "Print",
- CellChangeTimes->{3.929202448325444*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 245, 122, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902197143485*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"082895b3-3c38-43be-9879-4d4ed255d6c8"],
+In[218]:=",ExpressionUUID->"8c66f3a4-13a1-4e2f-b41e-fa610ee14eed"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "188.147864213958`"}], "+", 
-  RowBox[{"0.00007756331762129387`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202450688953*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299021972089853`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a5d541ce-9118-413c-a3fb-d051c5a5cd8e"],
+In[218]:=",ExpressionUUID->"fd34c658-2782-4f2f-bffb-0b47358110a8"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00003139528911996526`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.19909324860459623`", ",", "0.8447053528288316`", ",", 
-     RowBox[{"-", "0.15259722687927404`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", "0.8343847466251567`", "}"}], ",", "7.347720857031521`*^-7"}],
-   "]"}]], "Print",
- CellChangeTimes->{3.929202480271495*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299021972098837`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"008d0449-668b-415f-8be3-2ce69d71d165"],
+In[218]:=",ExpressionUUID->"3d7a08ac-1453-4ae9-8b20-7637f165c38a"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "30.855427954541497`"}], "+", 
-  RowBox[{"5.023701420544611`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292024838865547`*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_machine_\
+2.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902199475922*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c1fcfd87-27ad-472a-87cc-6e0527536695"],
+In[218]:=",ExpressionUUID->"4a91a2b7-78fc-474b-82da-50e50134de11"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"8.517665343581368`*^-10", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.47204088619924855`"}], ",", 
-     RowBox[{"-", "0.3212399077756654`"}], ",", "0.0960737952691786`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"-", "0.8422363558794715`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "2.0792860393288053`*^-7"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929202531064625*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 246, 123, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299022218551292`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"844ae9af-2b2d-4ab7-971e-58f69fbd465d"],
+In[218]:=",ExpressionUUID->"79e283b6-46ee-4eb0-a2f6-fc52c1f0c7a6"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"39.92510559861747`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00001522692930655922`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202536091166*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902221917159*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"1545ba45-e9cb-45ce-9b8f-424a5796817d"],
+In[218]:=",ExpressionUUID->"16c3ccdf-23c9-4f3d-9e8c-8c3b09e303a3"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00014325437092961943`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.5712950433995714`", ",", "0.08663805439998906`", ",", 
-     "0.46338023666043`", ",", 
-     RowBox[{"-", "0.33397193010571424`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.10060248035505712`", ",", "0.2356371646288376`", ",", 
-     "0.056573207539670094`"}], "}"}], ",", "4.657915602140571`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929202570382978*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902221917911*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"603f6c1e-9250-4e83-a355-a3fbaf163803"],
+In[218]:=",ExpressionUUID->"22301710-d355-4ca6-b2a2-ea61c8f0cf08"],
 
-Cell[BoxData[
- RowBox[{"159.49361947896898`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.000010572493173921233`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202574746962*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_machine_\
+3.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902224156164*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"48a49226-3805-4c7f-9344-a672defeb224"],
+In[218]:=",ExpressionUUID->"ef0639a9-ce3d-4308-93ba-ecff8adea9c2"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.000015957906157975028`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.10983392450717894`", ",", "0.7402327005723432`", ",", 
-     "0.44797758464699267`", ",", 
-     RowBox[{"-", "0.3731511002433793`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.07558406954044995`", ",", 
-     RowBox[{"-", "0.36467882734256785`"}], ",", 
-     RowBox[{"-", "0.2372604619803001`"}], ",", "0.22285610194854963`"}], 
-    "}"}], ",", "1.29266147809448`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.9292026109692907`*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 247, 124, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902242567747*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"2c254949-d362-421c-8158-3e2dea25c0da"],
+In[218]:=",ExpressionUUID->"c9150372-fe10-4ca1-b903-c046636661b2"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"87.7583125118833`", "\[VeryThinSpace]", "+", 
-  RowBox[{"3.488309412961062`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.92920261534608*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299022426478558`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"eb17bfb2-6ba0-4757-a3a4-145e154d6ca5"],
+In[218]:=",ExpressionUUID->"337453f6-b51c-43b5-a65f-0108b5a5f926"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"2.2031963657414256`*^-8", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.22316912041224285`"}], ",", 
-     RowBox[{"-", "0.19643306456913287`"}], ",", "0.7102453459515967`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.11465392572539751`"}], ",", 
-     RowBox[{"-", "0.15084817044637408`"}], ",", 
-     RowBox[{"-", "0.5112593154537414`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "9.614539952400723`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292026465178623`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902242648622*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"eaf63dff-5198-4576-a610-ee2186fb2169"],
+In[218]:=",ExpressionUUID->"53876369-19d6-4ab6-a8ac-19417ab55138"],
 
-Cell[BoxData[
- RowBox[{"112.14930382185271`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00010526173087260089`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202649949288*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_machine_\
+4.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902244937476*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"1fdfdb0e-9665-4ceb-85a9-2f01c47b8a87"],
+In[218]:=",ExpressionUUID->"fbd460a2-fe09-4a15-b493-7455f57c88a6"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"0.0005282005061185042`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.9999802163531619`", ",", 
-     RowBox[{"-", "0.4692064043200944`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"3", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.22626341704656014`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292026649215593`*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 248, 125, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902263728394*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"61e08186-4c8c-4dce-8a1f-77f40a3fa5f2"],
+In[218]:=",ExpressionUUID->"d42f3acb-f0c4-498e-a57f-440203d09d52"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "107.85896311929824`"}], "+", 
-  RowBox[{"0.0001221293450931425`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292026667589493`*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902263789743*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c58e9225-1456-437c-8cc3-6b4d97fa8d83"],
+In[218]:=",ExpressionUUID->"29139524-e9ee-4d7d-8067-583dfc551359"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"4.0785802287694484`*^-8", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.518118116050817`"}], ",", 
-     RowBox[{"-", "0.5248865274630781`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.4304021824748711`", ",", "0.40771621886318243`", ",", 
-     RowBox[{"-", "0.8495278909556985`"}], ",", 
-     RowBox[{"-", "0.44847652204558325`"}], ",", 
-     RowBox[{"-", "0.40107016859970074`"}], ",", "0.02921519268408401`"}], 
-    "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.0030203987676047234`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292027743371153`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902263790501*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"1af07b78-1593-4f9f-bbc6-19cc542f3ab4"],
+In[218]:=",ExpressionUUID->"33764221-82da-42f6-8b29-a72194eaa2d6"],
 
-Cell[BoxData[
- RowBox[{"243.94132652601144`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.0001571928821867281`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202777515669*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_machine_\
+5.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299022660295057`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"03d7192a-701c-49eb-bed3-8677d87cd760"],
+In[218]:=",ExpressionUUID->"4501c76e-5e1b-46f9-b5a7-3a37b6569b4a"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.000055614982243157924`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.13308022595328173`"}], ",", "0.2939930080972249`", ",", 
-     "0.3241352633709663`", ",", "0.1378300890629896`", ",", 
-     "0.201827945985132`", ",", "0.02394098551634846`"}], "}"}], ",", "1", 
-   ",", 
-   RowBox[{"{", "}"}], ",", "1.6165305669902624`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929202810712549*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 249, 126, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299022823035583`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c39f1053-6dce-49c1-82e5-88aac3654a21"],
+In[218]:=",ExpressionUUID->"83935f5e-7f02-4a99-908e-cc8418d8c3b8"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "27.939286976099382`"}], "+", 
-  RowBox[{"6.35641709481789`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202814402741*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902282378364*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"7f2e64ac-c02f-4f0a-bccb-e122f553a6cd"],
+In[218]:=",ExpressionUUID->"be935ffc-2902-473c-8513-d17093fe7c1f"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00015488455308117216`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.15454277081509796`", ",", "0.2655156913712599`", ",", 
-     "0.4288790643993471`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.5510848902735366`", ",", "0.2490789605200288`", ",", 
-     RowBox[{"-", "0.11631809976385489`"}]}], "}"}], ",", 
-   "5.200709688627697`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.9292028506589117`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902282379274*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"7bff22f2-6fea-403a-8976-4cb7dba83d49"],
+In[218]:=",ExpressionUUID->"6b515efd-1b2c-43db-a551-2352def07af4"],
 
-Cell[BoxData[
- RowBox[{"44.79563380846602`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.000017366038470787902`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202855181683*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_pv_\
+facade.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902284713785*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"656b49ac-0a4d-46db-b8b3-950561d4b47b"],
+In[218]:=",ExpressionUUID->"8f575a2f-0f07-4473-9e3e-f4af327d29d2"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00004110045268474578`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.8216964981453028`", ",", 
-     RowBox[{"-", "0.18659847541025865`"}], ",", "0.526264556794444`", ",", 
-     RowBox[{"-", "0.5197977668694698`"}], ",", "0.13898156961139274`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.2646132993515161`"}], ",", "0.4997583190764201`", ",", 
-     RowBox[{"-", "0.21660222047894256`"}], ",", "0.2291039744647515`"}], 
-    "}"}], ",", "1.9607438426291546`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.929202873088553*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 250, 127, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.92990231116372*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"9f3e1930-78b2-4037-9c83-a8f419dc1f58"],
+In[218]:=",ExpressionUUID->"170f791e-7300-4d86-af39-d23f08b90130"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"5.421522844159656`", "\[VeryThinSpace]", "+", 
-  RowBox[{"2.893981855518309`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.92920287507539*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299023112255583`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"033f0301-cfd7-499e-a3fa-593a871735f1"],
+In[218]:=",ExpressionUUID->"6f649811-a22e-4d9b-85cb-de5e26efd947"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.000049357475907060025`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.03537390082902014`", ",", "0.04554990190302429`", ",", 
-     "0.9619878313510143`", ",", 
-     RowBox[{"-", "0.02643179749986056`"}], ",", 
-     RowBox[{"-", "0.04347925750769276`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.129824667367261`", ",", "0.33561145865991054`", ",", 
-     RowBox[{"-", "0.5065076908728158`"}], ",", "0.17811252619403797`"}], 
-    "}"}], ",", "6.358129653695718`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.92920289856091*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902311226358*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"5dbf1d5d-00a2-400f-8e88-633867cbdc88"],
+In[218]:=",ExpressionUUID->"8828aca7-c4dc-4400-a95c-610ee919286c"],
 
-Cell[BoxData[
- RowBox[{"9.374315040751046`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.000031655621641537685`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202901589006*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_pv_roof.\
+png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902313524843*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"584750b6-86c7-414f-8fa5-815a20ff92db"],
+In[218]:=",ExpressionUUID->"ce73c590-c4c6-4396-aabf-29474b176ec1"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"0.`", ",", 
-   RowBox[{"{", "0.7560695302897816`", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "1.474557073627035`"}], ",", "0.7166962659060279`", ",", 
-     RowBox[{"-", "0.12580879052286084`"}], ",", 
-     RowBox[{"-", "0.023297638938411035`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "1.3096867422641796`*^-7"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292029316679*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 251, 128, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902346798518*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a7ce40b5-e6de-40eb-b966-3a9be15309aa"],
+In[218]:=",ExpressionUUID->"af2d95ed-3b6b-442b-8764-85424127c910"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"4.5613453020186885`", "\[VeryThinSpace]", "+", 
-  RowBox[{"4.903072459153482`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202934770433*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902346860577*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"48210fca-a631-4281-b897-7ef457795a34"],
+In[218]:=",ExpressionUUID->"1d1bd02e-1acf-4f38-92aa-070eb648154b"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "7.106726468060112`*^-10"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"0.1701274823440295`", ",", 
-     RowBox[{"-", "0.09250909441393244`"}], ",", "0.8955079753076893`", ",", 
-     RowBox[{"-", "0.26229503607815885`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "1.0765426574297714`"}], ",", "0.3685843892338285`", ",", 
-     RowBox[{"-", "0.9289468141329821`"}], ",", "1.0134346335135538`", ",", 
-     RowBox[{"-", "0.32717566857755315`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.0001476423166969462`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292029680568333`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902346861401*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"1beff5cc-dad9-489b-85ab-83578135bdd7"],
+In[218]:=",ExpressionUUID->"a916829f-db7e-4a54-9db3-8a31657f2244"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1534.6420919242933`"}], "+", 
-  RowBox[{"0.00029170203395505575`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292029711429977`*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_\
+refrigerator.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902349096035*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"37029981-1e4c-4c71-8624-c17bbf45ca54"],
+In[218]:=",ExpressionUUID->"952809b7-332b-4746-9afa-824956a700c7"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"1.8829184909014042`*^-8", ",", 
-   RowBox[{"{", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"-", "0.40686257134704146`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.00006085397149893616`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929202995850068*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 252, 129, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902368274126*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"fc356533-6d33-4e19-bed9-9106c4abc79d"],
+In[218]:=",ExpressionUUID->"1de92c43-cca7-4f84-8a20-ba9bda9d945f"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"268.03822702723295`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00012935964884970883`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929202998873682*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902368340795*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"2926337c-8422-4278-b4e3-41604594f4cd"],
+In[218]:=",ExpressionUUID->"83571100-e027-4c21-8979-5dcf8eeb5f76"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.0010266716221213764`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.3692342240765968`", ",", "0.3334303131275228`", ",", 
-     "0.6521858348158031`", ",", 
-     RowBox[{"-", "0.3070943560221537`"}], ",", 
-     RowBox[{"-", "0.2081049861697551`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.1704306495071615`", ",", "0.1119713312911497`", ",", 
-     RowBox[{"-", "0.25656643242293564`"}]}], "}"}], ",", 
-   "0.00004587960424209411`"}], "]"}]], "Print",
- CellChangeTimes->{3.929203016022724*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299023683420258`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"895e4c33-cc0f-4783-a622-7e14b03c5ed4"],
+In[218]:=",ExpressionUUID->"20b0019a-6b07-411e-9f3e-1ccc9f84c135"],
 
-Cell[BoxData[
- RowBox[{"300.6025562205868`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.0000807807578795597`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203017902994*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_industrial3_\
+ventilation.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902370682333*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"0cae56ab-bb35-4607-9afc-49bb724aa51a"],
+In[218]:=",ExpressionUUID->"ba7866ec-988f-489b-8e3c-82f9d83720d6"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "1.2204640944945154`*^-9"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.1648013161366071`"}], ",", 
-     RowBox[{"-", "0.15916215923930008`"}], ",", "0.8273562285047245`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.7901574677356379`"}], ",", "0.18686400105872386`", ",", 
-     RowBox[{"-", "0.8532152452943706`"}], ",", "0.7193278840473022`", ",", 
-     RowBox[{"-", "0.15930237984141354`"}], ",", 
-     RowBox[{"-", "0.011604709610524275`"}], ",", 
-     RowBox[{"-", "0.003050449043135527`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.00014105501677525467`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292030564990807`*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 253, 130, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299023872299757`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"361fcf05-a43a-44df-b758-64b3d269750c"],
+In[218]:=",ExpressionUUID->"c6e7054f-a7a8-4303-a62b-35c55f2e188a"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1596.3511299069733`"}], "+", 
-  RowBox[{"0.0003644970785366087`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203059603071*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902387291524*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"38c0bf08-2b10-4be4-adf9-023b17ab5559"],
+In[218]:=",ExpressionUUID->"ed6f951f-8e8a-49d2-8ed9-8a3844e21986"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00001537039001649949`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.14622082103269138`", ",", "0.7438706501989141`", ",", 
-     "0.6472747732710259`", ",", 
-     RowBox[{"-", "0.43794078932966146`"}], ",", 
-     RowBox[{"-", "0.050743474757679416`"}], ",", 
-     RowBox[{"-", "0.0998814638444214`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.24084524182824404`"}], ",", 
-     RowBox[{"-", "0.3659248528875027`"}], ",", 
-     RowBox[{"-", "0.34854266679354734`"}], ",", "0.4154782068009579`", ",", 
-     RowBox[{"-", "0.14148465307965938`"}], ",", "0.06622180689635036`"}], 
-    "}"}], ",", "1.3161604121185045`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.9292030729514647`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902387292356*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"ba675593-9484-4c9e-afe7-1734f56adcec"],
+In[218]:=",ExpressionUUID->"33cd9917-a68b-48fe-9222-53f064fed202"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "8.260120313306462`"}], "+", 
-  RowBox[{"5.1943547807503345`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203074589522*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_public1_grid_import.\
+png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299023893537617`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"388eabc5-9db3-414b-b999-728156feaf6e"],
+In[218]:=",ExpressionUUID->"637e385a-bec5-48e8-8d45-193f2c1388eb"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00001605416500933926`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.19815122451672096`", ",", "0.3551384636564965`", ",", 
-     "0.8640963654534216`", ",", 
-     RowBox[{"-", "0.17857782945450013`"}], ",", 
-     RowBox[{"-", "0.31336305923821245`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.1637245408795386`", ",", "0.21524602450821334`", ",", 
-     RowBox[{"-", "0.2606589892525451`"}]}], "}"}], ",", 
-   "7.495050734880863`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929203090442478*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 254, 131, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902394468903*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"bdb90a13-1e70-465a-a8bb-fd0d41a351a7"],
+In[218]:=",ExpressionUUID->"ba1bbb82-97b6-4bf5-979a-9901dfebfd16"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "4.076902363248912`"}], "+", 
-  RowBox[{"3.7131661380644512`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203092308639*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299023944927998`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c4aed55e-1731-4070-b3b7-5bddbecb7823"],
+In[218]:=",ExpressionUUID->"0b27b7e8-dd4e-4db3-9bf7-c33ffd0a8726"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00004256514632223375`", ",", 
-   RowBox[{"{", "0.9023440176319651`", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.4279524253509196`"}], ",", "0.1828498914292968`", ",", 
-     "0.01617247249214596`"}], "}"}], ",", "4.183680327747284`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.92920312254701*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902394493861*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"8e1a4389-b699-49e0-8553-03fb1733a0b4"],
+In[218]:=",ExpressionUUID->"ea7ba96c-69b9-485e-8323-0a5a4dcd6665"],
 
-Cell[BoxData[
- RowBox[{"11.359554768945223`", "\[VeryThinSpace]", "+", 
-  RowBox[{"7.198657985251383`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203126072596*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_public2_grid_import.\
+png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299023963618383`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"7b60b5ab-aa18-433c-8c86-a5d7f62dc4d9"],
+In[218]:=",ExpressionUUID->"2dac6083-ae3c-4295-90e6-d607e1aa67d0"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "1.0821579745032732`*^-9"}], ",", 
-   RowBox[{"{", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.3105959338230439`"}], ",", 
-     RowBox[{"-", "0.3267245501271314`"}], ",", "0.25269993742293173`", ",", 
-     RowBox[{"-", "0.10456797573673031`"}], ",", 
-     RowBox[{"-", "0.1219007598280109`"}], ",", "0.18796969377733577`", ",", 
-     RowBox[{"-", "0.091721154312709`"}], ",", 
-     RowBox[{"-", "0.16072955529805485`"}], ",", "0.18863920131545536`"}], 
-    "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.00001422958937040894`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292031896898746`*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 255, 132, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902397720418*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"a99545a9-d6a2-4481-9b32-4e816a5a842a"],
+In[218]:=",ExpressionUUID->"af0507ba-c45c-4547-93b2-a7c118421500"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[
- RowBox[{"176.22635224671998`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00008140959520209495`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203194356011*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902398049758*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"e9420e22-2c9a-4678-8408-be1a3dfc6171"],
+In[218]:=",ExpressionUUID->"7fd201d2-648d-49a8-831a-cf11b3b1e8ff"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"1.491750033763132`*^-9", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.4479157975141114`"}], ",", "0.015298074485524235`", ",", 
-     "0.1291951639970939`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"-", "0.6483890151386321`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "3.0981041192056197`*^-7"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929203215793857*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299023980506067`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"301bfbc1-b2c9-45df-89a6-d19e0cdad752"],
+In[218]:=",ExpressionUUID->"7b4f2840-765c-456f-9d1a-2383f8ef7313"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "10.87545863820731`"}], "+", 
-  RowBox[{"0.000011650671436570834`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203218066063*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_residential1_\
+dishwasher.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902399808329*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"e12dbeb4-a462-4377-a951-2bcf082fbba1"],
+In[218]:=",ExpressionUUID->"408f2a35-8aaa-40b1-baab-6effa4f3638a"]
+}, Open  ]],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00004305137660342571`", ",", 
-   RowBox[{"{", "0.872384316486396`", "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.13526135879266235`", ",", 
-     RowBox[{"-", "0.14069790734876456`"}]}], "}"}], ",", 
-   "1.8181639491018354`*^-6"}], "]"}]], "Print",
- CellChangeTimes->{3.929203244239799*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 256, 133, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.9299024208760967`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"0b641039-cf3e-4f11-a0be-03cc018db7ea"],
+In[218]:=",ExpressionUUID->"d5a5e4c5-3c51-4491-b6bd-fdbe2dc5cf44"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"19.894727550412917`", "\[VeryThinSpace]", "+", 
-  RowBox[{"5.300491870867692`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292032476505127`*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902420944706*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"84181e20-731a-4c8e-8fb2-ff12516ae292"],
+In[218]:=",ExpressionUUID->"42ac7b81-226a-493d-9569-aa1df854bb94"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "2.8483325937624335`*^-20"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"-", "0.5566302083388375`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.8761586323645257`"}], ",", "0.06700254167900499`", ",", 
-     "0.10172783227086557`", ",", 
-     RowBox[{"-", "0.016014071982825562`"}], ",", 
-     RowBox[{"-", "0.12076724845077566`"}], ",", "0.1659990166513625`", ",", 
-     RowBox[{"-", "0.07741418882389427`"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "1.9222389572038075`*^-7"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929203287585552*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902420945512*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"3aac5e3b-6037-4125-8f38-4b0b12adff09"],
+In[218]:=",ExpressionUUID->"4d5b7850-49cb-4b96-a068-4a4a7bde97c8"],
 
-Cell[BoxData[
- RowBox[{"8.04731242177259`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.000011595708302448611`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203290909608*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_residential1_\
+freezer.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902423219589*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"caf45966-3244-416b-9a16-afc1b75198dd"],
+In[218]:=",ExpressionUUID->"edde273e-0d23-4bcd-aeec-3b7de99297e5"]
+}, Open  ]],
 
-Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.000021134135070737026`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.594454892339351`", ",", "0.22009564057408473`"}], "}"}], ",", 
-   "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.16272371122764323`"}], ",", 
-     RowBox[{"-", "0.17792203794425654`"}]}], "}"}], ",", 
-   "8.344009237003947`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929203306599375*^9},
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.92990242981924*^9},
  CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"31039d76-fbee-4779-97ed-9a3861a9dd19"],
+  "Out[257]=",ExpressionUUID->"9dd3deda-3fed-4ede-b1dd-d721cd29ca95"],
 
-Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "3.78671189243677`"}], "+", 
-  RowBox[{"1.96501189391238`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203308801084*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_residential1_grid_\
+import.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.92990243207225*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"2bd7fe91-7c68-47f8-bb68-75ff1ad61da4"],
+In[218]:=",ExpressionUUID->"ff2b3ca5-15da-4066-8786-c216dc7aaea1"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.00002460588807126573`", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.9130800012635552`", ",", 
-     RowBox[{"-", "0.06752320865618759`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.4939300385494425`"}], ",", 
-     RowBox[{"-", "0.16825495028248885`"}]}], "}"}], ",", 
-   "4.6943129420489507`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929203325760827*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 258, 134, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902450383484*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"b4cbd906-d26d-48fd-89fa-70c04f4031c9"],
+In[218]:=",ExpressionUUID->"c2c1bbef-4af7-438c-a38a-d3a78d9cbb09"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"45.18818772192244`", "\[VeryThinSpace]", "+", 
-  RowBox[{"2.0155032130354497`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203328099038*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902450451239*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"e424ffc2-643a-4e7a-b805-784353d56973"],
+In[218]:=",ExpressionUUID->"223f74aa-6373-4551-bd84-c5e0d229866f"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "1.553041529369023`*^-9"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.014133632926722697`", ",", "0.4027656532365405`", ",", 
-     "0.017879144813013562`", ",", "0.2542029495778596`"}], "}"}], ",", "1", 
-   ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.07734134897612979`"}], ",", 
-     RowBox[{"-", "0.6988288639843221`"}], ",", 
-     RowBox[{"-", "0.009818411640220457`"}], ",", 
-     RowBox[{"-", "0.18078151194204292`"}], ",", "0.0026976142942819687`", 
-     ",", "0.09133885561130407`"}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "4.154607411649018`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.9292033581288643`*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299024504520607`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"59d52fd5-4454-45a6-9b50-6371076c1d69"],
+In[218]:=",ExpressionUUID->"c1362f12-0dea-45d9-9d1f-b204d9e850cb"],
 
-Cell[BoxData[
- RowBox[{"515.8940312813994`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.0000553623347567388`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203360753006*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_residential1_heat_\
+pump.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902452786528*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"8a3b3a43-ae59-4502-8569-9cfb55e30f6c"],
+In[218]:=",ExpressionUUID->"47b00d48-b421-463f-a832-c43553eca9d7"]
+}, Open  ]],
 
-Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{"7.140078373324715`*^-10", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.05308182612867086`"}], ",", "0.08997937556103133`", ",", 
-     "0.8045956151156837`", ",", 
-     RowBox[{"-", "0.001502262671303712`"}], ",", 
-     RowBox[{"-", "0.13290456734355377`"}], ",", "0.06229199004690544`"}], 
-    "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.11516705566833209`"}], ",", 
-     RowBox[{"-", "0.5690959216824271`"}], ",", 
-     RowBox[{"-", "0.5398673245832243`"}], ",", 
-     RowBox[{"-", "0.040317740153949684`"}], ",", "0.30102210446682204`"}], 
-    "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "7.3989207620092565`*^-6"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.929203403253441*^9},
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.929902468846121*^9},
  CellLabel->
-  "During evaluation of \
-In[83]:=",ExpressionUUID->"7e888bf7-989d-4ba0-88b1-0f3dd4c1dc41"],
+  "Out[259]=",ExpressionUUID->"6d4ec91e-d9e6-4e84-819e-25b24e7a8644"],
 
-Cell[BoxData[
- RowBox[{"1093.9786729614189`", "\[VeryThinSpace]", "+", 
-  RowBox[{"0.00008034673793778623`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203406586608*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_residential1_pv.png\
+\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.9299024710984507`*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"c88d9938-7686-4b59-9072-67ac642c8d3f"],
+In[218]:=",ExpressionUUID->"6d24eaca-f821-42a3-8308-6ef45b1ca866"],
 
 Cell[BoxData[
- RowBox[{"SARIMAProcess", "[", 
-  RowBox[{
-   RowBox[{"-", "5.717234194267573`*^-10"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"-", "0.44089379688726227`"}], ",", "0.33592328807181093`", ",", 
-     "0.8648543016536886`", ",", "0.3167538569795829`", ",", 
-     RowBox[{"-", "0.44573542871871163`"}]}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.169322788694317`", ",", 
-     RowBox[{"-", "0.5868017234747149`"}], ",", 
-     RowBox[{"-", "0.706739757355018`"}], ",", 
-     RowBox[{"-", "0.15606699915305655`"}], ",", "0.4163577983613872`"}], 
-    "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{"1", ",", 
-     RowBox[{"{", "}"}], ",", "1", ",", 
-     RowBox[{"{", "}"}]}], "}"}], ",", "0.000023548696098765356`"}], 
-  "]"}]], "Print",
- CellChangeTimes->{3.92920344262642*^9},
+ TemplateBox[{
+  "Set", "write", 
+   "\"Tag \\!\\(\\*RowBox[{\\\"CompoundExpression\\\"}]\\) in \
+\\!\\(\\*RowBox[{RowBox[{\\\"process\\\", \\\"=\\\", RowBox[{\\\"Normal\\\", \
+\\\"[\\\", \\\"atsm\\\", \\\"]\\\"}]}], \\\";\\\", \\\"model\\\"}]\\) is \
+Protected.\"", 2, 260, 135, 29809731177576449535, "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.929902496817285*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"adc153a0-1072-4eac-bb90-d0c201288c9c"],
+In[218]:=",ExpressionUUID->"d86567ce-fa85-4fdf-b413-02ef399ec558"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{
-  RowBox[{"-", "1282.9739729721518`"}], "+", 
-  RowBox[{"0.0002925404677133323`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929203445894063*^9},
+ RowBox[{"model", "[", "\<\"BestFit\"\>", "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902496823585*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"93b86519-b2b9-4bf9-a5f6-2d6b1a900095"],
+In[218]:=",ExpressionUUID->"4cff9326-158c-40ef-b061-efd84cb9d8fc"],
 
 Cell[BoxData[
- RowBox[{"ARIMAProcess", "[", 
-  RowBox[{"0.000029967886319551423`", ",", 
-   RowBox[{"{", 
-    RowBox[{
-    "0.05556569546098401`", ",", "0.0030404026558820446`", ",", 
-     "0.6036081122356551`"}], "}"}], ",", "1", ",", 
-   RowBox[{"{", 
-    RowBox[{"0.5320559009880587`", ",", "0.3265504953939422`", ",", 
-     RowBox[{"-", "0.25776584839654126`"}], ",", 
-     RowBox[{"-", "0.10745365068289237`"}], ",", 
-     RowBox[{"-", "0.04790906531131955`"}], ",", 
-     RowBox[{"-", "0.024747294089645225`"}]}], "}"}], ",", 
-   "5.969719787495624`*^-7"}], "]"}]], "Print",
- CellChangeTimes->{3.929203465007248*^9},
+ RowBox[{"CovarianceFunction", "[", 
+  RowBox[{"process", ",", "s", ",", "t"}], "]"}]], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902496824404*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"567fbd5c-a5c3-4ca6-bddd-ba633b7d1185"],
+In[218]:=",ExpressionUUID->"b1bc1dfa-d000-47ed-8af0-ced783f916a6"],
 
-Cell[BoxData[
- RowBox[{"0.6418417797917154`", "\[VeryThinSpace]", "+", 
-  RowBox[{"1.4144013984773845`*^-6", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.9292034673089743`*^9},
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/opsd.household/images/\
+root_opsd_household_household_data_1min_singleindex-DE_KN_residential1_\
+washing_machine.png\"\>"], "Print",
+ CellChangeTimes->{3.929201662205995*^9, 3.929900081962676*^9, 
+  3.929902499410042*^9},
  CellLabel->
   "During evaluation of \
-In[83]:=",ExpressionUUID->"3ef867db-f3fc-42a0-93e5-5e4741a1c399"]
+In[218]:=",ExpressionUUID->"f271a03f-23c5-424a-a5bd-e95ebdc3e0d8"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -2635,144 +2134,203 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 29436, 711, 2465, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+Cell[580, 22, 29485, 712, 2445, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+Cell[30068, 736, 376, 7, 42, "Print",ExpressionUUID->"d77e7be8-f1b7-4e25-b22c-412f2e00f62e"],
+Cell[30447, 745, 514, 11, 28, "Message",ExpressionUUID->"2ea82580-e2e7-4e8d-87f5-c0120619e95f"],
 Cell[CellGroupData[{
-Cell[30041, 737, 978, 23, 45, "Print",ExpressionUUID->"15682dc0-4a41-471b-bf60-026eee8aae69"],
-Cell[31022, 762, 273, 7, 23, "Print",ExpressionUUID->"c1e99c66-0c88-4695-b68e-1e2a9d166e74"],
-Cell[31298, 771, 663, 18, 25, "Print",ExpressionUUID->"3ebd1513-6602-4876-9ec9-ea07b3201187"],
-Cell[31964, 791, 277, 7, 23, "Print",ExpressionUUID->"a281edce-99db-4396-919a-a13a720c5f5a"],
-Cell[32244, 800, 662, 18, 25, "Print",ExpressionUUID->"640af1a8-84da-4a53-8918-c20629470579"],
-Cell[32909, 820, 276, 7, 23, "Print",ExpressionUUID->"e914be67-a290-46fb-8b9b-0fb5e52d3579"],
-Cell[33188, 829, 610, 15, 23, "Print",ExpressionUUID->"4450bd3a-4a45-406b-bfa1-504cd7bebdc2"],
-Cell[33801, 846, 276, 7, 23, "Print",ExpressionUUID->"47d7876e-4300-4e63-926f-7ebd51bc5b90"],
-Cell[34080, 855, 657, 17, 23, "Print",ExpressionUUID->"a9aca314-50c3-44e1-bce3-649b58026f80"],
-Cell[34740, 874, 276, 7, 23, "Print",ExpressionUUID->"95f03479-7a42-4760-ac9f-3d10fa3adcde"],
-Cell[35019, 883, 582, 16, 25, "Print",ExpressionUUID->"4e62f510-bf29-47bb-917b-0f800bcd30d9"],
-Cell[35604, 901, 279, 6, 23, "Print",ExpressionUUID->"b28eeaa1-bb5d-4484-9348-f6def72b39eb"],
-Cell[35886, 909, 704, 20, 25, "Print",ExpressionUUID->"02747baa-0477-4316-9c21-a7b9188f478b"],
-Cell[36593, 931, 281, 6, 23, "Print",ExpressionUUID->"a741287d-2fee-4eb5-9d6c-a842b3b1a65e"],
-Cell[36877, 939, 759, 18, 42, "Print",ExpressionUUID->"de4b34df-e1da-493a-867f-31195e403eb7"],
-Cell[37639, 959, 278, 6, 23, "Print",ExpressionUUID->"f0900829-5cb2-4707-9fb6-5840fd2817ef"],
-Cell[37920, 967, 557, 14, 23, "Print",ExpressionUUID->"b841a238-a3f8-4599-a53f-fde63bc9cdb5"],
-Cell[38480, 983, 278, 6, 23, "Print",ExpressionUUID->"c7a32ba9-5d76-46a4-9322-f09018eca00a"],
-Cell[38761, 991, 785, 17, 42, "Print",ExpressionUUID->"ce4a7053-5199-4997-8b17-095970c22740"],
-Cell[39549, 1010, 277, 6, 23, "Print",ExpressionUUID->"f7d23d38-c6d9-4af4-b632-40dd1169e6c3"],
-Cell[39829, 1018, 783, 17, 45, "Print",ExpressionUUID->"02269118-a252-4d12-a027-0d0bbf750047"],
-Cell[40615, 1037, 280, 6, 23, "Print",ExpressionUUID->"c6d094e3-0e24-4a5e-a9c6-613064c36249"],
-Cell[40898, 1045, 603, 14, 23, "Print",ExpressionUUID->"be69b7be-b7b2-4bff-8ef9-85feffc293a2"],
-Cell[41504, 1061, 276, 7, 23, "Print",ExpressionUUID->"90ce13dc-0002-4b82-b922-e5294d2d216c"],
-Cell[41783, 1070, 392, 9, 23, "Print",ExpressionUUID->"d52fc2c3-6d3a-4bd2-99bb-188f451e652c"],
-Cell[42178, 1081, 278, 6, 23, "Print",ExpressionUUID->"6b7639f3-a85e-4eee-8b72-20c6682947c5"],
-Cell[42459, 1089, 520, 14, 23, "Print",ExpressionUUID->"60ec2f08-f13d-409f-9065-60ab5d94ea88"],
-Cell[42982, 1105, 275, 7, 23, "Print",ExpressionUUID->"d6f3b56f-7d7d-49da-877d-05a92119004f"],
-Cell[43260, 1114, 819, 21, 25, "Print",ExpressionUUID->"36d8de77-a137-43b9-b92b-48e84620fd62"],
-Cell[44082, 1137, 276, 7, 23, "Print",ExpressionUUID->"797044bc-c3d0-4ad5-aa8b-f604264183a4"],
-Cell[44361, 1146, 690, 19, 25, "Print",ExpressionUUID->"a2d91316-ab41-47ad-afae-dfa05ddc2d15"],
-Cell[45054, 1167, 278, 6, 23, "Print",ExpressionUUID->"fda8217f-ffa1-4164-84e7-90e35a40913d"],
-Cell[45335, 1175, 493, 11, 25, "Print",ExpressionUUID->"918d7c3b-2685-4243-acd6-449dd615c580"],
-Cell[45831, 1188, 279, 6, 23, "Print",ExpressionUUID->"08dcacb5-6769-4721-ad0c-fa902c767d68"],
-Cell[46113, 1196, 858, 20, 42, "Print",ExpressionUUID->"54e611a7-7717-47fd-b7cb-44cfa0a9f49b"],
-Cell[46974, 1218, 274, 7, 23, "Print",ExpressionUUID->"f29190ae-3eef-4166-bac8-b074c979e64f"],
-Cell[47251, 1227, 839, 20, 42, "Print",ExpressionUUID->"6d9996a9-f26f-4453-bd3e-40bff7e24df4"],
-Cell[48093, 1249, 276, 7, 23, "Print",ExpressionUUID->"2286ca0b-3b09-4ddb-a941-8d5b49d32091"],
-Cell[48372, 1258, 770, 21, 25, "Print",ExpressionUUID->"3626a80d-6db7-48b9-a23c-2638941181dd"],
-Cell[49145, 1281, 275, 7, 23, "Print",ExpressionUUID->"e2cb0dc1-d166-4c01-a07a-fbed17f32cbc"],
-Cell[49423, 1290, 660, 16, 23, "Print",ExpressionUUID->"dbc53a40-eb40-4686-9150-fb4d42ea1f1d"],
-Cell[50086, 1308, 275, 7, 23, "Print",ExpressionUUID->"92410fec-652b-40fc-9bc5-3d399072f2a1"],
-Cell[50364, 1317, 705, 16, 25, "Print",ExpressionUUID->"5814ae2c-b5a0-41f7-946d-bf6c269ba093"],
-Cell[51072, 1335, 278, 6, 23, "Print",ExpressionUUID->"ae221cc6-9402-45b4-a6db-3083d5272ff5"],
-Cell[51353, 1343, 587, 14, 25, "Print",ExpressionUUID->"c06b0eac-4615-4638-85bd-5d40b850da84"],
-Cell[51943, 1359, 278, 6, 23, "Print",ExpressionUUID->"5ec74f55-760a-4e4b-864e-1aa2d5b4ceba"],
-Cell[52224, 1367, 863, 22, 45, "Print",ExpressionUUID->"0fe85f4f-286d-44c1-8aa8-7c6d7b6eef09"],
-Cell[53090, 1391, 279, 7, 23, "Print",ExpressionUUID->"3a6c7a1d-daf8-49bf-a511-0b2de98ab30a"],
-Cell[53372, 1400, 1071, 25, 45, "Print",ExpressionUUID->"f859f4d4-d59d-495d-8d69-2ebd106adf1b"],
-Cell[54446, 1427, 276, 7, 23, "Print",ExpressionUUID->"d22f7e7f-0c3f-42d9-a8f8-6c5fe35c9ad1"],
-Cell[54725, 1436, 718, 17, 45, "Print",ExpressionUUID->"a6cd0b8e-f53d-4451-905c-9f704fcaf923"],
-Cell[55446, 1455, 275, 7, 23, "Print",ExpressionUUID->"228580c0-969d-4c28-a43d-2c3623add330"],
-Cell[55724, 1464, 590, 15, 23, "Print",ExpressionUUID->"b0dc2b06-5bad-498d-befd-c67b3960a3af"],
-Cell[56317, 1481, 277, 6, 23, "Print",ExpressionUUID->"7f87e790-d6f7-4b13-9089-47b2ef98bfc2"],
-Cell[56597, 1489, 650, 14, 23, "Print",ExpressionUUID->"31e7af68-aaa4-4173-ab0c-a0620e7e1ef7"],
-Cell[57250, 1505, 276, 7, 23, "Print",ExpressionUUID->"70366a05-fee1-412a-8440-2e6e4aeed7f4"],
-Cell[57529, 1514, 694, 17, 23, "Print",ExpressionUUID->"2066063e-e5dc-4a3d-9e79-6d8e2e0c956f"],
-Cell[58226, 1533, 276, 6, 23, "Print",ExpressionUUID->"6543929a-e207-49ce-acb8-5898763866f0"],
-Cell[58505, 1541, 708, 17, 45, "Print",ExpressionUUID->"a92d8897-b6d0-488f-aa82-24999c5c9eb4"],
-Cell[59216, 1560, 278, 6, 23, "Print",ExpressionUUID->"40d9103c-3b41-4e8a-8883-c909aee7410f"],
-Cell[59497, 1568, 706, 16, 25, "Print",ExpressionUUID->"95ee10e5-b357-4553-b426-22d0ab567e13"],
-Cell[60206, 1586, 275, 7, 23, "Print",ExpressionUUID->"5dc86136-b003-4951-a808-d2bf7e56ee89"],
-Cell[60484, 1595, 529, 13, 23, "Print",ExpressionUUID->"76ccebc2-ae7e-46c7-a8ea-c0f9e83eadfa"],
-Cell[61016, 1610, 279, 7, 23, "Print",ExpressionUUID->"a1e265d3-751d-4b6d-b6be-63b60ce79f11"],
-Cell[61298, 1619, 1082, 26, 45, "Print",ExpressionUUID->"9f8d5abb-e98d-4ce2-9c4d-43ceaab1f575"],
-Cell[62383, 1647, 272, 7, 23, "Print",ExpressionUUID->"c29c2806-4c0e-4e46-859a-cde660b171a8"],
-Cell[62658, 1656, 676, 18, 25, "Print",ExpressionUUID->"5d19922c-c208-4be2-999a-603a20779604"],
-Cell[63337, 1676, 281, 6, 23, "Print",ExpressionUUID->"7ffb25b7-4385-4cf5-bb8e-d13e91536a18"],
-Cell[63621, 1684, 601, 14, 25, "Print",ExpressionUUID->"c02fc1eb-1127-4a60-b991-13398a39c820"],
-Cell[64225, 1700, 277, 7, 23, "Print",ExpressionUUID->"4157ae5f-29da-4639-9969-56d17adeffc5"],
-Cell[64505, 1709, 536, 15, 25, "Print",ExpressionUUID->"086fb7d3-2a1e-43bc-a239-511c99eaa167"],
-Cell[65044, 1726, 278, 7, 23, "Print",ExpressionUUID->"a6908d7e-4aca-4631-933e-60744c9e03e5"],
-Cell[65325, 1735, 675, 16, 25, "Print",ExpressionUUID->"659054c9-72e5-4c3d-8451-c16804bd064e"],
-Cell[66003, 1753, 275, 7, 23, "Print",ExpressionUUID->"6127382e-7b64-4c6d-9596-fc49d2cef823"],
-Cell[66281, 1762, 463, 11, 25, "Print",ExpressionUUID->"377bed46-b9a9-4eea-858e-d49313cdaa6c"],
-Cell[66747, 1775, 278, 6, 23, "Print",ExpressionUUID->"dddef990-206f-407b-88ee-e86dfaac6872"],
-Cell[67028, 1783, 775, 18, 42, "Print",ExpressionUUID->"082895b3-3c38-43be-9879-4d4ed255d6c8"],
-Cell[67806, 1803, 275, 7, 23, "Print",ExpressionUUID->"a5d541ce-9118-413c-a3fb-d051c5a5cd8e"],
-Cell[68084, 1812, 489, 11, 25, "Print",ExpressionUUID->"008d0449-668b-415f-8be3-2ce69d71d165"],
-Cell[68576, 1825, 278, 7, 23, "Print",ExpressionUUID->"c1fcfd87-27ad-472a-87cc-6e0527536695"],
-Cell[68857, 1834, 657, 18, 25, "Print",ExpressionUUID->"844ae9af-2b2d-4ab7-971e-58f69fbd465d"],
-Cell[69517, 1854, 278, 6, 23, "Print",ExpressionUUID->"1545ba45-e9cb-45ce-9b8f-424a5796817d"],
-Cell[69798, 1862, 611, 16, 25, "Print",ExpressionUUID->"603f6c1e-9250-4e83-a355-a3fbaf163803"],
-Cell[70412, 1880, 280, 6, 23, "Print",ExpressionUUID->"48a49226-3805-4c7f-9344-a672defeb224"],
-Cell[70695, 1888, 676, 16, 25, "Print",ExpressionUUID->"2c254949-d362-421c-8158-3e2dea25c0da"],
-Cell[71374, 1906, 275, 6, 23, "Print",ExpressionUUID->"eb17bfb2-6ba0-4757-a3a4-145e154d6ca5"],
-Cell[71652, 1914, 775, 21, 25, "Print",ExpressionUUID->"eaf63dff-5198-4576-a610-ee2186fb2169"],
-Cell[72430, 1937, 279, 6, 23, "Print",ExpressionUUID->"1fdfdb0e-9665-4ceb-85a9-2f01c47b8a87"],
-Cell[72712, 1945, 557, 15, 23, "Print",ExpressionUUID->"61e08186-4c8c-4dce-8a1f-77f40a3fa5f2"],
-Cell[73272, 1962, 278, 7, 23, "Print",ExpressionUUID->"c58e9225-1456-437c-8cc3-6b4d97fa8d83"],
-Cell[73553, 1971, 830, 21, 45, "Print",ExpressionUUID->"1af07b78-1593-4f9f-bbc6-19cc542f3ab4"],
-Cell[74386, 1994, 278, 6, 23, "Print",ExpressionUUID->"03d7192a-701c-49eb-bed3-8677d87cd760"],
-Cell[74667, 2002, 564, 13, 25, "Print",ExpressionUUID->"c39f1053-6dce-49c1-82e5-88aac3654a21"],
-Cell[75234, 2017, 275, 7, 23, "Print",ExpressionUUID->"7f2e64ac-c02f-4f0a-bccb-e122f553a6cd"],
-Cell[75512, 2026, 574, 14, 25, "Print",ExpressionUUID->"7bff22f2-6fea-403a-8976-4cb7dba83d49"],
-Cell[76089, 2042, 279, 6, 23, "Print",ExpressionUUID->"656b49ac-0a4d-46db-b8b3-950561d4b47b"],
-Cell[76371, 2050, 715, 16, 25, "Print",ExpressionUUID->"9f3e1930-78b2-4037-9c83-a8f419dc1f58"],
-Cell[77089, 2068, 276, 6, 23, "Print",ExpressionUUID->"033f0301-cfd7-499e-a3fa-593a871735f1"],
-Cell[77368, 2076, 702, 16, 45, "Print",ExpressionUUID->"5dbf1d5d-00a2-400f-8e88-633867cbdc88"],
-Cell[78073, 2094, 279, 6, 23, "Print",ExpressionUUID->"584750b6-86c7-414f-8fa5-815a20ff92db"],
-Cell[78355, 2102, 660, 17, 25, "Print",ExpressionUUID->"a7ce40b5-e6de-40eb-b966-3a9be15309aa"],
-Cell[79018, 2121, 278, 6, 23, "Print",ExpressionUUID->"48210fca-a631-4281-b897-7ef457795a34"],
-Cell[79299, 2129, 872, 21, 45, "Print",ExpressionUUID->"1beff5cc-dad9-489b-85ab-83578135bdd7"],
-Cell[80174, 2152, 279, 7, 23, "Print",ExpressionUUID->"37029981-1e4c-4c71-8624-c17bbf45ca54"],
-Cell[80456, 2161, 516, 14, 25, "Print",ExpressionUUID->"fc356533-6d33-4e19-bed9-9106c4abc79d"],
-Cell[80975, 2177, 279, 6, 23, "Print",ExpressionUUID->"2926337c-8422-4278-b4e3-41604594f4cd"],
-Cell[81257, 2185, 669, 16, 23, "Print",ExpressionUUID->"895e4c33-cc0f-4783-a622-7e14b03c5ed4"],
-Cell[81929, 2203, 277, 6, 23, "Print",ExpressionUUID->"0cae56ab-bb35-4607-9afc-49bb724aa51a"],
-Cell[82209, 2211, 952, 24, 45, "Print",ExpressionUUID->"361fcf05-a43a-44df-b758-64b3d269750c"],
-Cell[83164, 2237, 276, 7, 23, "Print",ExpressionUUID->"38c0bf08-2b10-4be4-adf9-023b17ab5559"],
-Cell[83443, 2246, 876, 20, 45, "Print",ExpressionUUID->"ba675593-9484-4c9e-afe7-1734f56adcec"],
-Cell[84322, 2268, 276, 7, 23, "Print",ExpressionUUID->"388eabc5-9db3-414b-b999-728156feaf6e"],
-Cell[84601, 2277, 672, 16, 25, "Print",ExpressionUUID->"bdb90a13-1e70-465a-a8bb-fd0d41a351a7"],
-Cell[85276, 2295, 276, 7, 23, "Print",ExpressionUUID->"c4aed55e-1731-4070-b3b7-5bddbecb7823"],
-Cell[85555, 2304, 493, 12, 25, "Print",ExpressionUUID->"8e1a4389-b699-49e0-8553-03fb1733a0b4"],
-Cell[86051, 2318, 278, 6, 23, "Print",ExpressionUUID->"7b60b5ab-aa18-433c-8c86-a5d7f62dc4d9"],
-Cell[86332, 2326, 890, 22, 45, "Print",ExpressionUUID->"a99545a9-d6a2-4481-9b32-4e816a5a842a"],
-Cell[87225, 2350, 279, 6, 23, "Print",ExpressionUUID->"e9420e22-2c9a-4678-8408-be1a3dfc6171"],
-Cell[87507, 2358, 637, 17, 25, "Print",ExpressionUUID->"301bfbc1-b2c9-45df-89a6-d19e0cdad752"],
-Cell[88147, 2377, 277, 7, 23, "Print",ExpressionUUID->"e12dbeb4-a462-4377-a951-2bcf082fbba1"],
-Cell[88427, 2386, 462, 11, 25, "Print",ExpressionUUID->"0b641039-cf3e-4f11-a0be-03cc018db7ea"],
-Cell[88892, 2399, 280, 6, 23, "Print",ExpressionUUID->"84181e20-731a-4c8e-8fb2-ff12516ae292"],
-Cell[89175, 2407, 837, 21, 45, "Print",ExpressionUUID->"3aac5e3b-6037-4125-8f38-4b0b12adff09"],
-Cell[90015, 2430, 278, 6, 23, "Print",ExpressionUUID->"caf45966-3244-416b-9a16-afc1b75198dd"],
-Cell[90296, 2438, 531, 14, 25, "Print",ExpressionUUID->"31039d76-fbee-4779-97ed-9a3861a9dd19"],
-Cell[90830, 2454, 273, 7, 23, "Print",ExpressionUUID->"2bd7fe91-7c68-47f8-bb68-75ff1ad61da4"],
-Cell[91106, 2463, 548, 14, 25, "Print",ExpressionUUID->"b4cbd906-d26d-48fd-89fa-70c04f4031c9"],
-Cell[91657, 2479, 278, 6, 23, "Print",ExpressionUUID->"e424ffc2-643a-4e7a-b805-784353d56973"],
-Cell[91938, 2487, 908, 24, 45, "Print",ExpressionUUID->"59d52fd5-4454-45a6-9b50-6371076c1d69"],
-Cell[92849, 2513, 277, 6, 23, "Print",ExpressionUUID->"8a3b3a43-ae59-4502-8569-9cfb55e30f6c"],
-Cell[93129, 2521, 973, 25, 45, "Print",ExpressionUUID->"7e888bf7-989d-4ba0-88b1-0f3dd4c1dc41"],
-Cell[94105, 2548, 279, 6, 23, "Print",ExpressionUUID->"c88d9938-7686-4b59-9072-67ac642c8d3f"],
-Cell[94387, 2556, 909, 23, 45, "Print",ExpressionUUID->"adc153a0-1072-4eac-bb90-d0c201288c9c"],
-Cell[95299, 2581, 276, 7, 23, "Print",ExpressionUUID->"93b86519-b2b9-4bf9-a5f6-2d6b1a900095"],
-Cell[95578, 2590, 727, 17, 45, "Print",ExpressionUUID->"567fbd5c-a5c3-4ca6-bddd-ba633b7d1185"],
-Cell[96308, 2609, 281, 6, 23, "Print",ExpressionUUID->"3ef867db-f3fc-42a0-93e5-5e4741a1c399"]
+Cell[30986, 760, 269, 6, 23, "Print",ExpressionUUID->"5d4425b2-6532-40ae-bbb9-890c07b9ffd1"],
+Cell[31258, 768, 305, 7, 23, "Print",ExpressionUUID->"a2cfd52a-84a1-4b02-83fe-9ce8288652b5"],
+Cell[31566, 777, 369, 7, 23, "Print",ExpressionUUID->"269bacc7-4abe-4189-ae21-56518a04139b"]
+}, Open  ]],
+Cell[31950, 787, 516, 11, 28, "Message",ExpressionUUID->"0f529409-92e8-4c9a-9bbc-19d09550506e"],
+Cell[CellGroupData[{
+Cell[32491, 802, 269, 6, 23, "Print",ExpressionUUID->"b2d81ff2-cc2e-4c9d-a07f-2583e763f2c6"],
+Cell[32763, 810, 305, 7, 23, "Print",ExpressionUUID->"3fdf9a40-f1b0-496f-b179-03608b80af1e"],
+Cell[33071, 819, 371, 7, 23, "Print",ExpressionUUID->"1d34ba77-a0e4-43ed-a1a0-9b68c40ac756"]
+}, Open  ]],
+Cell[33457, 829, 514, 11, 28, "Message",ExpressionUUID->"d6389f75-59b6-4110-9590-51eeaa21688d"],
+Cell[CellGroupData[{
+Cell[33996, 844, 267, 6, 23, "Print",ExpressionUUID->"3700584b-1ec5-4ac4-bfd8-32e7d445dfff"],
+Cell[34266, 852, 305, 7, 23, "Print",ExpressionUUID->"f0b05900-d275-4972-b4a1-330eacc08581"],
+Cell[34574, 861, 376, 7, 42, "Print",ExpressionUUID->"0defe15d-341e-4ca3-9132-f264e89bbfa4"]
+}, Open  ]],
+Cell[34965, 871, 514, 11, 28, "Message",ExpressionUUID->"3a3fef24-dafc-4ba1-a860-6bf76b5d5f32"],
+Cell[CellGroupData[{
+Cell[35504, 886, 267, 6, 23, "Print",ExpressionUUID->"b7c948f4-2aea-4bc8-a920-22b13b92d25d"],
+Cell[35774, 894, 307, 7, 23, "Print",ExpressionUUID->"f61930ad-4a45-467f-a856-e9c80667f6c6"],
+Cell[36084, 903, 367, 7, 23, "Print",ExpressionUUID->"6f9dd56d-4827-41ac-ae02-79c14a66d355"]
+}, Open  ]],
+Cell[36466, 913, 514, 11, 28, "Message",ExpressionUUID->"f2eae8f1-f2c6-4069-a811-879ea7f9f038"],
+Cell[CellGroupData[{
+Cell[37005, 928, 267, 6, 23, "Print",ExpressionUUID->"49e5beed-c7ed-4122-b3bf-d446f17af2f5"],
+Cell[37275, 936, 305, 7, 23, "Print",ExpressionUUID->"e401c202-b847-4a7c-bec0-2c58af4093ee"],
+Cell[37583, 945, 379, 7, 42, "Print",ExpressionUUID->"a0d2f39d-03b2-4a82-b281-35bb2bcfacf8"]
+}, Open  ]],
+Cell[37977, 955, 516, 11, 28, "Message",ExpressionUUID->"0b9939c5-6290-4849-b17c-c1165666428d"],
+Cell[CellGroupData[{
+Cell[38518, 970, 267, 6, 23, "Print",ExpressionUUID->"a1bbf6e0-d62b-41a5-9808-4c1d823bb816"],
+Cell[38788, 978, 305, 7, 23, "Print",ExpressionUUID->"7295aecb-847a-4af3-9d77-f5819055dbd0"],
+Cell[39096, 987, 380, 7, 42, "Print",ExpressionUUID->"76b7593e-f8d5-438e-baa5-96665a7fffd1"]
+}, Open  ]],
+Cell[39491, 997, 514, 11, 28, "Message",ExpressionUUID->"ecfec8e5-b221-4984-b017-1d1420957d9a"],
+Cell[CellGroupData[{
+Cell[40030, 1012, 267, 6, 23, "Print",ExpressionUUID->"fb197596-5d3a-4351-b5df-0b28c32185a9"],
+Cell[40300, 1020, 305, 7, 23, "Print",ExpressionUUID->"a69450b1-72d6-44f9-99ca-d2098a14eb03"],
+Cell[40608, 1029, 377, 7, 42, "Print",ExpressionUUID->"df91b46e-541f-4307-8f51-c958f9d243f2"]
+}, Open  ]],
+Cell[41000, 1039, 513, 11, 28, "Message",ExpressionUUID->"4d82f68b-0182-45f8-936b-b2ac0b6c4b45"],
+Cell[CellGroupData[{
+Cell[41538, 1054, 266, 6, 23, "Print",ExpressionUUID->"c3c9f346-7857-4c4b-b845-ae34d4072dba"],
+Cell[41807, 1062, 305, 7, 23, "Print",ExpressionUUID->"01f687c2-a0f2-442d-8c47-efc46c8bdde9"],
+Cell[42115, 1071, 376, 7, 42, "Print",ExpressionUUID->"58efd84a-5b66-419e-abb9-1e8f2a8478f2"]
+}, Open  ]],
+Cell[42506, 1081, 514, 11, 28, "Message",ExpressionUUID->"8ad85f5a-601f-4a40-ac24-a9cfc55146d5"],
+Cell[CellGroupData[{
+Cell[43045, 1096, 267, 6, 23, "Print",ExpressionUUID->"0c50b843-e37e-4f40-8d0d-1f90191ff05c"],
+Cell[43315, 1104, 307, 7, 23, "Print",ExpressionUUID->"7c6a1302-2138-44d9-83a0-3c676ed080aa"],
+Cell[43625, 1113, 376, 7, 42, "Print",ExpressionUUID->"4daa1745-e331-49b1-a017-c79ddc134bae"]
+}, Open  ]],
+Cell[44016, 1123, 516, 11, 28, "Message",ExpressionUUID->"c31aa6e7-0c28-4fc2-9d70-9fbc510697f9"],
+Cell[CellGroupData[{
+Cell[44557, 1138, 267, 6, 23, "Print",ExpressionUUID->"ffa57b0c-854b-4294-b7c8-aab374204168"],
+Cell[44827, 1146, 305, 7, 23, "Print",ExpressionUUID->"e3f3cfc3-5492-419f-9ca0-89d3d1c0b841"],
+Cell[45135, 1155, 378, 7, 42, "Print",ExpressionUUID->"e85fa4c1-273f-40b6-8c1d-b5dc301cbd96"]
+}, Open  ]],
+Cell[45528, 1165, 514, 11, 28, "Message",ExpressionUUID->"23454cbf-c7b3-48bc-8e3b-0864160ddcba"],
+Cell[CellGroupData[{
+Cell[46067, 1180, 269, 6, 23, "Print",ExpressionUUID->"42e3972d-a4b1-4b62-b203-4d18de50e31b"],
+Cell[46339, 1188, 305, 7, 23, "Print",ExpressionUUID->"bda68964-c5c7-417f-a92d-0fcc35243196"],
+Cell[46647, 1197, 376, 7, 42, "Print",ExpressionUUID->"d40303ea-65fe-4381-ab9e-0024c0b4c397"]
+}, Open  ]],
+Cell[47038, 1207, 513, 11, 28, "Message",ExpressionUUID->"4f74f0c0-b00d-4e4a-8a46-5a0937d997eb"],
+Cell[CellGroupData[{
+Cell[47576, 1222, 269, 6, 23, "Print",ExpressionUUID->"c9320d44-6643-4f91-815d-f5fd8ca59171"],
+Cell[47848, 1230, 307, 7, 23, "Print",ExpressionUUID->"4d37b529-04d0-45f6-9cd9-b2b5c6c7af3e"],
+Cell[48158, 1239, 377, 7, 42, "Print",ExpressionUUID->"39e7a34e-3212-422f-af21-546f03e9b215"]
+}, Open  ]],
+Cell[48550, 1249, 514, 11, 28, "Message",ExpressionUUID->"b1a61eb6-9738-4f24-ad4b-42c11a04b83a"],
+Cell[CellGroupData[{
+Cell[49089, 1264, 267, 6, 23, "Print",ExpressionUUID->"ec4d29f9-ae3a-48e8-ac6a-32c794b25698"],
+Cell[49359, 1272, 305, 7, 23, "Print",ExpressionUUID->"fbbc6878-f482-43a9-a6ed-8e8d10971343"],
+Cell[49667, 1281, 382, 7, 42, "Print",ExpressionUUID->"d53b57c5-ce5d-457a-a140-ca88018fa86c"]
+}, Open  ]],
+Cell[50064, 1291, 516, 11, 28, "Message",ExpressionUUID->"b88cf31a-86dc-426d-9d1f-e06cb75ea18f"],
+Cell[CellGroupData[{
+Cell[50605, 1306, 267, 6, 23, "Print",ExpressionUUID->"29a2cec7-1d35-450a-b89b-8153c5445e2a"],
+Cell[50875, 1314, 305, 7, 23, "Print",ExpressionUUID->"fa3e4959-518d-40ba-bb0f-ad2844826475"],
+Cell[51183, 1323, 380, 7, 42, "Print",ExpressionUUID->"21999828-0fb6-45e7-afc0-52428fd65793"]
+}, Open  ]],
+Cell[51578, 1333, 516, 11, 28, "Message",ExpressionUUID->"78b577e0-df01-4738-890b-2324af532660"],
+Cell[CellGroupData[{
+Cell[52119, 1348, 269, 6, 23, "Print",ExpressionUUID->"9938179d-fa00-4f06-bc77-876f22c76b34"],
+Cell[52391, 1356, 305, 7, 23, "Print",ExpressionUUID->"51f5271b-072f-49fe-8a16-b184ffd24c3d"],
+Cell[52699, 1365, 377, 7, 42, "Print",ExpressionUUID->"749923e4-42bb-4660-936f-2fb4d0b2ee29"]
+}, Open  ]],
+Cell[53091, 1375, 514, 11, 28, "Message",ExpressionUUID->"0b5d78db-1210-48e5-9300-c56eed2ee55a"],
+Cell[CellGroupData[{
+Cell[53630, 1390, 267, 6, 23, "Print",ExpressionUUID->"7ccacc40-9cd3-4c61-895b-a8d7ee670d10"],
+Cell[53900, 1398, 307, 7, 23, "Print",ExpressionUUID->"bdba0d96-4eed-449a-afe6-a8df97a1c46a"],
+Cell[54210, 1407, 367, 7, 23, "Print",ExpressionUUID->"df836326-688c-4e37-985c-5bb3cc81fafa"]
+}, Open  ]],
+Cell[54592, 1417, 514, 11, 28, "Message",ExpressionUUID->"733258c1-5875-40ee-9774-b8a4d5ffa005"],
+Cell[CellGroupData[{
+Cell[55131, 1432, 267, 6, 23, "Print",ExpressionUUID->"d5274d7f-be8d-4739-951a-8b041e1278a7"],
+Cell[55401, 1440, 305, 7, 23, "Print",ExpressionUUID->"00d7b1d8-7644-4e2a-9162-2eb0f9c6646b"],
+Cell[55709, 1449, 376, 7, 42, "Print",ExpressionUUID->"e6f79cc0-7311-4cca-a786-caffd92a42bb"]
+}, Open  ]],
+Cell[56100, 1459, 514, 11, 28, "Message",ExpressionUUID->"1dd8196c-3b56-463c-9384-62edd1d180c3"],
+Cell[CellGroupData[{
+Cell[56639, 1474, 267, 6, 23, "Print",ExpressionUUID->"0cc1759b-37f1-42cf-bb9c-fc39e6edf54b"],
+Cell[56909, 1482, 307, 7, 23, "Print",ExpressionUUID->"04c62162-ab72-4c18-90fc-34329655bae8"],
+Cell[57219, 1491, 373, 7, 42, "Print",ExpressionUUID->"d31ade3a-714b-4b31-8a6f-0df07f0c682d"]
+}, Open  ]],
+Cell[57607, 1501, 514, 11, 28, "Message",ExpressionUUID->"8c66f3a4-13a1-4e2f-b41e-fa610ee14eed"],
+Cell[CellGroupData[{
+Cell[58146, 1516, 269, 6, 23, "Print",ExpressionUUID->"fd34c658-2782-4f2f-bffb-0b47358110a8"],
+Cell[58418, 1524, 307, 7, 23, "Print",ExpressionUUID->"3d7a08ac-1453-4ae9-8b20-7637f165c38a"],
+Cell[58728, 1533, 374, 7, 42, "Print",ExpressionUUID->"4a91a2b7-78fc-474b-82da-50e50134de11"]
+}, Open  ]],
+Cell[59117, 1543, 516, 11, 28, "Message",ExpressionUUID->"79e283b6-46ee-4eb0-a2f6-fc52c1f0c7a6"],
+Cell[CellGroupData[{
+Cell[59658, 1558, 267, 6, 23, "Print",ExpressionUUID->"16c3ccdf-23c9-4f3d-9e8c-8c3b09e303a3"],
+Cell[59928, 1566, 305, 7, 23, "Print",ExpressionUUID->"22301710-d355-4ca6-b2a2-ea61c8f0cf08"],
+Cell[60236, 1575, 374, 7, 42, "Print",ExpressionUUID->"ef0639a9-ce3d-4308-93ba-ecff8adea9c2"]
+}, Open  ]],
+Cell[60625, 1585, 514, 11, 28, "Message",ExpressionUUID->"c9150372-fe10-4ca1-b903-c046636661b2"],
+Cell[CellGroupData[{
+Cell[61164, 1600, 269, 6, 23, "Print",ExpressionUUID->"337453f6-b51c-43b5-a65f-0108b5a5f926"],
+Cell[61436, 1608, 305, 7, 23, "Print",ExpressionUUID->"53876369-19d6-4ab6-a8ac-19417ab55138"],
+Cell[61744, 1617, 374, 7, 42, "Print",ExpressionUUID->"fbd460a2-fe09-4a15-b493-7455f57c88a6"]
+}, Open  ]],
+Cell[62133, 1627, 514, 11, 28, "Message",ExpressionUUID->"d42f3acb-f0c4-498e-a57f-440203d09d52"],
+Cell[CellGroupData[{
+Cell[62672, 1642, 267, 6, 23, "Print",ExpressionUUID->"29139524-e9ee-4d7d-8067-583dfc551359"],
+Cell[62942, 1650, 305, 7, 23, "Print",ExpressionUUID->"33764221-82da-42f6-8b29-a72194eaa2d6"],
+Cell[63250, 1659, 376, 7, 42, "Print",ExpressionUUID->"4501c76e-5e1b-46f9-b5a7-3a37b6569b4a"]
+}, Open  ]],
+Cell[63641, 1669, 516, 11, 28, "Message",ExpressionUUID->"83935f5e-7f02-4a99-908e-cc8418d8c3b8"],
+Cell[CellGroupData[{
+Cell[64182, 1684, 267, 6, 23, "Print",ExpressionUUID->"be935ffc-2902-473c-8513-d17093fe7c1f"],
+Cell[64452, 1692, 305, 7, 23, "Print",ExpressionUUID->"6b515efd-1b2c-43db-a551-2352def07af4"],
+Cell[64760, 1701, 374, 7, 42, "Print",ExpressionUUID->"8f575a2f-0f07-4473-9e3e-f4af327d29d2"]
+}, Open  ]],
+Cell[65149, 1711, 513, 11, 28, "Message",ExpressionUUID->"170f791e-7300-4d86-af39-d23f08b90130"],
+Cell[CellGroupData[{
+Cell[65687, 1726, 269, 6, 23, "Print",ExpressionUUID->"6f649811-a22e-4d9b-85cb-de5e26efd947"],
+Cell[65959, 1734, 305, 7, 23, "Print",ExpressionUUID->"8828aca7-c4dc-4400-a95c-610ee919286c"],
+Cell[66267, 1743, 372, 7, 42, "Print",ExpressionUUID->"ce73c590-c4c6-4396-aabf-29474b176ec1"]
+}, Open  ]],
+Cell[66654, 1753, 514, 11, 28, "Message",ExpressionUUID->"af2d95ed-3b6b-442b-8764-85424127c910"],
+Cell[CellGroupData[{
+Cell[67193, 1768, 267, 6, 23, "Print",ExpressionUUID->"1d1bd02e-1acf-4f38-92aa-070eb648154b"],
+Cell[67463, 1776, 305, 7, 23, "Print",ExpressionUUID->"a916829f-db7e-4a54-9db3-8a31657f2244"],
+Cell[67771, 1785, 377, 7, 42, "Print",ExpressionUUID->"952809b7-332b-4746-9afa-824956a700c7"]
+}, Open  ]],
+Cell[68163, 1795, 514, 11, 28, "Message",ExpressionUUID->"1de92c43-cca7-4f84-8a20-ba9bda9d945f"],
+Cell[CellGroupData[{
+Cell[68702, 1810, 267, 6, 23, "Print",ExpressionUUID->"83571100-e027-4c21-8979-5dcf8eeb5f76"],
+Cell[68972, 1818, 307, 7, 23, "Print",ExpressionUUID->"20b0019a-6b07-411e-9f3e-1ccc9f84c135"],
+Cell[69282, 1827, 376, 7, 42, "Print",ExpressionUUID->"ba7866ec-988f-489b-8e3c-82f9d83720d6"]
+}, Open  ]],
+Cell[69673, 1837, 516, 11, 28, "Message",ExpressionUUID->"c6e7054f-a7a8-4303-a62b-35c55f2e188a"],
+Cell[CellGroupData[{
+Cell[70214, 1852, 267, 6, 23, "Print",ExpressionUUID->"ed6f951f-8e8a-49d2-8ed9-8a3844e21986"],
+Cell[70484, 1860, 305, 7, 23, "Print",ExpressionUUID->"33cd9917-a68b-48fe-9222-53f064fed202"],
+Cell[70792, 1869, 374, 7, 42, "Print",ExpressionUUID->"637e385a-bec5-48e8-8d45-193f2c1388eb"]
+}, Open  ]],
+Cell[71181, 1879, 514, 11, 28, "Message",ExpressionUUID->"ba1bbb82-97b6-4bf5-979a-9901dfebfd16"],
+Cell[CellGroupData[{
+Cell[71720, 1894, 269, 6, 23, "Print",ExpressionUUID->"0b27b7e8-dd4e-4db3-9bf7-c33ffd0a8726"],
+Cell[71992, 1902, 305, 7, 23, "Print",ExpressionUUID->"ea7ba96c-69b9-485e-8323-0a5a4dcd6665"],
+Cell[72300, 1911, 374, 7, 42, "Print",ExpressionUUID->"2dac6083-ae3c-4295-90e6-d607e1aa67d0"]
+}, Open  ]],
+Cell[72689, 1921, 514, 11, 28, "Message",ExpressionUUID->"af0507ba-c45c-4547-93b2-a7c118421500"],
+Cell[CellGroupData[{
+Cell[73228, 1936, 267, 6, 23, "Print",ExpressionUUID->"7fd201d2-648d-49a8-831a-cf11b3b1e8ff"],
+Cell[73498, 1944, 307, 7, 23, "Print",ExpressionUUID->"7b4f2840-765c-456f-9d1a-2383f8ef7313"],
+Cell[73808, 1953, 376, 7, 42, "Print",ExpressionUUID->"408f2a35-8aaa-40b1-baab-6effa4f3638a"]
+}, Open  ]],
+Cell[74199, 1963, 516, 11, 28, "Message",ExpressionUUID->"d5a5e4c5-3c51-4491-b6bd-fdbe2dc5cf44"],
+Cell[CellGroupData[{
+Cell[74740, 1978, 267, 6, 23, "Print",ExpressionUUID->"42ac7b81-226a-493d-9569-aa1df854bb94"],
+Cell[75010, 1986, 305, 7, 23, "Print",ExpressionUUID->"4d5b7850-49cb-4b96-a068-4a4a7bde97c8"],
+Cell[75318, 1995, 373, 7, 42, "Print",ExpressionUUID->"edde273e-0d23-4bcd-aeec-3b7de99297e5"]
+}, Open  ]],
+Cell[75706, 2005, 159, 3, 33, "Output",ExpressionUUID->"9dd3deda-3fed-4ede-b1dd-d721cd29ca95"],
+Cell[75868, 2010, 376, 7, 42, "Print",ExpressionUUID->"ff2b3ca5-15da-4066-8786-c216dc7aaea1"],
+Cell[76247, 2019, 514, 11, 28, "Message",ExpressionUUID->"c2c1bbef-4af7-438c-a38a-d3a78d9cbb09"],
+Cell[CellGroupData[{
+Cell[76786, 2034, 267, 6, 23, "Print",ExpressionUUID->"223f74aa-6373-4551-bd84-c5e0d229866f"],
+Cell[77056, 2042, 307, 7, 23, "Print",ExpressionUUID->"c1362f12-0dea-45d9-9d1f-b204d9e850cb"],
+Cell[77366, 2051, 375, 7, 42, "Print",ExpressionUUID->"47b00d48-b421-463f-a832-c43553eca9d7"]
+}, Open  ]],
+Cell[77756, 2061, 160, 3, 33, "Output",ExpressionUUID->"6d4ec91e-d9e6-4e84-819e-25b24e7a8644"],
+Cell[77919, 2066, 370, 7, 23, "Print",ExpressionUUID->"6d24eaca-f821-42a3-8308-6ef45b1ca866"],
+Cell[78292, 2075, 514, 11, 28, "Message",ExpressionUUID->"d86567ce-fa85-4fdf-b413-02ef399ec558"],
+Cell[CellGroupData[{
+Cell[78831, 2090, 267, 6, 23, "Print",ExpressionUUID->"4cff9326-158c-40ef-b061-efd84cb9d8fc"],
+Cell[79101, 2098, 305, 7, 23, "Print",ExpressionUUID->"b1bc1dfa-d000-47ed-8af0-ced783f916a6"],
+Cell[79409, 2107, 381, 7, 42, "Print",ExpressionUUID->"f271a03f-23c5-424a-a5bd-e95ebdc3e0d8"]
 }, Open  ]]
 }, Open  ]]
 }

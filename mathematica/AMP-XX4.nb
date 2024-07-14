@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[     72974,       1830]
-NotebookOptionsPosition[     67118,       1748]
-NotebookOutlinePosition[     67513,       1764]
-CellTagsIndexPosition[     67470,       1761]
+NotebookDataLength[     70224,       1765]
+NotebookOptionsPosition[     65600,       1696]
+NotebookOutlinePosition[     65994,       1712]
+CellTagsIndexPosition[     65951,       1709]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,7 +26,12 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{
    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_AMP_Vancouver_\>\""}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -57,8 +62,8 @@ Cell[BoxData[{
        RowBox[{"unitsList", "=", 
         RowBox[{"{", 
          RowBox[{
-         "\"\<unix_ts\>\"", ",", "\"\<counter\>\"", ",", "\"\<avg_rate\>\"", 
-          ",", "\"\<inst_rate\>\""}], "}"}]}], ";", "\n", 
+         "\"\<unix_ts\>\"", ",", "\"\<Counter\>\"", ",", "\"\<Avg_rate\>\"", 
+          ",", "\"\<Inst_rate\>\""}], "}"}]}], ";", "\n", 
        RowBox[{"xtime", "=", 
         RowBox[{"zdataset", "[", 
          RowBox[{"[", 
@@ -80,7 +85,9 @@ Cell[BoxData[{
              "&&", " ", 
              RowBox[{"z", "==", "4"}]}], ",", 
             RowBox[{"Continue", "[", "]"}], ",", 
-            RowBox[{"Nothing", "[", "]"}]}], "]"}], ";", 
+            RowBox[{"Nothing", "[", "]"}]}], "]"}], ";", "  ", 
+          RowBox[{"(*", " ", 
+           RowBox[{"has", " ", "no", " ", "Inst_rate"}], " ", "*)"}], 
           "\[IndentingNewLine]", 
           RowBox[{"dataset", "=", 
            RowBox[{"Select", "[", 
@@ -132,24 +139,31 @@ Cell[BoxData[{
                   RowBox[{"[", "z", "]"}], "]"}]}], "}"}]}], ",", 
               RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
           "\[IndentingNewLine]", 
+          RowBox[{"dataR", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{"timeseries", ",", 
+             RowBox[{"TemporalRegularity", "->", "True"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
           RowBox[{"atsm", "=", 
-           RowBox[{"TimeSeriesModelFit", "[", "timeseries", "]"}]}], ";", 
-          "\n", 
+           RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", 
+          "\[IndentingNewLine]", 
           RowBox[{"process", "=", 
            RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
           RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
           
           RowBox[{"Print", "[", 
            RowBox[{"CovarianceFunction", "[", 
-            RowBox[{"process", ",", "s", ",", "t"}], "]"}], "]"}], ";", 
-          "\[IndentingNewLine]", 
-          RowBox[{"Print", "[", 
-           RowBox[{"TimeSeriesForecast", "[", 
-            RowBox[{"process", ",", 
-             RowBox[{"dataset", "[", 
-              RowBox[{"[", 
-               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", " ", "2"}], 
-            "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+            RowBox[{"process", ",", "s", ",", "t"}], "]"}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"Print", "[", 
+            RowBox[{"TimeSeriesForecast", "[", 
+             RowBox[{"process", ",", 
+              RowBox[{"dataset", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", " ", "2"}], 
+             "]"}], "]"}], ","}], "*)"}], "\[IndentingNewLine]", 
          RowBox[{"{", 
           RowBox[{"z", ",", "2", ",", 
            RowBox[{"Length", "[", "unitsList", "]"}]}], "}"}]}], "]"}], 
@@ -229,8 +243,14 @@ Cell[BoxData[{
             RowBox[{"{", 
              RowBox[{"\"\<Time.offset\>\"", ",", "yaxis"}], "}"}]}], ",", 
            RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
+       RowBox[{"dataR", "=", 
+        RowBox[{"TimeSeries", "[", 
+         RowBox[{"timeseries", ",", 
+          RowBox[{"TemporalRegularity", "->", "True"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
        RowBox[{"atsm", "=", 
-        RowBox[{"TimeSeriesModelFit", "[", "timeseries", "]"}]}], ";", "\n", 
+        RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
        RowBox[{"process", "=", 
         RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
        RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
@@ -265,8 +285,16 @@ Cell[BoxData[{
   RowBox[{"(*", 
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
-     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
-  "\[IndentingNewLine]", "  "}], "\[IndentingNewLine]", 
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "fitTimeseriesModelWaterGas", "[", "\"\<NaturalGas_FRG.csv\>\"", "]"}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+  "fitTimeseriesModelWaterGas", "[", "\"\<NaturalGas_WHG.csv\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"fitTimeseriesModelWaterGas", "[", "\"\<Water_DWW.csv\>\"", "]"}], 
   ";"}], "\n", 
@@ -274,22 +302,14 @@ Cell[BoxData[{
   RowBox[{"fitTimeseriesModelWaterGas", "[", "\"\<Water_HTW.csv\>\"", "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"fitTimeseriesModelWaterGas", "[", "\"\<Water_WHW.csv\>\"", "]"}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
   RowBox[{
-  "fitTimeseriesModelWaterGas", "[", "\"\<NaturalGas_FRG.csv\>\"", "]"}], 
-  ";"}], "\n", 
- RowBox[{
-  RowBox[{
-   RowBox[{
-   "fitTimeseriesModelWaterGas", "[", "\"\<NaturalGas_WHG.csv\>\"", "]"}], 
-   ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"fitTimeseriesModelWaterGas", "[", "\"\<Water_WHW.csv\>\"", "]"}], 
+   ";"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
      "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
-  "\[IndentingNewLine]"}], "\n"}], "Input",
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.912428704688086*^9, 3.91242873650119*^9}, {
    3.912428894755269*^9, 3.912428922850176*^9}, 3.912429027022626*^9, {
    3.912429116662945*^9, 3.912429121765119*^9}, {3.912429234806164*^9, 
@@ -381,23 +401,29 @@ Cell[BoxData[{
    3.928879272807523*^9}, {3.9289069811766644`*^9, 3.9289069851282597`*^9}, {
    3.928907669361476*^9, 3.928907699814238*^9}, {3.928909099286016*^9, 
    3.928909122738463*^9}, {3.9289158553880997`*^9, 3.928915869698897*^9}, {
-   3.92891850448346*^9, 3.928918514383249*^9}, {3.9289186746600246`*^9, 
+   3.92891850448346*^9, 3.928918514383249*^9}, {3.928918674660024*^9, 
    3.928918675307871*^9}, 3.928918712694401*^9, {3.928919454587281*^9, 
    3.9289194920588837`*^9}, {3.928919525360474*^9, 3.928919568024289*^9}, {
    3.928919599093845*^9, 3.9289196034936113`*^9}, {3.928919642831555*^9, 
-   3.928919650579439*^9}, {3.92891969348037*^9, 3.9289197110640593`*^9}, {
+   3.928919650579439*^9}, {3.92891969348037*^9, 3.92891971106406*^9}, {
    3.92891974360181*^9, 3.928919744777969*^9}, {3.9289198756526814`*^9, 
-   3.9289199022030067`*^9}, {3.92891995485879*^9, 3.928919991302011*^9}},
- CellLabel->"In[73]:=",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+   3.928919902203007*^9}, {3.92891995485879*^9, 3.928919991302011*^9}, {
+   3.929462837204881*^9, 3.929462837778544*^9}, {3.929706699001753*^9, 
+   3.929706704385211*^9}, {3.9297069844311943`*^9, 3.929706987495229*^9}, {
+   3.929707041643658*^9, 3.929707050196496*^9}, 3.929707259449944*^9, {
+   3.929741370148621*^9, 3.929741371588118*^9}, {3.929773932103909*^9, 
+   3.929773938449201*^9}, 
+   3.929777774522232*^9},ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-\
+6665dd629657"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_DWW-counter.png\"\>"], "Print",
- CellChangeTimes->{3.928919996595172*^9},
+Vancouver_Water_DWW-Counter.png\"\>"], "Print",
+ CellChangeTimes->{3.929707270725531*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"d4e7d14e-7a35-461f-85f8-0532d37731b9"],
+In[1]:=",ExpressionUUID->"56015dd6-2948-4fb0-883e-c25854462e7c"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -407,10 +433,10 @@ Cell[BoxData[
     RowBox[{"0.28154799727866187`", ",", 
      RowBox[{"-", "0.00017871729656035963`"}]}], "}"}], ",", 
    "0.010155158437776209`"}], "]"}]], "Print",
- CellChangeTimes->{3.928920012389205*^9},
+ CellChangeTimes->{3.929707286616981*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"99629af5-2847-4a73-8be5-cb0fc474840a"],
+In[1]:=",ExpressionUUID->"e6026e8e-8886-41ab-b051-a4da19927508"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -683,23 +709,17 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.9289200124414043`*^9},
+ CellChangeTimes->{3.9297072866744967`*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"04ed1567-9960-4970-9e46-8fad321cbd1b"],
-
-Cell[BoxData["5782.679794872151`"], "Print",
- CellChangeTimes->{3.928920012915676*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"df2b2451-74ea-4268-8099-183bd7e2ce76"],
+In[1]:=",ExpressionUUID->"c325441b-78f1-4c35-a127-9cea2682f330"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_DWW-avg_rate.png\"\>"], "Print",
- CellChangeTimes->{3.92892001371738*^9},
+Vancouver_Water_DWW-Avg_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.929707287658827*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"235fa037-f898-4086-88c1-c157527da837"],
+In[1]:=",ExpressionUUID->"698ed950-e406-4bc6-8569-8c565a4cfe5a"],
 
 Cell[BoxData[
  RowBox[{"MAProcess", "[", 
@@ -708,10 +728,10 @@ Cell[BoxData[
     RowBox[{"0.2815479989264503`", ",", 
      RowBox[{"-", "0.0001787146715825504`"}]}], "}"}], ",", 
    "0.010155148794696051`"}], "]"}]], "Print",
- CellChangeTimes->{3.9289200304035397`*^9},
+ CellChangeTimes->{3.929707305035674*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"2a1ccd2c-49f3-449e-b5de-e38e866aefa6"],
+In[1]:=",ExpressionUUID->"0923912c-999b-4043-90ba-97e01a872659"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -762,23 +782,17 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.92892003040893*^9},
+ CellChangeTimes->{3.929707305041484*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"57796221-57fd-4e18-b80f-61d88df86653"],
-
-Cell[BoxData["0.005501785120291768`"], "Print",
- CellChangeTimes->{3.928920031515626*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"3bde2a44-52a5-4e8d-bac8-e7a104f9c6cb"],
+In[1]:=",ExpressionUUID->"ce2afa68-5d50-4888-9c99-9d806540c727"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_HTW-counter.png\"\>"], "Print",
- CellChangeTimes->{3.9289200350900097`*^9},
+Vancouver_Water_HTW-Counter.png\"\>"], "Print",
+ CellChangeTimes->{3.929707308801655*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"fb74db81-9a11-4e5c-b19c-b0642e35b615"],
+In[1]:=",ExpressionUUID->"4daa4c0e-5678-42dc-8de9-affe22aa03c6"],
 
 Cell[BoxData[
  RowBox[{"SARIMAProcess", "[", 
@@ -798,10 +812,10 @@ Cell[BoxData[
      RowBox[{"{", "}"}], ",", "1", ",", 
      RowBox[{"{", "}"}]}], "}"}], ",", "0.5385118677883527`"}], 
   "]"}]], "Print",
- CellChangeTimes->{3.928920066592372*^9},
+ CellChangeTimes->{3.929707341785859*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"d020d117-8bda-4936-b5d1-81be62808eef"],
+In[1]:=",ExpressionUUID->"30162646-ec99-4bad-a3e2-460659a4da16"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -823,23 +837,17 @@ Cell[BoxData[
        RowBox[{"{", "}"}], ",", "1", ",", 
        RowBox[{"{", "}"}]}], "}"}], ",", "0.5385118677883527`"}], "]"}], ",", 
    "s", ",", "t"}], "]"}]], "Print",
- CellChangeTimes->{3.928920066594392*^9},
+ CellChangeTimes->{3.929707341803705*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"6b7a2886-5644-44df-83ad-1963f5aaa31c"],
-
-Cell[BoxData["307985.15054277534`"], "Print",
- CellChangeTimes->{3.928920067090865*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"0800d7e7-db47-4f65-91c8-f2f948a44627"],
+In[1]:=",ExpressionUUID->"a3612c6d-3dbc-49aa-bd08-bdc3ebb16ab4"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_HTW-avg_rate.png\"\>"], "Print",
- CellChangeTimes->{3.928920068058733*^9},
+Vancouver_Water_HTW-Avg_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.929707342655686*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"e5215ba9-fa91-4165-b24d-6b724aee347f"],
+In[1]:=",ExpressionUUID->"0cb6f6ad-bb96-41b1-ba58-12e48b07f1ad"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -857,10 +865,10 @@ Cell[BoxData[
      RowBox[{"-", "0.282513387815592`"}], ",", "0.09238708736663369`", ",", 
      "0.16467253821572217`"}], "}"}], ",", "0.5374609133898282`"}], 
   "]"}]], "Print",
- CellChangeTimes->{3.928920100036573*^9},
+ CellChangeTimes->{3.929707375567913*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"05ee0f46-594f-4789-b2e0-dfeeee732cbc"],
+In[1]:=",ExpressionUUID->"bf133ede-89a8-494f-af65-3a423c0f8e07"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -938,23 +946,17 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.9289201000495987`*^9},
+ CellChangeTimes->{3.929707375576383*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"2f442440-a23f-48bc-81a5-97fd540a0398"],
-
-Cell[BoxData["0.08736284939801786`"], "Print",
- CellChangeTimes->{3.928920100564598*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"e05e882b-0685-4ee9-9105-7536345f9d77"],
+In[1]:=",ExpressionUUID->"e1cf9a3d-b277-4990-99b4-2c77b8516573"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_HTW-inst_rate.png\"\>"], "Print",
- CellChangeTimes->{3.928920101454867*^9},
+Vancouver_Water_HTW-Inst_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.929707376541772*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"78e636fe-f20c-46fe-afbb-3ba473ff19b4"],
+In[1]:=",ExpressionUUID->"6f98a17e-bd88-4349-abd1-abbbf0cc4903"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -973,10 +975,10 @@ Cell[BoxData[
      
      RowBox[{"-", "0.05062337629447989`"}]}], "}"}], ",", 
    "0.9367591507285876`"}], "]"}]], "Print",
- CellChangeTimes->{3.9289201308569317`*^9},
+ CellChangeTimes->{3.9297074059137363`*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"eba959dd-7f38-4bd5-8261-898cc5c7f861"],
+In[1]:=",ExpressionUUID->"272e6f82-4248-4565-a52d-4f6cf50b1713"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1043,23 +1045,17 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.9289201308595047`*^9},
+ CellChangeTimes->{3.929707405936263*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"4d7730ca-9bec-4d64-a95c-a2596ec90704"],
-
-Cell[BoxData["0.09731652151544501`"], "Print",
- CellChangeTimes->{3.928920131380604*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"755c168d-3d89-4e5e-bba1-03da4dbf5b48"],
+In[1]:=",ExpressionUUID->"487d0c29-85ad-43aa-ac8e-64abb4f6484c"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_WHW-counter.png\"\>"], "Print",
- CellChangeTimes->{3.928920135418735*^9},
+Vancouver_Water_WHW-Counter.png\"\>"], "Print",
+ CellChangeTimes->{3.92970740991269*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"29b65bb9-a5ca-4afa-bb5c-683958189d37"],
+In[1]:=",ExpressionUUID->"b9c58fa6-cdd2-4599-b932-536cffae4dc9"],
 
 Cell[BoxData[
  RowBox[{"SARIMAProcess", "[", 
@@ -1073,10 +1069,10 @@ Cell[BoxData[
      RowBox[{"{", "}"}], ",", "1", ",", 
      RowBox[{"{", "}"}]}], "}"}], ",", "1.8478179880571477`"}], 
   "]"}]], "Print",
- CellChangeTimes->{3.9289201544092007`*^9},
+ CellChangeTimes->{3.929707429567423*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"3eee15e6-ca2e-469b-b130-a0245e4091b5"],
+In[1]:=",ExpressionUUID->"e9291140-af06-42d4-af15-96dba82a51ff"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -1092,23 +1088,17 @@ Cell[BoxData[
        RowBox[{"{", "}"}], ",", "1", ",", 
        RowBox[{"{", "}"}]}], "}"}], ",", "1.8478179880571477`"}], "]"}], ",", 
    "s", ",", "t"}], "]"}]], "Print",
- CellChangeTimes->{3.9289201544110117`*^9},
+ CellChangeTimes->{3.929707429568932*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"ba155747-1f27-49a9-adab-298f9a689127"],
-
-Cell[BoxData["594169.6663167975`"], "Print",
- CellChangeTimes->{3.928920155028837*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"e829fac3-4176-4d9d-ab3c-f5fa0989008b"],
+In[1]:=",ExpressionUUID->"ccd816b3-e9d6-4a4a-b0f0-45d2c99ca416"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_WHW-avg_rate.png\"\>"], "Print",
- CellChangeTimes->{3.928920155956472*^9},
+Vancouver_Water_WHW-Avg_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.929707430458737*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"2338b136-de5a-4bb8-b337-3f292df15479"],
+In[1]:=",ExpressionUUID->"4d39318a-913d-4915-92cb-6d19ef9237f7"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1122,10 +1112,10 @@ Cell[BoxData[
      RowBox[{"-", "0.06879523098856745`"}], ",", 
      RowBox[{"-", "0.022312907019745833`"}]}], "}"}], ",", 
    "1.8106277217156264`"}], "]"}]], "Print",
- CellChangeTimes->{3.928920185396161*^9},
+ CellChangeTimes->{3.929707459779377*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"af0b84b1-5f4e-47ee-b4ff-7ef9f4e86220"],
+In[1]:=",ExpressionUUID->"e714d3b4-a5a8-43dc-9f2a-965e8528bfcd"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1193,23 +1183,17 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.928920185398877*^9},
+ CellChangeTimes->{3.929707459801833*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"f2fa9855-728e-4f02-bfc2-b8c2a30dc898"],
-
-Cell[BoxData["0.17923700595145642`"], "Print",
- CellChangeTimes->{3.928920185926263*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"3d273308-c0b3-41ac-8726-f35863e9a5d9"],
+In[1]:=",ExpressionUUID->"7399dede-53aa-4c97-9334-5a5d27c6baf5"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_Water_WHW-inst_rate.png\"\>"], "Print",
- CellChangeTimes->{3.9289201868274593`*^9},
+Vancouver_Water_WHW-Inst_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.9297074606881523`*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"9e336b13-3584-4a24-b764-7968c5874c15"],
+In[1]:=",ExpressionUUID->"957d4d3e-78da-4cc3-b079-f42c79aa00c9"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1225,10 +1209,10 @@ Cell[BoxData[
      RowBox[{"-", "0.0717250939314511`"}], ",", 
      RowBox[{"-", "0.015312024125852286`"}]}], "}"}], ",", 
    "3.657614247859911`"}], "]"}]], "Print",
- CellChangeTimes->{3.928920213544018*^9},
+ CellChangeTimes->{3.929707487898655*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"90971aed-9d76-4713-8d47-d160166fcf7a"],
+In[1]:=",ExpressionUUID->"b6e3bb17-6c70-4499-bb6d-5a8fd620f295"],
 
 Cell[BoxData[
  RowBox[{
@@ -1253,23 +1237,17 @@ Cell[BoxData[
      RowBox[{"2.0061319586480373`", " ", 
       RowBox[{"Abs", "[", 
        RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}]], "Print",
- CellChangeTimes->{3.928920213545957*^9},
+ CellChangeTimes->{3.929707487900298*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"22b3c0b8-a52a-4f76-893a-fe38bcb81492"],
-
-Cell[BoxData["0.27235991760268136`"], "Print",
- CellChangeTimes->{3.9289202140569887`*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"17430ced-eee1-4c7f-b3df-ce5e7519ccd4"],
+In[1]:=",ExpressionUUID->"f7a5b9d8-12fe-42e7-87a8-8d5c4b7b179f"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_NaturalGas_FRG-counter.png\"\>"], "Print",
- CellChangeTimes->{3.928920218024519*^9},
+Vancouver_NaturalGas_FRG-Counter.png\"\>"], "Print",
+ CellChangeTimes->{3.929707492029224*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"30a89f24-40d8-40bf-ad87-38dbe08e4677"],
+In[1]:=",ExpressionUUID->"064462bf-ee0f-49d8-ab48-f1a8029c4571"],
 
 Cell[BoxData[
  RowBox[{"SARIMAProcess", "[", 
@@ -1289,10 +1267,10 @@ Cell[BoxData[
      RowBox[{"{", "}"}], ",", "1", ",", 
      RowBox[{"{", "}"}]}], "}"}], ",", "8.307856005688945`"}], "]"}]], "Print",\
 
- CellChangeTimes->{3.928920241894273*^9},
+ CellChangeTimes->{3.929707516015376*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"5285a92e-5617-499d-bfae-d02cd6a854e0"],
+In[1]:=",ExpressionUUID->"997a832c-c289-45c1-92ee-0d5c11b4b7e7"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -1314,23 +1292,17 @@ Cell[BoxData[
        RowBox[{"{", "}"}], ",", "1", ",", 
        RowBox[{"{", "}"}]}], "}"}], ",", "8.307856005688945`"}], "]"}], ",", 
    "s", ",", "t"}], "]"}]], "Print",
- CellChangeTimes->{3.928920241896397*^9},
+ CellChangeTimes->{3.929707516017185*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"91a07371-9ba0-4737-9864-95c28fcb8455"],
-
-Cell[BoxData["1.0860318656861526`*^6"], "Print",
- CellChangeTimes->{3.928920242440461*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"bedfa320-cc15-454d-892a-e54ac82e69fd"],
+In[1]:=",ExpressionUUID->"5ecd1b07-b3ac-4a17-9c98-86d92de9cfcb"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_NaturalGas_FRG-avg_rate.png\"\>"], "Print",
- CellChangeTimes->{3.928920243379685*^9},
+Vancouver_NaturalGas_FRG-Avg_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.92970751688509*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"d771ee82-9197-4609-ae06-a7e1914e5fd1"],
+In[1]:=",ExpressionUUID->"fdbff099-bcf3-404a-a83b-08ec8fa27e6f"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1346,10 +1318,10 @@ Cell[BoxData[
      RowBox[{"-", "0.41644689109136435`"}], ",", "0.331373883979782`", ",", 
      RowBox[{"-", "0.08395780181824813`"}]}], "}"}], ",", 
    "24760.319391729052`"}], "]"}]], "Print",
- CellChangeTimes->{3.9289202755926943`*^9},
+ CellChangeTimes->{3.929707548596891*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"89e65dcc-b0c2-404e-ab54-980d01efd85b"],
+In[1]:=",ExpressionUUID->"4e5621b9-cd16-4c80-9ba6-585c4ae1a19e"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1422,57 +1394,51 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.928920275595647*^9},
+ CellChangeTimes->{3.929707548620762*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"aa4477b1-ba4a-4af2-ba96-f08294b80680"],
-
-Cell[BoxData["5.238317016126281`"], "Print",
- CellChangeTimes->{3.928920276135208*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"e3c162f1-b0b3-46b5-9b71-443e10750b26"],
+In[1]:=",ExpressionUUID->"3fd1cd9b-895e-4543-b059-9675b5b81948"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_NaturalGas_FRG-inst_rate.png\"\>"], "Print",
- CellChangeTimes->{3.928920277066515*^9},
+Vancouver_NaturalGas_FRG-Inst_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.929707549481848*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"9b429145-40de-4a25-a351-6a7cd22e6d41"]
+In[1]:=",ExpressionUUID->"fcef10b3-1579-466f-a83a-2aa32a918ae5"]
 }, Open  ]],
 
 Cell[BoxData[
  TemplateBox[{
   "TimeSeriesModelFit", "nmdlft", 
    "\"None of the candidate models could be successfully fitted to the data. \
-Try a different model family or set of candidate models.\"", 2, 83, 5, 
-   29803936027100253650, "Local"},
+Try a different model family or set of candidate models.\"", 2, 11, 1, 
+   29809165572221846575, "Local"},
   "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.9289202911187267`*^9},
+ CellChangeTimes->{3.929707563667955*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"f1f4250d-508d-48a2-a1a9-8a5d45a14a34"],
+In[1]:=",ExpressionUUID->"8a32bdd6-fda0-42b6-9ab7-2ca57ea54588"],
 
 Cell[BoxData[
  TemplateBox[{
   "TimeSeriesModelFit", "nmdlft", 
    "\"None of the candidate models could be successfully fitted to the data. \
-Try a different model family or set of candidate models.\"", 2, 83, 6, 
-   29803936027100253650, "Local"},
+Try a different model family or set of candidate models.\"", 2, 11, 2, 
+   29809165572221846575, "Local"},
   "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.928920300399135*^9},
+ CellChangeTimes->{3.929707572367152*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"057e429e-bbe8-4345-84dc-df19038299df"],
+In[1]:=",ExpressionUUID->"e29cd545-b63d-453e-8a07-c69cee3f1d44"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_NaturalGas_WHG-counter.png\"\>"], "Print",
- CellChangeTimes->{3.928921024481415*^9},
+Vancouver_NaturalGas_WHG-Counter.png\"\>"], "Print",
+ CellChangeTimes->{3.9297076188912687`*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"1a7ca8d7-5f76-4add-9204-dc5b0fd52048"],
+In[1]:=",ExpressionUUID->"ceaf4135-0023-4ee6-a343-8b17b7384e54"],
 
 Cell[BoxData[
  RowBox[{"SARIMAProcess", "[", 
@@ -1485,10 +1451,10 @@ Cell[BoxData[
      RowBox[{"{", "}"}], ",", "1", ",", 
      RowBox[{"{", "}"}]}], "}"}], ",", "45.0810124074218`"}], "]"}]], "Print",\
 
- CellChangeTimes->{3.928921066250053*^9},
+ CellChangeTimes->{3.929707637547418*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"ef4f938d-76c1-44a1-9872-b21a0934ce10"],
+In[1]:=",ExpressionUUID->"8f7858cb-d2b5-489a-a1f4-1ff63b0e2b2b"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -1503,23 +1469,17 @@ Cell[BoxData[
        RowBox[{"{", "}"}], ",", "1", ",", 
        RowBox[{"{", "}"}]}], "}"}], ",", "45.0810124074218`"}], "]"}], ",", 
    "s", ",", "t"}], "]"}]], "Print",
- CellChangeTimes->{3.9289210662515783`*^9},
+ CellChangeTimes->{3.929707637548893*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"dfb237da-ec85-4ee0-91a2-1af51161c608"],
-
-Cell[BoxData["3.0290750071199946`*^6"], "Print",
- CellChangeTimes->{3.928921066735361*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"a6997668-574f-4748-9e56-84e53f8aaeaf"],
+In[1]:=",ExpressionUUID->"e8a391c6-80cd-400d-b070-7ee003ab8016"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_NaturalGas_WHG-avg_rate.png\"\>"], "Print",
- CellChangeTimes->{3.928921067626405*^9},
+Vancouver_NaturalGas_WHG-Avg_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.929707638412134*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"6185fc79-3c78-4738-8d14-26a5a40efef6"],
+In[1]:=",ExpressionUUID->"77313c84-01c0-4cc1-a903-f51c3c6c4a50"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1537,10 +1497,10 @@ Cell[BoxData[
      RowBox[{"-", "0.142999077003943`"}], ",", "0.2657363792563722`", ",", 
      RowBox[{"-", "0.0736115245040048`"}]}], "}"}], ",", 
    "155394.66974409317`"}], "]"}]], "Print",
- CellChangeTimes->{3.928921097794594*^9},
+ CellChangeTimes->{3.929707668589793*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"9b36b7df-9f61-403c-a76f-525ba796e686"],
+In[1]:=",ExpressionUUID->"8be7eeef-0c6a-4b94-ae30-a19713139183"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1618,23 +1578,17 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.928921097858632*^9},
+ CellChangeTimes->{3.9297076685962887`*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"6595f5cb-4b7d-4c1b-86d6-bdee69b6f79d"],
-
-Cell[BoxData["42.41052996200534`"], "Print",
- CellChangeTimes->{3.928921098407701*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"85fb482e-85a4-479c-9450-13bcb9d5c001"],
+In[1]:=",ExpressionUUID->"da49d487-1e35-433d-a1a4-43691ae0c5a2"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
-Vancouver_NaturalGas_WHG-inst_rate.png\"\>"], "Print",
- CellChangeTimes->{3.928921099361683*^9},
+Vancouver_NaturalGas_WHG-Inst_rate.png\"\>"], "Print",
+ CellChangeTimes->{3.929707669502985*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"e3950d39-46c3-4eb0-b050-3740e1179260"],
+In[1]:=",ExpressionUUID->"ca1b4d6e-bd9f-44d3-b45a-a5c3b6f274b9"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1652,10 +1606,10 @@ Cell[BoxData[
      RowBox[{"-", "0.23821259725357039`"}], ",", "0.11977955123491564`", ",", 
      "0.013678245008553047`"}], "}"}], ",", "13040.459094949132`"}], 
   "]"}]], "Print",
- CellChangeTimes->{3.9289211214045897`*^9},
+ CellChangeTimes->{3.929707691237937*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"fd0f9242-e880-4b66-8e58-dc60448eb395"],
+In[1]:=",ExpressionUUID->"05d38817-919e-452f-99d7-818533ec6480"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1733,20 +1687,14 @@ Cell[BoxData[
   SelectWithContents->True,
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
- CellChangeTimes->{3.928921121452907*^9},
+ CellChangeTimes->{3.929707691239756*^9},
  CellLabel->
   "During evaluation of \
-In[73]:=",ExpressionUUID->"b0e7888d-d11e-409b-92a5-19ba4ba40890"],
-
-Cell[BoxData["2.470878632088289`"], "Print",
- CellChangeTimes->{3.9289211219333887`*^9},
- CellLabel->
-  "During evaluation of \
-In[73]:=",ExpressionUUID->"56011cf1-2f19-41ff-b6c7-7d37cc826152"]
+In[1]:=",ExpressionUUID->"fdb3511f-8954-4378-ae3a-dfb71e6a8cc8"]
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{948, 939.75},
+WindowSize->{948, 802.5},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
 FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
 StyleDefinitions->"Default.nb",
@@ -1764,65 +1712,52 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 18681, 375, 1188, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+Cell[422, 15, 19767, 401, 1187, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
 Cell[CellGroupData[{
-Cell[19128, 394, 270, 5, 23, "Print",ExpressionUUID->"d4e7d14e-7a35-461f-85f8-0532d37731b9"],
-Cell[19401, 401, 439, 11, 23, "Print",ExpressionUUID->"99629af5-2847-4a73-8be5-cb0fc474840a"],
-Cell[19843, 414, 9746, 274, 378, "Print",ExpressionUUID->"04ed1567-9960-4970-9e46-8fad321cbd1b"],
-Cell[29592, 690, 191, 4, 23, "Print",ExpressionUUID->"df2b2451-74ea-4268-8099-183bd7e2ce76"],
-Cell[29786, 696, 270, 5, 23, "Print",ExpressionUUID->"235fa037-f898-4086-88c1-c157527da837"],
-Cell[30059, 703, 397, 10, 23, "Print",ExpressionUUID->"2a1ccd2c-49f3-449e-b5de-e38e866aefa6"],
-Cell[30459, 715, 1746, 52, 70, "Print",ExpressionUUID->"57796221-57fd-4e18-b80f-61d88df86653"],
-Cell[32208, 769, 194, 4, 23, "Print",ExpressionUUID->"3bde2a44-52a5-4e8d-bac8-e7a104f9c6cb"],
-Cell[32405, 775, 272, 5, 23, "Print",ExpressionUUID->"fb74db81-9a11-4e5c-b19c-b0642e35b615"],
-Cell[32680, 782, 795, 21, 42, "Print",ExpressionUUID->"d020d117-8bda-4936-b5d1-81be62808eef"],
-Cell[33478, 805, 905, 23, 42, "Print",ExpressionUUID->"6b7a2886-5644-44df-83ad-1963f5aaa31c"],
-Cell[34386, 830, 192, 4, 23, "Print",ExpressionUUID->"0800d7e7-db47-4f65-91c8-f2f948a44627"],
-Cell[34581, 836, 271, 5, 23, "Print",ExpressionUUID->"e5215ba9-fa91-4165-b24d-6b724aee347f"],
-Cell[34855, 843, 770, 19, 42, "Print",ExpressionUUID->"05ee0f46-594f-4789-b2e0-dfeeee732cbc"],
-Cell[35628, 864, 2954, 79, 81, "Print",ExpressionUUID->"2f442440-a23f-48bc-81a5-97fd540a0398"],
-Cell[38585, 945, 193, 4, 23, "Print",ExpressionUUID->"e05e882b-0685-4ee9-9105-7536345f9d77"],
-Cell[38781, 951, 272, 5, 23, "Print",ExpressionUUID->"78e636fe-f20c-46fe-afbb-3ba473ff19b4"],
-Cell[39056, 958, 769, 20, 42, "Print",ExpressionUUID->"eba959dd-7f38-4bd5-8261-898cc5c7f861"],
-Cell[39828, 980, 2532, 68, 62, "Print",ExpressionUUID->"4d7730ca-9bec-4d64-a95c-a2596ec90704"],
-Cell[42363, 1050, 193, 4, 23, "Print",ExpressionUUID->"755c168d-3d89-4e5e-bba1-03da4dbf5b48"],
-Cell[42559, 1056, 270, 5, 23, "Print",ExpressionUUID->"29b65bb9-a5ca-4afa-bb5c-683958189d37"],
-Cell[42832, 1063, 553, 15, 25, "Print",ExpressionUUID->"3eee15e6-ca2e-469b-b130-a0245e4091b5"],
-Cell[43388, 1080, 651, 17, 25, "Print",ExpressionUUID->"ba155747-1f27-49a9-adab-298f9a689127"],
-Cell[44042, 1099, 191, 4, 23, "Print",ExpressionUUID->"e829fac3-4176-4d9d-ab3c-f5fa0989008b"],
-Cell[44236, 1105, 271, 5, 23, "Print",ExpressionUUID->"2338b136-de5a-4bb8-b337-3f292df15479"],
-Cell[44510, 1112, 612, 15, 23, "Print",ExpressionUUID->"af0b84b1-5f4e-47ee-b4ff-7ef9f4e86220"],
-Cell[45125, 1129, 2369, 69, 72, "Print",ExpressionUUID->"f2fa9855-728e-4f02-bfc2-b8c2a30dc898"],
-Cell[47497, 1200, 193, 4, 23, "Print",ExpressionUUID->"3d273308-c0b3-41ac-8726-f35863e9a5d9"],
-Cell[47693, 1206, 274, 5, 23, "Print",ExpressionUUID->"9e336b13-3584-4a24-b764-7968c5874c15"],
-Cell[47970, 1213, 680, 17, 23, "Print",ExpressionUUID->"90971aed-9d76-4713-8d47-d160166fcf7a"],
-Cell[48653, 1232, 938, 26, 25, "Print",ExpressionUUID->"22b3c0b8-a52a-4f76-893a-fe38bcb81492"],
-Cell[49594, 1260, 195, 4, 23, "Print",ExpressionUUID->"17430ced-eee1-4c7f-b3df-ce5e7519ccd4"],
-Cell[49792, 1266, 275, 5, 23, "Print",ExpressionUUID->"30a89f24-40d8-40bf-ad87-38dbe08e4677"],
-Cell[50070, 1273, 759, 21, 42, "Print",ExpressionUUID->"5285a92e-5617-499d-bfae-d02cd6a854e0"],
-Cell[50832, 1296, 870, 23, 42, "Print",ExpressionUUID->"91a07371-9ba0-4737-9864-95c28fcb8455"],
-Cell[51705, 1321, 195, 4, 23, "Print",ExpressionUUID->"bedfa320-cc15-454d-892a-e54ac82e69fd"],
-Cell[51903, 1327, 276, 5, 23, "Print",ExpressionUUID->"d771ee82-9197-4609-ae06-a7e1914e5fd1"],
-Cell[52182, 1334, 703, 17, 42, "Print",ExpressionUUID->"89e65dcc-b0c2-404e-ab54-980d01efd85b"],
-Cell[52888, 1353, 2767, 74, 81, "Print",ExpressionUUID->"aa4477b1-ba4a-4af2-ba96-f08294b80680"],
-Cell[55658, 1429, 191, 4, 23, "Print",ExpressionUUID->"e3c162f1-b0b3-46b5-9b71-443e10750b26"],
-Cell[55852, 1435, 277, 5, 23, "Print",ExpressionUUID->"9b429145-40de-4a25-a351-6a7cd22e6d41"]
+Cell[20214, 420, 269, 5, 23, "Print",ExpressionUUID->"56015dd6-2948-4fb0-883e-c25854462e7c"],
+Cell[20486, 427, 438, 11, 23, "Print",ExpressionUUID->"e6026e8e-8886-41ab-b051-a4da19927508"],
+Cell[20927, 440, 9745, 274, 378, "Print",ExpressionUUID->"c325441b-78f1-4c35-a127-9cea2682f330"],
+Cell[30675, 716, 270, 5, 23, "Print",ExpressionUUID->"698ed950-e406-4bc6-8569-8c565a4cfe5a"],
+Cell[30948, 723, 394, 10, 23, "Print",ExpressionUUID->"0923912c-999b-4043-90ba-97e01a872659"],
+Cell[31345, 735, 1746, 52, 70, "Print",ExpressionUUID->"ce2afa68-5d50-4888-9c99-9d806540c727"],
+Cell[33094, 789, 269, 5, 23, "Print",ExpressionUUID->"4daa4c0e-5678-42dc-8de9-affe22aa03c6"],
+Cell[33366, 796, 794, 21, 42, "Print",ExpressionUUID->"30162646-ec99-4bad-a3e2-460659a4da16"],
+Cell[34163, 819, 904, 23, 42, "Print",ExpressionUUID->"a3612c6d-3dbc-49aa-bd08-bdc3ebb16ab4"],
+Cell[35070, 844, 270, 5, 23, "Print",ExpressionUUID->"0cb6f6ad-bb96-41b1-ba58-12e48b07f1ad"],
+Cell[35343, 851, 769, 19, 42, "Print",ExpressionUUID->"bf133ede-89a8-494f-af65-3a423c0f8e07"],
+Cell[36115, 872, 2951, 79, 81, "Print",ExpressionUUID->"e1cf9a3d-b277-4990-99b4-2c77b8516573"],
+Cell[39069, 953, 271, 5, 23, "Print",ExpressionUUID->"6f98a17e-bd88-4349-abd1-abbbf0cc4903"],
+Cell[39343, 960, 768, 20, 42, "Print",ExpressionUUID->"272e6f82-4248-4565-a52d-4f6cf50b1713"],
+Cell[40114, 982, 2529, 68, 62, "Print",ExpressionUUID->"487d0c29-85ad-43aa-ac8e-64abb4f6484c"],
+Cell[42646, 1052, 268, 5, 23, "Print",ExpressionUUID->"b9c58fa6-cdd2-4599-b932-536cffae4dc9"],
+Cell[42917, 1059, 550, 15, 25, "Print",ExpressionUUID->"e9291140-af06-42d4-af15-96dba82a51ff"],
+Cell[43470, 1076, 648, 17, 25, "Print",ExpressionUUID->"ccd816b3-e9d6-4a4a-b0f0-45d2c99ca416"],
+Cell[44121, 1095, 270, 5, 23, "Print",ExpressionUUID->"4d39318a-913d-4915-92cb-6d19ef9237f7"],
+Cell[44394, 1102, 611, 15, 23, "Print",ExpressionUUID->"e714d3b4-a5a8-43dc-9f2a-965e8528bfcd"],
+Cell[45008, 1119, 2368, 69, 72, "Print",ExpressionUUID->"7399dede-53aa-4c97-9334-5a5d27c6baf5"],
+Cell[47379, 1190, 273, 5, 23, "Print",ExpressionUUID->"957d4d3e-78da-4cc3-b079-f42c79aa00c9"],
+Cell[47655, 1197, 679, 17, 23, "Print",ExpressionUUID->"b6e3bb17-6c70-4499-bb6d-5a8fd620f295"],
+Cell[48337, 1216, 937, 26, 25, "Print",ExpressionUUID->"f7a5b9d8-12fe-42e7-87a8-8d5c4b7b179f"],
+Cell[49277, 1244, 274, 5, 23, "Print",ExpressionUUID->"064462bf-ee0f-49d8-ab48-f1a8029c4571"],
+Cell[49554, 1251, 758, 21, 42, "Print",ExpressionUUID->"997a832c-c289-45c1-92ee-0d5c11b4b7e7"],
+Cell[50315, 1274, 869, 23, 42, "Print",ExpressionUUID->"5ecd1b07-b3ac-4a17-9c98-86d92de9cfcb"],
+Cell[51187, 1299, 274, 5, 23, "Print",ExpressionUUID->"fdbff099-bcf3-404a-a83b-08ec8fa27e6f"],
+Cell[51464, 1306, 700, 17, 42, "Print",ExpressionUUID->"4e5621b9-cd16-4c80-9ba6-585c4ae1a19e"],
+Cell[52167, 1325, 2766, 74, 81, "Print",ExpressionUUID->"3fd1cd9b-895e-4543-b059-9675b5b81948"],
+Cell[54936, 1401, 276, 5, 23, "Print",ExpressionUUID->"fcef10b3-1579-466f-a83a-2aa32a918ae5"]
 }, Open  ]],
-Cell[56144, 1443, 439, 10, 44, "Message",ExpressionUUID->"f1f4250d-508d-48a2-a1a9-8a5d45a14a34"],
-Cell[56586, 1455, 437, 10, 44, "Message",ExpressionUUID->"057e429e-bbe8-4345-84dc-df19038299df"],
+Cell[55227, 1409, 436, 10, 44, "Message",ExpressionUUID->"8a32bdd6-fda0-42b6-9ab7-2ca57ea54588"],
+Cell[55666, 1421, 436, 10, 44, "Message",ExpressionUUID->"e29cd545-b63d-453e-8a07-c69cee3f1d44"],
 Cell[CellGroupData[{
-Cell[57048, 1469, 275, 5, 23, "Print",ExpressionUUID->"1a7ca8d7-5f76-4add-9204-dc5b0fd52048"],
-Cell[57326, 1476, 512, 14, 23, "Print",ExpressionUUID->"ef4f938d-76c1-44a1-9872-b21a0934ce10"],
-Cell[57841, 1492, 611, 16, 23, "Print",ExpressionUUID->"dfb237da-ec85-4ee0-91a2-1af51161c608"],
-Cell[58455, 1510, 195, 4, 23, "Print",ExpressionUUID->"a6997668-574f-4748-9e56-84e53f8aaeaf"],
-Cell[58653, 1516, 276, 5, 23, "Print",ExpressionUUID->"6185fc79-3c78-4738-8d14-26a5a40efef6"],
-Cell[58932, 1523, 818, 19, 42, "Print",ExpressionUUID->"9b36b7df-9f61-403c-a76f-525ba796e686"],
-Cell[59753, 1544, 2939, 79, 81, "Print",ExpressionUUID->"6595f5cb-4b7d-4c1b-86d6-bdee69b6f79d"],
-Cell[62695, 1625, 191, 4, 23, "Print",ExpressionUUID->"85fb482e-85a4-479c-9450-13bcb9d5c001"],
-Cell[62889, 1631, 277, 5, 23, "Print",ExpressionUUID->"e3950d39-46c3-4eb0-b050-3740e1179260"],
-Cell[63169, 1638, 780, 19, 42, "Print",ExpressionUUID->"fd0f9242-e880-4b66-8e58-dc60448eb395"],
-Cell[63952, 1659, 2942, 79, 81, "Print",ExpressionUUID->"b0e7888d-d11e-409b-92a5-19ba4ba40890"],
-Cell[66897, 1740, 193, 4, 23, "Print",ExpressionUUID->"56011cf1-2f19-41ff-b6c7-7d37cc826152"]
+Cell[56127, 1435, 276, 5, 23, "Print",ExpressionUUID->"ceaf4135-0023-4ee6-a343-8b17b7384e54"],
+Cell[56406, 1442, 511, 14, 23, "Print",ExpressionUUID->"8f7858cb-d2b5-489a-a1f4-1ff63b0e2b2b"],
+Cell[56920, 1458, 608, 16, 23, "Print",ExpressionUUID->"e8a391c6-80cd-400d-b070-7ee003ab8016"],
+Cell[57531, 1476, 275, 5, 23, "Print",ExpressionUUID->"77313c84-01c0-4cc1-a903-f51c3c6c4a50"],
+Cell[57809, 1483, 817, 19, 42, "Print",ExpressionUUID->"8be7eeef-0c6a-4b94-ae30-a19713139183"],
+Cell[58629, 1504, 2940, 79, 81, "Print",ExpressionUUID->"da49d487-1e35-433d-a1a4-43691ae0c5a2"],
+Cell[61572, 1585, 276, 5, 23, "Print",ExpressionUUID->"ca1b4d6e-bd9f-44d3-b45a-a5c3b6f274b9"],
+Cell[61851, 1592, 777, 19, 42, "Print",ExpressionUUID->"05d38817-919e-452f-99d7-818533ec6480"],
+Cell[62631, 1613, 2941, 79, 81, "Print",ExpressionUUID->"fdb3511f-8954-4378-ae3a-dfb71e6a8cc8"]
 }, Open  ]]
 }, Open  ]]
 }

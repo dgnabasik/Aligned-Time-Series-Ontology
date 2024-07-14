@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     29659,        724]
-NotebookOptionsPosition[     29173,        707]
-NotebookOutlinePosition[     29576,        723]
-CellTagsIndexPosition[     29533,        720]
+NotebookDataLength[     40911,        981]
+NotebookOptionsPosition[     40110,        959]
+NotebookOutlinePosition[     40513,        975]
+CellTagsIndexPosition[     40470,        972]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -26,12 +26,12 @@ Cell[BoxData[{
   RowBox[{"ClearSystemCache", "[", "]"}], ";"}], "\n", 
  RowBox[{
   RowBox[{
-   RowBox[{"$HistoryLength", " ", "=", " ", "0"}], ";"}], 
-  "\[IndentingNewLine]", 
+   RowBox[{"$HistoryLength", " ", "=", " ", "0"}], ";"}], "\n", 
   RowBox[{"(*", 
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
-     "**", "**", "**", "**", "**", "**", "**"}], "******)"}]}], "\n", 
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{
@@ -616,64 +616,280 @@ Cell[BoxData[{
   RowBox[{"(*", 
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
-     "**", "**", "**", "**", "**", "**", "**"}], 
-   "******)"}]}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-  "PATHPREFIX", "=", 
-   "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"theFile", "=", "\"\<IoT_Motion_Light.csv\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"xdataset", "=", 
-   RowBox[{"Import", "[", 
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
     RowBox[{
+    "PATHPREFIX", "=", 
+     "\"\</home/david/Documents/digital-twins/ton.iot/processed/\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_toniot_synthetic_\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"theFile", "=", "\"\<IoT_Motion_Light.csv\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"xdataset", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
+       
+       RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+       RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+       RowBox[{"MissingDataRules", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"\"\<.\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}], ",", 
+          RowBox[{"\"\<\>\"", "->", 
+           RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"plotFile", "=", 
      RowBox[{"StringJoin", "[", 
-      RowBox[{"PATHPREFIX", ",", "theFile"}], "]"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], ",", 
-     RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
-     RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
-     RowBox[{"MissingDataRules", "->", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"\"\<.\>\"", "->", 
-         RowBox[{"Missing", "[", "]"}]}], ",", 
-        RowBox[{"\"\<\>\"", "->", 
-         RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"fieldName", "=", "\"\<Utc_timestamp\>\""}], 
-  ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"plotFile", "=", 
-   RowBox[{"StringJoin", "[", 
-    RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
-     RowBox[{"StringDrop", "[", 
-      RowBox[{"theFile", ",", 
-       RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", ",", 
-     "\"\<.png\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{
-   RowBox[{"fitLinearTimeseriesModel", "[", 
-    RowBox[{
-    "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
-     "plotFile"}], "]"}], ";"}], "\[IndentingNewLine]", 
+      RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+       RowBox[{"StringDrop", "[", 
+        RowBox[{"theFile", ",", 
+         RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+       ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fitLinearTimeseriesModel", "[", 
+     RowBox[{
+     "theFile", ",", " ", "xdataset", ",", "fieldName", ",", "1", ",", 
+      "plotFile"}], "]"}], ";"}], " ", "*)"}], "\[IndentingNewLine]", 
   RowBox[{"(*", 
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
-     "**", "**", "**", "**", "**", "**", "**"}], 
-   "******)"}]}], "\[IndentingNewLine]"}], "Input",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"All", " ", "values", " ", 
+    RowBox[{"are", ":", " ", 
+     RowBox[{"1.3332635400006413`*^9", "+", 
+      RowBox[{"60.`", " ", "x"}]}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", "\"\</home/david/Documents/digital-twins/AMP/\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_AMP_Vancouver_\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"theFiles", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Electricity_B1E.csv\>\"", ",", "  ", "\"\<Electricity_B2E.csv\>\"",
+        ",", " ", "\"\<Electricity_BME.csv\>\"", ",", " ", 
+       "\"\<Electricity_CDE.csv\>\"", ",", " ", "\"\<Electricity_CWE.csv\>\"",
+        ",", " ", "\"\<Electricity_DNE.csv\>\"", ",", " ", 
+       "\"\<Electricity_DWE.csv\>\"", ",", " ", "\"\<Electricity_EBE.csv\>\"",
+        ",", " ", "\"\<Electricity_EQE.csv\>\"", ",", " ", 
+       "\"\<Electricity_FGE.csv\>\"", ",", " ", "\"\<Electricity_FRE.csv\>\"",
+        ",", " ", "\"\<Electricity_GRE.csv\>\"", ",", " ", 
+       "\"\<Electricity_HPE.csv\>\"", ",", " ", "\"\<Electricity_HTE.csv\>\"",
+        ",", " ", "\"\<Electricity_I.csv\>\"", ",", " ", 
+       "\"\<Electricity_OFE.csv\>\"", ",", " ", "\"\<Electricity_OUE.csv\>\"",
+        ",", " ", "\"\<Electricity_P.csv\>\"", ",", " ", 
+       "\"\<Electricity_Q.csv\>\"", ",", " ", "\"\<Electricity_RSE.csv\>\"", 
+       ",", " ", "\"\<Electricity_S.csv\>\"", ",", " ", 
+       "\"\<Electricity_TVE.csv\>\"", ",", " ", "\"\<Electricity_UTE.csv\>\"",
+        ",", " ", "\"\<Electricity_WHE.csv\>\"", ",", " ", 
+       "\"\<Electricity_WOE.csv\>\""}], "}"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Unix_ts\>\""}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Do", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"xdataset", "=", 
+        RowBox[{"Import", "[", 
+         RowBox[{
+          RowBox[{"StringJoin", "[", 
+           RowBox[{"PATHPREFIX", ",", 
+            RowBox[{"theFiles", "[", 
+             RowBox[{"[", "z", "]"}], "]"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], 
+          ",", 
+          RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+          RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+          RowBox[{"MissingDataRules", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<.\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}], ",", 
+             RowBox[{"\"\<\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"plotFile", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+          RowBox[{"StringDrop", "[", 
+           RowBox[{
+            RowBox[{"theFiles", "[", 
+             RowBox[{"[", "z", "]"}], "]"}], ",", 
+            RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+          ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"fitLinearTimeseriesModel", "[", 
+        RowBox[{
+         RowBox[{"theFiles", "[", 
+          RowBox[{"[", "z", "]"}], "]"}], ",", " ", "xdataset", ",", 
+         "fieldName", ",", "1", ",", "plotFile"}], "]"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"z", ",", "1", ",", 
+        RowBox[{"Length", "[", "theFiles", "]"}]}], "}"}]}], "]"}], ";"}], 
+   "  ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"All", " ", "values", " ", 
+    RowBox[{"are", ":", " ", 
+     RowBox[{
+      RowBox[{"1.33326", "*", 
+       RowBox[{"10", "^", "9"}]}], "+", 
+      RowBox[{"60.", " ", "x"}]}]}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "PATHPREFIX", "=", "\"\</home/david/Documents/digital-twins/AMP/\>\""}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_AMP_Vancouver_\>\""}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"theFiles", " ", "=", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Electricity_S.csv\>\"", ",", "  ", "\"\<Electricity_P.csv\>\"", 
+       ",", " ", "\"\<Electricity_I.csv\>\"", ",", " ", 
+       "\"\<Electricity_Q.csv\>\""}], "}"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"fieldName", "=", "\"\<Unix_ts\>\""}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Do", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"xdataset", "=", 
+        RowBox[{"Import", "[", 
+         RowBox[{
+          RowBox[{"StringJoin", "[", 
+           RowBox[{"PATHPREFIX", ",", 
+            RowBox[{"theFiles", "[", 
+             RowBox[{"[", "z", "]"}], "]"}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], 
+          ",", 
+          RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+          RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+          RowBox[{"MissingDataRules", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<.\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}], ",", 
+             RowBox[{"\"\<\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"plotFile", "=", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+          RowBox[{"StringDrop", "[", 
+           RowBox[{
+            RowBox[{"theFiles", "[", 
+             RowBox[{"[", "z", "]"}], "]"}], ",", 
+            RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+          ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"fitLinearTimeseriesModel", "[", 
+        RowBox[{
+         RowBox[{"theFiles", "[", 
+          RowBox[{"[", "z", "]"}], "]"}], ",", " ", "xdataset", ",", 
+         "fieldName", ",", "1", ",", "plotFile"}], "]"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"z", ",", "1", ",", 
+        RowBox[{"Length", "[", "theFiles", "]"}]}], "}"}]}], "]"}], ";"}], 
+   "  ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"All", " ", "values", " ", 
+    RowBox[{"are", ":", " ", 
+     RowBox[{
+      RowBox[{"1.33326", "*", 
+       RowBox[{"10", "^", "9"}]}], "+", 
+      RowBox[{"60.", " ", "x"}]}]}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "PATHPREFIX", "=", "\"\</home/david/Documents/digital-twins/AMP/\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_AMP_Vancouver_\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"theFiles", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<NaturalGas_FRG.csv\>\"", ",", "  ", "\"\<NaturalGas_WHG.csv\>\"", 
+     ",", " ", "\"\<Water_DWW.csv\>\"", ",", " ", "\"\<Water_HTW.csv\>\"", 
+     ",", " ", "\"\<Water_WHW.csv\>\""}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"fieldName", "=", "\"\<Unix_ts\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Do", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"xdataset", "=", 
+       RowBox[{"Import", "[", 
+        RowBox[{
+         RowBox[{"StringJoin", "[", 
+          RowBox[{"PATHPREFIX", ",", 
+           RowBox[{"theFiles", "[", 
+            RowBox[{"[", "z", "]"}], "]"}]}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], 
+         ",", 
+         RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+         RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+         RowBox[{"MissingDataRules", "->", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"\"\<.\>\"", "->", 
+             RowBox[{"Missing", "[", "]"}]}], ",", 
+            RowBox[{"\"\<\>\"", "->", 
+             RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"plotFile", "=", 
+       RowBox[{"StringJoin", "[", 
+        RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+         RowBox[{"StringDrop", "[", 
+          RowBox[{
+           RowBox[{"theFiles", "[", 
+            RowBox[{"[", "z", "]"}], "]"}], ",", 
+           RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", "fieldName", 
+         ",", "\"\<.png\>\""}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"fitLinearTimeseriesModel", "[", 
+       RowBox[{
+        RowBox[{"theFiles", "[", 
+         RowBox[{"[", "z", "]"}], "]"}], ",", " ", "xdataset", ",", 
+        "fieldName", ",", "1", ",", "plotFile"}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "1", ",", 
+       RowBox[{"Length", "[", "theFiles", "]"}]}], "}"}]}], "]"}], ";"}], 
+  "  "}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}]}]}], "Input",
  CellChangeTimes->{{3.929354042879278*^9, 3.929354056207446*^9}, {
    3.929354094310842*^9, 3.929354153566676*^9}, {3.92935421075035*^9, 
-   3.929354241533553*^9}, {3.9293542759173594`*^9, 3.929354338101018*^9}, {
+   3.929354241533553*^9}, {3.929354275917361*^9, 3.929354338101018*^9}, {
    3.929354398990337*^9, 3.929354403053996*^9}, {3.929354441598407*^9, 
-   3.92935458918823*^9}, {3.92935471576748*^9, 3.9293547211453114`*^9}, 
+   3.92935458918823*^9}, {3.92935471576748*^9, 3.929354721145312*^9}, 
    3.929354754188175*^9, {3.92935481192542*^9, 3.9293548152934513`*^9}, {
    3.929354848669799*^9, 3.929354897184659*^9}, 3.929354940871587*^9, {
    3.929354974094027*^9, 3.929355108838456*^9}, {3.92935524534764*^9, 
@@ -686,23 +902,59 @@ Cell[BoxData[{
    3.929356635174768*^9}, {3.9293566665597153`*^9, 3.929356673238656*^9}, {
    3.929356749008772*^9, 3.929356786744911*^9}, {3.9293569987640142`*^9, 
    3.929357007283675*^9}, {3.9293571103841333`*^9, 3.9293571186485786`*^9}, 
-   3.9293571681540833`*^9, {3.929357231038249*^9, 3.929357252901061*^9}, {
-   3.929357585846929*^9, 3.929357608702262*^9}, {3.9293581062242193`*^9, 
-   3.929358140931782*^9}, {3.9293581999457808`*^9, 3.929358256260454*^9}, {
+   3.929357168154084*^9, {3.929357231038249*^9, 3.929357252901061*^9}, {
+   3.929357585846929*^9, 3.929357608702262*^9}, {3.929358106224219*^9, 
+   3.929358140931782*^9}, {3.92935819994578*^9, 3.929358256260454*^9}, {
    3.929358301060296*^9, 3.929358366758316*^9}, 3.929358403375452*^9, {
    3.9293584609278507`*^9, 3.929358472038148*^9}, {3.92935874226696*^9, 
-   3.929358743514378*^9}, {3.929381401776197*^9, 
-   3.929381410374062*^9}},ExpressionUUID->"c5d05f43-a09f-48d5-88b8-\
+   3.929358743514378*^9}, {3.929381401776197*^9, 3.929381410374062*^9}, 
+   3.929475691007698*^9, {3.929475728413153*^9, 3.929475736885063*^9}, {
+   3.929476068841898*^9, 3.929476131826231*^9}, {3.929476163824584*^9, 
+   3.92947622208107*^9}, {3.929476258395638*^9, 3.92947628970121*^9}, 
+   3.929476326050249*^9, {3.929476368907152*^9, 3.929476382626892*^9}, {
+   3.929476414647181*^9, 3.929476463310933*^9}, {3.929477017559354*^9, 
+   3.9294770249961233`*^9}, {3.929689079679242*^9, 3.929689132776707*^9}, {
+   3.929689223322377*^9, 3.929689233331518*^9}, {3.929689310645089*^9, 
+   3.929689328177786*^9}, {3.9297414356580353`*^9, 3.9297415081825867`*^9}, {
+   3.929741908472289*^9, 3.929741946384324*^9}, 3.929742087423791*^9, {
+   3.9297421219706297`*^9, 
+   3.9297421274249783`*^9}},ExpressionUUID->"c5d05f43-a09f-48d5-88b8-\
 c8be1d166d18"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
- RowBox[{"1.5537755841698651`*^9", "+", 
-  RowBox[{"18.778225452378468`", " ", "x"}]}]], "Print",
- CellChangeTimes->{3.929358268517253*^9, 3.9293583048723917`*^9, 
-  3.929358412250513*^9, 3.929358746614753*^9},
+ RowBox[{"1.3332635400006413`*^9", "+", 
+  RowBox[{"59.999999999995964`", " ", "x"}]}]], "Print",
+ CellChangeTimes->{3.9297419911232767`*^9},
  CellLabel->
   "During evaluation of \
-In[209]:=",ExpressionUUID->"c1dfd9d7-5db9-433e-bf9b-990ccc61ceb1"]
+In[1]:=",ExpressionUUID->"c1eaa027-d0c8-4b57-bc1d-3817c2b946c9"],
+
+Cell[BoxData[
+ RowBox[{"1.3332635400006413`*^9", "+", 
+  RowBox[{"59.999999999995964`", " ", "x"}]}]], "Print",
+ CellChangeTimes->{3.929741996316053*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"e7f1cfe6-fa60-4236-a0cb-cbbc24429c04"],
+
+Cell[BoxData[
+ RowBox[{"1.3332635400006413`*^9", "+", 
+  RowBox[{"59.999999999995964`", " ", "x"}]}]], "Print",
+ CellChangeTimes->{3.92974200052579*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"0bc1720b-6a4b-4aab-985d-f3ac8d8d5e29"],
+
+Cell[BoxData[
+ RowBox[{"1.3332635400006413`*^9", "+", 
+  RowBox[{"59.999999999995964`", " ", "x"}]}]], "Print",
+ CellChangeTimes->{3.92974200525557*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"25c12199-228a-43f3-a450-b8ec7ca79569"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1048.5, 918},
@@ -723,8 +975,13 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 28244, 673, 2542, "Input",ExpressionUUID->"c5d05f43-a09f-48d5-88b8-c8be1d166d18"],
-Cell[28827, 697, 330, 7, 23, "Print",ExpressionUUID->"c1dfd9d7-5db9-433e-bf9b-990ccc61ceb1"]
+Cell[580, 22, 38440, 899, 3369, "Input",ExpressionUUID->"c5d05f43-a09f-48d5-88b8-c8be1d166d18"],
+Cell[CellGroupData[{
+Cell[39045, 925, 259, 6, 23, "Print",ExpressionUUID->"c1eaa027-d0c8-4b57-bc1d-3817c2b946c9"],
+Cell[39307, 933, 257, 6, 23, "Print",ExpressionUUID->"e7f1cfe6-fa60-4236-a0cb-cbbc24429c04"],
+Cell[39567, 941, 256, 6, 23, "Print",ExpressionUUID->"0bc1720b-6a4b-4aab-985d-f3ac8d8d5e29"],
+Cell[39826, 949, 256, 6, 23, "Print",ExpressionUUID->"25c12199-228a-43f3-a450-b8ec7ca79569"]
+}, Open  ]]
 }, Open  ]]
 }
 ]

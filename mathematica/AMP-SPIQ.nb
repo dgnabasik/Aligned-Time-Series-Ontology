@@ -1,0 +1,2479 @@
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[         0,          0]
+NotebookDataLength[     97644,       2478]
+NotebookOptionsPosition[     90468,       2384]
+NotebookOutlinePosition[     90863,       2400]
+CellTagsIndexPosition[     90820,       2397]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ClearSystemCache", "[", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"$HistoryLength", " ", "=", " ", "0"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+  "PATHPREFIX", "=", "\"\</home/david/Documents/digital-twins/AMP/\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IMAGEPREFIX", "=", "\"\<images/root_AMP_Vancouver_\>\""}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fitTimeseriesModelElectricity", "[", "f_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"fname", "=", "f"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"zdataset", "=", 
+        RowBox[{"Import", "[", 
+         RowBox[{
+          RowBox[{"StringJoin", "[", 
+           RowBox[{"PATHPREFIX", ",", "fname"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], 
+          ",", 
+          RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+          RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+          RowBox[{"MissingDataRules", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<.\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}], ",", 
+             RowBox[{"\"\<\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"unitsList", "=", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Unix_ts\>\"", ",", "\"\<WHE_dA\>\"", ",", "\"\<RSE_dA\>\"", 
+          ",", "\"\<GRE_dA\>\"", ",", "\"\<MHE_dA\>\"", ",", "\"\<B1E_dA\>\"",
+           ",", "\"\<BME_dA\>\"", ",", "\"\<CWE_dA\>\"", ",", 
+          "\"\<DWE_dA\>\"", ",", "\"\<EQE_dA\>\"", ",", "\"\<FRE_dA\>\"", 
+          ",", "\"\<HPE_dA\>\"", ",", "\"\<OFE_dA\>\"", ",", "\"\<UTE_dA\>\"",
+           ",", "\"\<WOE_dA\>\"", ",", "\"\<B2E_dA\>\"", ",", 
+          "\"\<CDE_dA\>\"", ",", "\"\<DNE_dA\>\"", ",", "\"\<EBE_dA\>\"", 
+          ",", "\"\<FGE_dA\>\"", ",", "\"\<HTE_dA\>\"", ",", "\"\<OUE_dA\>\"",
+           ",", "\"\<TVE_dA\>\"", ",", "\"\<UNE_dA\>\""}], "}"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"zdataset", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"Subtract", "[", 
+         RowBox[{"xtime", ",", 
+          RowBox[{"xtime", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"dataset", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{
+             RowBox[{"zdataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "z"}], "}"}]}], "]"}], "]"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], ">=", "0"}], " ", "&"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"timeseries", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{
+             RowBox[{"dataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+             RowBox[{"{", "xtime", "}"}]}], "]"}]}], ";", " ", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "is", " ", "2", " ", "because", " ", "only", " ", "2", " ", "data",
+             " ", "columns", " ", "read"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"plotFile", "=", 
+           RowBox[{"StringJoin", "[", 
+            RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+             RowBox[{"StringDrop", "[", 
+              RowBox[{"fname", ",", 
+               RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", 
+             RowBox[{"unitsList", "[", 
+              RowBox[{"[", "z", "]"}], "]"}], ",", "\"\<.png\>\""}], "]"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "plotFile", "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Export", "[", 
+           RowBox[{"plotFile", ",", 
+            RowBox[{"ListPlot", "[", 
+             RowBox[{
+              RowBox[{"dataset", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+              RowBox[{"PlotLabel", "->", "fname"}], ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Time.offset\>\"", ",", 
+                 RowBox[{"unitsList", "[", 
+                  RowBox[{"[", "z", "]"}], "]"}]}], "}"}]}], ",", 
+              RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"atsm", "=", 
+           RowBox[{"TimeSeriesModelFit", "[", "timeseries", "]"}]}], ";", 
+          "\n", 
+          RowBox[{"process", "=", 
+           RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
+          
+          RowBox[{"Print", "[", 
+           RowBox[{"CovarianceFunction", "[", 
+            RowBox[{"process", ",", "s", ",", "t"}], "]"}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", 
+           RowBox[{"TimeSeriesForecast", "[", 
+            RowBox[{"process", ",", 
+             RowBox[{"dataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", " ", "2"}], 
+            "]"}], "]"}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"z", ",", "2", ",", 
+           RowBox[{"Length", "[", "unitsList", "]"}]}], "}"}]}], "]"}], 
+       ";"}]}], " ", "\[IndentingNewLine]", "]"}]}], ";"}], " ", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"fitTimeseriesModelElectricitySum", "[", "f_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"fname", "=", "f"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"zdataset", "=", 
+        RowBox[{"Import", "[", 
+         RowBox[{
+          RowBox[{"StringJoin", "[", 
+           RowBox[{"PATHPREFIX", ",", "fname"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<CSV\>\"", ",", "\"\<Data\>\"", ",", "All"}], "}"}], 
+          ",", 
+          RowBox[{"\"\<HeaderLines\>\"", "->", "1"}], ",", 
+          RowBox[{"\"\<FieldSeparators\>\"", "->", "\"\<,\>\""}], ",", 
+          RowBox[{"MissingDataRules", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"\"\<.\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}], ",", 
+             RowBox[{"\"\<\>\"", "->", 
+              RowBox[{"Missing", "[", "]"}]}]}], "}"}]}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"unitsList", "=", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Unix_ts\>\"", ",", "\"\<WHE_dA\>\"", ",", "\"\<RSE_dA\>\"", 
+          ",", "\"\<GRE_dA\>\"", ",", "\"\<MHE_dA\>\"", ",", "\"\<B1E_dA\>\"",
+           ",", "\"\<BME_dA\>\"", ",", "\"\<CWE_dA\>\"", ",", 
+          "\"\<DWE_dA\>\"", ",", "\"\<EQE_dA\>\"", ",", "\"\<FRE_dA\>\"", 
+          ",", "\"\<HPE_dA\>\"", ",", "\"\<OFE_dA\>\"", ",", "\"\<UTE_dA\>\"",
+           ",", "\"\<WOE_dA\>\"", ",", "\"\<B2E_dA\>\"", ",", 
+          "\"\<CDE_dA\>\"", ",", "\"\<DNE_dA\>\"", ",", "\"\<EBE_dA\>\"", 
+          ",", "\"\<FGE_dA\>\"", ",", "\"\<HTE_dA\>\"", ",", "\"\<OUE_dA\>\"",
+           ",", "\"\<TVE_dA\>\"", ",", "\"\<UNE_dA\>\""}], "}"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"zdataset", "[", 
+         RowBox[{"[", 
+          RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"xtime", "=", 
+        RowBox[{"Subtract", "[", 
+         RowBox[{"xtime", ",", 
+          RowBox[{"xtime", "[", 
+           RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Do", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"dataset", "=", 
+           RowBox[{"Select", "[", 
+            RowBox[{
+             RowBox[{"zdataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", 
+                RowBox[{"{", 
+                 RowBox[{"1", ",", "z"}], "}"}]}], "]"}], "]"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"#", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], ">=", "0"}], " ", "&"}]}], 
+            "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"timeseries", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{
+             RowBox[{"dataset", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+             RowBox[{"{", "xtime", "}"}]}], "]"}]}], ";", " ", 
+          RowBox[{"(*", " ", 
+           RowBox[{
+           "is", " ", "2", " ", "because", " ", "only", " ", "2", " ", "data",
+             " ", "columns", " ", "read"}], " ", "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"plotFile", "=", 
+           RowBox[{"StringJoin", "[", 
+            RowBox[{"PATHPREFIX", ",", "IMAGEPREFIX", ",", 
+             RowBox[{"StringDrop", "[", 
+              RowBox[{"fname", ",", 
+               RowBox[{"-", "4"}]}], "]"}], ",", "\"\<-\>\"", ",", 
+             RowBox[{"unitsList", "[", 
+              RowBox[{"[", "z", "]"}], "]"}], ",", "\"\<.png\>\""}], "]"}]}], 
+          ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "plotFile", "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Export", "[", 
+           RowBox[{"plotFile", ",", 
+            RowBox[{"ListPlot", "[", 
+             RowBox[{
+              RowBox[{"dataset", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+              RowBox[{"PlotLabel", "->", "fname"}], ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Time.offset\>\"", ",", 
+                 RowBox[{"unitsList", "[", 
+                  RowBox[{"[", "z", "]"}], "]"}]}], "}"}]}], ",", 
+              RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"dataR", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{"timeseries", ",", 
+             RowBox[{"TemporalRegularity", "->", "True"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"atsm", "=", 
+           RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"process", "=", 
+           RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
+          
+          RowBox[{"Print", "[", 
+           RowBox[{"CovarianceFunction", "[", 
+            RowBox[{"process", ",", "s", ",", "t"}], "]"}], "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"Print", "[", 
+            RowBox[{"TimeSeriesForecast", "[", 
+             RowBox[{"process", ",", 
+              RowBox[{"dataset", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", " ", "2"}], 
+             "]"}], "]"}], ","}], "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"{", 
+          RowBox[{"z", ",", "2", ",", 
+           RowBox[{"Length", "[", "unitsList", "]"}]}], "}"}]}], "]"}], 
+       ";"}]}], " ", "\[IndentingNewLine]", "]"}]}], ";"}], " ", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "fitTimeseriesModelElectricitySum", "[", "\"\<Electricity_S.csv\>\"", 
+     "]"}], ";", "\n", 
+    RowBox[{
+    "fitTimeseriesModelElectricitySum", "[", "\"\<Electricity_P.csv\>\"", 
+     "]"}], ";", "\n", 
+    RowBox[{
+    "fitTimeseriesModelElectricitySum", "[", "\"\<Electricity_I.csv\>\"", 
+     "]"}], ";"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "fitTimeseriesModelElectricitySum", "[", "\"\<Electricity_Q.csv\>\"", 
+    "]"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fitTimeseriesModelWater", "[", "\"\<Water_DWW.csv\>\"", "]"}], 
+    ";", "\n", 
+    RowBox[{"fitTimeseriesModelWater", "[", "\"\<Water_HTW.csv\>\"", "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"fitTimeseriesModelWater", "[", "\"\<Water_WHW.csv\>\"", "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{
+    "fitTimeseriesModelNaturalGas", "[", "\"\<NaturalGas_FRG.csv\>\"", "]"}], 
+    ";", "\n", 
+    RowBox[{
+    "fitTimeseriesModelNaturalGas", "[", "\"\<NaturalGas_WHG.csv\>\"", "]"}], 
+    ";"}], "\[IndentingNewLine]", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{
+   "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
+     "**", "**", "**", "**", "**", "**", "**"}], 
+   "******)"}]}], "\n"}], "Input",
+ CellChangeTimes->{{3.912428704688086*^9, 3.91242873650119*^9}, {
+   3.912428894755269*^9, 3.912428922850176*^9}, 3.912429027022626*^9, {
+   3.912429116662945*^9, 3.912429121765119*^9}, {3.912429234806164*^9, 
+   3.912429238032167*^9}, 3.912429280728594*^9, {3.912429407433749*^9, 
+   3.912429407912829*^9}, {3.912429635764941*^9, 3.912429638363143*^9}, {
+   3.912429754205299*^9, 3.912429756045949*^9}, {3.912429821294278*^9, 
+   3.91242983687945*^9}, 3.912429899288575*^9, {3.912430025105559*^9, 
+   3.912430078922473*^9}, {3.912430206380073*^9, 3.912430246693132*^9}, {
+   3.91243094604706*^9, 3.91243096471871*^9}, {3.912431135409589*^9, 
+   3.912431550478697*^9}, {3.912431596887029*^9, 3.9124316443114*^9}, {
+   3.912431760217644*^9, 3.912431812874357*^9}, {3.912431943719655*^9, 
+   3.912432030948495*^9}, {3.912432182664323*^9, 3.91243222304833*^9}, {
+   3.912432264849421*^9, 3.912432294387034*^9}, {3.912432350194708*^9, 
+   3.912432406530603*^9}, {3.912432461308845*^9, 3.912432554701021*^9}, 
+   3.9124326082779493`*^9, {3.912432646983388*^9, 3.912432684200481*^9}, {
+   3.91243288638583*^9, 3.91243298813068*^9}, {3.9124330326999187`*^9, 
+   3.9124330388118563`*^9}, {3.912433134133096*^9, 3.9124331369965363`*^9}, {
+   3.912433169902801*^9, 3.912433221677826*^9}, {3.912433262999432*^9, 
+   3.9124332855667553`*^9}, 3.912433402760921*^9, 3.912433569154702*^9, {
+   3.912433707574387*^9, 3.91243370937228*^9}, {3.912931916642258*^9, 
+   3.91293195737866*^9}, {3.9129320266270537`*^9, 3.912932136012702*^9}, {
+   3.912932178477751*^9, 3.912932310422439*^9}, {3.912932364567398*^9, 
+   3.912932392888195*^9}, {3.91293243140911*^9, 3.9129324525930243`*^9}, {
+   3.912932495289144*^9, 3.912932514809182*^9}, {3.912932562154209*^9, 
+   3.912932607722835*^9}, {3.912932656764138*^9, 3.912932756524851*^9}, 
+   3.912932905104755*^9, {3.912932943567442*^9, 3.9129329475830917`*^9}, {
+   3.912933059800727*^9, 3.91293309228885*^9}, {3.912933247835191*^9, 
+   3.912933345007532*^9}, 3.912933384078311*^9, {3.913442753582075*^9, 
+   3.913442762327929*^9}, {3.913442820349729*^9, 3.913442825501296*^9}, {
+   3.913442951553706*^9, 3.913442953087527*^9}, {3.913444126373289*^9, 
+   3.913444242490936*^9}, {3.913444439663513*^9, 3.913444477200204*^9}, {
+   3.913444946711646*^9, 3.91344524357815*^9}, {3.913445279800888*^9, 
+   3.913445360575885*^9}, {3.913445393866849*^9, 3.913445396697935*^9}, {
+   3.913445433979126*^9, 3.913445440490822*^9}, {3.913445471099865*^9, 
+   3.913445481275262*^9}, {3.913447074546241*^9, 3.913447076114185*^9}, {
+   3.916891928307838*^9, 3.916891966211412*^9}, {3.916893995311123*^9, 
+   3.916893997945642*^9}, {3.916983835707331*^9, 3.916983856212298*^9}, {
+   3.918964475456459*^9, 3.918964477237493*^9}, {3.9189645164587183`*^9, 
+   3.918964555010673*^9}, {3.918964684747589*^9, 3.918964938904171*^9}, {
+   3.918965337909436*^9, 3.918965511023134*^9}, {3.918965653241229*^9, 
+   3.918965687563388*^9}, {3.918965782391577*^9, 3.9189658158705273`*^9}, {
+   3.918965871863935*^9, 3.9189658946079617`*^9}, {3.918966043255743*^9, 
+   3.9189661051613703`*^9}, {3.918966145828715*^9, 3.918966205448702*^9}, {
+   3.918966236508145*^9, 3.91896625014157*^9}, {3.918966647003994*^9, 
+   3.918966783912838*^9}, {3.918967850280672*^9, 3.918967873480715*^9}, {
+   3.918967951651017*^9, 3.918968011313833*^9}, {3.918968093532422*^9, 
+   3.9189681123076553`*^9}, {3.918968878606145*^9, 3.918968904381304*^9}, {
+   3.918968953198119*^9, 3.918968956950404*^9}, {3.918969086526642*^9, 
+   3.918969130367988*^9}, {3.9189691778091593`*^9, 3.918969225377118*^9}, {
+   3.918969284489921*^9, 3.9189692875372458`*^9}, {3.9189693278515997`*^9, 
+   3.918969332466857*^9}, {3.918969371699307*^9, 3.918969380779587*^9}, {
+   3.9189694260115128`*^9, 3.918969459204748*^9}, {3.918969496262278*^9, 
+   3.918969497140916*^9}, {3.918969549262771*^9, 3.918969558173894*^9}, {
+   3.918969648095285*^9, 3.918969661014973*^9}, {3.91896970009577*^9, 
+   3.9189697500492897`*^9}, {3.9189697829225*^9, 3.918969784065205*^9}, {
+   3.918969863090789*^9, 3.9189698646817408`*^9}, {3.918969925490453*^9, 
+   3.9189699757791367`*^9}, {3.918970034339704*^9, 3.91897004222746*^9}, {
+   3.918970088390314*^9, 3.918970088421471*^9}, {3.9189701512471046`*^9, 
+   3.918970166535412*^9}, {3.918970442424033*^9, 3.918970448270102*^9}, {
+   3.918972044846303*^9, 3.918972052309862*^9}, {3.918975315931672*^9, 
+   3.918975414330652*^9}, {3.918975460147955*^9, 3.918975463419815*^9}, 
+   3.918975716914349*^9, {3.9189757613147497`*^9, 3.918975773776762*^9}, {
+   3.918975881162053*^9, 3.918975908201823*^9}, {3.918975946514719*^9, 
+   3.918975977538458*^9}, {3.918976057485976*^9, 3.918976059795953*^9}, {
+   3.918976113293689*^9, 3.918976116669862*^9}, {3.91897630183948*^9, 
+   3.918976395912664*^9}, {3.918976768652203*^9, 3.918976832771832*^9}, {
+   3.9189769336864777`*^9, 3.918977005518223*^9}, {3.918977160093334*^9, 
+   3.918977317507236*^9}, {3.918977365285742*^9, 3.918977396351616*^9}, {
+   3.91897742762055*^9, 3.918977431469146*^9}, {3.91897753508733*^9, 
+   3.918977547118237*^9}, {3.91899442304655*^9, 3.918994432030266*^9}, {
+   3.92866753588848*^9, 3.928667556703992*^9}, {3.928671455865885*^9, 
+   3.9286714690739107`*^9}, {3.928672505437533*^9, 3.928672525330149*^9}, {
+   3.928672562121138*^9, 3.928672567960865*^9}, {3.928692004486065*^9, 
+   3.92869202631143*^9}, {3.92869208048232*^9, 3.928692096681614*^9}, 
+   3.928692275428915*^9, {3.928708933229001*^9, 3.92870894551751*^9}, {
+   3.9288445271846237`*^9, 3.9288445307272987`*^9}, {3.928852051098178*^9, 
+   3.928852087009282*^9}, {3.928852136678724*^9, 3.928852180023367*^9}, {
+   3.928852338470977*^9, 3.928852407734047*^9}, 3.928852448734947*^9, 
+   3.928853118467102*^9, {3.928853292738132*^9, 3.928853414331152*^9}, {
+   3.928853544926402*^9, 3.928853634548013*^9}, {3.928853677948813*^9, 
+   3.9288539177980223`*^9}, {3.928854486907783*^9, 3.928854519208487*^9}, {
+   3.928854811161289*^9, 3.928854832031424*^9}, 3.928854890728854*^9, {
+   3.928854922635053*^9, 3.928854963817711*^9}, {3.928854998627328*^9, 
+   3.928855021515602*^9}, {3.928855326647637*^9, 3.928855431799525*^9}, {
+   3.928861965033401*^9, 3.928861976907773*^9}, {3.928869877138347*^9, 
+   3.9288698894101267`*^9}, {3.928869933020477*^9, 3.928869993604212*^9}, 
+   3.928873135074731*^9, {3.928876393980886*^9, 3.928876407884379*^9}, {
+   3.9288789680447598`*^9, 3.928878977055759*^9}, {3.929683849674191*^9, 
+   3.929683878571348*^9}, {3.929684236562248*^9, 3.929684240226123*^9}, {
+   3.929685130886094*^9, 3.929685141061435*^9}, {3.929688576445024*^9, 
+   3.929688595108672*^9}, {3.929688682424469*^9, 3.9296886978707933`*^9}, 
+   3.929688769904361*^9, 3.929688929566725*^9, 3.929689196130446*^9, 
+   3.9296892482280493`*^9, {3.9296894267759533`*^9, 3.92968942795083*^9}, {
+   3.929722394526901*^9, 3.929722408726703*^9}, {3.929723971617374*^9, 
+   3.929724052492878*^9}, {3.929724355253203*^9, 3.929724358180681*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-WHE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724377595986*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"1967c0db-50f4-44d4-90b5-20eea167f4e5"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"8.149236777887868`", ",", 
+   RowBox[{"{", "0.9573350350044837`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.2951049097636649`"}], "}"}], ",", "2252.7569104351946`"}],
+   "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297243956811934`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"6333e8a0-70bc-43cf-bbba-5fdfd075b4cc"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"13985.308894723306`", " ", 
+         SuperscriptBox["1.0445663883964265`", 
+          RowBox[{
+           RowBox[{"-", "1"}], "-", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]}]]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"14083.053523335358`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724395735837*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"337033e4-9c9d-44aa-b5cf-cbcd4d655b27"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-RSE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724396734427*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"2ac8480a-9db6-4a5b-a27b-6a406586fb9e"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"6.450216043203817`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.7693736924337482`", ",", "0.06249435855413739`"}], "}"}], ",", 
+   
+   RowBox[{"{", 
+    RowBox[{"-", "0.1922951559530304`"}], "}"}], ",", "611.4251582305628`"}], 
+  "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724415693262*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"298ae225-a760-4076-bbdf-6686f1a09f12"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"1356.0921359407914`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "0"}]},
+       {
+        RowBox[{
+         RowBox[{"1405.7556104756397`", " ", 
+          SuperscriptBox["1.1855842191501875`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"2299.6315559232926`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["13.496674535682645`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}]}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297244156973257`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d46050ec-b63c-433a-9085-b5a57b6e4e10"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-GRE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724416795156*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"bd5fbbcb-e2ad-4b6c-9a21-657bbbc1fcd4"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"1.272932711430778`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.2803956609156707`"}], ",", "0.062308286343191126`", ",", 
+     
+     RowBox[{"-", "0.08538431771568705`"}], ",", "0.20114399435301938`", ",", 
+     "0.26298191743976335`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.7920485387547315`", ",", "0.37065893715283776`", ",", 
+     "0.4175323873997028`", ",", "0.17524250192212057`", ",", 
+     RowBox[{"-", "0.1400766591076773`"}], ",", 
+     RowBox[{"-", "0.0676734426032019`"}]}], "}"}], ",", 
+   "37.117805596396686`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724441093186*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"0983b1f6-3f97-492e-a153-6f9f25e77d13"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"48.81829895374896`", " ", 
+          SuperscriptBox["1.2783586231403803`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"6.227592543370392`", " ", 
+          SuperscriptBox["0.7895465862225898`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"1.4771818118433977`", "\[VeryThinSpace]", "+", 
+            RowBox[{"1.3855281163071245`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+         RowBox[{"1.9297950242898316`", " ", 
+          SuperscriptBox["0.7343642664842575`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.6429936723232946`", "\[VeryThinSpace]", "+", 
+            RowBox[{"2.742897594559883`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "1"}]},
+       {"33.322364578846205`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "1"}]},
+       {"57.667025060152525`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724441099596*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"45a49639-4364-48b2-9f51-e991de8428d8"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-MHE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724442359009*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"e226b857-608d-47a0-8157-c7601ddea6cf"],
+
+Cell[BoxData[
+ RowBox[{"ARProcess", "[", 
+  RowBox[{"7.1082888539197855`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.6770534640383372`", ",", "0.20297319916570378`", ",", 
+     "0.05783998281037337`", ",", "0.015097457468274239`"}], "}"}], ",", 
+   "1575.6388339676869`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724481594775*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"1296bffc-7aba-4818-895a-607da5bf34ef"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"12771.547622641085`", " ", 
+   SuperscriptBox["1.0352716667112312`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+  RowBox[{"592.1786887788531`", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"-", "1"}], ")"}], 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   SuperscriptBox["4.137062702163805`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+  RowBox[{"287.6311933432803`", " ", 
+   SuperscriptBox["0.2542875650559341`", 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"0.1685368036317632`", "\[VeryThinSpace]", "-", 
+     RowBox[{"1.6636577867983868`", " ", 
+      RowBox[{"Abs", "[", 
+       RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297244815967207`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"53cf15d1-6e12-4d81-9cd3-af1f1835d5f2"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-B1E_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724482979128*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"75cfa043-1154-4858-8181-c472c4d6004d"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.00012599087850757133`", ",", 
+   RowBox[{"{", "0.9936694416382028`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.5191286096983576`"}], ",", 
+     RowBox[{"-", "0.013015136222609521`"}], ",", 
+     RowBox[{"-", "0.008742685550442603`"}]}], "}"}], ",", 
+   "0.0022162966168836357`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.92972451230344*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"ceab69dd-3b28-4a2d-bf9d-4c2a1ddb2766"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"0.03724595461847298`", " ", 
+         SuperscriptBox["1.0063708896505466`", 
+          RowBox[{
+           RowBox[{"-", "1"}], "-", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]}]]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "2"}]},
+       {"0.03656255993309558`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "2"}]},
+       {"0.03683377860620304`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "1"}]},
+       {"0.03824903212956033`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724512307825*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"3ad296f9-88d5-403d-8b13-df68f2cca2be"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-BME_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724513505628*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"17b5362e-7f43-4c26-9a14-ee65ecde7856"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.11716390899866633`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.3062986892697116`", ",", "0.4991684052666237`", ",", 
+     "0.23660020078944094`", ",", "0.03660643793738099`", ",", 
+     RowBox[{"-", "0.08865230573350817`"}], ",", 
+     RowBox[{"-", "0.017213419433916355`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.39566636230374647`", ",", 
+     RowBox[{"-", "0.04431853584514734`"}], ",", 
+     RowBox[{"-", "0.1500791393066164`"}], ",", 
+     RowBox[{"-", "0.10649760689268223`"}]}], "}"}], ",", 
+   "6.803507363432806`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724546955117*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"5c211926-2d66-44d6-9d6c-216ced0cc403"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"94.70603873895014`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "0"}]},
+       {
+        RowBox[{
+         RowBox[{"93.34074900894463`", " ", 
+          SuperscriptBox["1.0167971468109256`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "-", 
+         RowBox[{"0.012400868425943675`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["1.738497781773569`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"3.5224988501669077`", " ", 
+          SuperscriptBox["2.0340922169316995`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"5.596732890125724`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["5.218007938933822`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"0.17646195831828757`", " ", 
+          SuperscriptBox["0.5682971685932786`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.897251163377758`", "\[VeryThinSpace]", "-", 
+            RowBox[{"1.9322588237511016`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724546959519*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"38c04c9c-16c1-49e6-8e8a-e82505c62281"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-CWE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297245480821133`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"6be37fee-1194-4194-8472-1f0012aac3eb"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.05198370000073314`", ",", 
+   RowBox[{"{", 
+    RowBox[{"1.262396294117305`", ",", 
+     RowBox[{"-", "0.2938411878247739`"}], ",", 
+     RowBox[{"-", "0.10343691175905202`"}], ",", 
+     RowBox[{"-", "0.1068845036336598`"}], ",", "0.06492050834260091`", ",", 
+     "0.13144794279102293`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.6021070988191585`"}], "}"}], ",", "36.63041969825089`"}], 
+  "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724568104534*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"a784d6c6-1a8b-49f4-9791-cc5d817b14d0"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"57.846213824630674`", " ", 
+          SuperscriptBox["1.040858733367006`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"4.655431508655068`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["1.9470075708026093`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"33.336898528703365`", " ", 
+          SuperscriptBox["0.8554268576235062`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.1502704956574617`", "\[VeryThinSpace]", "-", 
+            RowBox[{"0.6861163608830018`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+         RowBox[{"6.946762701165079`", " ", 
+          SuperscriptBox["0.6033561316351539`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.03246929389761146`", "\[VeryThinSpace]", "+", 
+            RowBox[{"2.0057301753301906`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"97.87085407784507`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724568109848*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"aad587e1-efb5-4e72-afee-3235de6acfbb"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-DWE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724569234845*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"04db22fa-10df-40db-8ae8-711c92959c11"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.044732284961974234`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.40295473550234007`", ",", 
+     RowBox[{"-", "0.12079544401146797`"}], ",", "0.3371063223151364`", ",", 
+     "0.34163778417589`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.33047432541654026`", ",", "0.02253980275018037`", ",", 
+     RowBox[{"-", "0.11616595681645103`"}], ",", 
+     RowBox[{"-", "0.3245244603963505`"}], ",", 
+     RowBox[{"-", "0.11827829150504672`"}]}], "}"}], ",", 
+   "9.428878102540088`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724591329866*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"1dfd9dee-7749-4452-96ba-195223b25a79"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"29.524438216603265`", " ", 
+          SuperscriptBox["1.0151296112913792`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "-", 
+         RowBox[{"0.06473957724127194`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["1.9125088710157205`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"1.7961152965056928`", " ", 
+          SuperscriptBox["0.8144143653053919`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.32832306864965016`", "\[VeryThinSpace]", "-", 
+            RowBox[{"1.607191093220501`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "1"}]},
+       {"32.35398106953814`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "1"}]},
+       {"38.880405903593264`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724591334552*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"603d6bbe-91db-4ea7-89b8-aea2b657d198"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-EQE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297245924518337`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d9d6ccbf-8a5d-4d00-a8f8-9ef5d75d5c39"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"1.2894019897513813`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.20170373735924396`", ",", "0.2277233258552671`", ",", 
+     RowBox[{"-", "0.06725547720290881`"}], ",", "0.1848320687992294`", ",", 
+     "0.22857054948630412`", ",", "0.10203184509348551`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.22354494700444333`", ",", "0.08121102277027822`", ",", 
+     "0.2313134131424754`", ",", "0.026268009928127632`", ",", 
+     RowBox[{"-", "0.07463244336641957`"}], ",", 
+     RowBox[{"-", "0.02844089470499044`"}]}], "}"}], ",", 
+   "0.3403153434713533`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297246149112177`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"30216119-aed1-435a-9952-4d33f5a4b2d3"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"0.9545969775069975`", " ", 
+          SuperscriptBox["1.0388569669252996`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"0.03961504252912771`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["1.5787031528224582`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"0.05583246600997678`", " ", 
+          SuperscriptBox["0.5239754744767792`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.6833202524340435`", "\[VeryThinSpace]", "-", 
+            RowBox[{"2.361596878100134`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+         RowBox[{"0.0334897341167534`", " ", 
+          SuperscriptBox["0.7807015237674781`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.4264076432798578`", "\[VeryThinSpace]", "-", 
+            RowBox[{"1.1641776366930292`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"1.1126343139401074`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724614913282*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"1d857864-cb4e-42cb-a497-8a6b514f2030"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-FRE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724616034734*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"826eef19-ac6e-4a8c-93f4-6b415ef2af82"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"1.0752806037806233`", ",", 
+   RowBox[{"{", 
+    RowBox[{"1.190909388398768`", ",", 
+     RowBox[{"-", "1.0682257135734952`"}], ",", "0.7517568901243533`", ",", 
+     "0.08419717076300634`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.38697722895411757`"}], ",", "0.8430199204909388`", ",", 
+     RowBox[{"-", "0.07772179793917262`"}]}], "}"}], ",", 
+   "1.2965387081766704`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724636881078*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"17f8267a-011f-4e44-ab5b-65dd3a6eed6d"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"17.84383468368725`", " ", 
+          SuperscriptBox["1.0244946815103484`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"2.0423943660634123`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["10.303907365623335`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"0.08132001596888702`", " ", 
+          SuperscriptBox["0.9427674422450417`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.11414958444912247`", "\[VeryThinSpace]", "-", 
+            RowBox[{"1.404631926792114`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"17.69621208225679`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724636885236*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"8d4e4a29-076b-47da-b742-d3e4324f7603"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-HPE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.92972463794985*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"3ea75914-c3cf-4cbb-9160-ba44cb2a2099"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"1.4526361637452245`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.8213772507303503`", ",", "0.3217857840783727`", ",", 
+     RowBox[{"-", "0.1771910577247909`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.08176779857458712`", ",", 
+     RowBox[{"-", "0.16688096550612835`"}], ",", "0.025556128133594758`", ",",
+      "0.005095307735485785`"}], "}"}], ",", "597.1585011935598`"}], 
+  "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.92972466672112*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"1f1911bc-9722-413d-953b-afa2cc17b049"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"8634.015431177588`", " ", 
+          SuperscriptBox["1.0367702712471334`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"11.121581723559254`", " ", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          SuperscriptBox["1.975800855539552`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "-", 
+         RowBox[{"492.6065174848762`", " ", 
+          SuperscriptBox["2.7550690921620595`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "1"}]},
+       {"7981.8691939016635`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "1"}]},
+       {"8287.45004722817`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724666726417*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d68aaf2d-d6b0-49c1-9455-76025e6a9a15"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-OFE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297246678041286`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"f58f2b28-da53-45a1-b6af-506318adffdb"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.1736794582617713`", ",", 
+   RowBox[{"{", "0.9860345897976834`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.3893935319093925`"}], ",", 
+     RowBox[{"-", "0.04415321535751153`"}], ",", 
+     RowBox[{"-", "0.018884814078597732`"}]}], "}"}], ",", 
+   "1.7317786228723584`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297246891983223`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"a6337250-7941-4019-b353-0491e8418dd8"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"18.977509580166817`", " ", 
+         SuperscriptBox["1.0141632051723277`", 
+          RowBox[{
+           RowBox[{"-", "1"}], "-", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]}]]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "2"}]},
+       {"18.226642992245708`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "2"}]},
+       {"18.58212634201267`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "1"}]},
+       {"19.593518818286622`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297246892042007`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"755ec536-94f8-4a15-8ad9-beddc16e835f"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-UTE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297246903077173`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"9c9f3ea5-c77e-4b98-9bc0-01f3ec8fa53c"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.008174408018519135`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.9712816921761396`", ",", 
+     RowBox[{"-", "0.05686456929961804`"}], ",", "0.0850679557585232`"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.7023701341982937`"}], "}"}], ",", 
+   "0.18441131355048854`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.92972470985178*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"45e20acc-7a55-4fb1-8ae7-9da56473ee73"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"14.257172831236378`", " ", 
+   SuperscriptBox["1.0004627058384852`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+  RowBox[{"0.13324316421904442`", " ", 
+   SuperscriptBox["0.291731584163115`", 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"0.01424108599726101`", "\[VeryThinSpace]", "+", 
+     RowBox[{"1.6192430388985137`", " ", 
+      RowBox[{"Abs", "[", 
+       RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724709857292*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"797447bf-f79c-4edd-bf0b-aa67ec037de3"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-WOE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297247110382557`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b7398f02-0976-41e7-a730-4c47d2b1a6c5"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.012166084856027165`", ",", 
+   RowBox[{"{", "0.9901869323177355`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.12658329339341215`"}], "}"}], ",", "3.642379765780413`"}],
+   "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724727867702*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d8a43377-d60a-4a37-8500-465b65e5e2e0"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"143.68298798095165`", " ", 
+         SuperscriptBox["1.0099103183065596`", 
+          RowBox[{
+           RowBox[{"-", "1"}], "-", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]}]]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"142.73865081687345`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724727871606*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b28e7f2f-fbcc-4b45-8378-b1fa496aaa3e"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-B2E_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724728924049*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"0b01de1b-1378-4234-9d1d-ae2bac9d4d87"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.06164512561356469`", ",", 
+   RowBox[{"{", 
+    RowBox[{"1.1936905522222923`", ",", 
+     RowBox[{"-", "0.20592345503032267`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.442270709042878`"}], "}"}], ",", "0.7694062057349647`"}], 
+  "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724747102779*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"3f0cd8eb-6782-4e23-b508-2b42ee005cca"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"12.658468652459232`", " ", 
+          SuperscriptBox["1.015711240618801`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"1.3217301109020527`", " ", 
+          SuperscriptBox["4.781057039354545`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"12.739116169763758`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297247471045027`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"40b38220-d2c1-4ea5-af8c-2141349ebaf3"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-CDE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297247481475487`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"4e7db615-505b-4336-a6b7-4ff511894fba"],
+
+Cell[BoxData[
+ RowBox[{"ARProcess", "[", 
+  RowBox[{"0.20447409722444407`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.956658332064597`", ",", "0.02440747269417638`", ",", 
+     "0.0003166865938120389`", ",", "0.0002471345619822482`", ",", 
+     "0.0009412273344953463`", ",", 
+     RowBox[{"-", "0.009873062937754048`"}]}], "}"}], ",", 
+   "165.54351152424397`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724767947979*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b34aa243-cf65-43b6-96c3-5f9fe13f486e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"3239.574600586243`", " ", 
+   SuperscriptBox["1.0287541252450345`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "-", 
+  RowBox[{"119.73191497121674`", " ", 
+   SuperscriptBox["2.275677893264631`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+  RowBox[{"14.560941493092272`", " ", 
+   SuperscriptBox["0.3821611638829132`", 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"0.22601068078356304`", "\[VeryThinSpace]", "-", 
+     RowBox[{"2.5498482563661966`", " ", 
+      RowBox[{"Abs", "[", 
+       RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+  RowBox[{"26.59764315833165`", " ", 
+   SuperscriptBox["0.3978236447925664`", 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"0.882104408163735`", "\[VeryThinSpace]", "-", 
+     RowBox[{"1.343179402272195`", " ", 
+      RowBox[{"Abs", "[", 
+       RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724767949671*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"3b58af2b-6b59-47ca-b2ae-68aa435a1f4b"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-DNE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297247691297417`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"674dc4ca-f890-4d36-a7c6-b5d0ff9a9309"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.002828051689653652`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.3338624219462399`", ",", "0.33671565107967344`", ",", 
+     "0.19285095588005857`", ",", "0.1569019965639901`", ",", 
+     RowBox[{"-", "0.03694973395748993`"}], ",", "0.007579179624736539`"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0.26307311248669074`", ",", "0.04013826215414536`", ",", 
+     RowBox[{"-", "0.023334161196303625`"}], ",", 
+     RowBox[{"-", "0.1018507277707836`"}]}], "}"}], ",", 
+   "0.03305568350505076`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297247903459797`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b7ca6ccc-3067-4422-a3e8-fc4e9840c939"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"1.2218052754893995`", " ", 
+   SuperscriptBox["1.00434353463752`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+  RowBox[{"0.0011194078546303949`", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"-", "1"}], ")"}], 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   SuperscriptBox["1.576423751434159`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+  RowBox[{"0.01955847966215224`", " ", 
+   SuperscriptBox["0.191637742607823`", 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"0.754848816638928`", "\[VeryThinSpace]", "-", 
+     RowBox[{"0.9308957405926072`", " ", 
+      RowBox[{"Abs", "[", 
+       RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+  RowBox[{"0.0026394085586876202`", " ", 
+   SuperscriptBox["0.5716203511269927`", 
+    RowBox[{"Abs", "[", 
+     RowBox[{"s", "-", "t"}], "]"}]], " ", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"1.2800339507930507`", "\[VeryThinSpace]", "+", 
+     RowBox[{"1.7969281419408698`", " ", 
+      RowBox[{"Abs", "[", 
+       RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724790350593*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"db898dd7-340c-47b0-8d68-ab34fbbb09b7"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-EBE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724791399211*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"05e11266-c48c-4064-af7c-a62392b1cbd4"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.009257242983189104`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+    "0.7375728423951357`", ",", "0.06478579583389601`", ",", 
+     "0.05175012341372124`", ",", "0.08836632706328874`", ",", 
+     "0.04921820684849012`", ",", 
+     RowBox[{"-", "0.004903978750722312`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.22522962492433718`"}], "}"}], ",", 
+   "0.11504600656257143`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724812034979*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d715ad9d-7627-4eec-bc6e-a53861372955"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"1.6838372440411662`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "0"}]},
+       {
+        RowBox[{
+         RowBox[{"1.6378486268182781`", " ", 
+          SuperscriptBox["1.0082452405163531`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"0.00016061296833874724`", " ", 
+          SuperscriptBox["11.672972712393333`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"0.037247968866279825`", " ", 
+          SuperscriptBox["0.5563633380379835`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.12493108882261314`", "\[VeryThinSpace]", "-", 
+            RowBox[{"1.2171502304183013`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+         RowBox[{"0.022500473430506658`", " ", 
+          SuperscriptBox["0.43180693316087954`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.08910498036589966`", "\[VeryThinSpace]", "+", 
+            RowBox[{"2.5677420426186504`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297248120393553`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"29002c0a-73c0-4f3f-9ce0-7adfd500362b"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-FGE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724813111055*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"fa765e16-04b5-42b3-8430-6350b845ca65"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"1.5180481009298357`", ",", 
+   RowBox[{"{", "0.7840895431519359`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.7595089514708127`"}], "}"}], ",", "168.03771492192087`"}],
+   "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724831446699*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"4971d505-7871-4d7f-83de-a1407b0211fe"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"7.05458148090914`", " ", 
+         SuperscriptBox["1.2753645406111815`", 
+          RowBox[{
+           RowBox[{"-", "1"}], "-", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]}]]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"168.30128803630407`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297248314484043`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b1cd4054-ca41-40ce-bb35-6e55132a47f1"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-HTE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724832551762*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"f5bb4396-a05e-4e30-81c6-4bdbd22bcf72"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.038052339306690164`", ",", 
+   RowBox[{"{", 
+    RowBox[{"1.2790310323678533`", ",", 
+     RowBox[{"-", "0.3124201684450017`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.8039099565455476`"}], "}"}], ",", "0.6799324378299779`"}],
+   "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724850438189*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"574e9b62-4e7a-4586-a8fe-bfd5af51189f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"0.5963280060979476`", " ", 
+   SuperscriptBox["1.0523475022087088`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+  RowBox[{"1.896755282327164`", " ", 
+   SuperscriptBox["3.0415976445912913`", 
+    RowBox[{
+     RowBox[{"-", "1"}], "-", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"s", "-", "t"}], "]"}]}]]}]}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297248504396887`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"a904701d-6ee9-49eb-b088-7b0a91e55bc4"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-OUE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297248514729156`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"e394f015-f4e4-4f21-9f19-5f141f8996f9"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.0001321977584945497`", ",", 
+   RowBox[{"{", 
+    RowBox[{"0.000496562619785133`", ",", 
+     RowBox[{"-", "0.00041529611667411254`"}], ",", "0.0003303248754356119`", 
+     ",", 
+     RowBox[{"-", "0.00024954212103139135`"}], ",", "0.00016494708552428286`",
+      ",", 
+     RowBox[{"-", "0.00008443324570585416`"}]}], "}"}], ",", 
+   RowBox[{"{", "0.9741923626135855`", "}"}], ",", "0.0045122881885953465`"}],
+   "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.92972494388352*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"9b17e10f-3240-46f2-8cd6-824d31dee6db"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"0.004732938284266216`", " ", 
+          SuperscriptBox["0.22341093988466063`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"2.337063500675325`", "\[VeryThinSpace]", "-", 
+            RowBox[{"2.5693245429543103`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+         RowBox[{"0.0074268602590292256`", " ", 
+          SuperscriptBox["0.20707603348519069`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"1.1646943221151733`", "\[VeryThinSpace]", "-", 
+            RowBox[{"1.5053165381610116`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}], "+", 
+         RowBox[{"0.009762503068969329`", " ", 
+          SuperscriptBox["0.1986197674203448`", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]], " ", 
+          RowBox[{"Cos", "[", 
+           RowBox[{"0.35691505849957944`", "\[VeryThinSpace]", "-", 
+            RowBox[{"0.49779660640006973`", " ", 
+             RowBox[{"Abs", "[", 
+              RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"0.00879904560366863`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724943887342*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"6dc9745d-ef3c-4677-9f88-7cdaf1709ff3"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-TVE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297249448411093`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"527453af-8a3e-4859-adf1-fecb7d1786ab"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.09308916217536742`", ",", 
+   RowBox[{"{", 
+    RowBox[{"1.0175462960852717`", ",", 
+     RowBox[{"-", "0.02668159725968414`"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "0.3321700599537866`"}], "}"}], ",", "0.5323920849489235`"}],
+   "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724962405925*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"5db24dea-8ea2-4200-a3b8-d0f9c38dda3d"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{
+         RowBox[{"13.54505041507744`", " ", 
+          SuperscriptBox["1.0094771393508712`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}], "+", 
+         RowBox[{"6.379461207021647`", " ", 
+          SuperscriptBox["37.12715636807347`", 
+           RowBox[{
+            RowBox[{"-", "1"}], "-", 
+            RowBox[{"Abs", "[", 
+             RowBox[{"s", "-", "t"}], "]"}]}]]}]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "0"}]},
+       {"13.589714586514745`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724962407652*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b44e63a1-72b4-40be-a734-0572db6ff557"],
+
+Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
+Vancouver_Electricity_Q-UNE_dA.png\"\>"], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.9297249634074993`*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"020a87fd-7c58-4f35-b8de-e2a3929a5734"],
+
+Cell[BoxData[
+ RowBox[{"ARMAProcess", "[", 
+  RowBox[{"0.5168281551780932`", ",", 
+   RowBox[{"{", "0.8651210056648231`", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "0.6535428723799136`"}], ",", 
+     RowBox[{"-", "0.00213519121058745`"}], ",", 
+     RowBox[{"-", "0.0015438862543865305`"}]}], "}"}], ",", 
+   "348.76236307367793`"}], "]"}]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724982217819*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"d9e2534b-42e8-40ea-8197-882870de7253"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"165.68622985966132`", " ", 
+         SuperscriptBox["1.1559076631499958`", 
+          RowBox[{
+           RowBox[{"-", "1"}], "-", 
+           RowBox[{"Abs", "[", 
+            RowBox[{"s", "-", "t"}], "]"}]}]]}], 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], ">", "2"}]},
+       {"107.90195865820687`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "2"}]},
+       {"125.71716141565487`", 
+        RowBox[{
+         RowBox[{"Abs", "[", 
+          RowBox[{"s", "-", "t"}], "]"}], "\[Equal]", "1"}]},
+       {"409.0795170893058`", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Print",
+ CellChangeTimes->{3.929689469363807*^9, 3.9297224660062327`*^9, 
+  3.929724982221764*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"4ce906fd-0914-4c30-9653-0c88b06f070d"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{948, 939.75},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.0 for Linux x86 (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5e61dae8-5e04-4e7d-8a5a-d62ef926afbd"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[422, 15, 20630, 415, 1359, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+Cell[CellGroupData[{
+Cell[21077, 434, 321, 6, 23, "Print",ExpressionUUID->"1967c0db-50f4-44d4-90b5-20eea167f4e5"],
+Cell[21401, 442, 446, 11, 23, "Print",ExpressionUUID->"6333e8a0-70bc-43cf-bbba-5fdfd075b4cc"],
+Cell[21850, 455, 1699, 50, 39, "Print",ExpressionUUID->"337033e4-9c9d-44aa-b5cf-cbcd4d655b27"],
+Cell[23552, 507, 321, 6, 23, "Print",ExpressionUUID->"2ac8480a-9db6-4a5b-a27b-6a406586fb9e"],
+Cell[23876, 515, 491, 13, 23, "Print",ExpressionUUID->"298ae225-a760-4076-bbdf-6686f1a09f12"],
+Cell[24370, 530, 2149, 62, 40, "Print",ExpressionUUID->"d46050ec-b63c-433a-9085-b5a57b6e4e10"],
+Cell[26522, 594, 321, 6, 23, "Print",ExpressionUUID->"bd5fbbcb-e2ad-4b6c-9a21-657bbbc1fcd4"],
+Cell[26846, 602, 821, 20, 42, "Print",ExpressionUUID->"0983b1f6-3f97-492e-a153-6f9f25e77d13"],
+Cell[27670, 624, 2712, 73, 78, "Print",ExpressionUUID->"45a49639-4364-48b2-9f51-e991de8428d8"],
+Cell[30385, 699, 321, 6, 23, "Print",ExpressionUUID->"e226b857-608d-47a0-8157-c7601ddea6cf"],
+Cell[30709, 707, 486, 12, 23, "Print",ExpressionUUID->"1296bffc-7aba-4818-895a-607da5bf34ef"],
+Cell[31198, 721, 1124, 32, 25, "Print",ExpressionUUID->"53cf15d1-6e12-4d81-9cd3-af1f1835d5f2"],
+Cell[32325, 755, 321, 6, 23, "Print",ExpressionUUID->"75cfa043-1154-4858-8181-c472c4d6004d"],
+Cell[32649, 763, 570, 14, 23, "Print",ExpressionUUID->"ceab69dd-3b28-4a2d-bf9d-4c2a1ddb2766"],
+Cell[33222, 779, 1985, 58, 71, "Print",ExpressionUUID->"3ad296f9-88d5-403d-8b13-df68f2cca2be"],
+Cell[35210, 839, 321, 6, 23, "Print",ExpressionUUID->"17b5362e-7f43-4c26-9a14-ee65ecde7856"],
+Cell[35534, 847, 804, 19, 42, "Print",ExpressionUUID->"5c211926-2d66-44d6-9d6c-216ced0cc403"],
+Cell[36341, 868, 3227, 88, 61, "Print",ExpressionUUID->"38c04c9c-16c1-49e6-8e8a-e82505c62281"],
+Cell[39571, 958, 323, 6, 23, "Print",ExpressionUUID->"6be37fee-1194-4194-8472-1f0012aac3eb"],
+Cell[39897, 966, 671, 16, 23, "Print",ExpressionUUID->"a784d6c6-1a8b-49f4-9791-cc5d817b14d0"],
+Cell[40571, 984, 2987, 80, 81, "Print",ExpressionUUID->"aad587e1-efb5-4e72-afee-3235de6acfbb"],
+Cell[43561, 1066, 321, 6, 23, "Print",ExpressionUUID->"04db22fa-10df-40db-8ae8-711c92959c11"],
+Cell[43885, 1074, 747, 17, 42, "Print",ExpressionUUID->"1dfd9dee-7749-4452-96ba-195223b25a79"],
+Cell[44635, 1093, 2706, 75, 77, "Print",ExpressionUUID->"603d6bbe-91db-4ea7-89b8-aea2b657d198"],
+Cell[47344, 1170, 323, 6, 23, "Print",ExpressionUUID->"d9d6ccbf-8a5d-4d00-a8f8-9ef5d75d5c39"],
+Cell[47670, 1178, 828, 18, 42, "Print",ExpressionUUID->"30216119-aed1-435a-9952-4d33f5a4b2d3"],
+Cell[48501, 1198, 2991, 80, 81, "Print",ExpressionUUID->"1d857864-cb4e-42cb-a497-8a6b514f2030"],
+Cell[51495, 1280, 321, 6, 23, "Print",ExpressionUUID->"826eef19-ac6e-4a8c-93f4-6b415ef2af82"],
+Cell[51819, 1288, 667, 16, 23, "Print",ExpressionUUID->"17f8267a-011f-4e44-ab5b-65dd3a6eed6d"],
+Cell[52489, 1306, 2564, 71, 61, "Print",ExpressionUUID->"8d4e4a29-076b-47da-b742-d3e4324f7603"],
+Cell[55056, 1379, 320, 6, 23, "Print",ExpressionUUID->"3ea75914-c3cf-4cbb-9160-ba44cb2a2099"],
+Cell[55379, 1387, 647, 15, 23, "Print",ExpressionUUID->"1f1911bc-9722-413d-953b-afa2cc17b049"],
+Cell[56029, 1404, 2518, 72, 56, "Print",ExpressionUUID->"d68aaf2d-d6b0-49c1-9455-76025e6a9a15"],
+Cell[58550, 1478, 323, 6, 23, "Print",ExpressionUUID->"f58f2b28-da53-45a1-b6af-506318adffdb"],
+Cell[58876, 1486, 565, 14, 23, "Print",ExpressionUUID->"a6337250-7941-4019-b353-0491e8418dd8"],
+Cell[59444, 1502, 1982, 58, 71, "Print",ExpressionUUID->"755ec536-94f8-4a15-8ad9-beddc16e835f"],
+Cell[61429, 1562, 323, 6, 23, "Print",ExpressionUUID->"9c9f3ea5-c77e-4b98-9bc0-01f3ec8fa53c"],
+Cell[61755, 1570, 546, 14, 23, "Print",ExpressionUUID->"45e20acc-7a55-4fb1-8ae7-9da56473ee73"],
+Cell[62304, 1586, 787, 21, 25, "Print",ExpressionUUID->"797447bf-f79c-4edd-bf0b-aa67ec037de3"],
+Cell[63094, 1609, 323, 6, 23, "Print",ExpressionUUID->"b7398f02-0976-41e7-a730-4c47d2b1a6c5"],
+Cell[63420, 1617, 447, 11, 23, "Print",ExpressionUUID->"d8a43377-d60a-4a37-8500-465b65e5e2e0"],
+Cell[63870, 1630, 1699, 50, 39, "Print",ExpressionUUID->"b28e7f2f-fbcc-4b45-8378-b1fa496aaa3e"],
+Cell[65572, 1682, 321, 6, 23, "Print",ExpressionUUID->"0b01de1b-1378-4234-9d1d-ae2bac9d4d87"],
+Cell[65896, 1690, 510, 13, 23, "Print",ExpressionUUID->"3f0cd8eb-6782-4e23-b508-2b42ee005cca"],
+Cell[66409, 1705, 1966, 57, 39, "Print",ExpressionUUID->"40b38220-d2c1-4ea5-af8c-2141349ebaf3"],
+Cell[68378, 1764, 323, 6, 23, "Print",ExpressionUUID->"4e7db615-505b-4336-a6b7-4ff511894fba"],
+Cell[68704, 1772, 577, 14, 23, "Print",ExpressionUUID->"b34aa243-cf65-43b6-96c3-5f9fe13f486e"],
+Cell[69284, 1788, 1344, 36, 44, "Print",ExpressionUUID->"3b58af2b-6b59-47ca-b2ae-68aa435a1f4b"],
+Cell[70631, 1826, 323, 6, 23, "Print",ExpressionUUID->"674dc4ca-f890-4d36-a7c6-b5d0ff9a9309"],
+Cell[70957, 1834, 773, 18, 42, "Print",ExpressionUUID->"b7ca6ccc-3067-4422-a3e8-fc4e9840c939"],
+Cell[71733, 1854, 1489, 41, 44, "Print",ExpressionUUID->"db898dd7-340c-47b0-8d68-ab34fbbb09b7"],
+Cell[73225, 1897, 321, 6, 23, "Print",ExpressionUUID->"05e11266-c48c-4064-af7c-a62392b1cbd4"],
+Cell[73549, 1905, 649, 16, 23, "Print",ExpressionUUID->"d715ad9d-7627-4eec-bc6e-a53861372955"],
+Cell[74201, 1923, 2836, 75, 81, "Print",ExpressionUUID->"29002c0a-73c0-4f3f-9ce0-7adfd500362b"],
+Cell[77040, 2000, 321, 6, 23, "Print",ExpressionUUID->"fa765e16-04b5-42b3-8430-6350b845ca65"],
+Cell[77364, 2008, 445, 11, 23, "Print",ExpressionUUID->"4971d505-7871-4d7f-83de-a1407b0211fe"],
+Cell[77812, 2021, 1699, 50, 39, "Print",ExpressionUUID->"b1cd4054-ca41-40ce-bb35-6e55132a47f1"],
+Cell[79514, 2073, 321, 6, 23, "Print",ExpressionUUID->"f5bb4396-a05e-4e30-81c6-4bdbd22bcf72"],
+Cell[79838, 2081, 511, 13, 23, "Print",ExpressionUUID->"574e9b62-4e7a-4586-a8fe-bfd5af51189f"],
+Cell[80352, 2096, 625, 18, 23, "Print",ExpressionUUID->"a904701d-6ee9-49eb-b088-7b0a91e55bc4"],
+Cell[80980, 2116, 323, 6, 23, "Print",ExpressionUUID->"e394f015-f4e4-4f21-9f19-5f141f8996f9"],
+Cell[81306, 2124, 681, 16, 42, "Print",ExpressionUUID->"9b17e10f-3240-46f2-8cd6-824d31dee6db"],
+Cell[81990, 2142, 2768, 72, 83, "Print",ExpressionUUID->"6dc9745d-ef3c-4677-9f88-7cdaf1709ff3"],
+Cell[84761, 2216, 323, 6, 23, "Print",ExpressionUUID->"527453af-8a3e-4859-adf1-fecb7d1786ab"],
+Cell[85087, 2224, 511, 13, 23, "Print",ExpressionUUID->"5db24dea-8ea2-4200-a3b8-d0f9c38dda3d"],
+Cell[85601, 2239, 1963, 57, 39, "Print",ExpressionUUID->"b44e63a1-72b4-40be-a734-0572db6ff557"],
+Cell[87567, 2298, 323, 6, 23, "Print",ExpressionUUID->"020a87fd-7c58-4f35-b8de-e2a3929a5734"],
+Cell[87893, 2306, 564, 14, 23, "Print",ExpressionUUID->"d9e2534b-42e8-40ea-8197-882870de7253"],
+Cell[88460, 2322, 1980, 58, 71, "Print",ExpressionUUID->"4ce906fd-0914-4c30-9653-0c88b06f070d"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

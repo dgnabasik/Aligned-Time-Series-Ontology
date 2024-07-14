@@ -3,10 +3,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[         0,          0]
-NotebookDataLength[   1278874,      30184]
-NotebookOptionsPosition[   1261275,      29983]
-NotebookOutlinePosition[   1261670,      29999]
-CellTagsIndexPosition[   1261627,      29996]
+NotebookDataLength[   1287552,      30370]
+NotebookOptionsPosition[   1269949,      30169]
+NotebookOutlinePosition[   1270344,      30185]
+CellTagsIndexPosition[   1270301,      30182]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -128,9 +128,14 @@ Cell[BoxData[{
                   RowBox[{"[", "z", "]"}], "]"}]}], "}"}]}], ",", 
               RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
           "\[IndentingNewLine]", 
+          RowBox[{"dataR", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{"timeseries", ",", 
+             RowBox[{"TemporalRegularity", "->", "True"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
           RowBox[{"atsm", "=", 
-           RowBox[{"TimeSeriesModelFit", "[", "timeseries", "]"}]}], ";", 
-          "\n", 
+           RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", 
+          "\[IndentingNewLine]", 
           RowBox[{"process", "=", 
            RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
           RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
@@ -260,9 +265,14 @@ Cell[BoxData[{
                   RowBox[{"[", "z", "]"}], "]"}]}], "}"}]}], ",", 
               RowBox[{"ImageSize", "->", "700"}]}], "]"}]}], "]"}], ";", 
           "\[IndentingNewLine]", 
+          RowBox[{"dataR", "=", 
+           RowBox[{"TimeSeries", "[", 
+            RowBox[{"timeseries", ",", 
+             RowBox[{"TemporalRegularity", "->", "True"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
           RowBox[{"atsm", "=", 
-           RowBox[{"TimeSeriesModelFit", "[", "timeseries", "]"}]}], ";", 
-          "\n", 
+           RowBox[{"TimeSeriesModelFit", "[", "dataR", "]"}]}], ";", 
+          "\[IndentingNewLine]", 
           RowBox[{"process", "=", 
            RowBox[{"Normal", "[", "atsm", "]"}]}], ";", "\[IndentingNewLine]", 
           RowBox[{"Print", "[", "process", "]"}], ";", "\[IndentingNewLine]", 
@@ -425,8 +435,9 @@ Cell[BoxData[{
   ";"}], "\n", 
  RowBox[{
   RowBox[{
-  "fitTimeseriesModelElectricity", "[", "\"\<Electricity_WOE.csv\>\"", "]"}], 
-  ";", "\[IndentingNewLine]", 
+   RowBox[{
+   "fitTimeseriesModelElectricity", "[", "\"\<Electricity_WOE.csv\>\"", "]"}],
+    ";"}], "\[IndentingNewLine]", 
   RowBox[{"(*", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{
@@ -496,7 +507,7 @@ Cell[BoxData[{
    RowBox[{
    "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**", "**",
      "**", "**", "**", "**", "**", "**", "**"}], "******)"}], 
-  "\[IndentingNewLine]", "\n"}]}], "Input",
+  "\[IndentingNewLine]"}], "\n"}], "Input",
  CellChangeTimes->{{3.912428704688086*^9, 3.91242873650119*^9}, {
    3.912428894755269*^9, 3.912428922850176*^9}, 3.912429027022626*^9, {
    3.912429116662945*^9, 3.912429121765119*^9}, {3.912429234806164*^9, 
@@ -586,20 +597,20 @@ Cell[BoxData[{
    3.928873135074731*^9, {3.928876393980886*^9, 3.928876407884379*^9}, {
    3.9288789680447598`*^9, 3.928878977055759*^9}, {3.928879271699692*^9, 
    3.928879272807523*^9}, {3.9289069811766644`*^9, 3.9289069851282597`*^9}, {
-   3.928907669361476*^9, 3.928907699814238*^9}},
- EmphasizeSyntaxErrors->True,
- CellLabel->
-  "In[105]:=",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+   3.928907669361476*^9, 3.928907699814238*^9}, {3.9294625129252243`*^9, 
+   3.92946251413941*^9}, {3.929463658975041*^9, 3.929463660597986*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
 
 Cell[CellGroupData[{
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-LineVoltage_V.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289077175971813`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464746672138*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"db0cf37f-077b-4e14-b288-277ff0ea8335"],
+In[13]:=",ExpressionUUID->"4d594b3f-7415-466a-b345-9af4a2f18155"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -609,10 +620,11 @@ Cell[BoxData[
     RowBox[{"-", "0.38546834898713556`"}], "}"}], ",", 
    "0.18585934996491907`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907733249723*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464763742195*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"d7c19324-924d-459e-95a5-3adccce28dc9"],
+In[13]:=",ExpressionUUID->"46e7b6ff-d72a-49db-b02e-561d17ce9404"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -661,25 +673,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907733299163*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464763744095*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"c42559dc-4c1a-43ab-a8b8-ebcedc8683f1"],
+In[13]:=",ExpressionUUID->"b30cb9f9-f398-4ab6-bb1e-7a7839dcf739"],
 
 Cell[BoxData["120.91041799508442`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907733850854*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464764323043*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"d9d3ff47-1e09-4ce6-929f-b6aec55bd995"],
+In[13]:=",ExpressionUUID->"d78a4d42-1e7f-4d96-a3c4-4ab5f9eef19b"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-LineCurrent_I.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907734639382*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464765177616*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"eef85738-8e31-4b50-9a23-2a1cfedf3ad9"],
+In[13]:=",ExpressionUUID->"e1480b66-2786-42c1-96c3-2077da818b09"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -693,10 +708,11 @@ Cell[BoxData[
      "0.007182176367146277`"}], "}"}], ",", "0.0018585743802219743`"}], 
   "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289077524625*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946478406883*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"bdc1af57-8418-4149-a424-02167df82b85"],
+In[13]:=",ExpressionUUID->"110c6b37-481b-4c4e-bc11-0a0902257aed"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -756,25 +772,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907752495406*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294647840731993`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"341b9331-b95a-4835-b72f-ec6811057377"],
+In[13]:=",ExpressionUUID->"06147e18-8cf3-488a-bfcf-503dd31e8e32"],
 
 Cell[BoxData["0.002620364098978559`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907753052813*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464784587697*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"23e5fcfa-0f9b-4bc5-a387-1a704e391e0e"],
+In[13]:=",ExpressionUUID->"e4fa18e2-1571-439d-90ac-b163f86cef0b"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-LineFrequency_f.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289077539514*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294647855222673`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"43919db8-5828-41a6-aada-84e3c243d728"],
+In[13]:=",ExpressionUUID->"09148de1-3007-4562-a63b-e22a9b7b5033"],
 
 Cell[BoxData[
  RowBox[{"ARProcess", "[", 
@@ -787,10 +806,11 @@ Cell[BoxData[
      RowBox[{"-", "0.03544781402350803`"}]}], "}"}], ",", 
    "0.017320607217911007`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907774483163*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464807225133*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"391c1e95-541d-46c8-9f1a-ef8e5c40430e"],
+In[13]:=",ExpressionUUID->"9c1fc472-6f27-49ec-8ad2-c2fbb41562ff"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -874,25 +894,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289077745495243`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464807230687*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ac998083-d212-48eb-a554-1b28609222b9"],
+In[13]:=",ExpressionUUID->"7153de3b-616f-48c3-8f9c-f113e383490d"],
 
 Cell[BoxData["60.029925000296416`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289077750982018`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946480783237*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"0d7e0ad8-a683-4a1f-9ddc-fdc7910595cf"],
+In[13]:=",ExpressionUUID->"8f0455dc-966a-4ddf-a648-d4a180de9884"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-Displacement_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907775971985*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464808757277*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"a3517ce1-69e6-4344-8694-73f2f5a38e56"],
+In[13]:=",ExpressionUUID->"1aca3ea2-a062-43c7-be79-c3543e2dea61"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -909,10 +932,11 @@ Cell[BoxData[
      RowBox[{"-", "0.3492123106040536`"}]}], "}"}], ",", 
    "0.00560527921385998`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907806251996*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464839611299*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"4d9512e8-ff72-46c5-9cb7-11ddd7994d2e"],
+In[13]:=",ExpressionUUID->"1b54039f-1895-4cf5-97df-4874c7e27f49"],
 
 Cell[BoxData[
  RowBox[{
@@ -949,25 +973,28 @@ Cell[BoxData[
       RowBox[{"Abs", "[", 
        RowBox[{"s", "-", "t"}], "]"}]}]}], "]"}]}]}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907806253669*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464839613119*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"5b06a15e-f553-49cb-8121-e4edc9999152"],
+In[13]:=",ExpressionUUID->"422c8be5-f42e-414b-bb74-585c87e76ea2"],
 
 Cell[BoxData["0.9622809396328872`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907806808354*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294648401711273`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"12b94d77-3261-4aab-8af7-ac5dc78480ac"],
+In[13]:=",ExpressionUUID->"301f1ecf-b851-466a-9ea1-b2e6e799392f"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-Apparent_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907807762363*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294648411263514`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"cc643aa2-9851-465e-bb74-1ffd236051e0"],
+In[13]:=",ExpressionUUID->"50789670-6d4d-4ac8-a203-1d1f883560a3"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -980,10 +1007,11 @@ Cell[BoxData[
     RowBox[{"-", "0.3156754300379681`"}], "}"}], ",", 
    "0.0022544026840207194`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907826906948*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946486065213*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"2a819843-4f78-4f26-b9a4-869743fe066c"],
+In[13]:=",ExpressionUUID->"d9dfc16c-5aa0-4b3e-b66c-18010bd4ebbc"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1050,25 +1078,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907826914021*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464860654241*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3ae44e20-a5b2-40bc-b45f-45f38d260419"],
+In[13]:=",ExpressionUUID->"f3bbd3e5-0716-4763-9c34-291d5db41f93"],
 
 Cell[BoxData["0.011918014946419454`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289078274607773`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464861241247*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"9c595259-65a9-402b-afb0-b7086e4c5580"],
+In[13]:=",ExpressionUUID->"b3358ff7-8bac-4829-aae5-46528198c5f6"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-RealPower_P.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907828356045*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464862186328*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"fd9acaa6-0021-4e23-b472-f4c651670aca"],
+In[13]:=",ExpressionUUID->"a2f67ec1-f28c-429a-9f63-20c24818223d"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1079,10 +1110,11 @@ Cell[BoxData[
      RowBox[{"-", "0.046516137804282404`"}], ",", "0.07336011276572521`"}], 
     "}"}], ",", "27.0179582823134`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907845754819*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294648798464622`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"1ac390f5-378a-4c1b-8300-88cf6a5e3596"],
+In[13]:=",ExpressionUUID->"35eb3e21-0f6d-4f2c-b3e4-cb881e3bc621"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1135,25 +1167,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907845762689*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464879850762*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3135cd51-121a-49a4-a201-6b57045edaed"],
+In[13]:=",ExpressionUUID->"a414fac5-8ad1-4222-917c-8f26aa8ffec0"],
 
 Cell[BoxData["0.3427794149376554`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907846276002*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464880357009*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"8d713362-4133-4b89-bc7f-c242b4126b21"],
+In[13]:=",ExpressionUUID->"ed0f62d8-dad9-4746-9b24-8b9697cacfa6"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-RealEnergy_Pt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907847189598*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464881298851*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"845418f3-5fe9-4e1c-b0b1-7e3c51e6e808"],
+In[13]:=",ExpressionUUID->"32b1628d-3277-45a5-842c-e9451de205d2"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -1167,10 +1202,11 @@ Cell[BoxData[
      RowBox[{"-", "0.2499717064497392`"}]}], "}"}], ",", 
    "641.3893139258114`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907862795495*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464897911748*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"343c36fe-104a-4fcf-862d-6c300142607c"],
+In[13]:=",ExpressionUUID->"dbb16334-6769-4a27-84ca-525ac5f2f6f2"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -1186,25 +1222,28 @@ Cell[BoxData[
        RowBox[{"-", "0.2499717064497392`"}]}], "}"}], ",", 
      "641.3893139258114`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907862801654*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464897913487*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"6c207e1a-9432-4089-958d-ecf833dd6927"],
+In[13]:=",ExpressionUUID->"8d27a6de-b26d-4862-bb29-08a25aea40eb"],
 
 Cell[BoxData["20961.198024008325`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907863424165*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464898542536*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"87e830e0-26ac-4c6f-9d79-7962eca391f8"],
+In[13]:=",ExpressionUUID->"0c550c64-6393-4b37-9531-c795822069b1"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-ReactivePower_Q.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289078643024406`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464899456389*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ad64bedf-a1b1-46db-b25c-6d10c769254c"],
+In[13]:=",ExpressionUUID->"8f73d008-bb5c-4502-9401-8bb1cd78a681"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1217,10 +1256,11 @@ Cell[BoxData[
      RowBox[{"-", "0.008742685550442603`"}]}], "}"}], ",", 
    "0.0022162966168836357`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907888853952*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464924607955*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"906913bc-0cff-40a8-8969-1c2ffe9f4c0f"],
+In[13]:=",ExpressionUUID->"bd9276d5-6b32-4415-a513-f0b4c0854815"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1277,25 +1317,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289078888635483`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294649246140127`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"edf0b6ac-fba9-46c2-aebb-4f964620daf8"],
+In[13]:=",ExpressionUUID->"f99b7465-6129-4741-980e-ed6b1abe296a"],
 
 Cell[BoxData["0.00040464649173141756`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289078894067583`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464925139845*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"c871a386-52bd-4ee6-aaa5-8b43878dd57c"],
+In[13]:=",ExpressionUUID->"98e15a56-105b-4ef4-a69b-63dc8ea3acc1"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-ReactiveEnergy_Qt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289078903396893`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464926083643*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"1c20181e-dd20-4afa-826d-9a703da3538e"],
+In[13]:=",ExpressionUUID->"c22a7cea-5b96-4227-9617-d422860f262d"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -1309,10 +1352,11 @@ Cell[BoxData[
      RowBox[{"-", "0.25758553377328314`"}]}], "}"}], ",", 
    "5.097821739831252`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890790658499*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294649426831408`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"7c1d5d2f-bd60-419f-8434-b9e505e51ce8"],
+In[13]:=",ExpressionUUID->"85fff37a-e53b-494c-80ad-9d64a221cc0c"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -1328,25 +1372,28 @@ Cell[BoxData[
        RowBox[{"-", "0.25758553377328314`"}]}], "}"}], ",", 
      "5.097821739831252`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907906586625*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294649426849546`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"540a896b-3602-4600-8609-a4610f00bc92"],
+In[13]:=",ExpressionUUID->"26886cd4-48c3-440b-93ca-3c5d077ea774"],
 
 Cell[BoxData["2095.020146073738`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907907195857*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464943289949*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"de74cd40-fe70-429b-8869-b95654db1379"],
+In[13]:=",ExpressionUUID->"eb3484c3-b7a9-43be-acd6-ea048c30cb8d"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-ApparentPower_S.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907908096651*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464944207512*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"2678db9a-44a2-41d1-be54-1b51d568ee89"],
+In[13]:=",ExpressionUUID->"1ae1228b-a7c3-4fcf-9b75-b627ba79ee45"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1365,10 +1412,11 @@ Cell[BoxData[
      RowBox[{"-", "0.04850600941681864`"}]}], "}"}], ",", 
    "25.620443376959635`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907946162437*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464983053207*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"6fdad524-db3a-4bd5-8ce2-53188932d8c1"],
+In[13]:=",ExpressionUUID->"ba686f5b-5e51-4721-b905-54f827307cdc"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1453,25 +1501,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289079461807737`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946498306253*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"35386cb2-dbd4-41e5-80f4-ed59a196298c"],
+In[13]:=",ExpressionUUID->"7b22b34d-4c69-4859-b2d5-16d600dbf317"],
 
 Cell[BoxData["9.309241445566023`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907946729702*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464983622984*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3bb16e7e-af67-45ff-99b0-892cdbbb84d2"],
+In[13]:=",ExpressionUUID->"8bec90ac-ec1b-4944-94e6-c362e1f19a12"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_B1E-ApparentEnergy_St.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907947710985*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929464984625225*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"4154ce33-3930-4627-a216-731c626a64ed"],
+In[13]:=",ExpressionUUID->"f21190d1-c2ae-4427-b455-33b36ba76e21"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -1485,10 +1536,11 @@ Cell[BoxData[
      RowBox[{"-", "0.2558265253214574`"}]}], "}"}], ",", 
    "58877.49326420296`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907964528677*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465001987117*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"d60ae1b6-e513-43b0-ae89-fd5441295f6d"],
+In[13]:=",ExpressionUUID->"f794a9f4-a69f-44b7-8798-690292493cdb"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -1504,25 +1556,28 @@ Cell[BoxData[
        RowBox[{"-", "0.2558265253214574`"}]}], "}"}], ",", 
      "58877.49326420296`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289079645338917`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465001988719*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"2d317dce-4eb9-4a21-8df1-0519a27f0d89"],
+In[13]:=",ExpressionUUID->"0f47c78c-5d2c-49b7-898f-b62eec13092e"],
 
 Cell[BoxData["196950.24298185387`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890796517796*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465002637672*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"584a1fe8-7c01-4538-ab26-f86c48952e45"],
+In[13]:=",ExpressionUUID->"175c8914-e1db-4649-81fa-793dd23dc60e"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-LineVoltage_V.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890797380483*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465011493718*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"8987eb30-f209-434b-a036-346d595a14c6"],
+In[13]:=",ExpressionUUID->"2d93309f-60bb-4dd2-a2b4-d95516977a1c"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1532,10 +1587,11 @@ Cell[BoxData[
     RowBox[{"-", "0.29356148036332474`"}], "}"}], ",", 
    "0.17950875872668587`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907991244875*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294650300841312`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"7a01dba7-5001-4a40-990b-6395f3429c7f"],
+In[13]:=",ExpressionUUID->"a9525f0c-a68f-4a24-be0f-231c7d9c6e59"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1584,25 +1640,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907991252172*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465030086721*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"9fc091df-da5a-4da1-bad9-76d835ce8b24"],
+In[13]:=",ExpressionUUID->"b3017a3a-ef27-4a97-ba1b-2a46aa25ecb2"],
 
 Cell[BoxData["121.46443553847583`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928907991962268*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294650307050943`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"16230f8d-f7b1-451a-9c25-1c95fd682f7c"],
+In[13]:=",ExpressionUUID->"0e25e4e3-d953-4299-b333-6801458f71d4"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-LineCurrent_I.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890799310863*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465031660514*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"aced9584-005f-4706-82d0-97ca04cec55f"],
+In[13]:=",ExpressionUUID->"ce18f401-da92-4591-a3a7-3af603b63e3a"],
 
 Cell[BoxData[
  RowBox[{"MAProcess", "[", 
@@ -1617,10 +1676,11 @@ Cell[BoxData[
      RowBox[{"-", "0.02284399011988898`"}]}], "}"}], ",", 
    "0.0006111896769852065`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908013767301*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465052808161*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"8e6f4215-9a4f-4ce9-a470-7a39a2ac6100"],
+In[13]:=",ExpressionUUID->"599d366f-eb6f-427e-b764-04a890c0665b"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1693,25 +1753,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908013780211*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465052818431*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e99de207-87eb-47be-afac-7f79392e51b3"],
+In[13]:=",ExpressionUUID->"48232225-ff50-4b22-9921-a0db29b381e9"],
 
 Cell[BoxData["0.39816350650549437`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289080143821774`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294650534425373`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"d8fa8766-0e04-4b7c-a7a7-fdf7bd1fc405"],
+In[13]:=",ExpressionUUID->"ccd68362-8f38-4549-a8d4-3bcf73ce3c09"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-LineFrequency_f.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289080153475847`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465054449005*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"5a3bc294-86ec-4b1c-a42a-67507625e06a"],
+In[13]:=",ExpressionUUID->"7b92d744-17e9-488e-bd52-6e005e6ec7c0"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -1723,10 +1786,11 @@ Cell[BoxData[
      "0.33123474037308254`", ",", "0.21649972770821088`"}], "}"}], ",", 
    "0.015811813186656448`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908035246024*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465074971447*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"1e148449-a18f-4a0d-9d8e-69b5ab70beda"],
+In[13]:=",ExpressionUUID->"34f7267e-4541-4cdc-821c-a2c89ce11b32"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1787,25 +1851,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908035257263*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294650749762917`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"06d73612-99d5-46d2-b20f-3e7fc5c344e2"],
+In[13]:=",ExpressionUUID->"5ce364e6-b0b5-459b-a171-21bca71dafb2"],
 
 Cell[BoxData["60.00277166555576`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890803585264*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465075582663*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"628c07df-5852-4e44-aecd-b0d21bd8c515"],
+In[13]:=",ExpressionUUID->"421763e5-0dee-4dd0-afc3-8e5de33730ed"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-Displacement_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908036810264*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294650765533037`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"853e26a1-2894-438d-9e3f-88e67cc0bea1"],
+In[13]:=",ExpressionUUID->"576da27f-8603-43df-9fdf-106591b4269e"],
 
 Cell[BoxData[
  RowBox[{"ARProcess", "[", 
@@ -1817,10 +1884,11 @@ Cell[BoxData[
      "0.07698608900197618`", ",", "0.054361708317623075`"}], "}"}], ",", 
    "0.000034266660826082664`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908059618938*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294651000448713`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"90303373-a183-43ba-a174-7f2823801ff9"],
+In[13]:=",ExpressionUUID->"5b8af452-afdd-4cfb-ac3b-a4aad4f7004a"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -1899,25 +1967,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289080596266937`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294651000496473`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"5b5dd5ca-3ebe-4f0e-a3cc-a2d354c16667"],
+In[13]:=",ExpressionUUID->"6f038c69-d94c-415b-b1b5-9028c8993535"],
 
 Cell[BoxData["0.9586426731857131`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908060263452*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465100710373*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"506c90c8-6fb2-4343-ace2-41f3ba86641e"],
+In[13]:=",ExpressionUUID->"913ba30b-a9a2-46f0-acf9-c2b54d7ed186"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-Apparent_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908061232943*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465101741399*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"83e14f0a-d39d-46cf-af27-59f06462eb99"],
+In[13]:=",ExpressionUUID->"ae3dfec4-604e-4d51-882e-9e32d76f3527"],
 
 Cell[BoxData[
  RowBox[{"SARMAProcess", "[", 
@@ -1931,10 +2002,11 @@ Cell[BoxData[
      RowBox[{"{", "}"}]}], "}"}], ",", "0.00022021438463182857`"}], 
   "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908087754385*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465128605241*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"56bb6f68-a2e6-4397-bb74-cac2ffd31333"],
+In[13]:=",ExpressionUUID->"786d2e90-4f21-4df3-b491-4a94828e3537"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2037,25 +2109,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908087764966*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465128611217*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"9d515936-3b25-4386-ace8-3c3d0ce4c704"],
+In[13]:=",ExpressionUUID->"6b9279d3-9128-4df9-86f8-be3a8848c435"],
 
 Cell[BoxData["0.5323680908350357`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908088402532*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465129271388*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"fdabee1c-8c99-4230-a43e-ca2ae7d227bd"],
+In[13]:=",ExpressionUUID->"35be6059-f701-40d2-b705-0753b0781272"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-RealPower_P.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908089323481*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465130200392*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e3140047-e2a8-4aa5-b187-a39a283926bb"],
+In[13]:=",ExpressionUUID->"aa5b936e-1244-4ac5-bfec-23f798886920"],
 
 Cell[BoxData[
  RowBox[{"ARProcess", "[", 
@@ -2067,10 +2142,11 @@ Cell[BoxData[
      RowBox[{"-", "0.03600609487110782`"}]}], "}"}], ",", 
    "7.012352172302357`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289081089729652`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946515082817*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e17c8755-c41a-407b-ab65-0e465adef3b8"],
+In[13]:=",ExpressionUUID->"2b81964e-079c-4eb5-8723-35d89fe6a4a7"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2144,25 +2220,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289081089798822`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294651508338337`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ec960ee9-6497-4f23-bb1e-39bd55cb1c0c"],
+In[13]:=",ExpressionUUID->"edb37f7e-fef4-4600-8dde-7f93bf87395e"],
 
 Cell[BoxData["38.341859247729985`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908109561042*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465151388462*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"a4158174-8f16-46dd-826f-2166db494b91"],
+In[13]:=",ExpressionUUID->"b71dfd03-716e-48dd-9674-f94344d69361"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-RealEnergy_Pt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890811056318*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465152479905*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"58ada4ac-37d6-43a8-bb1e-9dfe78470129"],
+In[13]:=",ExpressionUUID->"458c3bfb-3a43-47c0-bd78-15a6a03bb65e"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -2180,10 +2259,11 @@ Cell[BoxData[
      RowBox[{"-", "0.017592623642247562`"}]}], "}"}], ",", 
    "502003.99257663626`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908129546048*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465171966761*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"7c2b7c8a-b2ac-4689-98bc-325157330d61"],
+In[13]:=",ExpressionUUID->"236dc8bd-c499-4dce-b72f-ba5ca2f96ebb"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -2203,25 +2283,28 @@ Cell[BoxData[
        RowBox[{"-", "0.017592623642247562`"}]}], "}"}], ",", 
      "502003.99257663626`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908129551601*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946517196896*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"1ce63933-13e6-43ed-ba69-974ea5d03c2f"],
+In[13]:=",ExpressionUUID->"404c10c1-29c0-4437-b0a8-0f379ad941dc"],
 
 Cell[BoxData["731624.9084490367`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908130210394*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294651726630507`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"6fea0fb0-0272-4743-a7b0-138ebedd6d30"],
+In[13]:=",ExpressionUUID->"07386d93-0d06-42e4-a3b6-4862fe33bdd5"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-ReactivePower_Q.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908131114901*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465173621045*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3ddc7fd6-a578-4190-bd41-f922e2a02940"],
+In[13]:=",ExpressionUUID->"e9ca50a0-37bb-4a7e-9cf5-ca6b52f4d987"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -2238,10 +2321,11 @@ Cell[BoxData[
      RowBox[{"-", "0.02844089470499044`"}]}], "}"}], ",", 
    "0.3403153434713533`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908152150126*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465195782638*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"f72c35e7-250e-4ade-9069-664aa42cd1d3"],
+In[13]:=",ExpressionUUID->"87544b03-c950-4057-8d16-80a5fc673d8a"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2320,25 +2404,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890815215746*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294651957848463`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"f41a1261-c5dc-44cd-a70b-b8f380877104"],
+In[13]:=",ExpressionUUID->"85e3a450-b142-45d0-a1db-420b456ad63f"],
 
 Cell[BoxData["10.835141339855081`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289081526909657`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465196338334*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"5f0b9b96-3b2d-4b2b-8752-510b2214b283"],
+In[13]:=",ExpressionUUID->"0e9b7bf2-cb43-4899-bbe8-929483a07559"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-ReactiveEnergy_Qt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908153679921*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294651974231777`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"b42cd692-baa5-4e21-9eb4-9b2de73d532f"],
+In[13]:=",ExpressionUUID->"401a9d18-4b82-493a-99ac-62122a4ab54d"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -2356,10 +2443,11 @@ Cell[BoxData[
      RowBox[{"-", "0.01807958513403728`"}]}], "}"}], ",", 
    "39091.28173943884`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908172802949*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652169998417`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"b4aa231e-b388-4bac-a92d-d1da3b8ec914"],
+In[13]:=",ExpressionUUID->"ab06eb43-f3fd-4f3c-8a27-98ade0e7cc88"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -2379,25 +2467,28 @@ Cell[BoxData[
        RowBox[{"-", "0.01807958513403728`"}]}], "}"}], ",", 
      "39091.28173943884`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908172811981*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465217001852*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"8d509983-6b04-4e50-8d8f-023f4d6fc606"],
+In[13]:=",ExpressionUUID->"7fd646a1-41a3-4600-a792-e49fcfd2db25"],
 
 Cell[BoxData["204731.19067346342`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890817355366*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465217705024*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"79b4ed65-4894-48ab-a699-ac7e9eed3a67"],
+In[13]:=",ExpressionUUID->"4bcd622a-d4cb-497a-b0e1-113a52d6a7ab"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-ApparentPower_S.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908174530037*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465218681616*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"40614632-e870-41ea-a4e7-170ab4aa036b"],
+In[13]:=",ExpressionUUID->"3fc2d765-2008-4c0f-a34d-0877afaf0de7"],
 
 Cell[BoxData[
  RowBox[{"SARMAProcess", "[", 
@@ -2413,10 +2504,11 @@ Cell[BoxData[
      RowBox[{"{", "0.008705148633546697`", "}"}]}], "}"}], ",", 
    "8.372530228302823`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908206367505*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652512681847`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"6a32a5c7-6c30-4f5c-aa52-31c517a3aef7"],
+In[13]:=",ExpressionUUID->"e59dcfc7-57ac-4599-beb1-18deb0cedeb5"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2532,25 +2624,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289082063876457`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652512894773`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3b633cc9-5f21-4221-a3a0-0f1f10b6cc65"],
+In[13]:=",ExpressionUUID->"87406836-0033-4e91-a4ad-c1322faf18af"],
 
 Cell[BoxData["50.40685751748488`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908206930891*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652519023113`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"04d2ec5d-8e90-435a-a1f1-6a3d670e4807"],
+In[13]:=",ExpressionUUID->"674d03a0-d813-46da-8a13-0005e8c8457d"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_EQE-ApparentEnergy_St.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289082079308777`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465252993135*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"31acb823-b150-4532-b4ee-7a787db0c9be"],
+In[13]:=",ExpressionUUID->"09f111e0-2079-4ca0-b4e4-9ade09072b1e"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -2568,10 +2663,11 @@ Cell[BoxData[
      RowBox[{"-", "0.017573728456731306`"}]}], "}"}], ",", 
    "879543.2620704239`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908226606635*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652724622993`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"7ac7a647-3d9d-4965-ab7b-b7b20ace25bf"],
+In[13]:=",ExpressionUUID->"939d752b-3b43-4f3e-8705-ff4a81e6797f"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -2591,25 +2687,28 @@ Cell[BoxData[
        RowBox[{"-", "0.017573728456731306`"}]}], "}"}], ",", 
      "879543.2620704239`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908226608487*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465272464203*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"175ac309-0ab3-4d03-a066-b5bbdcc096fe"],
+In[13]:=",ExpressionUUID->"2ddb0fb9-2795-441d-a5d7-cc226b43fb08"],
 
 Cell[BoxData["969922.3250102194`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908227286731*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652731539717`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"14f6526b-fc5d-47b9-baf4-aeab97886274"],
+In[13]:=",ExpressionUUID->"b38b891b-ef14-4461-b53b-d73dc08a2a9a"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-LineVoltage_V.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908235948558*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465281248287*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ff0ca753-ceb2-4229-80cd-c9c53a6cb600"],
+In[13]:=",ExpressionUUID->"524ba73a-5a10-4909-9839-75c6ebff3677"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -2619,10 +2718,11 @@ Cell[BoxData[
     RowBox[{"-", "0.38901155445325114`"}], "}"}], ",", 
    "0.18905392222129508`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908253235094*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652986795*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"d6e3c890-16ff-470e-85e7-d14be607d31f"],
+In[13]:=",ExpressionUUID->"3c20a644-9ec6-4f29-bd69-091a005749a7"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2671,25 +2771,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908253236958*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465298681485*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"518cbfe9-62c8-4b1e-ab19-03361b1eb699"],
+In[13]:=",ExpressionUUID->"f06acc08-3777-457d-a9f5-43ec1c92b944"],
 
 Cell[BoxData["121.89798582430087`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908253785019*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294652992264633`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e85a3734-3b61-4554-9a90-b30a7431baa9"],
+In[13]:=",ExpressionUUID->"17392a76-e0aa-4872-9bc3-6ababa643cb2"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-LineCurrent_I.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908254664179*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465300108447*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3b8b7cd5-ba3f-41b0-b814-c257d5d61fa3"],
+In[13]:=",ExpressionUUID->"8085d346-bc7f-4299-b3ae-c733add96d3b"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -2704,10 +2807,11 @@ Cell[BoxData[
    RowBox[{"{", "0.9872358623143642`", "}"}], ",", "6.4711582875408`*^-6"}], 
   "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890827995767*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294653256025333`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"59039f92-f7e1-4c25-b04a-d6cc0bb81ec0"],
+In[13]:=",ExpressionUUID->"c5a32d06-f36d-43be-baa9-40881664634e"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2778,25 +2882,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289082799649143`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465325608279*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"94003c54-3f12-46a6-9d9f-dbbf71f136a3"],
+In[13]:=",ExpressionUUID->"7955c1a6-5633-43cb-841e-d61f7ced5808"],
 
 Cell[BoxData["4.946799770991789`*^-6"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908280458383*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465326112658*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"0e0f6a71-f5b6-4716-88ca-c58221673822"],
+In[13]:=",ExpressionUUID->"d7859167-4b07-493d-9086-7f04323deccc"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-LineFrequency_f.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908281371476*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465327032859*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"4abe8543-97c1-434c-8fba-255a12ec4347"],
+In[13]:=",ExpressionUUID->"ecaa7464-d0df-4aad-ae7e-b7c35c6d1c28"],
 
 Cell[BoxData[
  RowBox[{"ARProcess", "[", 
@@ -2809,10 +2916,11 @@ Cell[BoxData[
      RowBox[{"-", "0.03532190475362918`"}]}], "}"}], ",", 
    "0.01732594745679036`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908302700281*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294653491908083`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"cb3b829b-c4f9-4569-8b3d-00318846cc72"],
+In[13]:=",ExpressionUUID->"7067b361-3e97-4d3c-b316-cf6997b52e65"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2896,25 +3004,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908302711111*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465349193489*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"6e4b7826-8a99-4d38-8c7a-375cff4596aa"],
+In[13]:=",ExpressionUUID->"eb7f64e9-d498-4868-baea-54057d9238a2"],
 
 Cell[BoxData["60.03064923356423`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908303283132*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465349797331*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"9dd5997b-16fc-40cf-b507-da12416f8a47"],
+In[13]:=",ExpressionUUID->"73b6ffde-3f9d-4065-80a7-5d51c73d7903"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-Displacement_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908304200224*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294653507490463`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"7fc81009-ba2b-49ee-957c-01212c4e86e8"],
+In[13]:=",ExpressionUUID->"d6effa1f-d8aa-46a2-b6d3-aec7ead9a867"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -2926,10 +3037,11 @@ Cell[BoxData[
      RowBox[{"-", "0.0046458028787898405`"}]}], "}"}], ",", 
    "0.0026738454315455074`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908322434784*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946536960135*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"9c5a188a-2257-4e68-a2a3-2b25a4c20651"],
+In[13]:=",ExpressionUUID->"3e47549f-e9d2-4b52-9f51-66fcd4af205a"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -2982,25 +3094,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908322441637*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465369605995*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"9e2a5375-6d28-424f-800c-ecd2b7ef32dc"],
+In[13]:=",ExpressionUUID->"a8c3854d-e48a-41b2-b513-a0527a70ec4b"],
 
 Cell[BoxData["0.990586972294741`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908322953741*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465370137795*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"da4d2855-6496-4545-82b1-a03cc7178f73"],
+In[13]:=",ExpressionUUID->"2882326b-b15e-4a09-bd39-8ed5f878243f"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-Apparent_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908323867227*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465371078259*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"fcd0a4f8-869d-4778-904d-f8ddefa94ccb"],
+In[13]:=",ExpressionUUID->"a2bc8d58-a568-4ed9-94df-7bb82d21eaa8"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -3016,10 +3131,11 @@ Cell[BoxData[
      RowBox[{"-", "0.05287034748493169`"}]}], "}"}], ",", 
    "0.1169911472785034`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908343487255*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465391296664*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"120f3544-d908-4175-ba9c-c57cf79c5134"],
+In[13]:=",ExpressionUUID->"d8814424-c5f8-42de-9203-d14e78d8a1b1"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -3078,25 +3194,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890834349592*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465391302251*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"cec3cce0-163a-427a-8581-8b729aad0b0b"],
+In[13]:=",ExpressionUUID->"4bf9d39d-53a3-4303-8159-39f61dcf6e3f"],
 
 Cell[BoxData["0.8126792465815225`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908344055524*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465391862667*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"4b78a693-edf1-49bc-bd8a-4a3ec9b9c7a1"],
+In[13]:=",ExpressionUUID->"2d3ee51c-333a-42db-9900-ade474533f3f"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-RealPower_P.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908344981674*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465392848445*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"0b0098f1-c410-4513-abc0-535259b183d2"],
+In[13]:=",ExpressionUUID->"f29eb029-4994-45a4-a239-342f6e079401"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -3110,10 +3229,11 @@ Cell[BoxData[
      RowBox[{"-", "0.514084219174091`"}]}], "}"}], ",", 
    "0.11057901460868433`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908363412354*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465411322074*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"5ae8b9ee-4c25-4b02-a6d4-1bf2dc98a3fd"],
+In[13]:=",ExpressionUUID->"b165e771-dfeb-41f2-ad70-20ac49d2e1b7"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -3180,25 +3300,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908363414536*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465411324492*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"40a58d41-3620-418c-a1e3-aca2762c21d8"],
+In[13]:=",ExpressionUUID->"235a94f5-bf91-4852-9d0d-b98550fd4612"],
 
 Cell[BoxData["0.006684092107296394`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908363933085*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465411847404*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"65f5eb18-51f2-4c3c-9f4b-297a3ca9f152"],
+In[13]:=",ExpressionUUID->"1d72c04f-1d2f-43c1-905f-3cd435074afa"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-RealEnergy_Pt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908364857188*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294654127581787`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"beb3138a-2eeb-4421-86bd-66724c809c6e"],
+In[13]:=",ExpressionUUID->"87748630-7eb6-4453-81ff-df4dc291dd72"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -3212,10 +3335,11 @@ Cell[BoxData[
      RowBox[{"-", "0.24235447905100266`"}]}], "}"}], ",", 
    "4.141283763849458`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289083811649837`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294654299472723`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"c7518082-3b02-4b1a-a338-f13b82c93cda"],
+In[13]:=",ExpressionUUID->"6fb60b73-3e3c-4208-8175-548e55ac8c01"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -3231,25 +3355,28 @@ Cell[BoxData[
        RowBox[{"-", "0.24235447905100266`"}]}], "}"}], ",", 
      "4.141283763849458`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908381166934*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294654299492397`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"97142c87-27a4-4d10-8218-25e41335055d"],
+In[13]:=",ExpressionUUID->"d6849853-f0ba-4955-be61-c6efc416bd5f"],
 
 Cell[BoxData["2604.7519841669005`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908381766699*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465430561915*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"8e416d0c-3725-49af-9d4a-4584783b267e"],
+In[13]:=",ExpressionUUID->"6655332f-89ab-4d5e-bd28-a4c122323b34"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-ReactivePower_Q.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289083826975193`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465431466552*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"d236ced1-a451-4e88-ab6d-bcd1f6e5bb5b"],
+In[13]:=",ExpressionUUID->"d54575bf-933f-4275-af68-71f1c644f9ad"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -3264,10 +3391,11 @@ Cell[BoxData[
    RowBox[{"{", "0.9741923626135855`", "}"}], ",", "0.0045122881885953465`"}],
    "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908476497072*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294655250819187`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3d47ed65-310e-44fc-80d2-60ad085a72dd"],
+In[13]:=",ExpressionUUID->"a96df634-791f-41c3-a932-38fa6aad52c7"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -3338,25 +3466,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908476499172*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465525086933*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"73a334c9-397a-453e-8423-49bf555ae380"],
+In[13]:=",ExpressionUUID->"0f1864bf-62e1-41a9-9995-84efd25d9627"],
 
 Cell[BoxData["0.00013223100979595822`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908476966063*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465525562195*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"2cc35a14-4384-497e-8dc2-16e191ce9c30"],
+In[13]:=",ExpressionUUID->"48d786b3-88e7-448f-a67b-ac1a5faab27c"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-ReactiveEnergy_Qt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908477805727*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465526402808*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"a2113f14-b940-4344-afb0-5f6a20b3977f"],
+In[13]:=",ExpressionUUID->"7fcb0754-b6ee-40cf-8aec-c9b5aefa76c2"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -3370,10 +3501,11 @@ Cell[BoxData[
      RowBox[{"-", "0.2504000988134802`"}]}], "}"}], ",", 
    "0.10673405605724605`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908493099616*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465542444584*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"11853fc9-40fa-4297-8322-a2c6600eae99"],
+In[13]:=",ExpressionUUID->"c053522c-b6fd-422f-9e05-091cb9ae4755"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -3389,25 +3521,28 @@ Cell[BoxData[
        RowBox[{"-", "0.2504000988134802`"}]}], "}"}], ",", 
      "0.10673405605724605`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289084931014*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294655424465*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"07d0e0b9-c83f-4f9d-a066-ac28c253a7c0"],
+In[13]:=",ExpressionUUID->"4fe50480-c88f-489b-b228-831814efcc0d"],
 
 Cell[BoxData["351.0028302794457`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289084936374493`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465542941751*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"310eaa1c-b518-4ccc-98f5-8a9f6de82fde"],
+In[13]:=",ExpressionUUID->"24338f7f-7e4d-4649-9449-e463f55f0931"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-ApparentPower_S.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908494489484*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294655438255568`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3455b72d-b427-4715-b7a6-074293573f18"],
+In[13]:=",ExpressionUUID->"99587f94-441b-4e35-8f72-18565bfd9c86"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -3424,10 +3559,11 @@ Cell[BoxData[
    "3.361331857541169`", ",", 
    RowBox[{"{", "}"}]}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908512774398*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465563284793*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e8c29036-d642-471c-ae1e-7dbae78e3aed"],
+In[13]:=",ExpressionUUID->"f9852e95-e822-4b87-a9e8-e13225f31050"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -28991,25 +29127,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908513044196*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294655635072193`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e5f17277-23fb-44b9-8732-ac03efa84a09"],
+In[13]:=",ExpressionUUID->"df63a813-0149-46db-80eb-4cf222a8d22a"],
 
 Cell[BoxData["1.790492626156019`*^225"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908513783041*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465564328177*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"dffdf22a-fbef-4d6c-ae4a-5898169d6c78"],
+In[13]:=",ExpressionUUID->"59ea51bf-dbf5-4f18-a48f-0dd01bd6027d"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_OUE-ApparentEnergy_St.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908514706308*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946556533244*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"c1207fea-3928-433b-b6e2-6b532dcdd130"],
+In[13]:=",ExpressionUUID->"9bc2064a-653e-4b88-b553-5e4434d4223b"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -29023,10 +29162,11 @@ Cell[BoxData[
      RowBox[{"-", "0.26288308513788233`"}]}], "}"}], ",", 
    "159.5621567249651`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908531028652*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465582406857*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"0d4dcdf9-d054-4c76-a9c0-0380f2b3dc66"],
+In[13]:=",ExpressionUUID->"96dcdfc1-2cec-43b6-9e61-d7c830825654"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -29042,25 +29182,28 @@ Cell[BoxData[
        RowBox[{"-", "0.26288308513788233`"}]}], "}"}], ",", 
      "159.5621567249651`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908531030533*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465582408613*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"0d68a93e-a4e3-4f1b-88ae-e5eab8ce54fd"],
+In[13]:=",ExpressionUUID->"6bac30b7-719e-475f-a38a-1f1536159eef"],
 
 Cell[BoxData["15657.00491983086`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908531783162*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465583036545*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"89f089c9-dd34-4b41-9ba2-99ac89201928"],
+In[13]:=",ExpressionUUID->"4abffd73-ded8-4144-bd43-d761a54de02c"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-LineVoltage_V.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908540343871*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465591465599*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"3ae7330f-724c-41a2-b1f5-963ab242a627"],
+In[13]:=",ExpressionUUID->"522047da-2a51-4491-9ee6-801c0da94b1f"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -29070,10 +29213,11 @@ Cell[BoxData[
     RowBox[{"-", "0.46446899098574357`"}], "}"}], ",", 
    "0.5342347627422581`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908557781261*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465609435112*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"39c0534d-29eb-439b-98c0-dc7a2998b6f8"],
+In[13]:=",ExpressionUUID->"b28e9533-81a4-4667-b180-cb74fbc021e7"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29122,25 +29266,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289085577830276`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294656094369926`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"390c97ae-5583-4a43-878f-25a1d072ac4d"],
+In[13]:=",ExpressionUUID->"dc5eaab2-7848-4916-9a64-8c70c2f720ad"],
 
 Cell[BoxData["243.2397956851442`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890855832972*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465610012335*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ed315807-a4c9-47ac-8167-e33226fe2bdb"],
+In[13]:=",ExpressionUUID->"d6da6474-5cc5-482c-add0-0a5ca5fa4600"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-LineCurrent_I.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908559214428*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294656109560013`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"41df782d-094e-4500-afc5-684b2cba4ae3"],
+In[13]:=",ExpressionUUID->"f5434867-d794-4e8d-8c41-d6a2b4ac567a"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -29157,10 +29304,11 @@ Cell[BoxData[
      RowBox[{"-", "0.05575154257752733`"}]}], "}"}], ",", 
    "0.8104337523353319`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908579049554*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465632144724*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e5e018ab-c012-4b17-9258-829b9fecb4ef"],
+In[13]:=",ExpressionUUID->"1bb8c30e-50c6-4fb4-98f5-aff7138a57c6"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29230,25 +29378,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908579057909*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465632146964*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"2ef1dd11-c928-47b7-8ac0-482b5b005d2b"],
+In[13]:=",ExpressionUUID->"92c0643f-6dfa-4e01-830f-9e111300e204"],
 
 Cell[BoxData["0.11607519137386703`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908579623753*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465632740192*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"68d97a7a-6833-4b5b-b7e7-991a1bd2f887"],
+In[13]:=",ExpressionUUID->"a87d543e-ff70-4d3d-845a-bb5b48f2163f"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-LineFrequency_f.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908580542802*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946563371688*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"a9f08ad6-c939-4bea-ab9d-9bdaf6154870"],
+In[13]:=",ExpressionUUID->"d42e4a27-3352-4a76-9af7-b44fcf046a4a"],
 
 Cell[BoxData[
  RowBox[{"ARProcess", "[", 
@@ -29261,10 +29412,11 @@ Cell[BoxData[
      RowBox[{"-", "0.035301789166076396`"}]}], "}"}], ",", 
    "0.01733287307132959`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908602727377*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294656559675007`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"37a15c5c-e134-44d3-91e8-e12b78affe60"],
+In[13]:=",ExpressionUUID->"1c2daf3b-1f23-4956-b95f-325f2934fc2c"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29348,25 +29500,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289086027347116`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465655972498*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"39ae0232-06b8-4d62-940f-5aedbd1671ba"],
+In[13]:=",ExpressionUUID->"5468df9a-f0de-46f5-b75c-68d95730485a"],
 
 Cell[BoxData["60.02444489049776`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908603352227*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465656600007*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"27f3ac46-c019-40ab-a8be-f45454caa599"],
+In[13]:=",ExpressionUUID->"eed98bde-cd5b-435c-ad56-1a502c5d38fb"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-Displacement_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908604277687*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294656575471373`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"8fe8b1e7-d884-4b26-98a9-eaa499fb05ab"],
+In[13]:=",ExpressionUUID->"2f2bf0d5-2ada-4c5a-97d8-34f4f4cf5250"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -29376,10 +29531,11 @@ Cell[BoxData[
     RowBox[{"-", "0.8393724676908288`"}], "}"}], ",", 
    "0.00009281508895257626`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908627732937*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465680231853*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"68ab7f45-e480-4415-9ef8-acd4e3a0040c"],
+In[13]:=",ExpressionUUID->"5f94332b-a83e-43fe-a001-1fa67e11000d"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29428,25 +29584,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890862773491*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465680234283*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"c050b7ea-8020-4218-9f37-64218b6c672b"],
+In[13]:=",ExpressionUUID->"9c472be5-1478-4149-ab95-7ac0d33b0f36"],
 
 Cell[BoxData["0.9997233868791842`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908628300908*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465680758263*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"4f15a0f6-6f02-4d96-9541-956389e7d7cb"],
+In[13]:=",ExpressionUUID->"03f56683-b6af-445e-a107-468edec81b12"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-Apparent_PF.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289086292423067`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294656816905537`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"bfccc48e-9303-49a4-8381-4fa5eb6fd1d6"],
+In[13]:=",ExpressionUUID->"be1d4293-9631-4438-80c2-6d32f0ad01db"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -29462,10 +29621,11 @@ Cell[BoxData[
      RowBox[{"-", "0.22793029550420638`"}]}], "}"}], ",", 
    "0.005069158700404675`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890864812881*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465701120679*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ae78aa93-8240-4022-8041-8d72fbdd672e"],
+In[13]:=",ExpressionUUID->"bb1c6c59-2177-4c06-994b-2e299517aada"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29524,25 +29684,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908648137148*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294657011261168`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"d9a54aed-cf68-4950-865d-71dcc8f09500"],
+In[13]:=",ExpressionUUID->"f9c263d4-c4ca-46a8-a617-c68e5986d316"],
 
 Cell[BoxData["0.0014155909889181674`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908648640994*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465701658944*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"9c8ae87c-bab7-4a27-8f3d-046e16fe0f49"],
+In[13]:=",ExpressionUUID->"4b684955-aeb1-42ea-a0d0-1c8042d41aab"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-RealPower_P.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908649529808*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465702606408*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"f8ccadf3-6654-4402-b368-3f0ffbc58d02"],
+In[13]:=",ExpressionUUID->"99e03567-0b34-4226-948e-68c439bbb925"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -29558,10 +29721,11 @@ Cell[BoxData[
      RowBox[{"-", "0.036057020268108336`"}]}], "}"}], ",", 
    "11821.15831549128`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289086686266003`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465722502532*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"23d94f6d-61a3-4554-af4f-bf9a47cd90ae"],
+In[13]:=",ExpressionUUID->"9e83a24a-9605-448b-bb54-771b71547eda"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29631,25 +29795,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908668628785*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294657225046463`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"fc33c5dd-0ca1-48ec-848b-1f99ac7a0bfc"],
+In[13]:=",ExpressionUUID->"f4fbcb41-5f48-4c34-8eb4-99e107386364"],
 
 Cell[BoxData["1.9218630796722218`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908669154215*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465723038747*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"dd573664-e697-40c4-8888-1fbf06e25f3f"],
+In[13]:=",ExpressionUUID->"5d2795b6-6061-4160-b70b-ae6ede1adfe2"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-RealEnergy_Pt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908670074876*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465724024044*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"273b8af8-5abf-46cd-a085-9448830e32d6"],
+In[13]:=",ExpressionUUID->"0099932b-dd5f-4828-bfc0-0f103cc0e7f7"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -29663,10 +29830,11 @@ Cell[BoxData[
      RowBox[{"-", "0.2357872961266987`"}]}], "}"}], ",", 
    "26705.705966512844`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908686758663*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465741691124*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e790406f-0b62-48f6-be06-ee1aa7a53b8c"],
+In[13]:=",ExpressionUUID->"7e46bbcc-69c9-4159-9442-c3f13a7fac9a"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -29682,25 +29850,28 @@ Cell[BoxData[
        RowBox[{"-", "0.2357872961266987`"}]}], "}"}], ",", 
      "26705.705966512844`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289086867604437`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946574169316*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"e30b9b01-4680-4354-ab9d-5acbd0f79c76"],
+In[13]:=",ExpressionUUID->"9774ee8f-4a27-45f9-9e6a-7112c5d100af"],
 
 Cell[BoxData["151640.1873894626`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908687392435*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465742499154*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"2a49dcb8-756a-4557-a437-f324cc798c85"],
+In[13]:=",ExpressionUUID->"5e3c69c7-fd2c-48d7-86eb-0e7b7ba562ab"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-ReactivePower_Q.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289086883167343`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465743486208*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"20c834ab-2bb4-4ec7-972d-825b5988e291"],
+In[13]:=",ExpressionUUID->"88c572a6-806c-485b-b5de-d9a687484f08"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -29710,10 +29881,11 @@ Cell[BoxData[
     RowBox[{"-", "0.12658329339341215`"}], "}"}], ",", "3.642379765780413`"}],
    "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908704574314*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294657607313137`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"bd21c2cb-1b4f-4531-b6d9-4d7c792ac908"],
+In[13]:=",ExpressionUUID->"8d4429aa-7c3b-4f77-81f2-4db62c313671"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29762,25 +29934,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908704576582*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465760733344*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ca0fe6de-d94f-430a-8354-a76ecc193f99"],
+In[13]:=",ExpressionUUID->"079737de-7d1b-40eb-bfc6-a482e9a8a689"],
 
 Cell[BoxData["0.025958697420894072`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908705093742*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465761267208*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"113ab6bb-8147-43ab-b250-ae053f68462f"],
+In[13]:=",ExpressionUUID->"ae765207-8d05-47fd-9bbf-d6fbc15445c8"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-ReactiveEnergy_Qt.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908706014201*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465762238647*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"7460a2e6-dd81-4d42-904b-680f70118da1"],
+In[13]:=",ExpressionUUID->"e8561a97-c0c1-44a0-914e-816655fb70d6"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -29794,10 +29969,11 @@ Cell[BoxData[
      RowBox[{"-", "0.230522959955712`"}]}], "}"}], ",", 
    "225.60674802086996`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289087226797647`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.92946577944129*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"5582b27c-903a-479d-bc9d-d51453619c61"],
+In[13]:=",ExpressionUUID->"0aa20967-74c3-4a5a-b4e8-2022636fa788"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -29813,25 +29989,28 @@ Cell[BoxData[
        RowBox[{"-", "0.230522959955712`"}]}], "}"}], ",", 
      "225.60674802086996`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908722681525*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465779443153*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"772b984a-d5f5-403b-9984-68a12ce78ce7"],
+In[13]:=",ExpressionUUID->"28ceb118-ef46-4750-891a-1f455cf0fdf5"],
 
 Cell[BoxData["22942.15924853482`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908723308852*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465780103403*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"064d4961-25d4-43fa-bb19-cc2d89c2918d"],
+In[13]:=",ExpressionUUID->"876cebb9-3edc-43fa-aae5-08eb47126150"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-ApparentPower_S.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289087241966667`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294657810449457`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"ce5524d2-66a2-47db-8778-8be7d0688045"],
+In[13]:=",ExpressionUUID->"7fb1f063-fe23-406c-8ae5-5342fb12ddcd"],
 
 Cell[BoxData[
  RowBox[{"ARMAProcess", "[", 
@@ -29848,10 +30027,11 @@ Cell[BoxData[
      RowBox[{"-", "0.027170600067409945`"}]}], "}"}], ",", 
    "11502.402754764662`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908743704012*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465801709749*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"27e03698-6fba-416e-af3d-35bac871e2d1"],
+In[13]:=",ExpressionUUID->"38b3ec36-2690-45d8-accf-90fe26abd991"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -29916,25 +30096,28 @@ Cell[BoxData[
   Selectable->False,
   StripWrapperBoxes->True]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289087437231073`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465801712088*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"4483e188-d57d-433a-81fd-0a477423ea8d"],
+In[13]:=",ExpressionUUID->"760e417d-485f-4f82-b573-6c657f88919a"],
 
 Cell[BoxData["3.951924837261539`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.9289087444047737`*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.9294658022689667`*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"6cb1a1d4-94a2-4402-a05b-ebbd4d80a472"],
+In[13]:=",ExpressionUUID->"a743c07d-7ff7-4a15-9a48-f89850db4c75"],
 
 Cell[BoxData["\<\"/home/david/Documents/digital-twins/AMP/images/root_AMP_\
 Vancouver_Electricity_WOE-ApparentEnergy_St.png\"\>"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.92890874536666*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465803252592*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"84a65135-02bf-4005-ab9c-94961cd9f90a"],
+In[13]:=",ExpressionUUID->"b2f31244-e89f-48e8-9006-73a7ace62efd"],
 
 Cell[BoxData[
  RowBox[{"ARIMAProcess", "[", 
@@ -29948,10 +30131,11 @@ Cell[BoxData[
      RowBox[{"-", "0.24399904752210194`"}]}], "}"}], ",", 
    "51301.929492556366`"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908762396263*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465820616632*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"7eddd9eb-e8e5-4ced-9c47-e78077901017"],
+In[13]:=",ExpressionUUID->"23264215-3f9a-4bbd-8b24-8dba1fcdba04"],
 
 Cell[BoxData[
  RowBox[{"CovarianceFunction", "[", 
@@ -29967,17 +30151,19 @@ Cell[BoxData[
        RowBox[{"-", "0.24399904752210194`"}]}], "}"}], ",", 
      "51301.929492556366`"}], "]"}], ",", "s", ",", "t"}], "]"}]], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908762398284*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465820618697*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"c43d2a7d-d0f8-4d86-8e88-874c8d0a3cc9"],
+In[13]:=",ExpressionUUID->"d2bf9a6a-7605-4776-b93a-39d9cb755a4c"],
 
 Cell[BoxData["209796.5796444258`"], "Print",
  CellChangeTimes->{3.92887649781153*^9, 3.928879287634094*^9, 
-  3.928907002065797*^9, 3.928908763044058*^9},
+  3.928907002065797*^9, 3.928907717597182*^9, 3.929463681853175*^9, 
+  3.929465821277747*^9},
  CellLabel->
   "During evaluation of \
-In[105]:=",ExpressionUUID->"49baa4ab-b24b-4fe9-a21d-2091c3f6cedd"]
+In[13]:=",ExpressionUUID->"ea6bce7a-5e0a-4d24-945a-63c9646f4ca2"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -29999,184 +30185,184 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[422, 15, 26780, 576, 2241, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
+Cell[422, 15, 27327, 586, 2281, "Input",ExpressionUUID->"0c6a8a2a-6257-47d0-9d9c-6665dd629657"],
 Cell[CellGroupData[{
-Cell[27227, 595, 353, 6, 23, "Print",ExpressionUUID->"db0cf37f-077b-4e14-b288-277ff0ea8335"],
-Cell[27583, 603, 468, 11, 23, "Print",ExpressionUUID->"d7c19324-924d-459e-95a5-3adccce28dc9"],
-Cell[28054, 616, 1720, 50, 39, "Print",ExpressionUUID->"c42559dc-4c1a-43ab-a8b8-ebcedc8683f1"],
-Cell[29777, 668, 261, 5, 23, "Print",ExpressionUUID->"d9d3ff47-1e09-4ce6-929f-b6aec55bd995"],
-Cell[30041, 675, 351, 6, 23, "Print",ExpressionUUID->"eef85738-8e31-4b50-9a23-2a1cfedf3ad9"],
-Cell[30395, 683, 617, 15, 23, "Print",ExpressionUUID->"bdc1af57-8418-4149-a424-02167df82b85"],
-Cell[31015, 700, 2135, 61, 55, "Print",ExpressionUUID->"341b9331-b95a-4835-b72f-ec6811057377"],
-Cell[33153, 763, 263, 5, 23, "Print",ExpressionUUID->"23e5fcfa-0f9b-4bc5-a387-1a704e391e0e"],
-Cell[33419, 770, 351, 6, 23, "Print",ExpressionUUID->"43919db8-5828-41a6-aada-84e3c243d728"],
-Cell[33773, 778, 609, 14, 23, "Print",ExpressionUUID->"391c1e95-541d-46c8-9f1a-ef8e5c40430e"],
-Cell[34385, 794, 3204, 85, 81, "Print",ExpressionUUID->"ac998083-d212-48eb-a554-1b28609222b9"],
-Cell[37592, 881, 263, 5, 23, "Print",ExpressionUUID->"0d7e0ad8-a683-4a1f-9ddc-fdc7910595cf"],
-Cell[37858, 888, 353, 6, 23, "Print",ExpressionUUID->"a3517ce1-69e6-4344-8694-73f2f5a38e56"],
-Cell[38214, 896, 751, 18, 42, "Print",ExpressionUUID->"4d9512e8-ff72-46c5-9cb7-11ddd7994d2e"],
-Cell[38968, 916, 1354, 38, 44, "Print",ExpressionUUID->"5b06a15e-f553-49cb-8121-e4edc9999152"],
-Cell[40325, 956, 261, 5, 23, "Print",ExpressionUUID->"12b94d77-3261-4aab-8af7-ac5dc78480ac"],
-Cell[40589, 963, 349, 6, 23, "Print",ExpressionUUID->"cc643aa2-9851-465e-bb74-1ffd236051e0"],
-Cell[40941, 971, 590, 14, 23, "Print",ExpressionUUID->"2a819843-4f78-4f26-b9a4-869743fe066c"],
-Cell[41534, 987, 2416, 68, 40, "Print",ExpressionUUID->"3ae44e20-a5b2-40bc-b45f-45f38d260419"],
-Cell[43953, 1057, 265, 5, 23, "Print",ExpressionUUID->"9c595259-65a9-402b-afb0-b7086e4c5580"],
-Cell[44221, 1064, 349, 6, 23, "Print",ExpressionUUID->"fd9acaa6-0021-4e23-b472-f4c651670aca"],
-Cell[44573, 1072, 514, 12, 23, "Print",ExpressionUUID->"1ac390f5-378a-4c1b-8300-88cf6a5e3596"],
-Cell[45090, 1086, 1858, 54, 55, "Print",ExpressionUUID->"3135cd51-121a-49a4-a201-6b57045edaed"],
-Cell[46951, 1142, 261, 5, 23, "Print",ExpressionUUID->"8d713362-4133-4b89-bc7f-c242b4126b21"],
-Cell[47215, 1149, 351, 6, 23, "Print",ExpressionUUID->"845418f3-5fe9-4e1c-b0b1-7e3c51e6e808"],
-Cell[47569, 1157, 593, 15, 23, "Print",ExpressionUUID->"343c36fe-104a-4fcf-862d-6c300142607c"],
-Cell[48165, 1174, 690, 17, 23, "Print",ExpressionUUID->"6c207e1a-9432-4089-958d-ecf833dd6927"],
-Cell[48858, 1193, 261, 5, 23, "Print",ExpressionUUID->"87e830e0-26ac-4c6f-9d79-7962eca391f8"],
-Cell[49122, 1200, 355, 6, 23, "Print",ExpressionUUID->"ad64bedf-a1b1-46db-b25c-6d10c769254c"],
-Cell[49480, 1208, 592, 14, 23, "Print",ExpressionUUID->"906913bc-0cff-40a8-8969-1c2ffe9f4c0f"],
-Cell[50075, 1224, 2008, 58, 71, "Print",ExpressionUUID->"edf0b6ac-fba9-46c2-aebb-4f964620daf8"],
-Cell[52086, 1284, 267, 5, 23, "Print",ExpressionUUID->"c871a386-52bd-4ee6-aaa5-8b43878dd57c"],
-Cell[52356, 1291, 357, 6, 23, "Print",ExpressionUUID->"1c20181e-dd20-4afa-826d-9a703da3538e"],
-Cell[52716, 1299, 593, 15, 23, "Print",ExpressionUUID->"7c1d5d2f-bd60-419f-8434-b9e505e51ce8"],
-Cell[53312, 1316, 691, 17, 23, "Print",ExpressionUUID->"540a896b-3602-4600-8609-a4610f00bc92"],
-Cell[54006, 1335, 260, 5, 23, "Print",ExpressionUUID->"de74cd40-fe70-429b-8869-b95654db1379"],
-Cell[54269, 1342, 353, 6, 23, "Print",ExpressionUUID->"2678db9a-44a2-41d1-be54-1b51d568ee89"],
-Cell[54625, 1350, 857, 20, 42, "Print",ExpressionUUID->"6fdad524-db3a-4bd5-8ce2-53188932d8c1"],
-Cell[55485, 1372, 3002, 86, 136, "Print",ExpressionUUID->"35386cb2-dbd4-41e5-80f4-ed59a196298c"],
-Cell[58490, 1460, 260, 5, 23, "Print",ExpressionUUID->"3bb16e7e-af67-45ff-99b0-892cdbbb84d2"],
-Cell[58753, 1467, 355, 6, 23, "Print",ExpressionUUID->"4154ce33-3930-4627-a216-731c626a64ed"],
-Cell[59111, 1475, 591, 15, 23, "Print",ExpressionUUID->"d60ae1b6-e513-43b0-ae89-fd5441295f6d"],
-Cell[59705, 1492, 690, 17, 23, "Print",ExpressionUUID->"2d317dce-4eb9-4a21-8df1-0519a27f0d89"],
-Cell[60398, 1511, 260, 5, 23, "Print",ExpressionUUID->"584a1fe8-7c01-4538-ab26-f86c48952e45"],
-Cell[60661, 1518, 350, 6, 23, "Print",ExpressionUUID->"8987eb30-f209-434b-a036-346d595a14c6"],
-Cell[61014, 1526, 469, 11, 23, "Print",ExpressionUUID->"7a01dba7-5001-4a40-990b-6395f3429c7f"],
-Cell[61486, 1539, 1719, 50, 39, "Print",ExpressionUUID->"9fc091df-da5a-4da1-bad9-76d835ce8b24"],
-Cell[63208, 1591, 261, 5, 23, "Print",ExpressionUUID->"16230f8d-f7b1-451a-9c25-1c95fd682f7c"],
-Cell[63472, 1598, 350, 6, 23, "Print",ExpressionUUID->"aced9584-005f-4706-82d0-97ca04cec55f"],
-Cell[63825, 1606, 686, 16, 23, "Print",ExpressionUUID->"8e6f4215-9a4f-4ce9-a470-7a39a2ac6100"],
-Cell[64514, 1624, 2521, 74, 132, "Print",ExpressionUUID->"e99de207-87eb-47be-afac-7f79392e51b3"],
-Cell[67038, 1700, 264, 5, 23, "Print",ExpressionUUID->"d8fa8766-0e04-4b7c-a7a7-fdf7bd1fc405"],
-Cell[67305, 1707, 355, 6, 23, "Print",ExpressionUUID->"5a3bc294-86ec-4b1c-a42a-67507625e06a"],
-Cell[67663, 1715, 563, 13, 23, "Print",ExpressionUUID->"1e148449-a18f-4a0d-9d8e-69b5ab70beda"],
-Cell[68229, 1730, 2153, 62, 86, "Print",ExpressionUUID->"06d73612-99d5-46d2-b20f-3e7fc5c344e2"],
-Cell[70385, 1794, 259, 5, 23, "Print",ExpressionUUID->"628c07df-5852-4e44-aecd-b0d21bd8c515"],
-Cell[70647, 1801, 353, 6, 23, "Print",ExpressionUUID->"853e26a1-2894-438d-9e3f-88e67cc0bea1"],
-Cell[71003, 1809, 576, 13, 23, "Print",ExpressionUUID->"90303373-a183-43ba-a174-7f2823801ff9"],
-Cell[71582, 1824, 3040, 80, 81, "Print",ExpressionUUID->"5b5dd5ca-3ebe-4f0e-a3cc-a2d354c16667"],
-Cell[74625, 1906, 261, 5, 23, "Print",ExpressionUUID->"506c90c8-6fb2-4343-ace2-41f3ba86641e"],
-Cell[74889, 1913, 349, 6, 23, "Print",ExpressionUUID->"83e14f0a-d39d-46cf-af27-59f06462eb99"],
-Cell[75241, 1921, 608, 15, 23, "Print",ExpressionUUID->"56bb6f68-a2e6-4397-bb74-cac2ffd31333"],
-Cell[75852, 1938, 4134, 104, 122, "Print",ExpressionUUID->"9d515936-3b25-4386-ace8-3c3d0ce4c704"],
-Cell[79989, 2044, 261, 5, 23, "Print",ExpressionUUID->"fdabee1c-8c99-4230-a43e-ca2ae7d227bd"],
-Cell[80253, 2051, 349, 6, 23, "Print",ExpressionUUID->"e3140047-e2a8-4aa5-b187-a39a283926bb"],
-Cell[80605, 2059, 603, 13, 23, "Print",ExpressionUUID->"e17c8755-c41a-407b-ab65-0e465adef3b8"],
-Cell[81211, 2074, 2846, 75, 81, "Print",ExpressionUUID->"ec960ee9-6497-4f23-bb1e-39bd55cb1c0c"],
-Cell[84060, 2151, 261, 5, 23, "Print",ExpressionUUID->"a4158174-8f16-46dd-826f-2166db494b91"],
-Cell[84324, 2158, 350, 6, 23, "Print",ExpressionUUID->"58ada4ac-37d6-43a8-bb1e-9dfe78470129"],
-Cell[84677, 2166, 792, 19, 42, "Print",ExpressionUUID->"7c2b7c8a-b2ac-4689-98bc-325157330d61"],
-Cell[85472, 2187, 897, 21, 42, "Print",ExpressionUUID->"1ce63933-13e6-43ed-ba69-974ea5d03c2f"],
-Cell[86372, 2210, 260, 5, 23, "Print",ExpressionUUID->"6fea0fb0-0272-4743-a7b0-138ebedd6d30"],
-Cell[86635, 2217, 353, 6, 23, "Print",ExpressionUUID->"3ddc7fd6-a578-4190-bd41-f922e2a02940"],
-Cell[86991, 2225, 847, 18, 42, "Print",ExpressionUUID->"f72c35e7-250e-4ade-9069-664aa42cd1d3"],
-Cell[87841, 2245, 3011, 80, 81, "Print",ExpressionUUID->"f41a1261-c5dc-44cd-a70b-b8f380877104"],
-Cell[90855, 2327, 263, 5, 23, "Print",ExpressionUUID->"5f0b9b96-3b2d-4b2b-8752-510b2214b283"],
-Cell[91121, 2334, 355, 6, 23, "Print",ExpressionUUID->"b42cd692-baa5-4e21-9eb4-9b2de73d532f"],
-Cell[91479, 2342, 795, 19, 42, "Print",ExpressionUUID->"b4aa231e-b388-4bac-a92d-d1da3b8ec914"],
-Cell[92277, 2363, 900, 21, 42, "Print",ExpressionUUID->"8d509983-6b04-4e50-8d8f-023f4d6fc606"],
-Cell[93180, 2386, 260, 5, 23, "Print",ExpressionUUID->"79b4ed65-4894-48ab-a699-ac7e9eed3a67"],
-Cell[93443, 2393, 353, 6, 23, "Print",ExpressionUUID->"40614632-e870-41ea-a4e7-170ab4aa036b"],
-Cell[93799, 2401, 719, 17, 23, "Print",ExpressionUUID->"6a32a5c7-6c30-4f5c-aa52-31c517a3aef7"],
-Cell[94521, 2420, 4283, 117, 252, "Print",ExpressionUUID->"3b633cc9-5f21-4221-a3a0-0f1f10b6cc65"],
-Cell[98807, 2539, 260, 5, 23, "Print",ExpressionUUID->"04d2ec5d-8e90-435a-a1f1-6a3d670e4807"],
-Cell[99070, 2546, 357, 6, 23, "Print",ExpressionUUID->"31acb823-b150-4532-b4ee-7a787db0c9be"],
-Cell[99430, 2554, 793, 19, 42, "Print",ExpressionUUID->"7ac7a647-3d9d-4965-ab7b-b7b20ace25bf"],
-Cell[100226, 2575, 898, 21, 42, "Print",ExpressionUUID->"175ac309-0ab3-4d03-a066-b5bbdcc096fe"],
-Cell[101127, 2598, 260, 5, 23, "Print",ExpressionUUID->"14f6526b-fc5d-47b9-baf4-aeab97886274"],
-Cell[101390, 2605, 351, 6, 23, "Print",ExpressionUUID->"ff0ca753-ceb2-4229-80cd-c9c53a6cb600"],
-Cell[101744, 2613, 469, 11, 23, "Print",ExpressionUUID->"d6e3c890-16ff-470e-85e7-d14be607d31f"],
-Cell[102216, 2626, 1720, 50, 39, "Print",ExpressionUUID->"518cbfe9-62c8-4b1e-ab19-03361b1eb699"],
-Cell[103939, 2678, 261, 5, 23, "Print",ExpressionUUID->"e85a3734-3b61-4554-9a90-b30a7431baa9"],
-Cell[104203, 2685, 351, 6, 23, "Print",ExpressionUUID->"3b8b7cd5-ba3f-41b0-b814-c257d5d61fa3"],
-Cell[104557, 2693, 694, 16, 45, "Print",ExpressionUUID->"59039f92-f7e1-4c25-b04a-d6cc0bb81ec0"],
-Cell[105254, 2711, 2803, 72, 83, "Print",ExpressionUUID->"94003c54-3f12-46a6-9d9f-dbbf71f136a3"],
-Cell[108060, 2785, 264, 5, 23, "Print",ExpressionUUID->"0e0f6a71-f5b6-4716-88ca-c58221673822"],
-Cell[108327, 2792, 353, 6, 23, "Print",ExpressionUUID->"4abe8543-97c1-434c-8fba-255a12ec4347"],
-Cell[108683, 2800, 608, 14, 23, "Print",ExpressionUUID->"cb3b829b-c4f9-4569-8b3d-00318846cc72"],
-Cell[109294, 2816, 3195, 85, 81, "Print",ExpressionUUID->"6e4b7826-8a99-4d38-8c7a-375cff4596aa"],
-Cell[112492, 2903, 260, 5, 23, "Print",ExpressionUUID->"9dd5997b-16fc-40cf-b507-da12416f8a47"],
-Cell[112755, 2910, 353, 6, 23, "Print",ExpressionUUID->"7fc81009-ba2b-49ee-957c-01212c4e86e8"],
-Cell[113111, 2918, 540, 13, 23, "Print",ExpressionUUID->"9c5a188a-2257-4e68-a2a3-2b25a4c20651"],
-Cell[113654, 2933, 1872, 54, 55, "Print",ExpressionUUID->"9e2a5375-6d28-424f-800c-ecd2b7ef32dc"],
-Cell[115529, 2989, 260, 5, 23, "Print",ExpressionUUID->"da4d2855-6496-4545-82b1-a03cc7178f73"],
-Cell[115792, 2996, 349, 6, 23, "Print",ExpressionUUID->"fcd0a4f8-869d-4778-904d-f8ddefa94ccb"],
-Cell[116144, 3004, 668, 17, 23, "Print",ExpressionUUID->"120f3544-d908-4175-ba9c-c57cf79c5134"],
-Cell[116815, 3023, 2173, 60, 42, "Print",ExpressionUUID->"cec3cce0-163a-427a-8581-8b729aad0b0b"],
-Cell[118991, 3085, 261, 5, 23, "Print",ExpressionUUID->"4b78a693-edf1-49bc-bd8a-4a3ec9b9c7a1"],
-Cell[119255, 3092, 349, 6, 23, "Print",ExpressionUUID->"0b0098f1-c410-4513-abc0-535259b183d2"],
-Cell[119607, 3100, 655, 15, 23, "Print",ExpressionUUID->"5ae8b9ee-4c25-4b02-a6d4-1bf2dc98a3fd"],
-Cell[120265, 3117, 2412, 68, 40, "Print",ExpressionUUID->"40a58d41-3620-418c-a1e3-aca2762c21d8"],
-Cell[122680, 3187, 263, 5, 23, "Print",ExpressionUUID->"65f5eb18-51f2-4c3c-9f4b-297a3ca9f152"],
-Cell[122946, 3194, 351, 6, 23, "Print",ExpressionUUID->"beb3138a-2eeb-4421-86bd-66724c809c6e"],
-Cell[123300, 3202, 595, 15, 23, "Print",ExpressionUUID->"c7518082-3b02-4b1a-a338-f13b82c93cda"],
-Cell[123898, 3219, 690, 17, 23, "Print",ExpressionUUID->"97142c87-27a4-4d10-8218-25e41335055d"],
-Cell[124591, 3238, 261, 5, 23, "Print",ExpressionUUID->"8e416d0c-3725-49af-9d4a-4584783b267e"],
-Cell[124855, 3245, 355, 6, 23, "Print",ExpressionUUID->"d236ced1-a451-4e88-ab6d-bcd1f6e5bb5b"],
-Cell[125213, 3253, 703, 16, 42, "Print",ExpressionUUID->"3d47ed65-310e-44fc-80d2-60ad085a72dd"],
-Cell[125919, 3271, 2789, 72, 83, "Print",ExpressionUUID->"73a334c9-397a-453e-8423-49bf555ae380"],
-Cell[128711, 3345, 265, 5, 23, "Print",ExpressionUUID->"2cc35a14-4384-497e-8dc2-16e191ce9c30"],
-Cell[128979, 3352, 355, 6, 23, "Print",ExpressionUUID->"a2113f14-b940-4344-afb0-5f6a20b3977f"],
-Cell[129337, 3360, 597, 15, 23, "Print",ExpressionUUID->"11853fc9-40fa-4297-8322-a2c6600eae99"],
-Cell[129937, 3377, 692, 17, 23, "Print",ExpressionUUID->"07d0e0b9-c83f-4f9d-a066-ac28c253a7c0"],
-Cell[130632, 3396, 262, 5, 23, "Print",ExpressionUUID->"310eaa1c-b518-4ccc-98f5-8a9f6de82fde"],
-Cell[130897, 3403, 353, 6, 23, "Print",ExpressionUUID->"3455b72d-b427-4715-b7a6-074293573f18"],
-Cell[131253, 3411, 682, 18, 23, "Print",ExpressionUUID->"e8c29036-d642-471c-ae1e-7dbae78e3aed"],
-Cell[131938, 3431, 1093373, 25565, 29419, "Print",ExpressionUUID->"e5f17277-23fb-44b9-8732-ac03efa84a09"],
-Cell[1225314, 28998, 265, 5, 23, "Print",ExpressionUUID->"dffdf22a-fbef-4d6c-ae4a-5898169d6c78"],
-Cell[1225582, 29005, 355, 6, 23, "Print",ExpressionUUID->"c1207fea-3928-433b-b6e2-6b532dcdd130"],
-Cell[1225940, 29013, 594, 15, 23, "Print",ExpressionUUID->"0d4dcdf9-d054-4c76-a9c0-0380f2b3dc66"],
-Cell[1226537, 29030, 691, 17, 23, "Print",ExpressionUUID->"0d68a93e-a4e3-4f1b-88ae-e5eab8ce54fd"],
-Cell[1227231, 29049, 260, 5, 23, "Print",ExpressionUUID->"89f089c9-dd34-4b41-9ba2-99ac89201928"],
-Cell[1227494, 29056, 351, 6, 23, "Print",ExpressionUUID->"3ae7330f-724c-41a2-b1f5-963ab242a627"],
-Cell[1227848, 29064, 467, 11, 23, "Print",ExpressionUUID->"39c0534d-29eb-439b-98c0-dc7a2998b6f8"],
-Cell[1228318, 29077, 1720, 50, 39, "Print",ExpressionUUID->"390c97ae-5583-4a43-878f-25a1d072ac4d"],
-Cell[1230041, 29129, 259, 5, 23, "Print",ExpressionUUID->"ed315807-a4c9-47ac-8167-e33226fe2bdb"],
-Cell[1230303, 29136, 351, 6, 23, "Print",ExpressionUUID->"41df782d-094e-4500-afc5-684b2cba4ae3"],
-Cell[1230657, 29144, 734, 18, 42, "Print",ExpressionUUID->"e5e018ab-c012-4b17-9258-829b9fecb4ef"],
-Cell[1231394, 29164, 2584, 71, 61, "Print",ExpressionUUID->"2ef1dd11-c928-47b7-8ac0-482b5b005d2b"],
-Cell[1233981, 29237, 262, 5, 23, "Print",ExpressionUUID->"68d97a7a-6833-4b5b-b7e7-991a1bd2f887"],
-Cell[1234246, 29244, 353, 6, 23, "Print",ExpressionUUID->"a9f08ad6-c939-4bea-ab9d-9bdaf6154870"],
-Cell[1234602, 29252, 609, 14, 23, "Print",ExpressionUUID->"37a15c5c-e134-44d3-91e8-e12b78affe60"],
-Cell[1235214, 29268, 3203, 85, 81, "Print",ExpressionUUID->"39ae0232-06b8-4d62-940f-5aedbd1671ba"],
-Cell[1238420, 29355, 260, 5, 23, "Print",ExpressionUUID->"27f3ac46-c019-40ab-a8be-f45454caa599"],
-Cell[1238683, 29362, 353, 6, 23, "Print",ExpressionUUID->"8fe8b1e7-d884-4b26-98a9-eaa499fb05ab"],
-Cell[1239039, 29370, 472, 11, 23, "Print",ExpressionUUID->"68ab7f45-e480-4415-9ef8-acd4e3a0040c"],
-Cell[1239514, 29383, 1725, 50, 39, "Print",ExpressionUUID->"c050b7ea-8020-4218-9f37-64218b6c672b"],
-Cell[1241242, 29435, 261, 5, 23, "Print",ExpressionUUID->"4f15a0f6-6f02-4d96-9541-956389e7d7cb"],
-Cell[1241506, 29442, 351, 6, 23, "Print",ExpressionUUID->"bfccc48e-9303-49a4-8381-4fa5eb6fd1d6"],
-Cell[1241860, 29450, 671, 17, 23, "Print",ExpressionUUID->"ae78aa93-8240-4022-8041-8d72fbdd672e"],
-Cell[1242534, 29469, 2175, 60, 42, "Print",ExpressionUUID->"d9a54aed-cf68-4950-865d-71dcc8f09500"],
-Cell[1244712, 29531, 264, 5, 23, "Print",ExpressionUUID->"9c8ae87c-bab7-4a27-8f3d-046e16fe0f49"],
-Cell[1244979, 29538, 349, 6, 23, "Print",ExpressionUUID->"f8ccadf3-6654-4402-b368-3f0ffbc58d02"],
-Cell[1245331, 29546, 724, 17, 23, "Print",ExpressionUUID->"23d94f6d-61a3-4554-af4f-bf9a47cd90ae"],
-Cell[1246058, 29565, 2586, 71, 61, "Print",ExpressionUUID->"fc33c5dd-0ca1-48ec-848b-1f99ac7a0bfc"],
-Cell[1248647, 29638, 261, 5, 23, "Print",ExpressionUUID->"dd573664-e697-40c4-8888-1fbf06e25f3f"],
-Cell[1248911, 29645, 351, 6, 23, "Print",ExpressionUUID->"273b8af8-5abf-46cd-a085-9448830e32d6"],
-Cell[1249265, 29653, 593, 15, 23, "Print",ExpressionUUID->"e790406f-0b62-48f6-be06-ee1aa7a53b8c"],
-Cell[1249861, 29670, 692, 17, 23, "Print",ExpressionUUID->"e30b9b01-4680-4354-ab9d-5acbd0f79c76"],
-Cell[1250556, 29689, 260, 5, 23, "Print",ExpressionUUID->"2a49dcb8-756a-4557-a437-f324cc798c85"],
-Cell[1250819, 29696, 355, 6, 23, "Print",ExpressionUUID->"20c834ab-2bb4-4ec7-972d-825b5988e291"],
-Cell[1251177, 29704, 468, 11, 23, "Print",ExpressionUUID->"bd21c2cb-1b4f-4531-b6d9-4d7c792ac908"],
-Cell[1251648, 29717, 1720, 50, 39, "Print",ExpressionUUID->"ca0fe6de-d94f-430a-8354-a76ecc193f99"],
-Cell[1253371, 29769, 263, 5, 23, "Print",ExpressionUUID->"113ab6bb-8147-43ab-b250-ae053f68462f"],
-Cell[1253637, 29776, 355, 6, 23, "Print",ExpressionUUID->"7460a2e6-dd81-4d42-904b-680f70118da1"],
-Cell[1253995, 29784, 592, 15, 23, "Print",ExpressionUUID->"5582b27c-903a-479d-bc9d-d51453619c61"],
-Cell[1254590, 29801, 687, 17, 23, "Print",ExpressionUUID->"772b984a-d5f5-403b-9984-68a12ce78ce7"],
-Cell[1255280, 29820, 260, 5, 23, "Print",ExpressionUUID->"064d4961-25d4-43fa-bb19-cc2d89c2918d"],
-Cell[1255543, 29827, 355, 6, 23, "Print",ExpressionUUID->"ce5524d2-66a2-47db-8778-8be7d0688045"],
-Cell[1255901, 29835, 748, 18, 42, "Print",ExpressionUUID->"27e03698-6fba-416e-af3d-35bac871e2d1"],
-Cell[1256652, 29855, 2421, 66, 61, "Print",ExpressionUUID->"4483e188-d57d-433a-81fd-0a477423ea8d"],
-Cell[1259076, 29923, 262, 5, 23, "Print",ExpressionUUID->"6cb1a1d4-94a2-4402-a05b-ebbd4d80a472"],
-Cell[1259341, 29930, 354, 6, 23, "Print",ExpressionUUID->"84a65135-02bf-4005-ab9c-94961cd9f90a"],
-Cell[1259698, 29938, 593, 15, 23, "Print",ExpressionUUID->"7eddd9eb-e8e5-4ced-9c47-e78077901017"],
-Cell[1260294, 29955, 690, 17, 23, "Print",ExpressionUUID->"c43d2a7d-d0f8-4d86-8e88-874c8d0a3cc9"],
-Cell[1260987, 29974, 260, 5, 23, "Print",ExpressionUUID->"49baa4ab-b24b-4fe9-a21d-2091c3f6cedd"]
+Cell[27774, 605, 397, 7, 23, "Print",ExpressionUUID->"4d594b3f-7415-466a-b345-9af4a2f18155"],
+Cell[28174, 614, 514, 12, 23, "Print",ExpressionUUID->"46e7b6ff-d72a-49db-b02e-561d17ce9404"],
+Cell[28691, 628, 1766, 51, 39, "Print",ExpressionUUID->"b30cb9f9-f398-4ab6-bb1e-7a7839dcf739"],
+Cell[30460, 681, 307, 6, 23, "Print",ExpressionUUID->"d78a4d42-1e7f-4d96-a3c4-4ab5f9eef19b"],
+Cell[30770, 689, 397, 7, 23, "Print",ExpressionUUID->"e1480b66-2786-42c1-96c3-2077da818b09"],
+Cell[31170, 698, 664, 16, 23, "Print",ExpressionUUID->"110c6b37-481b-4c4e-bc11-0a0902257aed"],
+Cell[31837, 716, 2183, 62, 55, "Print",ExpressionUUID->"06147e18-8cf3-488a-bfcf-503dd31e8e32"],
+Cell[34023, 780, 309, 6, 23, "Print",ExpressionUUID->"e4fa18e2-1571-439d-90ac-b163f86cef0b"],
+Cell[34335, 788, 401, 7, 23, "Print",ExpressionUUID->"09148de1-3007-4562-a63b-e22a9b7b5033"],
+Cell[34739, 797, 655, 15, 23, "Print",ExpressionUUID->"9c1fc472-6f27-49ec-8ad2-c2fbb41562ff"],
+Cell[35397, 814, 3248, 86, 81, "Print",ExpressionUUID->"7153de3b-616f-48c3-8f9c-f113e383490d"],
+Cell[38648, 902, 306, 6, 23, "Print",ExpressionUUID->"8f0455dc-966a-4ddf-a648-d4a180de9884"],
+Cell[38957, 910, 399, 7, 23, "Print",ExpressionUUID->"1aca3ea2-a062-43c7-be79-c3543e2dea61"],
+Cell[39359, 919, 797, 19, 42, "Print",ExpressionUUID->"1b54039f-1895-4cf5-97df-4874c7e27f49"],
+Cell[40159, 940, 1400, 39, 44, "Print",ExpressionUUID->"422c8be5-f42e-414b-bb74-585c87e76ea2"],
+Cell[41562, 981, 309, 6, 23, "Print",ExpressionUUID->"301f1ecf-b851-466a-9ea1-b2e6e799392f"],
+Cell[41874, 989, 397, 7, 23, "Print",ExpressionUUID->"50789670-6d4d-4ac8-a203-1d1f883560a3"],
+Cell[42274, 998, 635, 15, 23, "Print",ExpressionUUID->"d9dfc16c-5aa0-4b3e-b66c-18010bd4ebbc"],
+Cell[42912, 1015, 2462, 69, 40, "Print",ExpressionUUID->"f3bbd3e5-0716-4763-9c34-291d5db41f93"],
+Cell[45377, 1086, 309, 6, 23, "Print",ExpressionUUID->"b3358ff7-8bac-4829-aae5-46528198c5f6"],
+Cell[45689, 1094, 395, 7, 23, "Print",ExpressionUUID->"a2f67ec1-f28c-429a-9f63-20c24818223d"],
+Cell[46087, 1103, 562, 13, 23, "Print",ExpressionUUID->"35eb3e21-0f6d-4f2c-b3e4-cb881e3bc621"],
+Cell[46652, 1118, 1904, 55, 55, "Print",ExpressionUUID->"a414fac5-8ad1-4222-917c-8f26aa8ffec0"],
+Cell[48559, 1175, 307, 6, 23, "Print",ExpressionUUID->"ed0f62d8-dad9-4746-9b24-8b9697cacfa6"],
+Cell[48869, 1183, 397, 7, 23, "Print",ExpressionUUID->"32b1628d-3277-45a5-842c-e9451de205d2"],
+Cell[49269, 1192, 639, 16, 23, "Print",ExpressionUUID->"dbb16334-6769-4a27-84ca-525ac5f2f6f2"],
+Cell[49911, 1210, 736, 18, 23, "Print",ExpressionUUID->"8d27a6de-b26d-4862-bb29-08a25aea40eb"],
+Cell[50650, 1230, 307, 6, 23, "Print",ExpressionUUID->"0c550c64-6393-4b37-9531-c795822069b1"],
+Cell[50960, 1238, 399, 7, 23, "Print",ExpressionUUID->"8f73d008-bb5c-4502-9401-8bb1cd78a681"],
+Cell[51362, 1247, 638, 15, 23, "Print",ExpressionUUID->"bd9276d5-6b32-4415-a513-f0b4c0854815"],
+Cell[52003, 1264, 2054, 59, 71, "Print",ExpressionUUID->"f99b7465-6129-4741-980e-ed6b1abe296a"],
+Cell[54060, 1325, 311, 6, 23, "Print",ExpressionUUID->"98e15a56-105b-4ef4-a69b-63dc8ea3acc1"],
+Cell[54374, 1333, 401, 7, 23, "Print",ExpressionUUID->"c22a7cea-5b96-4227-9617-d422860f262d"],
+Cell[54778, 1342, 642, 16, 23, "Print",ExpressionUUID->"85fff37a-e53b-494c-80ad-9d64a221cc0c"],
+Cell[55423, 1360, 739, 18, 23, "Print",ExpressionUUID->"26886cd4-48c3-440b-93ca-3c5d077ea774"],
+Cell[56165, 1380, 306, 6, 23, "Print",ExpressionUUID->"eb3484c3-b7a9-43be-acd6-ea048c30cb8d"],
+Cell[56474, 1388, 399, 7, 23, "Print",ExpressionUUID->"1ae1228b-a7c3-4fcf-9b75-b627ba79ee45"],
+Cell[56876, 1397, 903, 21, 42, "Print",ExpressionUUID->"ba686f5b-5e51-4721-b905-54f827307cdc"],
+Cell[57782, 1420, 3045, 87, 136, "Print",ExpressionUUID->"7b22b34d-4c69-4859-b2d5-16d600dbf317"],
+Cell[60830, 1509, 306, 6, 23, "Print",ExpressionUUID->"8bec90ac-ec1b-4944-94e6-c362e1f19a12"],
+Cell[61139, 1517, 401, 7, 23, "Print",ExpressionUUID->"f21190d1-c2ae-4427-b455-33b36ba76e21"],
+Cell[61543, 1526, 637, 16, 23, "Print",ExpressionUUID->"f794a9f4-a69f-44b7-8798-690292493cdb"],
+Cell[62183, 1544, 734, 18, 23, "Print",ExpressionUUID->"0f47c78c-5d2c-49b7-898f-b62eec13092e"],
+Cell[62920, 1564, 307, 6, 23, "Print",ExpressionUUID->"175c8914-e1db-4649-81fa-793dd23dc60e"],
+Cell[63230, 1572, 397, 7, 23, "Print",ExpressionUUID->"2d93309f-60bb-4dd2-a2b4-d95516977a1c"],
+Cell[63630, 1581, 517, 12, 23, "Print",ExpressionUUID->"a9525f0c-a68f-4a24-be0f-231c7d9c6e59"],
+Cell[64150, 1595, 1765, 51, 39, "Print",ExpressionUUID->"b3017a3a-ef27-4a97-ba1b-2a46aa25ecb2"],
+Cell[65918, 1648, 309, 6, 23, "Print",ExpressionUUID->"0e25e4e3-d953-4299-b333-6801458f71d4"],
+Cell[66230, 1656, 397, 7, 23, "Print",ExpressionUUID->"ce18f401-da92-4591-a3a7-3af603b63e3a"],
+Cell[66630, 1665, 732, 17, 23, "Print",ExpressionUUID->"599d366f-eb6f-427e-b764-04a890c0665b"],
+Cell[67365, 1684, 2567, 75, 132, "Print",ExpressionUUID->"48232225-ff50-4b22-9921-a0db29b381e9"],
+Cell[69935, 1761, 310, 6, 23, "Print",ExpressionUUID->"ccd68362-8f38-4549-a8d4-3bcf73ce3c09"],
+Cell[70248, 1769, 399, 7, 23, "Print",ExpressionUUID->"7b92d744-17e9-488e-bd52-6e005e6ec7c0"],
+Cell[70650, 1778, 609, 14, 23, "Print",ExpressionUUID->"34f7267e-4541-4cdc-821c-a2c89ce11b32"],
+Cell[71262, 1794, 2201, 63, 86, "Print",ExpressionUUID->"5ce364e6-b0b5-459b-a171-21bca71dafb2"],
+Cell[73466, 1859, 306, 6, 23, "Print",ExpressionUUID->"421763e5-0dee-4dd0-afc3-8e5de33730ed"],
+Cell[73775, 1867, 401, 7, 23, "Print",ExpressionUUID->"576da27f-8603-43df-9fdf-106591b4269e"],
+Cell[74179, 1876, 624, 14, 23, "Print",ExpressionUUID->"5b8af452-afdd-4cfb-ac3b-a4aad4f7004a"],
+Cell[74806, 1892, 3086, 81, 81, "Print",ExpressionUUID->"6f038c69-d94c-415b-b1b5-9028c8993535"],
+Cell[77895, 1975, 307, 6, 23, "Print",ExpressionUUID->"913ba30b-a9a2-46f0-acf9-c2b54d7ed186"],
+Cell[78205, 1983, 395, 7, 23, "Print",ExpressionUUID->"ae3dfec4-604e-4d51-882e-9e32d76f3527"],
+Cell[78603, 1992, 654, 16, 23, "Print",ExpressionUUID->"786d2e90-4f21-4df3-b491-4a94828e3537"],
+Cell[79260, 2010, 4180, 105, 122, "Print",ExpressionUUID->"6b9279d3-9128-4df9-86f8-be3a8848c435"],
+Cell[83443, 2117, 307, 6, 23, "Print",ExpressionUUID->"35be6059-f701-40d2-b705-0753b0781272"],
+Cell[83753, 2125, 395, 7, 23, "Print",ExpressionUUID->"aa5b936e-1244-4ac5-bfec-23f798886920"],
+Cell[84151, 2134, 646, 14, 23, "Print",ExpressionUUID->"2b81964e-079c-4eb5-8723-35d89fe6a4a7"],
+Cell[84800, 2150, 2892, 76, 81, "Print",ExpressionUUID->"edb37f7e-fef4-4600-8dde-7f93bf87395e"],
+Cell[87695, 2228, 307, 6, 23, "Print",ExpressionUUID->"b71dfd03-716e-48dd-9674-f94344d69361"],
+Cell[88005, 2236, 397, 7, 23, "Print",ExpressionUUID->"458c3bfb-3a43-47c0-bd78-15a6a03bb65e"],
+Cell[88405, 2245, 838, 20, 42, "Print",ExpressionUUID->"236dc8bd-c499-4dce-b72f-ba5ca2f96ebb"],
+Cell[89246, 2267, 942, 22, 42, "Print",ExpressionUUID->"404c10c1-29c0-4437-b0a8-0f379ad941dc"],
+Cell[90191, 2291, 308, 6, 23, "Print",ExpressionUUID->"07386d93-0d06-42e4-a3b6-4862fe33bdd5"],
+Cell[90502, 2299, 399, 7, 23, "Print",ExpressionUUID->"e9ca50a0-37bb-4a7e-9cf5-ca6b52f4d987"],
+Cell[90904, 2308, 893, 19, 42, "Print",ExpressionUUID->"87544b03-c950-4057-8d16-80a5fc673d8a"],
+Cell[91800, 2329, 3060, 81, 81, "Print",ExpressionUUID->"85e3a450-b142-45d0-a1db-420b456ad63f"],
+Cell[94863, 2412, 307, 6, 23, "Print",ExpressionUUID->"0e9b7bf2-cb43-4899-bbe8-929483a07559"],
+Cell[95173, 2420, 403, 7, 23, "Print",ExpressionUUID->"401a9d18-4b82-493a-99ac-62122a4ab54d"],
+Cell[95579, 2429, 843, 20, 42, "Print",ExpressionUUID->"ab06eb43-f3fd-4f3c-8a27-98ade0e7cc88"],
+Cell[96425, 2451, 946, 22, 42, "Print",ExpressionUUID->"7fd646a1-41a3-4600-a792-e49fcfd2db25"],
+Cell[97374, 2475, 307, 6, 23, "Print",ExpressionUUID->"4bcd622a-d4cb-497a-b0e1-113a52d6a7ab"],
+Cell[97684, 2483, 399, 7, 23, "Print",ExpressionUUID->"3fc2d765-2008-4c0f-a34d-0877afaf0de7"],
+Cell[98086, 2492, 767, 18, 23, "Print",ExpressionUUID->"e59dcfc7-57ac-4599-beb1-18deb0cedeb5"],
+Cell[98856, 2512, 4329, 118, 252, "Print",ExpressionUUID->"87406836-0033-4e91-a4ad-c1322faf18af"],
+Cell[103188, 2632, 308, 6, 23, "Print",ExpressionUUID->"674d03a0-d813-46da-8a13-0005e8c8457d"],
+Cell[103499, 2640, 401, 7, 23, "Print",ExpressionUUID->"09f111e0-2079-4ca0-b4e4-9ade09072b1e"],
+Cell[103903, 2649, 841, 20, 42, "Print",ExpressionUUID->"939d752b-3b43-4f3e-8705-ff4a81e6797f"],
+Cell[104747, 2671, 944, 22, 42, "Print",ExpressionUUID->"2ddb0fb9-2795-441d-a5d7-cc226b43fb08"],
+Cell[105694, 2695, 308, 6, 23, "Print",ExpressionUUID->"b38b891b-ef14-4461-b53b-d73dc08a2a9a"],
+Cell[106005, 2703, 397, 7, 23, "Print",ExpressionUUID->"524ba73a-5a10-4909-9839-75c6ebff3677"],
+Cell[106405, 2712, 513, 12, 23, "Print",ExpressionUUID->"3c20a644-9ec6-4f29-bd69-091a005749a7"],
+Cell[106921, 2726, 1766, 51, 39, "Print",ExpressionUUID->"f06acc08-3777-457d-a9f5-43ec1c92b944"],
+Cell[108690, 2779, 309, 6, 23, "Print",ExpressionUUID->"17392a76-e0aa-4872-9bc3-6ababa643cb2"],
+Cell[109002, 2787, 397, 7, 23, "Print",ExpressionUUID->"8085d346-bc7f-4299-b3ae-c733add96d3b"],
+Cell[109402, 2796, 743, 17, 45, "Print",ExpressionUUID->"c5a32d06-f36d-43be-baa9-40881664634e"],
+Cell[110148, 2815, 2847, 73, 83, "Print",ExpressionUUID->"7955c1a6-5633-43cb-841e-d61f7ced5808"],
+Cell[112998, 2890, 310, 6, 23, "Print",ExpressionUUID->"d7859167-4b07-493d-9086-7f04323deccc"],
+Cell[113311, 2898, 399, 7, 23, "Print",ExpressionUUID->"ecaa7464-d0df-4aad-ae7e-b7c35c6d1c28"],
+Cell[113713, 2907, 656, 15, 23, "Print",ExpressionUUID->"7067b361-3e97-4d3c-b316-cf6997b52e65"],
+Cell[114372, 2924, 3241, 86, 81, "Print",ExpressionUUID->"eb7f64e9-d498-4868-baea-54057d9238a2"],
+Cell[117616, 3012, 306, 6, 23, "Print",ExpressionUUID->"73b6ffde-3f9d-4065-80a7-5d51c73d7903"],
+Cell[117925, 3020, 401, 7, 23, "Print",ExpressionUUID->"d6effa1f-d8aa-46a2-b6d3-aec7ead9a867"],
+Cell[118329, 3029, 585, 14, 23, "Print",ExpressionUUID->"3e47549f-e9d2-4b52-9f51-66fcd4af205a"],
+Cell[118917, 3045, 1918, 55, 55, "Print",ExpressionUUID->"a8c3854d-e48a-41b2-b513-a0527a70ec4b"],
+Cell[120838, 3102, 306, 6, 23, "Print",ExpressionUUID->"2882326b-b15e-4a09-bd39-8ed5f878243f"],
+Cell[121147, 3110, 395, 7, 23, "Print",ExpressionUUID->"a2bc8d58-a568-4ed9-94df-7bb82d21eaa8"],
+Cell[121545, 3119, 714, 18, 23, "Print",ExpressionUUID->"d8814424-c5f8-42de-9203-d14e78d8a1b1"],
+Cell[122262, 3139, 2220, 61, 42, "Print",ExpressionUUID->"4bf9d39d-53a3-4303-8159-39f61dcf6e3f"],
+Cell[124485, 3202, 307, 6, 23, "Print",ExpressionUUID->"2d3ee51c-333a-42db-9900-ade474533f3f"],
+Cell[124795, 3210, 395, 7, 23, "Print",ExpressionUUID->"f29eb029-4994-45a4-a239-342f6e079401"],
+Cell[125193, 3219, 701, 16, 23, "Print",ExpressionUUID->"b165e771-dfeb-41f2-ad70-20ac49d2e1b7"],
+Cell[125897, 3237, 2458, 69, 40, "Print",ExpressionUUID->"235a94f5-bf91-4852-9d0d-b98550fd4612"],
+Cell[128358, 3308, 309, 6, 23, "Print",ExpressionUUID->"1d72c04f-1d2f-43c1-905f-3cd435074afa"],
+Cell[128670, 3316, 399, 7, 23, "Print",ExpressionUUID->"87748630-7eb6-4453-81ff-df4dc291dd72"],
+Cell[129072, 3325, 641, 16, 23, "Print",ExpressionUUID->"6fb60b73-3e3c-4208-8175-548e55ac8c01"],
+Cell[129716, 3343, 738, 18, 23, "Print",ExpressionUUID->"d6849853-f0ba-4955-be61-c6efc416bd5f"],
+Cell[130457, 3363, 307, 6, 23, "Print",ExpressionUUID->"6655332f-89ab-4d5e-bd28-a4c122323b34"],
+Cell[130767, 3371, 399, 7, 23, "Print",ExpressionUUID->"d54575bf-933f-4275-af68-71f1c644f9ad"],
+Cell[131169, 3380, 751, 17, 42, "Print",ExpressionUUID->"a96df634-791f-41c3-a932-38fa6aad52c7"],
+Cell[131923, 3399, 2835, 73, 83, "Print",ExpressionUUID->"0f1864bf-62e1-41a9-9995-84efd25d9627"],
+Cell[134761, 3474, 311, 6, 23, "Print",ExpressionUUID->"48d786b3-88e7-448f-a67b-ac1a5faab27c"],
+Cell[135075, 3482, 401, 7, 23, "Print",ExpressionUUID->"7fcb0754-b6ee-40cf-8aec-c9b5aefa76c2"],
+Cell[135479, 3491, 643, 16, 23, "Print",ExpressionUUID->"c053522c-b6fd-422f-9e05-091cb9ae4755"],
+Cell[136125, 3509, 738, 18, 23, "Print",ExpressionUUID->"4fe50480-c88f-489b-b228-831814efcc0d"],
+Cell[136866, 3529, 306, 6, 23, "Print",ExpressionUUID->"24338f7f-7e4d-4649-9449-e463f55f0931"],
+Cell[137175, 3537, 401, 7, 23, "Print",ExpressionUUID->"99587f94-441b-4e35-8f72-18565bfd9c86"],
+Cell[137579, 3546, 728, 19, 23, "Print",ExpressionUUID->"f9852e95-e822-4b87-a9e8-e13225f31050"],
+Cell[138310, 3567, 1093421, 25566, 29419, "Print",ExpressionUUID->"df63a813-0149-46db-80eb-4cf222a8d22a"],
+Cell[1231734, 29135, 311, 6, 23, "Print",ExpressionUUID->"59ea51bf-dbf5-4f18-a48f-0dd01bd6027d"],
+Cell[1232048, 29143, 400, 7, 23, "Print",ExpressionUUID->"9bc2064a-653e-4b88-b553-5e4434d4223b"],
+Cell[1232451, 29152, 640, 16, 23, "Print",ExpressionUUID->"96dcdfc1-2cec-43b6-9e61-d7c830825654"],
+Cell[1233094, 29170, 737, 18, 23, "Print",ExpressionUUID->"6bac30b7-719e-475f-a38a-1f1536159eef"],
+Cell[1233834, 29190, 306, 6, 23, "Print",ExpressionUUID->"4abffd73-ded8-4144-bd43-d761a54de02c"],
+Cell[1234143, 29198, 397, 7, 23, "Print",ExpressionUUID->"522047da-2a51-4491-9ee6-801c0da94b1f"],
+Cell[1234543, 29207, 513, 12, 23, "Print",ExpressionUUID->"b28e9533-81a4-4667-b180-cb74fbc021e7"],
+Cell[1235059, 29221, 1766, 51, 39, "Print",ExpressionUUID->"dc5eaab2-7848-4916-9a64-8c70c2f720ad"],
+Cell[1236828, 29274, 306, 6, 23, "Print",ExpressionUUID->"d6da6474-5cc5-482c-add0-0a5ca5fa4600"],
+Cell[1237137, 29282, 399, 7, 23, "Print",ExpressionUUID->"f5434867-d794-4e8d-8c41-d6a2b4ac567a"],
+Cell[1237539, 29291, 780, 19, 42, "Print",ExpressionUUID->"1bb8c30e-50c6-4fb4-98f5-aff7138a57c6"],
+Cell[1238322, 29312, 2630, 72, 61, "Print",ExpressionUUID->"92c0643f-6dfa-4e01-830f-9e111300e204"],
+Cell[1240955, 29386, 308, 6, 23, "Print",ExpressionUUID->"a87d543e-ff70-4d3d-845a-bb5b48f2163f"],
+Cell[1241266, 29394, 398, 7, 23, "Print",ExpressionUUID->"d42e4a27-3352-4a76-9af7-b44fcf046a4a"],
+Cell[1241667, 29403, 657, 15, 23, "Print",ExpressionUUID->"1c2daf3b-1f23-4956-b95f-325f2934fc2c"],
+Cell[1242327, 29420, 3247, 86, 81, "Print",ExpressionUUID->"5468df9a-f0de-46f5-b75c-68d95730485a"],
+Cell[1245577, 29508, 306, 6, 23, "Print",ExpressionUUID->"eed98bde-cd5b-435c-ad56-1a502c5d38fb"],
+Cell[1245886, 29516, 401, 7, 23, "Print",ExpressionUUID->"2f2bf0d5-2ada-4c5a-97d8-34f4f4cf5250"],
+Cell[1246290, 29525, 518, 12, 23, "Print",ExpressionUUID->"5f94332b-a83e-43fe-a001-1fa67e11000d"],
+Cell[1246811, 29539, 1772, 51, 39, "Print",ExpressionUUID->"9c472be5-1478-4149-ab95-7ac0d33b0f36"],
+Cell[1248586, 29592, 307, 6, 23, "Print",ExpressionUUID->"03f56683-b6af-445e-a107-468edec81b12"],
+Cell[1248896, 29600, 397, 7, 23, "Print",ExpressionUUID->"be1d4293-9631-4438-80c2-6d32f0ad01db"],
+Cell[1249296, 29609, 718, 18, 23, "Print",ExpressionUUID->"bb1c6c59-2177-4c06-994b-2e299517aada"],
+Cell[1250017, 29629, 2223, 61, 42, "Print",ExpressionUUID->"f9c263d4-c4ca-46a8-a617-c68e5986d316"],
+Cell[1252243, 29692, 310, 6, 23, "Print",ExpressionUUID->"4b684955-aeb1-42ea-a0d0-1c8042d41aab"],
+Cell[1252556, 29700, 395, 7, 23, "Print",ExpressionUUID->"99e03567-0b34-4226-948e-68c439bbb925"],
+Cell[1252954, 29709, 768, 18, 23, "Print",ExpressionUUID->"9e83a24a-9605-448b-bb54-771b71547eda"],
+Cell[1253725, 29729, 2634, 72, 61, "Print",ExpressionUUID->"f4fbcb41-5f48-4c34-8eb4-99e107386364"],
+Cell[1256362, 29803, 307, 6, 23, "Print",ExpressionUUID->"5d2795b6-6061-4160-b70b-ae6ede1adfe2"],
+Cell[1256672, 29811, 397, 7, 23, "Print",ExpressionUUID->"0099932b-dd5f-4828-bfc0-0f103cc0e7f7"],
+Cell[1257072, 29820, 639, 16, 23, "Print",ExpressionUUID->"7e46bbcc-69c9-4159-9442-c3f13a7fac9a"],
+Cell[1257714, 29838, 735, 18, 23, "Print",ExpressionUUID->"9774ee8f-4a27-45f9-9e6a-7112c5d100af"],
+Cell[1258452, 29858, 306, 6, 23, "Print",ExpressionUUID->"5e3c69c7-fd2c-48d7-86eb-0e7b7ba562ab"],
+Cell[1258761, 29866, 399, 7, 23, "Print",ExpressionUUID->"88c572a6-806c-485b-b5de-d9a687484f08"],
+Cell[1259163, 29875, 516, 12, 23, "Print",ExpressionUUID->"8d4429aa-7c3b-4f77-81f2-4db62c313671"],
+Cell[1259682, 29889, 1766, 51, 39, "Print",ExpressionUUID->"079737de-7d1b-40eb-bfc6-a482e9a8a689"],
+Cell[1261451, 29942, 309, 6, 23, "Print",ExpressionUUID->"ae765207-8d05-47fd-9bbf-d6fbc15445c8"],
+Cell[1261763, 29950, 401, 7, 23, "Print",ExpressionUUID->"e8561a97-c0c1-44a0-914e-816655fb70d6"],
+Cell[1262167, 29959, 635, 16, 23, "Print",ExpressionUUID->"0aa20967-74c3-4a5a-b4e8-2022636fa788"],
+Cell[1262805, 29977, 733, 18, 23, "Print",ExpressionUUID->"28ceb118-ef46-4750-891a-1f455cf0fdf5"],
+Cell[1263541, 29997, 306, 6, 23, "Print",ExpressionUUID->"876cebb9-3edc-43fa-aae5-08eb47126150"],
+Cell[1263850, 30005, 401, 7, 23, "Print",ExpressionUUID->"7fb1f063-fe23-406c-8ae5-5342fb12ddcd"],
+Cell[1264254, 30014, 794, 19, 42, "Print",ExpressionUUID->"38b3ec36-2690-45d8-accf-90fe26abd991"],
+Cell[1265051, 30035, 2465, 67, 61, "Print",ExpressionUUID->"760e417d-485f-4f82-b573-6c657f88919a"],
+Cell[1267519, 30104, 308, 6, 23, "Print",ExpressionUUID->"a743c07d-7ff7-4a15-9a48-f89850db4c75"],
+Cell[1267830, 30112, 401, 7, 23, "Print",ExpressionUUID->"b2f31244-e89f-48e8-9006-73a7ace62efd"],
+Cell[1268234, 30121, 639, 16, 23, "Print",ExpressionUUID->"23264215-3f9a-4bbd-8b24-8dba1fcdba04"],
+Cell[1268876, 30139, 736, 18, 23, "Print",ExpressionUUID->"d2bf9a6a-7605-4776-b93a-39d9cb755a4c"],
+Cell[1269615, 30159, 306, 6, 23, "Print",ExpressionUUID->"ea6bce7a-5e0a-4d24-945a-63c9646f4ca2"]
 }, Open  ]]
 }, Open  ]]
 }
